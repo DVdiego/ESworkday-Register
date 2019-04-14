@@ -67,6 +67,7 @@ CREATE TABLE employees (
   employee_passwd varchar(25) NOT NULL default '',
   displayname varchar(50) NOT NULL default '',
   email varchar(75) NOT NULL default '',
+  contract varchar(50) NOT NULL default '',
   groups varchar(50) NOT NULL default '',
   office varchar(50) NOT NULL default '',
   admin tinyint(1) NOT NULL default '0',
@@ -80,7 +81,7 @@ CREATE TABLE employees (
 # Dumping data for table `employees`
 #
 
-INSERT INTO employees VALUES ('admin', NULL, 'xy.RY2HT1QTc2', 'administrator', '', '', '', 1, 1, 1, '');
+INSERT INTO employees VALUES ('admin', NULL, 'xy.RY2HT1QTc2', 'administrator', '', '', '', '', 1, 1, 1, '');
 
 # --------------------------------------------------------
 
@@ -128,7 +129,22 @@ CREATE TABLE `metars` (
 # --------------------------------------------------------
 
 #
-# Table structure for table `offices`
+# Table structure for table `contracts`
+#
+
+CREATE TABLE contracts (
+  type_contracts varchar(50) NOT NULL default '',
+  contractid int(10) NOT NULL auto_increment,
+  PRIMARY KEY  (contractid)
+);
+
+# --------------------------------------------------------
+
+
+
+
+#
+# Table structure for table ``
 #
 
 CREATE TABLE offices (
@@ -160,5 +176,3 @@ INSERT INTO punchlist VALUES ('break', '#FF9900', 0);
 INSERT INTO punchlist VALUES ('lunch', '#0000FF', 0);
 
 # --------------------------------------------------------
-
-

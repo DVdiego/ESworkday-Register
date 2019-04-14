@@ -50,7 +50,7 @@ if ($request == 'GET') {
     echo '<div class="box-header with-border">
 	                 <h3 class="box-title"><i class="fa fa-user-plus"></i> Create User</h3>
 	               </div><div class="box-body">';
-	
+
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%>
@@ -64,6 +64,9 @@ echo "              <tr><td class=table_rows height=25 width=20% style='padding-
                       <input type='password' size='25' maxlength='25' name='confirm_password'></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%>
                       <input type='text' size='25' maxlength='75' name='email_addy'>&nbsp;*</td></tr>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Type of Contract:</td><td colspan=2 width=80%>
+                      <select name='type_contract'>\n";
+echo "                      </select>&nbsp;*</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td colspan=2 width=80%>
                       <select name='office_name' onchange='group_names();'>\n";
 echo "                      </select>&nbsp;*</td></tr>\n";
@@ -87,12 +90,12 @@ echo "            </table>\n";
 
 				      echo '<div class="box-footer">
 				                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Create User</button>
-				                  <button class="btn btn-default pull-right"><a href="usercreate.php">Cancel</a></button>   
+				                  <button class="btn btn-default pull-right"><a href="usercreate.php">Cancel</a></button>
 				                </div></form>';
-				      echo '</div></div></div></div>';				  
+				      echo '</div></div></div></div>';
 		      include '../theme/templates/endmaincontent.inc';
 		      include '../footer.php';
-		      include '../theme/templates/controlsidebar.inc'; 
+		      include '../theme/templates/controlsidebar.inc';
 		      include '../theme/templates/endmain.inc';
 		      include '../theme/templates/adminfooterscripts.inc';
 }
@@ -106,6 +109,7 @@ $display_name = stripslashes($_POST['display_name']);
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
 $email_addy = $_POST['email_addy'];
+$type_contract = $_POST['type_contract'];
 $office_name = $_POST['office_name'];
 @$group_name = $_POST['group_name'];
 $admin_perms = $_POST['admin_perms'];
@@ -147,7 +151,7 @@ if ((@$tmp_username == $post_username) || ($password !== $confirm_password) ||
 // begin post validation //
 
 if (empty($post_username)) {
-	
+
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
@@ -155,7 +159,7 @@ if (empty($post_username)) {
               </div></div>';
 }
 elseif (empty($display_name)) {
-	
+
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
@@ -163,7 +167,7 @@ elseif (empty($display_name)) {
               </div></div>';
 }
 elseif (!empty($string)) {
-	
+
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
@@ -171,7 +175,7 @@ elseif (!empty($string)) {
               </div></div>';
 }
 elseif (!empty($string2)) {
-	
+
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
@@ -179,11 +183,18 @@ elseif (!empty($string2)) {
               </div></div>';
 }
 elseif (empty($email_addy)) {
-	
+
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
                   An Email Address is required.
+              </div></div>';
+}
+elseif (empty($type_contract)) {
+	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+                  An Type of Contract is required.
               </div></div>';
 }
 elseif (empty($office_name)) {
@@ -205,7 +216,7 @@ elseif (@$tmp_username == $post_username) {
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
                   User already exists. Create another username.
-              </div></div>';	
+              </div></div>';
 
 
 
@@ -273,6 +284,19 @@ elseif (($post_disabled != '1') && (!empty($post_disabled))) {
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
                  Choose \"yes\" or \"no\" for User Account Disabled.
               </div></div>';
+}
+
+
+
+
+if (!empty($type_contracts)) {
+$query = "select * from ".$db_prefix."offices where officename = '".$type_contracts."'";
+$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+while ($row=mysqli_fetch_array($result)) {
+$tmp_type_contracts = "".$row['type_contracts']."";
+}
+((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
+if (!isset($tmp_type_contracts)) {echo "Office is not defined.\n"; exit;}
 }
 
 if (!empty($office_name)) {
@@ -383,12 +407,12 @@ echo "            </table>\n";
 //                      border='0'></td></tr></table></form>\n";
 				      echo '<div class="box-footer">
 				                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Create User</button>
-				                  <button class="btn btn-default pull-right"><a href="usercreate.php">Cancel</a></button>   
+				                  <button class="btn btn-default pull-right"><a href="usercreate.php">Cancel</a></button>
 				                </div></form>';
-				      echo '</div></div></div></div>';			  
+				      echo '</div></div></div></div>';
 		      include '../theme/templates/endmaincontent.inc';
-		      include '../footer.php'; 
-		      include '../theme/templates/controlsidebar.inc'; 
+		      include '../footer.php';
+		      include '../theme/templates/controlsidebar.inc';
 		      include '../theme/templates/endmain.inc';
 		      include '../theme/templates/adminfooterscripts.inc';
 		      exit;
@@ -519,12 +543,12 @@ echo "            </table>\n";
 echo '<div class="box-footer">
            <a href="usercreate.php"><button class="btn btn-success">Done</button></a>
           </div>';
-echo '</div></div></div></div>';		
+echo '</div></div></div></div>';
 
 
 include '../theme/templates/endmaincontent.inc';
-include '../footer.php'; 
-include '../theme/templates/controlsidebar.inc'; 
+include '../footer.php';
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
 exit;

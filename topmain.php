@@ -37,7 +37,8 @@ echo '    <!-- Logo -->
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b><i class="fa fa-clock-o"></i></span>
       <!-- logo for regular state and mobile devices -->';
-if ($logo == "none") {     echo '<span class="logo-lg"><b>PHP</b> <i class="fa fa-clock-o"></i> Timeclock</span></a>'; }
+if ($logo == "none") {
+  echo '<span class="logo-lg"><b>PHP</b> <i class="fa fa-clock-o"></i> Timeclock</span></a>'; }
 else { echo "<span class='logo-lg'><img border='0' src='$logo'></span></a>"; }
 
 include './theme/templates/topnavpart1.inc';
@@ -45,7 +46,7 @@ include './theme/templates/topnavpart1.inc';
 // if db is out of date, report it here //
 if (($dbexists <> "1") || (@$my_dbversion <> $dbversion)) {
     echo "
-                 <li><a href=#>***Your database is out of date.*** 
+                 <li><a href=#>***Your database is out of date.***
                  &nbsp;&nbsp;&nbsp; Upgrade it via the admin section.</a></li>";
 }
 
@@ -55,7 +56,7 @@ if (($dbexists <> "1") || (@$my_dbversion <> $dbversion)) {
 if ($date_link == "none") {
     if ($use_client_tz == "yes") {
         echo "
-            
+
                   If the times below appear to be an hour off, click
                   <a href='resetcookie.php'>
                      here
@@ -67,12 +68,12 @@ if ($date_link == "none") {
 } else {
     if ($use_client_tz == "yes") {
         echo "
-            
-               
+
+
                   If the times below appear to be an hour off, click
                   <a href='resetcookie.php'>
                      here
-                  </a> to reset. 
+                  </a> to reset.
                  If that doesn't work, restart your web browser and reset again.";
     }
 
@@ -89,26 +90,26 @@ echo "
 // display the topbar //
 
 
-/* moved to leftmain 
+/* moved to leftmain
 if (isset($_SESSION['valid_user'])) {
     $logged_in_user = $_SESSION['valid_user'];
     echo "
-            
+
                <li><a href='login.php'><i class='fa fa-user-secret text-orange'></i> Logged in as: $logged_in_user</a></li>";
 } else if (isset($_SESSION['time_admin_valid_user'])) {
     $logged_in_user = $_SESSION['time_admin_valid_user'];
     echo "
-            
+
                <li><a href='login.php'><i class='fa fa-user-secret text-red'></i> Logged in as: $logged_in_user</a></li>";
 } else if (isset($_SESSION['valid_reports_user'])) {
     $logged_in_user = $_SESSION['valid_reports_user'];
     echo "
-            
+
                <li><a href='login.php'><i class='fa fa-user-plus'></i> Logged in as: $logged_in_user</a></li>";
 } else if (isset($_SESSION['valid_report_employee'])) {
     $logged_in_user = $_SESSION['valid_report_employee'];
     echo "
-            
+
                <li><a href='login.php'><i class='fa fa-user'></i> Logged in as: $logged_in_user</a></li>";
 }
 
@@ -116,12 +117,12 @@ end moved to leftmain  */
 
 echo "
                <li><a href='index.php'><i class='fa fa-home'></i> Home</a></li>
-            
+
                <li><a href='login.php?login_action=admin'><i class='fa fa-globe'></i> Administration</a></li>";
 
 if ($use_reports_password == "yes") {
     echo "
-            
+
                <li><a href='login.php?login_action=reports'><i class='fa fa-globe'></i> Reports</a></li>";
 } elseif ($use_reports_password == "no") {
     echo "
@@ -130,7 +131,7 @@ if ($use_reports_password == "yes") {
 
 if ((isset($_SESSION['valid_user'])) || (isset($_SESSION['valid_reports_user'])) || (isset($_SESSION['valid_report_employee'])) || (isset($_SESSION['time_admin_valid_user']))) {
     echo "
-            
+
                <li><a href='logout.php'><i class='fa fa-sign-out'></i>Logout</a></li>";
 }
 
