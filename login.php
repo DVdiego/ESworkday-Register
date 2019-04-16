@@ -49,7 +49,7 @@ if ($_REQUEST["login_action"] == "admin") {
     // Determine if the user has entered his authentication credentials
     if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
         $login_userid = $_POST['login_userid'];
-        $login_password = crypt($_POST['login_password'], 'xy');
+        $login_password = $_POST['login_password'];
 
         // Determine if the user has sys or time access rights.
         $query = "select empfullname, employee_passwd, admin, time_admin from ".$db_prefix."employees where empfullname = '".$login_userid."'";
@@ -63,9 +63,9 @@ if ($_REQUEST["login_action"] == "admin") {
         }
 
         // Setup user permissions
-        if (($login_userid == @$admin_username) && ($login_password == @$admin_password) && ($admin_auth == "1")) {
+        if (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($admin_auth == "1")) {
             $_SESSION['valid_user'] = $login_userid;
-        } elseif (($login_userid == @$admin_username) && ($login_password == @$admin_password) && ($time_admin_auth == "1")) {
+        } elseif (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($time_admin_auth == "1")) {
             $_SESSION['time_admin_valid_user'] = $login_userid;
         }
 
@@ -79,7 +79,7 @@ if ($_REQUEST["login_action"] == "admin") {
             $reports_auth = "".$row['reports']."";
         }
 
-        if (($login_userid == @$reports_username) && ($login_password == @$reports_password) && ($reports_auth == "1")) {
+        if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password)) && ($reports_auth == "1")) {
             $_SESSION['valid_reports_user'] = $login_userid;
         }
     }
@@ -99,7 +99,7 @@ if ($_REQUEST["login_action"] == "admin") {
         exit;
     } elseif (isset($_SESSION['valid_reports_user'])) {
             echo "
-      
+
             You do not have administration access permission.
 ";
             exit;
@@ -110,7 +110,7 @@ if ($_REQUEST["login_action"] == "admin") {
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    
+
 
     <form name="auth" method="post" action=" '.$self.' ">
       <div class="form-group has-feedback">
@@ -129,7 +129,7 @@ if ($_REQUEST["login_action"] == "admin") {
         <!-- /.col -->
       </div>
     </form>
-    
+
     </div>
       <!-- /.login-box-body -->
     </div>
@@ -142,13 +142,13 @@ if ($_REQUEST["login_action"] == "admin") {
         // Did the user enter invalid credentials
         if (isset($login_userid)) {
             echo "
-            
+
                   Could not log you in. Either your username or password is incorrect.
            ";
         }
         echo "
-         
-      
+
+
       <script language=\"javascript\">
          document.forms['auth'].login_userid.focus();
       </script>";
@@ -165,7 +165,7 @@ if ($_REQUEST["login_action"] == "admin") {
     // Determine if the user has entered his authentication credentials
     if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
         $login_userid = $_POST['login_userid'];
-        $login_password = crypt($_POST['login_password'], 'xy');
+        $login_password = $_POST['login_password'];
 
         // Determine if the user has report access rights.
         $query = "select empfullname, employee_passwd, reports from ".$db_prefix."employees where empfullname = '".$login_userid."'";
@@ -178,9 +178,9 @@ if ($_REQUEST["login_action"] == "admin") {
         }
 
         // Determine if the user is authorised to view reports
-        if (($login_userid == @$reports_username) && ($login_password == @$reports_password) && ($reports_auth == "1")) {
+        if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password)) && ($reports_auth == "1")) {
             $_SESSION['valid_reports_user'] = $login_userid;
-        } else if (($login_userid == @$reports_username) && ($login_password == @$reports_password)) { // User can view his own hours
+        } else if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password))) { // User can view his own hours
             $_SESSION['valid_report_employee'] = $login_userid;
         }
 
@@ -195,9 +195,9 @@ if ($_REQUEST["login_action"] == "admin") {
             $time_admin_auth = "".$row['time_admin']."";
         }
 
-        if (($login_userid == @$admin_username) && ($login_password == @$admin_password) && ($admin_auth == "1")) {
+        if (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($admin_auth == "1")) {
             $_SESSION['valid_user'] = $login_userid;
-        } elseif (($login_userid == @$admin_username) && ($login_password == @$admin_password) && ($time_admin_auth == "1")) {
+        } elseif (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($time_admin_auth == "1")) {
             $_SESSION['time_admin_valid_user'] = $login_userid;
         }
     }
@@ -230,7 +230,7 @@ if ($_REQUEST["login_action"] == "admin") {
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    
+
 
     <form name="auth" method="post" action=" '.$self.' ">
       <div class="form-group has-feedback">
@@ -249,7 +249,7 @@ if ($_REQUEST["login_action"] == "admin") {
         <!-- /.col -->
       </div>
     </form>
-    
+
     </div>
       <!-- /.login-box-body -->
     </div>
@@ -260,7 +260,7 @@ if ($_REQUEST["login_action"] == "admin") {
         // Determine if the user has supplied incorrect credentials.
         if (isset($login_userid)) {
             echo "
-            
+
                   Could not log you in. Either your username or password is incorrect.
 ";
         }

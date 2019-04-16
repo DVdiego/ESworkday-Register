@@ -161,7 +161,7 @@ echo "              <tr><td width=30><input type='image' name='submit' value='Ch
                   <td><a href='useradmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
 	      include '../theme/templates/endmaincontent.inc';
 	      include '../footer.php';
-	      include '../theme/templates/controlsidebar.inc'; 
+	      include '../theme/templates/controlsidebar.inc';
 	      include '../theme/templates/endmain.inc';
 	      include '../theme/templates/adminfooterscripts.inc';
 exit;
@@ -303,15 +303,15 @@ echo "              <tr><td width=30><input type='image' name='submit' value='Ch
                       <img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
 		      include '../theme/templates/endmaincontent.inc';
 		      include '../footer.php';
-		      include '../theme/templates/controlsidebar.inc'; 
+		      include '../theme/templates/controlsidebar.inc';
 		      include '../theme/templates/endmain.inc';
 		      include '../theme/templates/adminfooterscripts.inc';
 exit;
 
 } else {
 
-$new_password = crypt($new_password, 'xy');
-$confirm_password = crypt($confirm_password, 'xy');
+$new_password = password_hash($new_password, PASSWORD_DEFAULT, ['cost' => 10]);
+$confirm_password = password_hash($confirm_password, PASSWORD_DEFAULT, ['cost' => 10]);
 
 $post_username = addslashes($post_username);
 
@@ -341,7 +341,7 @@ echo "              <tr><td><a href='useradmin.php'><img src='../images/buttons/
             </table>\n";
 include '../theme/templates/endmaincontent.inc';
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
 

@@ -324,8 +324,8 @@ if (!isset($tmp_officename)) {echo "Group is not defined.\n"; exit;}
 if (!empty($string)) {$post_username = stripslashes($post_username);}
 if (!empty($string2)) {$display_name = stripslashes($display_name);}
 
-$password = crypt($password, 'xy');
-$confirm_password = crypt($confirm_password, 'xy');
+$password = password_hash($new_password, PASSWORD_DEFAULT, ['cost' => 10]);
+$confirm_password = password_hash($confirm_password, PASSWORD_DEFAULT, ['cost' => 10]);
 
 
 
