@@ -64,7 +64,8 @@ INSERT INTO dbversion VALUES ('1.4');
 CREATE TABLE employees (
   empfullname varchar(50) NOT NULL default '',
   tstamp bigint(14) default NULL,
-  employee_passwd varchar(25) NOT NULL default '',
+  empDNI varchar(9) NOT NULL default '',
+  employee_passwd varchar(255) NOT NULL default '',
   displayname varchar(50) NOT NULL default '',
   email varchar(75) NOT NULL default '',
   contract varchar(50) NOT NULL default '',
@@ -108,7 +109,9 @@ CREATE TABLE info (
   timestamp bigint(14) default NULL,
   notes varchar(250) default NULL,
   ipaddress varchar(39) NOT NULL default '',
-  KEY fullname (fullname)
+  lenth DECIMAL(18.14) NOT NULL default '0.0',
+  latitude DECIMAL (18.14) NOT NULL default '0.0',
+  PRIMARY KEY fullname (fullname)
 );
 
 # --------------------------------------------------------
@@ -134,17 +137,16 @@ CREATE TABLE `metars` (
 
 CREATE TABLE contracts (
   type_contracts varchar(50) NOT NULL default '',
+  evertime_earn float NOT NULL default '0.0',
+  daily_hours int(3) NOT NULL default '0',
   contractid int(10) NOT NULL auto_increment,
   PRIMARY KEY  (contractid)
 );
 
 # --------------------------------------------------------
 
-
-
-
 #
-# Table structure for table ``
+# Table structure for table `offices`
 #
 
 CREATE TABLE offices (
