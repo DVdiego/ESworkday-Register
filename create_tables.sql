@@ -64,7 +64,7 @@ INSERT INTO dbversion VALUES ('1.4');
 CREATE TABLE employees (
   empfullname varchar(50) NOT NULL default '',
   tstamp bigint(14) default NULL,
-  empDNI varchar(9) NOT NULL default '',
+  empDNI varchar(255) NOT NULL default '',
   employee_passwd varchar(255) NOT NULL default '',
   displayname varchar(50) NOT NULL default '',
   email varchar(75) NOT NULL default '',
