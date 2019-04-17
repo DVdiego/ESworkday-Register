@@ -26,7 +26,7 @@ $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 
 include '../config.inc.php';
-if ($request !== 'POST') {include 'header_get.php';include 'topmain.php'; include 'leftmain.php'; }
+if ($request !== 'POST') {include 'header_get.php';include 'topmain.php'; include 'leftmain.php'; include 'functions.php'; }
 echo "<title>$title - Create User</title>\n";
 
 if (!isset($_SESSION['valid_user'])) {
@@ -53,44 +53,46 @@ if ($request == 'GET') {
 
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%>
-                      <input type='text' size='25' maxlength='50' name='post_username'>&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%>
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>&nbsp;*Nombre completo:</td><td colspan=2 width=80%>
+                      <input type='text' size='25' maxlength='50' name='post_username'></td></tr>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>DNI:</td><td colspan=2 width=80%>
+											 <input type='text' size='25' maxlength='10' name='user_dni'>&nbsp;*</td></tr>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de usuario:</td><td colspan=2 width=80%>
                       <input type='text' size='25' maxlength='50' name='display_name'>&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Password:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contraseña:</td><td colspan=2 width=80%
                       style='padding-left:20px;'><input type='password' size='25' maxlength='25' name='password'></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirm Password:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirmar contraseña:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <input type='password' size='25' maxlength='25' name='confirm_password'></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%>
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de email:</td><td colspan=2 width=80%>
                       <input type='text' size='25' maxlength='75' name='email_addy'>&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Type of Contract:</td><td colspan=2 width=80%>
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Tipo de contrato:</td><td colspan=2 width=80%>
                       <select name='type_contract'>\n";
 echo "                      </select>&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td colspan=2 width=80%>
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td colspan=2 width=80%>
                       <select name='office_name' onchange='group_names();'>\n";
 echo "                      </select>&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%>
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Grupo de trabajo:</td><td colspan=2 width=80%>
                       <select name='group_name'>\n";
 echo "                      </select>&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Sys Admin User?</td>\n";
-echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='admin_perms' value='1'>&nbsp;Yes
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Usuario administrador?</td>\n";
+echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='admin_perms' value='1'>&nbsp;Si
                     <input type='radio' name='admin_perms' value='0' checked>&nbsp;No</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Time Admin User?</td>\n";
-echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='time_admin_perms' value='1'>&nbsp;Yes
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Administrador de tiempos?</td>\n";
+echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='time_admin_perms' value='1'>&nbsp;Si
                     <input type='radio' name='time_admin_perms' value='0' checked>&nbsp;No</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reports User?</td>\n";
-echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='reports_perms' value='1'>&nbsp;Yes
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Usuario reportador?</td>\n";
+echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='reports_perms' value='1'>&nbsp;Si
                     <input type='radio' name='reports_perms' value='0' checked>&nbsp;No</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Account Disabled?</td>\n";
-echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='disabled' value='1'>&nbsp;Yes
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Cuenta deshabilitada?</td>\n";
+echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='disabled' value='1'>&nbsp;Si
                     <input type='radio' name='disabled' value='0' checked>&nbsp;No</td></tr>\n";
-echo "              <tr><td class=table_rows align=right colspan=3>*&nbsp;required&nbsp;</td></tr>\n";
+echo "              <tr><td class=table_rows align=right colspan=3>*&nbsp;Campo obligatorio&nbsp;</td></tr>\n";
 echo "            </table>\n";
 
 				      echo '<div class="box-footer">
-				                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Create User</button>
-				                  <button class="btn btn-default pull-right"><a href="usercreate.php">Cancel</a></button>
+				                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Crear usuario</button>
+				                  <button class="btn btn-default pull-right"><a href="usercreate.php">Cancelar</a></button>
 				                </div></form>';
 				      echo '</div></div></div></div>';
 		      include '../theme/templates/endmaincontent.inc';
@@ -105,6 +107,7 @@ elseif ($request == 'POST') {
 include 'header_post.php'; include 'topmain.php'; include 'leftmain.php';
 
 $post_username = stripslashes($_POST['post_username']);
+$post_dni = $_POST['user_dni'];
 $display_name = stripslashes($_POST['display_name']);
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
@@ -150,72 +153,80 @@ if ((@$tmp_username == $post_username) || ($password !== $confirm_password) ||
 
 // begin post validation //
 
-if (empty($post_username)) {
+if (empty($post_dni)) {
 
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                 A Username is required.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                 Se requiere introducir el DNI del empleado.
               </div></div>';
 }
 elseif (empty($display_name)) {
 
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                 A Display Name is required.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                 Se requiere un nombre de usuario.
+              </div></div>';
+}
+elseif (empty($display_name)) {
+
+	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                 Se requiere un nombre de usuario.
               </div></div>';
 }
 elseif (!empty($string)) {
 
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                  Double Quotes are not allowed when creating an Username.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                  El campo nombre completo no puede estar vacío
               </div></div>';
 }
 elseif (!empty($string2)) {
 
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                  Double Quotes are not allowed when creating an Display Name.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                  El campo nombre de usuario no puede estar vacío
               </div></div>';
 }
 elseif (empty($email_addy)) {
 
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                  An Email Address is required.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                  Se requiere introducir el email.
               </div></div>';
 }
 elseif (empty($type_contract)) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                  An Type of Contract is required.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                  Se requiere introducir el tipo de contrato.
               </div></div>';
 }
 elseif (empty($office_name)) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                  An Office is required.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                  Se requiere introducir una oficina.
               </div></div>';
 }
 elseif (empty($group_name)) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                  A Group is required.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                  Se requiere introducir un grupo de trabajo.
               </div></div>';
 }
 elseif (@$tmp_username == $post_username) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                  User already exists. Create another username.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                  El usuario ya existe. Introduce otro nombre.
               </div></div>';
 
 
@@ -223,8 +234,8 @@ elseif (@$tmp_username == $post_username) {
         } elseif (!preg_match('/' . "^([[:alnum:]]| |-|'|,)+$" . '/i', $post_username)) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-	                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                  Alphanumeric characters, hyphens, apostrophes, commas, and spaces are allowed when creating a Username.
+	                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+									No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un usuario.
               </div></div>';
 
 
@@ -232,57 +243,56 @@ elseif (@$tmp_username == $post_username) {
         } elseif (!preg_match('/' . "^([[:alnum:]]|Å|Ä|Ö|å|ä|ö| |-|'|,)+$" . '/i', $display_name)) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                  Alphanumeric characters, hyphens, apostrophes, commas, and spaces are allowed when creating a Displayname.
+                	<h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+									No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un usuario.
               </div></div>';
         } elseif (!preg_match('/' . "^([[:alnum:]]|~|\!|@|#|\$|%|\^|&|\*|\(|\)|-|\+|`|_|\=|[{]|[}]|\[|\]|\||\:|\<|\>|\.|,|\?)+$" . '/i', $password)) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Single and double quotes, backward and forward slashes, semicolons, and spaces are not allowed when creating a
-                Password.
+                	<h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+									No se permiten comillas, barras o espacios para crear una contraseña.
               </div></div>';
 }
 elseif ($password != $confirm_password) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Passwords do not match.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                Las contraseñas no coinciden
               </div></div>';
 
         } elseif (!preg_match('/' . "^([[:alnum:]]|_|\.|-)+@([[:alnum:]]|\.|-)+(\.)([a-z]{2,4})$" . '/i', $email_addy)) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Alphanumeric characters, underscores, periods, and hyphens are allowed when creating an Email Address.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+								No están permitidos caracteres alfanumnéricos, barrabajas o guines para crear un Email.
               </div></div>';
 }
 elseif (($admin_perms != '1') && (!empty($admin_perms))) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Choose \"yes\" or \"no\" for Sys Admin Perms.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                Elige \"si\" o \"no\" para otorgar permisos de administrador.
               </div></div>';
 }
 elseif (($reports_perms != '1') && (!empty($reports_perms))) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Choose \"yes\" or \"no\" for Reports Perms.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                Elige \"si\" o \"no\" para otorgar permisos de reportador.
               </div></div>';
 }
 elseif (($time_admin_perms != '1') && (!empty($time_admin_perms))) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Choose \"yes\" or \"no\" for Time Admin Perms.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                Elige \"si\" o \"no\" àra otorgar persimos para modificar los tiempos.
               </div></div>';
 }
 elseif (($post_disabled != '1') && (!empty($post_disabled))) {
 	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                 Choose \"yes\" or \"no\" for User Account Disabled.
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                 Elige \"si\" o \"no\" para deshabilitar la cuenta.
               </div></div>';
 }
 
@@ -290,13 +300,13 @@ elseif (($post_disabled != '1') && (!empty($post_disabled))) {
 
 
 if (!empty($type_contracts)) {
-$query = "select * from ".$db_prefix."offices where officename = '".$type_contracts."'";
+$query = "select * from ".$db_prefix."contracts where type_contract = '".$type_contracts."'";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 while ($row=mysqli_fetch_array($result)) {
 $tmp_type_contracts = "".$row['type_contracts']."";
 }
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-if (!isset($tmp_type_contracts)) {echo "Office is not defined.\n"; exit;}
+if (!isset($tmp_type_contracts)) {echo "El tipo de contrato no está definido..\n"; exit;}
 }
 
 if (!empty($office_name)) {
@@ -306,7 +316,7 @@ while ($row=mysqli_fetch_array($result)) {
 $tmp_officename = "".$row['officename']."";
 }
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-if (!isset($tmp_officename)) {echo "Office is not defined.\n"; exit;}
+if (!isset($tmp_officename)) {echo "La oficina no está definida.\n"; exit;}
 }
 
 if (!empty($group_name)) {
@@ -316,7 +326,7 @@ while ($row=mysqli_fetch_array($result)) {
 $tmp_groupname = "".$row['groupname']."";
 }
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-if (!isset($tmp_officename)) {echo "Group is not defined.\n"; exit;}
+if (!isset($tmp_officename)) {echo "El grupo no está definido.\n"; exit;}
 }
 
 // end post validation //
@@ -324,7 +334,7 @@ if (!isset($tmp_officename)) {echo "Group is not defined.\n"; exit;}
 if (!empty($string)) {$post_username = stripslashes($post_username);}
 if (!empty($string2)) {$display_name = stripslashes($display_name);}
 
-$password = password_hash($new_password, PASSWORD_DEFAULT, ['cost' => 10]);
+$password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
 $confirm_password = password_hash($confirm_password, PASSWORD_DEFAULT, ['cost' => 10]);
 
 
@@ -333,39 +343,42 @@ echo '<div class="row">
     <div class="col-md-8">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-user-plus"></i> Create User</h3>
+                 <h3 class="box-title"><i class="fa fa-user-plus"></i>Crear usuario</h3>
                </div><div class="box-body">';
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table class=table>\n";
-echo "              <tr><td class=table_rows  height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows  height=25 width=20% style='padding-left:32px;' nowrap>Nombre completo:</td><td colspan=2 width=80%
                       style='color:red;font-family:Tahoma;font-size:11px;padding-left:20px;'>
                       <input type='text' size='25' maxlength='50' name='post_username' value=\"$post_username\">&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows  height=25 width=20% style='padding-left:32px;' nowrap>DNI:</td><td colspan=2 width=80%
+                      style='color:red;font-family:Tahoma;font-size:11px;padding-left:20px;'>
+                      <input type='text' size='25' maxlength='50' name='post_username' value=\"$post_dni\">&nbsp;*</td></tr>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de usuario:</td><td colspan=2 width=80%
                       style='color:red;font-family:Tahoma;font-size:11px;padding-left:20px;'>
                       <input type='text' size='25' maxlength='50' name='display_name' value=\"$display_name\">&nbsp;*</td></tr>\n";
 
 if (!empty($string)) {$post_username = addslashes($post_username);}
 if (!empty($string2)) {$displayname = addslashes($display_name);}
 
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Password:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contraseña:</td><td colspan=2 width=80%
                       style='padding-left:20px;'><input type='password' size='25' maxlength='25' name='password'></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirm Password:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirmar contraseña:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <input type='password' size='25' maxlength='25' name='confirm_password'></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de email:</td><td colspan=2 width=80%
                       style='color:red;font-family:Tahoma;font-size:11px;padding-left:20px;'>
                       <input type='text' size='25' maxlength='75' name='email_addy' value=\"$email_addy\">&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td colspan=2 width=80%
                       >
                       <select name='office_name' onchange='group_names();'>\n";
 echo "                      </select>&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Grajoupo de trab:</td><td colspan=2 width=80%
                       >
                       <select name='group_name' onfocus='group_names();'>
                         <option selected>$group_name</option>\n";
 echo "                      </select>&nbsp;*</td></tr>\n";
 
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Sys Admin User?</td>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Usuario administrador?</td>\n";
 if ($admin_perms == "1") {
 echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='admin_perms' value='1'
                     checked>&nbsp;Yes<input type='radio' name='admin_perms' value='0'>&nbsp;No</td></tr>\n";
@@ -374,7 +387,7 @@ echo "                <td class=table_rows align=left width=80% style='padding-l
                     <input type='radio' name='admin_perms' value='0' checked>&nbsp;No</td></tr>\n";
 }
 
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Time Admin User?</td>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Usuario modificador de tiempos?</td>\n";
 if ($time_admin_perms == "1") {
 echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='time_admin_perms' value='1'
                     checked>&nbsp;Yes<input type='radio' name='time_admin_perms' value='0'>&nbsp;No</td></tr>\n";
@@ -382,7 +395,7 @@ echo "                <td class=table_rows align=left width=80% style='padding-l
 echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='time_admin_perms' value='1'>&nbsp;Yes
                     <input type='radio' name='time_admin_perms' value='0' checked>&nbsp;No</td></tr>\n";
 }
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reports User?</td>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Usuario reportador?</td>\n";
 if ($reports_perms == "1") {
 echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='reports_perms' value='1'
                     checked>&nbsp;Yes<input type='radio' name='reports_perms' value='0'>&nbsp;No</td></tr>\n";
@@ -390,7 +403,7 @@ echo "                <td class=table_rows align=left width=80% style='padding-l
 echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='reports_perms' value='1'>&nbsp;Yes
                     <input type='radio' name='reports_perms' value='0' checked>&nbsp;No</td></tr>\n";
 }
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Account Disabled?</td>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Cuenta de usuario deshabilitada?</td>\n";
 if ($post_disabled == "1") {
 echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='disabled' value='1'
                     checked>&nbsp;Yes<input type='radio' name='disabled' value='0'>&nbsp;No</td></tr>\n";
@@ -406,8 +419,8 @@ echo "            </table>\n";
 //                      src='../images/buttons/next_button.png'></td><td><a href='useradmin.php'><img src='../images/buttons/cancel_button.png'
 //                      border='0'></td></tr></table></form>\n";
 				      echo '<div class="box-footer">
-				                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Create User</button>
-				                  <button class="btn btn-default pull-right"><a href="usercreate.php">Cancel</a></button>
+				                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Crear usuario</button>
+				                  <button class="btn btn-default pull-right"><a href="usercreate.php">Cancelar</a></button>
 				                </div></form>';
 				      echo '</div></div></div></div>';
 		      include '../theme/templates/endmaincontent.inc';
@@ -424,8 +437,8 @@ $display_name = addslashes($display_name);
 $password = crypt($password, 'xy');
 $confirm_password = crypt($confirm_password, 'xy');
 
-$query3 = "insert into ".$db_prefix."employees (empfullname, displayname, employee_passwd, email, groups, office, admin, reports, time_admin, disabled)
-           values ('".$post_username."', '".$display_name."', '".$password."', '".$email_addy."', '".$group_name."', '".$office_name."', '".$admin_perms."',
+$query3 = "insert into ".$db_prefix."employees (empfullname, empDNI, displayname, employee_passwd, email, groups, office, admin, reports, time_admin, disabled)
+           values ('".$post_username."', '".$post_dni."', '".$display_name."', '".$password."', '".$email_addy."', '".$group_name."', '".$office_name."', '".$admin_perms."',
            '".$reports_perms."', '".$time_admin_perms."', '".$post_disabled."')";
 $result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 
@@ -481,16 +494,16 @@ echo '<div class="row">
     <div class="col-md-8">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-user-plus"></i> User created successfully.</h3>
+                 <h3 class="box-title"><i class="fa fa-user-plus"></i>Usuario creado con éxito.</h3>
                </div><div class="box-body">';
 
 echo "            <table class=table>\n";
 echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3><i class='fa fa-user-plus'></i>&nbsp;&nbsp;&nbsp;Create User
+echo "                <th class=rightside_heading nowrap halign=left colspan=3><i class='fa fa-user-plus'></i>&nbsp;&nbsp;&nbsp;Crear usuario
                 </th></tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 
-$query4 = "select empfullname, displayname, email, groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
+$query4 = "select empfullname, empDNI, displayname, email, groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
 	  where empfullname = '".$post_username."'
           order by empfullname";
 $result4 = mysqli_query($GLOBALS["___mysqli_ston"], $query4);

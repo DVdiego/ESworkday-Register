@@ -82,7 +82,7 @@ CREATE TABLE employees (
 # Dumping data for table `employees`
 #
 
-INSERT INTO employees VALUES ('admin', NULL, 'xy.RY2HT1QTc2', 'administrator', '', '', '', '', 1, 1, 1, '');
+INSERT INTO employees VALUES ('admin', NULL, '00000000A', 'xy.RY2HT1QTc2', 'administrator', '', '', '', '', 1, 1, 1, '');
 
 # --------------------------------------------------------
 

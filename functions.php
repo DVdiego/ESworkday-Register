@@ -297,16 +297,16 @@ function ip_range($network, $ip) {
        }
    }
    return $result;
-
-
 }
+
 /*
 *   Función genérica para encriptar los datos sensibles utiliza password_hash(), lo que
 *   devuelve un hash del dato que se le introduce.
 */
-function encrypt_data($data)
+function encrypt_data($data, $password)
 {
-  $enc_data = password_hash($data, PASSWORD_DEFAULT, ['cost' => 10]);
+  $iv = 1234567891357246;
+  $enc_data = openssl_encrypt($data, 'AES256', $password, true, $iv);
   return $enc_data;
 }
 
@@ -314,10 +314,11 @@ function encrypt_data($data)
 *   FUnción que devuelve si un dato y su hash es el mismo, sirve para comprobar que los datos
 *   son correctos e iguales a los que se guardan en la BD y van cifrados.
 */
-function decrypt_data($data, $enc_data)
+function decrypt_data($enc_data, $password)
 {
-  $reult = password_verify($data, $enc_data);
+  $iv = 1234567891357246;
+  $reult = openssl_decrypt($enc_data, 'AES256', $password, $iv);
   return $result;
 }
 
-?>
+ ?>
