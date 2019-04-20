@@ -105,8 +105,13 @@ if ($refresh == "none") {
 } else {
     echo "
       <meta http-equiv='refresh' content=\"$refresh;URL=timeclock.php\">
-      <script language=\"javascript\" src=\"scripts/pnguin_timeclock.js\">
-      </script>
+      <script language=\"javascript\" src=\"scripts/pnguin_timeclock.js\"></script>
+
+      <script language=\"javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>
+      <script language=\"javascript\" src=\"https://code.jquery.com/jquery-3.2.1.min.js\"></script>
+
+
+
    </head>";
 }
 
@@ -126,3 +131,45 @@ if ($use_client_tz == "yes") {
     $tzo = "1";
 }
 ?>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.0.slim.min.js"
+  integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">// <![CDATA[
+if (navigator.geolocation) {
+  var tiempo_de_espera = 3000;
+  navigator.geolocation.getCurrentPosition(mostrarDireccion, mostrarError, { enableHighAccuracy: true, timeout: tiempo_de_espera, maximumAge: 0 } );
+}
+else {
+  alert("La Geolocalización no es soportada por este navegador");
+}
+
+
+function mostrarDireccion(position){
+  var lat = position.coords.latitude;
+  var lon = position.coords.longitude;
+  alert(lat,lon);
+  get_address(lat, lon);
+}
+
+function get_address(lat, lon){
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    var address = request.response;
+    var inf = JSON.parse(address);
+    alert(inf.display_name);
+  }
+
+  var requestURL = 'https://nominatim.openstreetmap.org/reverse?json_callback&format=json&addressdetails=0&zoom=18&lat='+lat+'&lon='+lon;
+  request.open('GET', requestURL,  /* async = */ false);
+  request.send();
+}
+
+
+
+function mostrarError(error) {
+  var errores = {1: 'Permiso denegado', 2: 'Posición no disponible', 3: 'Expiró el tiempo de respuesta'};
+  alert("Error: " + errores[error.code]);
+}
+// ]]></script>
