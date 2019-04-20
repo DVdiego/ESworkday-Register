@@ -105,8 +105,10 @@ if ($refresh == "none") {
 } else {
     echo "
       <meta http-equiv='refresh' content=\"$refresh;URL=timeclock.php\">
-      <script language=\"javascript\" src=\"scripts/pnguin_timeclock.js\">
-      </script>
+      <script language=\"javascript\" src=\"scripts/pnguin_timeclock.js\"></script>
+
+      <script language=\"javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>
+      <script language=\"javascript\" src=\"https://code.jquery.com/jquery-3.2.1.min.js\"></script>
 
 
 
@@ -129,86 +131,42 @@ if ($use_client_tz == "yes") {
     $tzo = "1";
 }
 ?>
-<script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=true'></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.0.slim.min.js"
+  integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI="
+  crossorigin="anonymous"></script>
 <script type="text/javascript">// <![CDATA[
 if (navigator.geolocation) {
   var tiempo_de_espera = 3000;
-  navigator.geolocation.getCurrentPosition(mostrarCoordenadas, mostrarError, { enableHighAccuracy: true, timeout: tiempo_de_espera, maximumAge: 0 } );
+  navigator.geolocation.getCurrentPosition(mostrarDireccion, mostrarError, { enableHighAccuracy: true, timeout: tiempo_de_espera, maximumAge: 0 } );
 }
 else {
   alert("La Geolocalización no es soportada por este navegador");
 }
 
-function mostrarCoordenadas(position) {
+
+function mostrarDireccion(position){
   var lat = position.coords.latitude;
   var lon = position.coords.longitude;
-
-  //var lat = "40.9369015";
-  //var lon = "-4.1117624";
-  //alert("google");
-  //alert("Latitud: " + lat + ", Longitud: " + lon);
-  //mostrarDireccion(position.coords.latitude,position.coords.longitude);
-  var dir = "";
-	var latlng = new google.maps.LatLng(lat, lon);
-  //var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-	geocoder = new google.maps.Geocoder();
-  alert("google:"+latlng);
-	geocoder.geocode({'location': latlng}, function(results, status)
-	{
-		if (status === 'OK')
-		{
-			if (results[0])
-			{
-				dir = "<p><strong>Dirección: </strong>" + results[0].formatted_address + "</p>";
-        alert("Dirección:"+results[0].formatted_address);
-			}
-			else
-			{
-				dir = "<p>No se ha podido obtener ninguna dirección en esas coordenadas.</p>";
-        alert("ninguna dirección");
-			}
-		}
-		else
-		{
-			dir = "<p>El Servicio de Codificación Geográfica ha fallado con el siguiente error: " + status + ".</p>";
-      alert("error"+status);
-		}
-
-		//content.innerHTML = "<p><strong>Latitud:</strong> " + lat + "</p><p><strong>Longitud:</strong> " + lon + "</p>" + dir;
-	});
+  alert(lat,lon);
+  get_address(lat, lon);
 }
 
-function mostrarDireccion(lat, lon){
+function get_address(lat, lon){
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function() {
+    var address = request.response;
+    var inf = JSON.parse(address);
+    alert(inf.display_name);
+  }
 
-  var dir = "";
-			var latlng = new google.maps.LatLng(lat, lon);
-			geocoder = new google.maps.Geocoder();
-			geocoder.geocode({"latLng": latlng}, function(results, status)
-			{
-				if (status == google.maps.GeocoderStatus.OK)
-				{
-					if (results[0])
-					{
-						dir = "<p><strong>Dirección: </strong>" + results[0].formatted_address + "</p>";
-            alert("Dirección:"+results[0].formatted_address);
-					}
-					else
-					{
-						dir = "<p>No se ha podido obtener ninguna dirección en esas coordenadas.</p>";
-            alert("ninguna dirección");
-					}
-				}
-				else
-				{
-					dir = "<p>El Servicio de Codificación Geográfica ha fallado con el siguiente error: " + status + ".</p>";
-          alert("error");
-				}
-
-				content.innerHTML = "<p><strong>Latitud:</strong> " + lat + "</p><p><strong>Longitud:</strong> " + lon + "</p>" + dir;
-			});
-
-
+  var requestURL = 'https://nominatim.openstreetmap.org/reverse?json_callback&format=json&addressdetails=0&zoom=18&lat='+lat+'&lon='+lon;
+  request.open('GET', requestURL,  /* async = */ false);
+  request.send();
 }
+
+
 
 function mostrarError(error) {
   var errores = {1: 'Permiso denegado', 2: 'Posición no disponible', 3: 'Expiró el tiempo de respuesta'};
