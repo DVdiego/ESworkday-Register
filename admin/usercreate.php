@@ -67,7 +67,7 @@ echo "              <tr><td class=table_rows height=25 width=20% style='padding-
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de email:</td><td colspan=2 width=80%>
                       <input type='text' size='25' maxlength='75' name='email_addy'>&nbsp;*</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Tipo de contrato:</td><td colspan=2 width=80%>
-                      <select name='type_contract'>\n";
+                      <select name='type_contract' onchange='group_names();'>\n";
 echo "                      </select>&nbsp;*</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td colspan=2 width=80%>
                       <select name='office_name' onchange='group_names();'>\n";
@@ -108,11 +108,12 @@ include 'header_post.php'; include 'topmain.php'; include 'leftmain.php';
 
 $post_username = stripslashes($_POST['post_username']);
 $post_dni = $_POST['user_dni'];
+echo "$post_dni";
 $display_name = stripslashes($_POST['display_name']);
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
 $email_addy = $_POST['email_addy'];
-$type_contract = $_POST['type_contract'];
+@$type_contract = $_POST['type_contract'];
 $office_name = $_POST['office_name'];
 @$group_name = $_POST['group_name'];
 $admin_perms = $_POST['admin_perms'];
@@ -137,7 +138,7 @@ $display_name = stripslashes($display_name);
 $string = strstr($post_username, "\"");
 $string2 = strstr($display_name, "\"");
 
-if ((@$tmp_username == $post_username) || ($password !== $confirm_password) ||
+if ((@$tmp_username == $post_username) || ($password !== $confirm_password) || (empty($post_dni)) ||
     (!preg_match('/' . "^([[:alnum:]]| |-|'|,)+$" . '/i', $post_username)) || (!preg_match('/' . "^([[:alnum:]]|Å|Ä|Ö|å|ä|ö| |-|'|,)+$" . '/i', $display_name)) || (empty($post_username)) ||
     (empty($display_name)) || (empty($email_addy)) || (empty($office_name)) || (empty($group_name)) ||
     (!preg_match('/' . "^([[:alnum:]]|~|\!|@|#|\$|%|\^|&|\*|\(|\)|-|\+|`|_|\=|[{]|[}]|\[|\]|\||\:|\<|\>|\.|,|\?)+$" . '/i', $password)) ||
@@ -309,6 +310,14 @@ $tmp_type_contracts = "".$row['type_contracts']."";
 if (!isset($tmp_type_contracts)) {echo "El tipo de contrato no está definido..\n"; exit;}
 }
 
+if (!empty($post_dni)) {
+	$query = "select * from". $db_prefix. "contracts where type_contract = '". $post_dni. "'";
+	$result = mysqli_query($GLOBALS["––___mysqli_ston"], $query);
+	while ($row = mysqli_fetch_array[$result]) {
+		$tmp_type_contracts = "".$row['type_contract']."";
+	}
+}
+
 if (!empty($office_name)) {
 $query = "select * from ".$db_prefix."offices where officename = '".$office_name."'";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
@@ -372,7 +381,7 @@ echo "              <tr><td class=table_rows height=25 width=20% style='padding-
                       >
                       <select name='office_name' onchange='group_names();'>\n";
 echo "                      </select>&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Grajoupo de trab:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Grajoupo de trabajo:</td><td colspan=2 width=80%
                       >
                       <select name='group_name' onfocus='group_names();'>
                         <option selected>$group_name</option>\n";

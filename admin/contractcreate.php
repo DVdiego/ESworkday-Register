@@ -22,13 +22,10 @@
 
 session_start();
 
-include '../config.inc.php';
-
-
-
-
 $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
+
+include '../config.inc.php';
 
 if ($request !== 'POST') {include 'header_get.php';include 'topmain.php'; include 'leftmain.php'; }
 echo "<title>$title - Create User</title>\n";
@@ -101,9 +98,24 @@ echo "                <th class=rightside_heading nowrap halign=left colspan=3><
                 </th>\n";
 echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contract Name:</td><td colspan=2 align=left width=80%
+/*
+*   INtroducir el nombre del contrato.
+*/
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>&nbsp;*Nombre del contrato:</td><td colspan=2 align=left width=80%
                       style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
-                      <input type='text' size='25' maxlength='50' name='post_type_contracts'>&nbsp;*</td></tr>\n";
+                      <input type='text' size='25' maxlength='50' name='post_type_contracts'></td></tr>\n";
+/*
+*   Introducir el precio de las horas extra
+*/
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>&nbsp;*Precio horas extra:</td><td colspan=2 align=left width=80%
+                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      <input type='text' size='25' maxlength='50' name='post_overtime_earn'></td></tr>\n";
+/*
+*   Introducir el numero de horas diarias
+*/
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>&nbsp;*Nº horas diarias:</td><td colspan=2 align=left width=80%
+                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      <input type='text' size='25' maxlength='50' name='post_daily_hours'></td></tr>\n";
 
 // query to populate dropdown with parent offices //
 /*
@@ -121,11 +133,11 @@ while ($row=mysqli_fetch_array($result)) {
 echo "                      </select>&nbsp;*</td></tr>\n";
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 */
-echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:12px;'>*&nbsp;Campo requerido&nbsp;</td></tr>\n";
 echo "            </table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Create Contract' align='middle'
+echo "              <tr><td width=30><input type='image' name='submit' value='Crear contrato' align='middle'
                       src='../images/buttons/next_button.png'></td><td><a href='groupadmin.php'><img src='../images/buttons/cancel_button.png'
                       border='0'></td></tr></table></form></td></tr>\n";
 
@@ -138,8 +150,10 @@ echo "              <tr><td width=30><input type='image' name='submit' value='Cr
 
 elseif ($request == 'POST') {
 
-$select_type_contracts = $_POST['select_type_contracts'];
+//$select_type_contracts = $_POST['select_type_contracts'];
 $post_type_contracts = $_POST['post_type_contracts'];
+$post_overtime_earn = $_POST['post_overtime_earn'];
+$post_daily_hours = $_POST['post_daily_hours'];
 
 echo "<table width=100% height=89% border=0 cellpadding=0 cellspacing=1>\n";
 echo "  <tr valign=top>\n";
@@ -191,14 +205,19 @@ $select_type_contracts = stripslashes($select_type_contracts);
 $post_type_contracts = addslashes($post_type_contracts);
 $select_type_contracts = addslashes($select_type_contracts);
 
+$post_overtime_earn = stripslashes($post_overtime_earn);
+$post_daily_hours = stripslashes($post_daily_hours);
+
 // begin post validation //
 
-if (!empty($select_type_contracts)) {
+if (!empty($select_type_contracts) && !empty($post_overtime_earn) && !empty($post_daily_hours)) {
 $query = "select * from ".$db_prefix."contracts where type_contracts = '".$select_type_contracts."'";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 while ($row=mysqli_fetch_array($result)) {
-$getoffice = "".$row['type_contracts']."";
+$type_contract = "".$row['type_contracts']."";
 $contractid = "".$row['contractid']."";
+$overtime_earn = "".$row['overtime_earn'];
+$daily_hours = "".$row['daily_hours'];
 }
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 }
@@ -207,8 +226,9 @@ $contractid = "".$row['contractid']."";
 
 // check for duplicate type_contractss with matching contractids //
 
-$query = "select * from ".$db_prefix."contracts where type_contracts = '".$post_type_contracts."' and contractid = '".@$contractid."'";
+$query = "select * from ".$db_prefix."contracts where type_contracts = '".$post_type_contracts."'";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+var_dump($result);
 
 while ($row=mysqli_fetch_array($result)) {
   $tmp_type_contracts = "".$row['type_contracts']."";
@@ -219,7 +239,8 @@ $string2 = strstr($post_type_contracts, "\'");
 
 //if ((!empty($string)) || (empty($post_type_contracts)) || (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_type_contracts)) || ($select_type_contracts == '1') || (@$tmp_type_contracts == $post_type_contracts) || (!empty($string2))) {
 
-if ((!empty($string)) || (empty($post_type_contracts)) || (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_type_contracts)) || ($select_type_contracts == '1') || (@$tmp_type_contracts == $post_type_contracts) || (!empty($string2))) {
+if ((!empty($string)) || (empty($post_type_contracts)) || (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_type_contracts)) || ($select_type_contracts == '1')
+  || (@$tmp_type_contracts == $post_type_contracts) || (!empty($string2)) || (empty($post_overtime_earn)) || (empty($post_daily_hours))) {
 
 
 if (!empty($string)) {
@@ -235,7 +256,17 @@ echo "            </table>\n";
 }elseif (empty($post_type_contracts)) {
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    A Contract Type is required.</td></tr>\n";
+                    Se requiere el tipo de contrato.</td></tr>\n";
+echo "            </table>\n";
+}elseif (empty($post_overtime_earn)) {
+echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
+echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
+                    Se requiere el precio de las horas extra.</td></tr>\n";
+echo "            </table>\n";
+}elseif (empty($post_daily_hours)) {
+echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
+echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
+                    Se requiere el número de horas de trabajo diariasl</td></tr>\n";
 echo "            </table>\n";
 //}elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_type_contracts)) {
 }elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_type_contracts)) {
@@ -305,7 +336,7 @@ echo "              <tr><td width=30><input type='image' name='submit' value='Cr
 
 } else {
 
-$query = "insert into ".$db_prefix."contracts (type_contracts, contractid) values ('".$post_type_contracts."', '".$contractid."')";
+$query = "insert into ".$db_prefix."contracts (type_contracts, overtime_earn, daily_hours, contractid) values ('".$post_type_contracts."', '".$post_overtime_earn."', '".$post_daily_hours."', '".$contractid."')";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
