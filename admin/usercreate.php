@@ -26,7 +26,7 @@ $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 
 include '../config.inc.php';
-if ($request !== 'POST') {include 'header_get.php';include 'topmain.php'; include 'leftmain.php'; include 'functions.php'; }
+if ($request !== 'POST') {include 'header_get.php';include 'topmain.php'; include 'leftmain.php';}
 echo "<title>$title - Create User</title>\n";
 
 if (!isset($_SESSION['valid_user'])) {
