@@ -90,236 +90,11 @@ if ($request == 'POST') {
     ob_end_flush();
 }
 
-/*
-if ($display_weather == 'yes') { // Retrieve weather information
-    include 'phpweather.php';
-    $metar = get_metar($metar);
-    $data = process_metar($metar);
-    $mph = "mph";
-
-    // weather info //
-    if (! isset($data['temp_f'])) {
-        $temp = '';
-    } else {
-        $temp = $data['temp_f'];
-    }
-
-    if (! isset($data['windchill_f'])) {
-        $windchill = '';
-    } else {
-        $windchill = $data['windchill_f'];
-    }
-
-    if (! isset($data['wind_dir_text_short'])) {
-        $wind_dir = '';
-    } else {
-        $wind_dir = $data['wind_dir_text_short'];
-    }
-
-    if (! isset($data['wind_miles_per_hour'])) {
-        $wind = '';
-    } else {
-        $wind = round($data['wind_miles_per_hour']);
-    }
-
-    if ($wind == 0) {
-        $wind_dir = 'None';
-        $mph = '';
-        $wind = '';
-    } else {
-        $wind_dir = $wind_dir;
-    }
-
-    if (! isset($data['visibility_miles'])) {
-        $visibility = '';
-    } else {
-        $visibility = $data['visibility_miles'];
-    }
-
-    if (! isset($data['rel_humidity'])) {
-        $humidity = 'None';
-    } else {
-        $humidity = round($data['rel_humidity'], 0);
-    }
-
-    if (! isset($data['time'])) {
-        $time = '';
-    } else {
-        $time = date($timefmt, $data['time']);
-    }
-
-    if (! isset($data['cloud_layer1_condition'])) {
-        $cloud_cover = '';
-    } else {
-        $cloud_cover = $data['cloud_layer1_condition'];
-    }
-
-    if (($temp <> '') && ($temp >= '70') && ($humidity <> '')) {
-        $heatindex = number_format(-42.379 + (2.04901523 * $temp) + (10.1433312 * $humidity) - (0.22475541 * $temp * $humidity) - (0.00683783 * ($temp * $temp)) - (0.05481717 * ($humidity * $humidity)) + (0.00122874 * ($temp * $temp) * $humidity) + (0.00085282 * $temp * ($humidity * $humidity)) - (0.00000199 * ($temp * $temp) * ($humidity * $humidity)));
-    }
-
-    if ((isset($heatindex)) || ($windchill <> '')) {
-        if (!isset($heatindex)) {
-            $feelslike = $windchill;
-        } else {
-            $feelslike = $heatindex;
-        }
-    } else {
-        $feelslike = $temp;
-    }
-}
-
-*/
-
-/* nya */
-if ($display_weather == 'yes') {
-
-    include 'phpweather.php';
-    $metar = get_metar($metar);
-    $data = process_metar($metar);
-
-    if ($weather_units == "f") {
-        $mph = " mph";
-        $miles = " miles";
-
-        // weather info //
-
-        if (!isset($data['temp_f'])) {
-            $temp = '';
-        } else {
-            $temp = $data['temp_f'];
-        }
-        if (!isset($data['windchill_f'])) {
-            $windchill = '';
-        } else {
-            $windchill = $data['windchill_f'];
-        }
-        if (!isset($data['wind_dir_text_short'])) {
-            $wind_dir = '';
-        } else {
-            $wind_dir = $data['wind_dir_text_short'];
-        }
-        if (!isset($data['wind_miles_per_hour'])) {
-            $wind = '';
-        } else {
-            $wind = round($data['wind_miles_per_hour']);
-        }
-        if ($wind == 0) {
-            $wind_dir = 'None';
-            $mph = '';
-            $wind = '';
-        } else {
-            $wind_dir = $wind_dir;
-        }
-        if (!isset($data['visibility_miles'])) {
-            $visibility = '';
-        } else {
-            $visibility = $data['visibility_miles'] . $miles;
-        }
-        if (!isset($data['rel_humidity'])) {
-            $humidity = 'None';
-        } else {
-            $humidity = round($data['rel_humidity'], 0);
-        }
-        if (!isset($data['time'])) {
-            $time = '';
-        } else {
-            $time = date($timefmt, $data['time']);
-        }
-        if (!isset($data['cloud_layer1_condition'])) {
-            $cloud_cover = '';
-        } else {
-            $cloud_cover = $data['cloud_layer1_condition'];
-        }
-        if (($temp <> '') && ($temp >= '70') && ($humidity <> '')) {
-            $heatindex = number_format(-42.379 + (2.04901523 * $temp) + (10.1433312 * $humidity) - (0.22475541 * $temp * $humidity)
-                                       - (0.00683783 * ($temp * $temp)) - (0.05481717 * ($humidity * $humidity))
-                                       + (0.00122874 * ($temp * $temp) * $humidity) + (0.00085282 * $temp * ($humidity * $humidity))
-                                       - (0.00000199 * ($temp * $temp) * ($humidity * $humidity)));
-        }
-    } else {
-        $mph = " kmh";
-        $miles = " km";
-
-        // weather info //
-
-        if (!isset($data['temp_c'])) {
-            $temp = '';
-        } else {
-            $temp = $data['temp_c'];
-        }
-        if (!isset($data['temp_f'])) {
-            $tempF = '';
-        } else {
-            $tempF = $data['temp_f'];
-        }
-        if (!isset($data['windchill_c'])) {
-            $windchill = '';
-        } else {
-            $windchill = $data['windchill_c'];
-        }
-        if (!isset($data['wind_dir_text_short'])) {
-            $wind_dir = '';
-        } else {
-            $wind_dir = $data['wind_dir_text_short'];
-        }
-        if (!isset($data['wind_meters_per_second'])) {
-            $wind = '';
-        } else {
-            $wind = round($data['wind_meters_per_second'] / 1000 * 60 * 60);
-        }
-        if ($wind == 0) {
-            $wind_dir = 'None';
-            $mph = '';
-            $wind = '';
-        } else {
-            $wind_dir = $wind_dir;
-        }
-        if (!isset($data['visibility_km'])) {
-            $visibility = '';
-        } else {
-            $visibility = $data['visibility_km'] . $miles;
-        }
-        if (!isset($data['rel_humidity'])) {
-            $humidity = 'None';
-        } else {
-            $humidity = round($data['rel_humidity'], 0);
-        }
-        if (!isset($data['time'])) {
-            $time = '';
-        } else {
-            $time = date($timefmt, $data['time']);
-        }
-        if (!isset($data['cloud_layer1_condition'])) {
-            $cloud_cover = '';
-        } else {
-            $cloud_cover = $data['cloud_layer1_condition'];
-        }
-        if (($tempF <> '') && ($tempF >= '70') && ($humidity <> '')) {
-            $heatindexF = number_format(-42.379 + (2.04901523 * $tempF) + (10.1433312 * $humidity) - (0.22475541 * $tempF * $humidity)
-                                        - (0.00683783 * ($tempF * $tempF)) - (0.05481717 * ($humidity * $humidity))
-                                        + (0.00122874 * ($tempF * $tempF) * $humidity) + (0.00085282 * $tempF * ($humidity * $humidity))
-                                        - (0.00000199 * ($tempF * $tempF) * ($humidity * $humidity)));
-            $heatindex = round(($heatindexF - 32) * 5 / 9);
-        }
-    }
-
-    if ((isset($heatindex)) || ($windchill <> '')) {
-        if (!isset($heatindex)) {
-            $feelslike = $windchill;
-        } else {
-            $feelslike = $heatindex;
-        }
-    } else {
-        $feelslike = $temp;
-    }
-}
 
 
-/* slut nya */
+
 
 include './theme/templates/leftnavstart.inc';
-
 
 
 //user moved here from topmain
@@ -383,149 +158,167 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
 // end user moved here from topmain
 
 
+include './theme/templates/leftnavend.inc';
+include './theme/templates/beginmaincontent.inc';
 
-echo "
-      <!-- Left Side Interface For Employee's To Punch -->";
+
+echo " <div class='row'>
+      <!-- Left Side Interface For Employee's To Punch -->
+          <div class='row'>
+             <div id='register' class='col-sm-12 col-md-12 col-lg-12' >";
 
 // display form to submit signin/signout information //
 
 
-echo "<form role='form' name='timeclock' action='$self' method='post'>";
+echo "          <form role='form' name='timeclock' action='$self' method='post'>";
 
-echo '
-        <div class="box box-primary">
-               <div class="box-header with-border">
-                 <h3 class="box-title">Please punch in below:</h3>
-               </div>
-               <!-- /.box-header -->';
-echo "<div class='box-body'>
+echo '               <div class="box box-primary">
+                        <div class="box-header with-border">
+                          <h3 class="box-title">Please punch in below:</h3>
+                        </div>
+                       <!-- /.box-header -->';
+echo "                  <div class='box-body'>
+                          <div class='row'>";
 
-	<div class='form-group'>
+if($show_select_login == "yes"){
+
+  echo "                    <div class='col-sm-6 col-md-6 col-lg-6'>
+                                <div class='form-group'>
+                                    <label>Name:</label>";
+
+  // query to populate dropdown with employee names //
+  if ($show_display_name == "yes") {
+      $query = "select displayname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> 'admin' order by displayname";
+      $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+      echo "          <select multiple class='form-control' name='left_displayname' size='6' tabindex=1>
+                                <option value =''>
+                                   ...
+                                </option>";
+
+      while ($row = mysqli_fetch_array($emp_name_result)) {
+          $abc = stripslashes("".$row['displayname']."");
+
+          if ((isset($_COOKIE['remember_me'])) && (stripslashes($_COOKIE['remember_me']) == $abc)) {
+              echo "
+                                <option selected>
+                                   $abc
+                                </option>";
+          } else {
+              echo "
+                                <option>
+                                   $abc
+                                </option>";
+          }
+      }
+
+      echo "        </select>
+                </div>
+             </div>";
+      ((mysqli_free_result($emp_name_result) || (is_object($emp_name_result) && (get_class($emp_name_result) == "mysqli_result"))) ? true : false);
+  } else { // Display full employee names
+      $query = "select empfullname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> 'admin' order by empfullname";
+      $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+      echo "
+                             <select multiple class='form-control' name='left_fullname'>
+                                <option value =''>
+                                   ...
+                                </option>";
+
+      while ($row = mysqli_fetch_array($emp_name_result)) {
+          $def = stripslashes("".$row['empfullname']."");
+          if ((isset($_COOKIE['remember_me'])) && (stripslashes($_COOKIE['remember_me']) == $def)) {
+              echo "
+                                <option selected>
+                                   $def
+                                </option>";
+          } else {
+              echo "
+                                <option>
+                                   $def
+                                </option>";
+          }
+      }
+
+      echo "      </select>
+              </div>
+            </div>";
+      ((mysqli_free_result($emp_name_result) || (is_object($emp_name_result) && (get_class($emp_name_result) == "mysqli_result"))) ? true : false);
+  }
 
 
+  echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
 
-                           <label>Name:</label>
+}else {
 
-                        ";
 
-// query to populate dropdown with employee names //
-if ($show_display_name == "yes") {
-    $query = "select displayname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> 'admin' order by displayname";
-    $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-    echo "
-                           <select multiple class='form-control' name='left_displayname' size='6' tabindex=1>
-                              <option value =''>
-                                 ...
-                              </option>";
+  echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
+  if ($show_display_name == "yes") {
 
-    while ($row = mysqli_fetch_array($emp_name_result)) {
-        $abc = stripslashes("".$row['displayname']."");
+    echo "<div class='form-group'>
+            <label>Displayname:</label>
+            <input type='text' name='left_displayname' maxlength='25' class='form-control' placeholder='Displayname'>
+          </div>";
+  }else{
 
-        if ((isset($_COOKIE['remember_me'])) && (stripslashes($_COOKIE['remember_me']) == $abc)) {
-            echo "
-                              <option selected>
-                                 $abc
-                              </option>";
-        } else {
-            echo "
-                              <option>
-                                 $abc
-                              </option>";
-        }
-    }
+    echo "<div class='form-group'>
+            <label>Username:</label>
+            <input type='text' name='left_fullname' maxlength='25' class='form-control' placeholder='Username'>
+          </div>";
+  }
 
-    echo "
-                           </select>
-    </div>
-                        ";
-    ((mysqli_free_result($emp_name_result) || (is_object($emp_name_result) && (get_class($emp_name_result) == "mysqli_result"))) ? true : false);
-} else { // Display full employee names
-    $query = "select empfullname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> 'admin' order by empfullname";
-    $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-    echo "
-                           <select multiple class='form-control' name='left_fullname'>
-                              <option value =''>
-                                 ...
-                              </option>";
-
-    while ($row = mysqli_fetch_array($emp_name_result)) {
-        $def = stripslashes("".$row['empfullname']."");
-        if ((isset($_COOKIE['remember_me'])) && (stripslashes($_COOKIE['remember_me']) == $def)) {
-            echo "
-                              <option selected>
-                                 $def
-                              </option>";
-        } else {
-            echo "
-                              <option>
-                                 $def
-                              </option>";
-        }
-    }
-
-    echo "
-                           </select>
-    </div>
-                        ";
-    ((mysqli_free_result($emp_name_result) || (is_object($emp_name_result) && (get_class($emp_name_result) == "mysqli_result"))) ? true : false);
 }
+
+
 
 // determine whether to use encrypted passwords or not //
 if ($use_passwd == "yes") {
-    echo "
-                     <div class='form-group'>
-                           <label>Password:</label>
-
-                           <input type='password' name='employee_passwd' maxlength='25' class='form-control' placeholder='Password'>
-			   </div>
-";
+    echo "<div class='form-group'>
+            <label>Password:</label>
+            <input type='password' name='employee_passwd' maxlength='25' class='form-control' placeholder='Password'>
+			    </div>";
 }
 
-echo "
-                     <div class='form-group'>
-                           Status:
-                        ";
+echo "    <div class='form-group'>Status:";
 
 // query to populate dropdown with punchlist items //
 $query = "select punchitems from ".$db_prefix."punchlist";
 $punchlist_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-echo "
-                           <select class='form-control' name='left_inout'>
-                              <option value =''>
-                                 ...
-                              </option>";
+echo "        <select class='form-control' name='left_inout'>
+                <option value =''>
+                  ...
+                </option>";
 
 while ($row = mysqli_fetch_array($punchlist_result)) {
-    echo "
-                              <option>
-                                 ".$row['punchitems']."
-                              </option>";
+echo "          <option> ".$row['punchitems']."
+                </option>";
 }
 
-echo "
-                           </select>
-</div>
-";
+echo "        </select>
+          </div>";
 ((mysqli_free_result( $punchlist_result ) || (is_object( $punchlist_result ) && (get_class( $punchlist_result ) == "mysqli_result"))) ? true : false);
 
-echo "
-                     <div class='form-group'>
-                           <label>Notes:</label>
 
-                           <input type='text' name='left_notes' maxlength='250' class='form-control'>
-</div>";
+echo "  </div>
+      </div>";
 
+echo "<div class='row'>";
+echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
+echo "    <div class='form-group'>
+            <label>Notes:</label>
+            <input type='text' name='left_notes' maxlength='250' class='form-control'>
+          </div>";
+
+echo "</div>";
+echo "</div>";
+echo "<div class='row'>";
+echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
 if (! isset($_COOKIE['remember_me'])) {
-    echo "
-                     <div class='checkbox'>
-
-		                      <label>
-		                        <input type='checkbox' name='remember_me' value='1'> Remember Me?
-		                      </label>
-
-                 </div>
-                    ";
+echo "<div class='checkbox'>
+        <label>
+          <input type='checkbox' name='remember_me' value='1'> Remember Me?
+        </label>
+      </div>";
 } elseif (isset($_COOKIE['remember_me'])) {
     echo "
                      <div class='checkbox'>
@@ -533,68 +326,46 @@ if (! isset($_COOKIE['remember_me'])) {
                                     <label><input type='checkbox' name='reset_cookie' value='1'> Reset Cookie? </label>
                                </div>   ";
 }
-
-echo "
-                      <div class='form-group'>
-<button type='submit' class='btn btn-lg btn-primary'>Punch Status</button>
+echo "</div>";
+echo "</div>";
+echo "<div class='row'>";
+echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
+echo "<div class='form-group'>
+                        <button type='submit' class='btn btn-lg btn-primary'>Punch Status</button>
                          </div>
-                  </div></form>";
-
-
-                  //end form punch status
-
+        </div></form>";
+echo "</div>";
+echo "</div>";
 // End leftnav here and put the rest in main.
 
-// display links in top left of each page //
+////////////////////// display links in top left of each page //////////////////////////
+/*
 if ($links == "none") { // Display any links listed
 
 } else {
     echo "<ul class='sidebar-menu'><li class='header'>LINKS</li>";
     for ($x = 0; $x < count($display_links); $x++) {
         echo "
-<li><a href='$links[$x]'><i class='fa fa-link'></i>$display_links[$x]</a></li>";
+              <li><a href='$links[$x]'><i class='fa fa-link'></i>$display_links[$x]</a></li>";
     }
-    echo '
-	    </ul>';
+    echo '</ul>';
 }
+*/
+//////////////////////////////////////////////////////////////////
 
-include './theme/templates/leftnavend.inc';
-include './theme/templates/beginmaincontent.inc';
 
-echo '
-	<div class="row">
-	<!-- extra messages -->
-	';
 
-if ($display_weather == "yes") { // Display the weather information.
-	echo '       <div class="col-md-4">
-          <!-- Widget: user widget style 1 -->
-          <div class="box box-widget widget-user-2">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-yellow">
-              <h3 class="widget-user-username">Weather Conditions</h3>
-	      <h5 class="widget-user-desc">'.$city.'</h5>
-            </div>
-            <div class="box-footer no-padding">
-              <ul class="nav nav-stacked">
-              <li><a href="#"><i class="fa fa-sun-o fa-fw"></i> Currently: <span class="pull-right badge bg-red">'.$temp.' &#176;</span></a></li>
-              <li><a href="#"><i class="fa fa-umbrella fa-fw"></i> Feels Like: <span class="pull-right badge bg-aqua">'.$feelslike.' &#176;</span></a></li>
-              <li><a href="#"><i class="glyphicon glyphicon-cloud fa-fw"></i> Skies: <span class="pull-right badge bg-blue">'.$cloud_cover.'</span></a></li>
-              <li><a href="#"><i class="fa fa-refresh fa-fw"></i> Wind: <span class="pull-right badge bg-orange">'.$wind_dir.' '.$wind.' '.$mph.'</span></a></li>
-	      <li><a href="#"><i class="fa fa-bolt fa-fw"></i> Humidity: <span class="pull-right badge bg-yellow">'.$humidity.''; if ($humidity == 'None') {echo '';} else {echo '%';} echo '</span></a></li>
-	      <li><a href="#"><i class="fa fa-eye fa-fw"></i> Visibility: <span class="pull-right badge bg-grey">'.$visibility.'</span></a></li>
-	      <li><a href="#"><i class="glyphicon glyphicon-time"></i> Last Updated: <span class="pull-right badge bg-green">'.$time.'</span></a></li>
-              </ul>
-            </div>
-          </div>
-          <!-- /.widget-user -->
+echo "    </div>
         </div>
-        <!-- /.col -->';
-}
+      </div><!-- /.Left Side Interface For Employee's To Punch  -->";
 
-echo "
 
-";
+
+////////////////////////////////CONTROL DE ERRORES////////////////////////////////////////////
+echo '<div class="row">
+	     <!-- extra messages -->';
+
+
 
 if ($request == 'POST') { // Process employee's punch information
     // signin/signout data passed over from timeclock.php //
@@ -617,99 +388,96 @@ if ($request == 'POST') { // Process employee's punch information
     }
 
     if (! isset($tmp_inout)) {
-	    echo '<div class="col-md-4">
- <div class="callout callout-danger">
-                <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                <p>Status is not in the database.</p>
-</div>
-</div>';
-
-        exit;
+	    echo '<div class="col-md-8">
+              <div class="callout callout-danger">
+                  <h4><i class="fa fa-bullhorn"></i> Error</h4>
+                  <p>Status is not in the database.</p>
+              </div>
+            </div>';exit;
     }
     // end post validation //
 
     if ($show_display_name == "yes") {
         if (! $displayname && ! $inout) {
-    	    echo '<div class="col-md-4">
-     <div class="callout callout-danger">
+    	    echo '<div class="col-md-8">
+                  <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>
                     <p>You have not chosen a username or a status. Please try again..</p>
-    </div>
-    </div>';
+                  </div>
+                </div>';
             // Return the employee back to the punch interface after 5 seconds
             echo "
-   <head>
-      <meta http-equiv='refresh' content=5;url=index.php>
-   </head>";
+                   <head>
+                      <meta http-equiv='refresh' content=5;url=index.php>
+                   </head>";
             exit;
         }
 
         if (! $displayname) {
-        	    echo '<div class="col-md-4">
-         <div class="callout callout-danger">
-                        <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                        <p>You have not chosen a username. Please try again.</p>
-        </div>
-        </div>';
-
+      	    echo '<div class="col-md-8">
+                    <div class="callout callout-danger">
+                      <h4><i class="fa fa-bullhorn"></i> Error</h4>
+                      <p>You have not chosen a username. Please try again.</p>
+                    </div>
+                  </div>';
 
             // Return the employee back to the punch interface after 5 seconds
-            echo "
-   <head>
-      <meta http-equiv='refresh' content=5;url=index.php>
-   </head>";
+            echo "<head>
+                      <meta http-equiv='refresh' content=5;url=index.php>
+                  </head>";
             exit;
         }
     } elseif ($show_display_name == "no") {
+
         if (! $fullname && ! $inout) {
-    	    echo '<div class="col-md-4">
-     <div class="callout callout-danger">
+    	    echo '<div class="col-md-8">
+                  <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>
                     <p>You have not chosen a username or a status. Please try again.</p>
-    </div>
-    </div>';
+                  </div>
+                </div>';
 
 
             // Return the employee back to the punch interface after 5 seconds
             echo "
-   <head>
-      <meta http-equiv='refresh' content=5;url=index.php>
-   </head>";
+                 <head>
+                    <meta http-equiv='refresh' content=5;url=index.php>
+                 </head>";
             exit;
         }
 
         if (! $fullname) {
-        	    echo '<div class="col-md-4">
-         <div class="callout callout-danger">
+        	    echo '<div class="col-md-8">
+                      <div class="callout callout-danger">
                         <h4><i class="fa fa-bullhorn"></i> Error</h4>
                         <p>You have not chosen a username. Please try again.</p>
-        </div>
-        </div>';
+                      </div>
+                    </div>';
 
 
             // Return the employee back to the punch interface after 5 seconds
             echo "
-   <head>
-      <meta http-equiv='refresh' content=5;url=index.php>
-   </head>";
+                 <head>
+                    <meta http-equiv='refresh' content=5;url=index.php>
+                 </head>";
             exit;
         }
     }
 
     if (! $inout) {
-	    echo '<div class="col-md-4">
- <div class="callout callout-danger">
+	    echo '<div class="col-md-8">
+              <div class="callout callout-danger">
                 <h4><i class="fa fa-bullhorn"></i> Error</h4>
                 <p>You have not chosen a status. Please try again.</p>
-</div>
-</div>';
+              </div>
+            </div>';
 
 
         // Return the employee back to the punch interface after 5 seconds
         echo "
-   <head>
-      <meta http-equiv='refresh' content=5;url=index.php>
-   </head>";
+               <head>
+                  <meta http-equiv='refresh' content=5;url=index.php>
+               </head>";
         exit;
     }
 
@@ -737,7 +505,7 @@ if ($request == 'POST') { // Process employee's punch information
         }
     }
     // Get the selected status
-    $query = "SELECT `in_or_out` FROM ".$db_prefix."punchlist WHERE punchitems = '".$inout."'";
+    $query = "select in_or_out from ".$db_prefix."punchlist where punchitems = '".$inout."'";
     $query = mysqli_query($GLOBALS["___mysqli_ston"], $query);
     $row = mysqli_fetch_array($query,MYSQLI_BOTH);
     $selectedStatus = $row['in_or_out']; // The first one should the be the current status code.
@@ -746,7 +514,7 @@ if ($request == 'POST') { // Process employee's punch information
     } else { // Iterate through to find the current status of individual logging in
         while ($punchName = mysqli_fetch_array($punchlist_result)) {
             if ($currentPunchName == $punchName['punchitems']) {
-                $query = "SELECT `in_or_out` FROM ".$db_prefix."punchlist WHERE punchitems = '".$currentPunchName."'";
+                $query = "select in_or_out from ".$db_prefix."punchlist where punchitems =  '".$currentPunchName."'";
                 $query = mysqli_query($GLOBALS["___mysqli_ston"], $query);
                 $row = mysqli_fetch_array($query);
                 $currentStatus = $row['in_or_out']; // The first one should the be the current status code.
@@ -757,7 +525,7 @@ if ($request == 'POST') { // Process employee's punch information
 
     // Verify that the employee is not selecting the same status as his current status
     if ($selectedStatus == $currentStatus) {
-	    echo '<div class="col-md-4">
+	    echo '<div class="col-md-8">
  <div class="callout callout-danger">
                 <h4><i class="fa fa-bullhorn"></i> Error</h4>
                 <p>The current punch status for '.$fullname.' is '.$currentPunchName.' . Please use a different status.</p>
@@ -773,6 +541,9 @@ if ($request == 'POST') { // Process employee's punch information
         exit;
     }
 
+
+
+
     if ($use_passwd == "yes") { // Verify that the employee password is correct, if required
         $sel_query = "select empfullname, employee_passwd from ".$db_prefix."employees where empfullname = '".$fullname."'";
         $sel_result = mysqli_query($GLOBALS["___mysqli_ston"], $sel_query);
@@ -782,7 +553,7 @@ if ($request == 'POST') { // Process employee's punch information
         }
 
         if ($employee_passwd != $tmp_password) {
-    	    echo '<div class="col-md-4">
+          echo '<div class="col-md-8">
      <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>
                     <p>You have entered the wrong password for '.$fullname.'. Please try again.</p>
@@ -798,6 +569,34 @@ if ($request == 'POST') { // Process employee's punch information
             exit;
         }
     }
+
+    if ($use_passwd == "yes") { // Verify that the employee password is correct, if required
+        $sel_query = "select empfullname, employee_passwd from ".$db_prefix."employees where empfullname = '".$fullname."'";
+        $sel_result = mysqli_query($GLOBALS["___mysqli_ston"], $sel_query);
+
+        while ($row=mysqli_fetch_array($sel_result)) {
+            $tmp_password = "".$row["employee_passwd"]."";
+        }
+
+        if ($employee_passwd != $tmp_password) {
+    	    echo '<div class="col-md-8">
+     <div class="callout callout-danger">
+                    <h4><i class="fa fa-bullhorn"></i> Error</h4>
+                    <p>You have entered the wrong password for '.$fullname.'. Please try again.</p>
+    </div>
+    </div>';
+
+
+            // Return the employee back to the punch interface after 5 seconds
+            echo "
+   <head>
+<meta http-equiv='refresh' content=5;url=index.php>
+   </head>";
+            exit;
+        }
+    }
+
+
 
     @$fullname = addslashes($fullname);
     @$displayname = addslashes($displayname);
@@ -835,7 +634,7 @@ if ($request == 'POST') { // Process employee's punch information
 
     $update_query = "update ".$db_prefix."employees set tstamp = '".$tz_stamp."' where empfullname = '".$fullname."'";
     $other_result = mysqli_query($GLOBALS["___mysqli_ston"], $update_query);
-	    echo '<div class="col-md-4">
+	    echo '<div class="col-md-8">
  <div class="callout callout-success">
                 <h4><i class="fa fa-bullhorn"></i> </h4>
                 <p> Status changed successfully for '.$fullname.' to a status of '.$inout.'.</p>
@@ -854,7 +653,7 @@ if ($request == 'POST') { // Process employee's punch information
 if (! isset($_GET['printer_friendly']) && ($message_of_the_day != "none")) {
 	echo '
 		<!-- Message Of The Day Display -->
-	        <div class="col-md-4">
+	        <div class="col-md-8">
 		<div class="callout callout-success">
                 <h4>Message Of The Day:</h4>
 
@@ -869,9 +668,13 @@ if (! isset($_GET['printer_friendly']) && ($message_of_the_day != "none")) {
 }
 
       if (! isset($_GET['printer_friendly'])) {
-      	echo ' <a href="timeclock.php?printer_friendly=true" class="btn btn-app">
+
+
+      	echo ' <div class="col-md-4">
+        <a href="timeclock.php?printer_friendly=true" class="btn btn-app">
                       <i class="glyphicon glyphicon-print"></i> Printer Friendly Page
-                    </a>';
+                    </a>
+              </div>';
       }
 
 

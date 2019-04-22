@@ -32,13 +32,15 @@ include 'header.php';
 
 
 if (! isset($_GET['printer_friendly'])) {
+
     if (isset($_SESSION['valid_user'])) {
         $set_logout = "1";
     }
 
-include 'theme/templates/mainstart.inc';
+    include 'theme/templates/mainstart.inc';
     include 'topmain.php';
-    include 'leftmain.php';
+    //include 'leftmain.php';
+    include 'workday_register.php';
 }
 
 
@@ -154,8 +156,9 @@ include 'display.php';
 
 
 if (! isset($_GET['printer_friendly'])) {
-    include 'footer.php';
+
     include 'theme/templates/endmain.inc';
     include 'theme/templates/footerscripts.inc';
+    include 'footer.php';
 }
 ?>

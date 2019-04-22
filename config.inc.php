@@ -195,6 +195,13 @@ Default is "no". */
 $show_display_name = "yes";
 
 
+
+
+/*Muestra la ópcion de seleccionar el id ("yes") o introducirlo "no"*/
+$show_select_login = "no";
+
+
+
 /* Display punch-in/out times for only a certain office on the main page of the application.
 Replace "all" with the office you wish to display below. Default is "all". */
 
@@ -418,12 +425,12 @@ $metar = "ESSA";
 the ICAO used above. The max length for this field is 100 characters.
 If $display_weather is set to "no", this option is ignored. */
 
-$city = "Uppsala, Sweden";
+$city = "Segovia, Spain";
 
 
 /* The name of the company whose hours are being tracked. */
 
-$company_name = "Hjelms";
+$company_name = "iSoft Solutions";
 
 
 /* Sets the title in the header. This is what the page will be named by default when you

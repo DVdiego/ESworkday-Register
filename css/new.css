@@ -1,0 +1,16 @@
+
+/*estilo timeclock*/
+/* Los estilos aquí contenidos solo se aplicarán a partir
+    del tamaño de pantalla indicado */
+@media (min-width: 768px ) {
+
+  #register > form > div > div.box-body{
+
+    margin-left: 30% !important;
+
+
+
+  }
+
+
+}
