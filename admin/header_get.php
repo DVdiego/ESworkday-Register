@@ -81,7 +81,8 @@ echo "<head>\n";
 if ($use_client_tz == "yes") {
 if (!isset($_COOKIE['tzoffset'])) {
 include '../tzoffset.php';
-echo "<meta http-equiv='refresh' content='0;URL=index.php'>\n";}}
+echo "<meta http-equiv='refresh' content='0;URL=index.php'>\n";}
+}
 include '../theme/templates/adminheader.inc';
 echo "<link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />\n";
 // echo "<script type=\"text/javascript\" src=\"../scripts/CalendarPopup.js\"></script>\n";
