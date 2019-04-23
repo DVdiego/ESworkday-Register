@@ -12,5 +12,7 @@
 
   }
 
-
+  #wrapper > div > section > div > div:nth-child(2) > div.col-md-8 > div.callout{
+    margin-left: 30%;
+  }
 }
