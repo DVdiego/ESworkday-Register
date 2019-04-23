@@ -62,26 +62,30 @@ $reports_count = mysqli_query($GLOBALS["___mysqli_ston"], "select empfullname fr
 echo '<div class="row">
         <div class="col-xs-12">
           <div class="box">
-         
+
           <!-- /.box-header -->
-          <div class="box-body table-responsive no-padding">
-	  ';
-echo "            <table class='table table-hover'>\n";
-echo "              <tr><th>User Summary</th></tr>\n";
-echo "              <tr><td><i class='fa fa-users text-green'></i> Total
-                      Users: $user_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user-secret text-orange'></i>&nbsp;&nbsp;
-                      Sys Admin Users: $admin_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user text-red'></i>&nbsp;&nbsp;
-                      Time Admin Users: $time_admin_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user text-blue'></i>&nbsp;
-                      &nbsp;Reports Users: $reports_count_rows</td></tr>\n";
-echo "            </table></div></div></div></div>\n";
-echo '<div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-         
+            <div class="box-body table-responsive no-padding">';
+echo "        <table class='table table-hover'>\n";
+echo "          <tr><th>User Summary</th></tr>\n";
+echo "          <tr><td><i class='fa fa-users text-green'></i> Total
+                  Users: $user_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user-secret text-orange'></i>&nbsp;&nbsp;
+                  Sys Admin Users: $admin_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user text-red'></i>&nbsp;&nbsp;
+                  Time Admin Users: $time_admin_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user text-blue'></i>&nbsp;
+                  &nbsp;Reports Users: $reports_count_rows</td></tr>\n";
+echo "        </table>
+            </div>
+
+          </div>
+        </div>
+      </div>\n";
+
+echo '     <div class="row">
+              div class="col-xs-12">
+                <div class="box">
+
           <!-- /.box-header -->
-          <div class="box-body table-responsive no-padding">
-	  ';
-echo "            <table class='table table-hover'>\n";
+                  <div class="box-body table-responsive no-padding">';
+echo "             <table class='table table-hover'>\n";
 echo "              <tr>\n";
 echo "                <th>&nbsp;</th>\n";
 echo "                <th>Username</th>\n";
@@ -147,13 +151,13 @@ if ("".$row["reports"]."" == 1) {
 
 if ((strpos($user_agent, "MSIE 6")) || (strpos($user_agent, "MSIE 5")) || (strpos($user_agent, "MSIE 4")) || (strpos($user_agent, "MSIE 3"))) {
 
-echo "                <td><a 
+echo "                <td><a
                     title=\"Edit User: $empfullname\"
                     href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">Edit</a></td>\n";
-echo "                <td><a 
+echo "                <td><a
                     title=\"Change Password: $empfullname\"
                     href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\">Chg Pwd</a></td>\n";
-echo "                <td><a 
+echo "                <td><a
                     title=\"Delete User: $empfullname\"
                     href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">Delete</a></td></tr>\n";
 
@@ -171,7 +175,7 @@ echo "                <td align='center'><a title=\"Delete User: $empfullname\"
 }
 echo "          </table></div></div></div></div>\n";
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
 exit;
