@@ -180,7 +180,7 @@ echo '               <div class="box box-primary">
                        <!-- /.box-header -->';
 echo "                  <div class='box-body'>
                           <div class='row'>";
-
+/*FLAG*/ //muestra una opción u otra, login o seleccionar id
 if($show_select_login == "yes"){
 
   echo "                    <div class='col-sm-6 col-md-6 col-lg-6'>
@@ -314,6 +314,7 @@ echo "</div>";
 echo "</div>";
 echo "<div class='row'>";
 echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
+
 if (! isset($_COOKIE['remember_me'])) {
 echo "<div class='checkbox'>
         <label>
@@ -482,6 +483,9 @@ if ($request == 'POST') { // Process employee's punch information
         exit;
     }
 
+
+/// /*FLAG*/ //desde aqui puede estar el error. cambie query  `inout` por inout
+
     // Get all the possible punch status names
     $query = "select punchitems from ".$db_prefix."punchlist";
     $punchlist_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
@@ -494,22 +498,26 @@ if ($request == 'POST') { // Process employee's punch information
             $fullname = addslashes($fullname);
         }
     }
+
     // Get the current punch name of that employee
     $query = "select * from ".$db_prefix."info where fullname = '".$fullname."'";
     $query = mysqli_query($GLOBALS["___mysqli_ston"], $query);
     // Find the last entry for the employee
     $largestStamp = 0;
+    $currentPunchName = "";
     while ($row = mysqli_fetch_array($query)) {
         if ($row['timestamp'] > $largestStamp) {
-            $currentPunchName = $row['inout'];
+            $currentPunchName = $row['inout']; /*FLAG*/
             $largestStamp = $row['timestamp'];
         }
     }
     // Get the selected status
     $query = "select in_or_out from ".$db_prefix."punchlist where punchitems = '".$inout."'";
     $query = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-    $row = mysqli_fetch_array($query,MYSQLI_BOTH);
+    $row = mysqli_fetch_array($query); //probar con parámetro MYSQLI_BOTH
     $selectedStatus = $row['in_or_out']; // The first one should the be the current status code.
+    //$selectedStatus = $inout;
+
     if ($currentPunchName == "") {
         $currentStatus = "NEVER CLOCKED IN YET";
     } else { // Iterate through to find the current status of individual logging in
@@ -527,49 +535,22 @@ if ($request == 'POST') { // Process employee's punch information
     // Verify that the employee is not selecting the same status as his current status
     if ($selectedStatus == $currentStatus) {
 	    echo '<div class="col-md-8">
- <div class="callout callout-danger">
+              <div class="callout callout-danger">
                 <h4><i class="fa fa-bullhorn"></i> Error</h4>
                 <p>The current punch status for '.$fullname.' is '.$currentPunchName.' . Please use a different status.</p>
-</div>
-</div>';
-
-
+              </div>
+            </div>';
         // Return the employee back to the punch interface after 5 seconds
         echo "
-   <head>
-      <meta http-equiv='refresh' content=5;url=index.php>
-   </head>";
+             <head>
+                <meta http-equiv='refresh' content=5;url=index.php>
+             </head>";
         exit;
     }
 
 
 
 
-    if ($use_passwd == "yes") { // Verify that the employee password is correct, if required
-        $sel_query = "select empfullname, employee_passwd from ".$db_prefix."employees where empfullname = '".$fullname."'";
-        $sel_result = mysqli_query($GLOBALS["___mysqli_ston"], $sel_query);
-
-        while ($row=mysqli_fetch_array($sel_result)) {
-            $tmp_password = "".$row["employee_passwd"]."";
-        }
-
-        if ($employee_passwd != $tmp_password) {
-          echo '<div class="col-md-8">
-     <div class="callout callout-danger">
-                    <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                    <p>You have entered the wrong password for '.$fullname.'. Please try again.</p>
-    </div>
-    </div>';
-
-
-            // Return the employee back to the punch interface after 5 seconds
-            echo "
-   <head>
-<meta http-equiv='refresh' content=5;url=index.php>
-   </head>";
-            exit;
-        }
-    }
 
     if ($use_passwd == "yes") { // Verify that the employee password is correct, if required
         $sel_query = "select empfullname, employee_passwd from ".$db_prefix."employees where empfullname = '".$fullname."'";
@@ -581,18 +562,18 @@ if ($request == 'POST') { // Process employee's punch information
 
         if ($employee_passwd != $tmp_password) {
     	    echo '<div class="col-md-8">
-     <div class="callout callout-danger">
+                  <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>
                     <p>You have entered the wrong password for '.$fullname.'. Please try again.</p>
-    </div>
-    </div>';
+                  </div>
+                </div>';
 
 
             // Return the employee back to the punch interface after 5 seconds
             echo "
-   <head>
-<meta http-equiv='refresh' content=5;url=index.php>
-   </head>";
+                 <head>
+                    <meta http-equiv='refresh' content=5;url=index.php>
+                 </head>";
             exit;
         }
     }
@@ -603,6 +584,7 @@ if ($request == 'POST') { // Process employee's punch information
     @$displayname = addslashes($displayname);
 
     // configure timestamp to insert/update //
+/*
     $time = time();
     $hour = gmdate('H',$time);
     $min = gmdate('i',$time);
@@ -610,11 +592,11 @@ if ($request == 'POST') { // Process employee's punch information
     $month = gmdate('m',$time);
     $day = gmdate('d',$time);
     $year = gmdate('Y',$time);
-  $tz_stamp = mktime ($hour, $min, $sec, $month, $day, $year);
+    //$tz_stamp = mktime ($hour, $min, $sec, $month, $day, $year);
+    */
   // testing better ways
-
-  //$tz_stamp = time ($hour, $min, $sec, $month, $day, $year);
-
+//$tz_stamp = time($hour, $min, $sec, $month, $day, $year);
+    $tz_stamp = time();
     if ($show_display_name == "yes") {
         $sel_query = "select empfullname from ".$db_prefix."employees where displayname = '".$displayname."'";
         $sel_result = mysqli_query($GLOBALS["___mysqli_ston"], $sel_query);
@@ -636,18 +618,17 @@ if ($request == 'POST') { // Process employee's punch information
     $update_query = "update ".$db_prefix."employees set tstamp = '".$tz_stamp."' where empfullname = '".$fullname."'";
     $other_result = mysqli_query($GLOBALS["___mysqli_ston"], $update_query);
 	    echo '<div class="col-md-8">
- <div class="callout callout-success">
+              <div class="callout callout-success">
                 <h4><i class="fa fa-bullhorn"></i> </h4>
                 <p> Status changed successfully for '.$fullname.' to a status of '.$inout.'.</p>
-</div>
-</div>';
-
+              </div>
+            </div>';
 
     // Return the employee back to the punch interface after 5 seconds
     echo "
-   <head>
-      <meta http-equiv='refresh' content=5;url=index.php>
-   </head>";
+         <head>
+          <meta http-equiv='refresh' content=5;url=index.php>
+        </head>";
 }
 
 // Determine if we should add the message of the day

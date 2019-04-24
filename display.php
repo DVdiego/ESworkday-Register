@@ -33,8 +33,8 @@ echo '
           <div class="col-xs-12">
             <div class="box">
          <!--     <div class="box-header">
-                <h3 class="box-title">Responsive Hover Table</h3>	
-              </div>   
+                <h3 class="box-title">Responsive Hover Table</h3>
+              </div>
 	      -->
               <!-- /.box-header -->
               <div class="box-body table-responsive no-padding">
@@ -61,8 +61,11 @@ if (! isset($_GET['printer_friendly']) && ($message_of_the_day != "none")) {
                                  &nbsp;
                               </td>";
 }
-end move to leftmain */ 
+end move to leftmain */
+/*FLAG*/ //probando si actualiza la lista
 
+$query="select * from ".$db_prefix."info order by timestamp asc";
+$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 // Parse the employee info in the result array
 while ($row = mysqli_fetch_array($result)) {
     $display_stamp = "".$row["timestamp"]."";
@@ -72,7 +75,7 @@ while ($row = mysqli_fetch_array($result)) {
     if ($row_count == 0) {
         if ($page_count == 0) {
             // display sortable column headings for main page //
-	    
+
 	    /* moving this to leftmain
             if (! isset($_GET['printer_friendly'])) {
                 echo "
@@ -89,7 +92,7 @@ while ($row = mysqli_fetch_array($result)) {
                            </tr>";
             }
 end moving to leftmain */
-	    
+
 	    /*  let let bootstrap sort the table
             echo "
                            <!-- Current Employee Status' -->
@@ -234,24 +237,25 @@ end moving to leftmain */
 
     echo "
                            <tr>";
-
+/*FLAG*/ //cambie para que muestre fullname de info y no displayname
     if ($display_name == "yes") {
         if ($show_display_name == "yes") {
             echo stripslashes("
                               <td>
-                                 ".$row["displayname"]."
+                                 ".$row["fullname"]."
                               </td>");
         } elseif ($show_display_name == "no") {
             echo stripslashes("
                               <td>
-                                 ".$row["empfullname"]."
+                                 ".$row["fullname"]."
                               </td>");
         }
     }
 
     if ($display_status == "yes") {
         // Get in or out status of the current status
-        $status_query = "SELECT * FROM ".$db_prefix."punchlist ORDER BY punchitems ASC";
+        $query="select * from ".$db_prefix."info order by timestamp asc";
+        $status_query = "select * from ".$db_prefix."punchlist ORDER BY punchitems ASC";
         $status = mysqli_query($GLOBALS["___mysqli_ston"], $status_query);
 
         while ($status_row = mysqli_fetch_array($status)) {
@@ -260,7 +264,7 @@ end moving to leftmain */
                              <!-- <td> -->";
 
                 if ((($display_status_option == "icon") || ($display_status_option == "both")) && $status_row['in_or_out'] == 0) { // An out status icon
-		    echo '<td class="text-red"><i class="glyphicon glyphicon-log-out"></i>';
+		                 echo '<td class="text-red"><i class="glyphicon glyphicon-log-out"></i>';
                 } else if ((($display_status_option == "icon") || ($display_status_option == "both")) && $status_row['in_or_out'] == 1) { // An in status icon
                     echo '<td class="text-green"><i class="glyphicon glyphicon-log-in"></i>';
                 }
@@ -326,7 +330,7 @@ end moving to leftmain */
     }
 }
 echo "
-                        </table> 
+                        </table>
       </div>
       <!-- /.box-body -->
     </div>
