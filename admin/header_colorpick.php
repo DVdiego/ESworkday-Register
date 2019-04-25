@@ -40,7 +40,8 @@ if ($restrict_ips == "yes") {
     }
   }
   if (!isset($allowed)) {
-    echo "You are not authorized to view this page."; exit;
+    echo "<html> You are not authorized to view this page.";
+    exit;
   }
 }
 
@@ -50,7 +51,9 @@ if ($use_persistent_connection == "yes") {
 } else {
     @ $db = ($GLOBALS["___mysqli_ston"] = mysqli_connect($db_hostname,  $db_username,  $db_password));
 }
-if (!$db) {echo "Error: Could not connect to the database. Please try again later."; exit;}
+if (!$db) {
+  echo "<html> Error: Could not connect to the database. Please try again later.";
+  exit;}
 ((bool)mysqli_query($GLOBALS["___mysqli_ston"], "USE " . $db_name));
 
 $table = "dbversion";
@@ -77,14 +80,17 @@ echo "Please reconfigure your config.inc.php file, you cannot have both $use_cli
 
 echo "<head>\n";
 if ($use_client_tz == "yes") {
-if (!isset($_COOKIE['tzoffset'])) {
-include '../tzoffset.php';
-echo "<meta http-equiv='refresh' content='0;URL=index.php'>\n";}}
+  if (!isset($_COOKIE['tzoffset'])) {
+  include '../tzoffset.php';
+  echo "<meta http-equiv='refresh' content='0;URL=index.php'>\n";
+  }
+}
 echo "<link rel='stylesheet' type='text/css' media='screen' href='../css/default.css' />\n";
 echo "<link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />\n";
 echo "<script language=\"javascript\" src=\"../scripts/ColorPicker2.js\"></script>\n";
 echo "<script language=\"javascript\">var cp = new ColorPicker();</script>\n";
 echo "<script language=\"javascript\" src=\"../scripts/pnguin.js\"></script>\n";
+
 echo "</head>\n";
 
 if ($use_client_tz == "yes") {

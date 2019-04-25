@@ -41,8 +41,7 @@ if ($restrict_ips == "yes") {
         }
     }
     if (!isset($allowed)) {
-        echo "<html>
-   You are not authorized to view this page.";
+        echo "<html> You are not authorized to view this page.";
         exit;
     }
 }
@@ -54,8 +53,7 @@ if ($use_persistent_connection == "yes") {
     @ $db = ($GLOBALS["___mysqli_ston"] = mysqli_connect($db_hostname,  $db_username,  $db_password));
 }
 if (! $db) {
-    echo "<html>
-   Error: Could not connect to the database. Please try again later.";
+    echo "<html> Error: Could not connect to the database. Please try again later.";
     exit;
 }
 ((bool)mysqli_query($GLOBALS["___mysqli_ston"], "USE " . $db_name));
@@ -89,17 +87,19 @@ if (empty($creating_backup_file)) { // This allows the database backup code to c
     if ($use_client_tz == "yes") {
         if (! isset($_COOKIE['tzoffset'])) {
             include '../tzoffset.php';
-            echo "
-      <meta http-equiv='refresh' content='0;URL=index.php'>";
+            echo "<meta http-equiv='refresh' content='0;URL=index.php'>";
         }
     }
     echo "
     	<title>$title</title>";
           include '../theme/templates/adminheader.inc';
-    echo "
-      <link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />
-      <script language=\"javascript\" src=\"../scripts/pnguin.js\"> </script>
-   </head>\n";
+
+    echo "<link rel='stylesheet' type='text/css' media='print' href='../css/print.css'/>\n";
+    echo "<script language=\"javascript\" src=\"../scripts/ColorPicker2.js\"></script>\n";
+    echo "<script language=\"javascript\">var cp = new ColorPicker();</script>\n";
+    echo "<script language=\"javascript\" src=\"../scripts/pnguin.js\"></script>\n";
+
+    echo "</head>\n";
     if ($use_client_tz == "yes") {
         if (isset($_COOKIE['tzoffset'])) {
             $tzo = $_COOKIE['tzoffset'];

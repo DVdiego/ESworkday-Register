@@ -43,7 +43,9 @@ echo "        <tr class=right_main_text><td align=center>You are not presently l
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='../login.php?login_action=admin'><u>here</u></a> to login.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
+
 include 'leftmain.php';
+
 echo '<div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -59,7 +61,8 @@ echo "                <th>Group Name</th>\n";
 echo "                <th>Parent Office</th>\n";
 echo "                <th>Users</th>\n";
 echo "                <th>Edit</th>\n";
-echo "                <th>Delete</th></tr>\n";
+echo "                <th>Delete</th>
+                  </tr>\n";
 
 $row_count = 0;
 
@@ -78,7 +81,7 @@ while ($row=mysqli_fetch_array($result)) {
     $row_count++;
     $row_color = ($row_count % 2) ? $color2 : $color1;
 
-    echo "              <tr class=table_border bgcolor='$row_color'><td   >&nbsp;$row_count</td>\n";
+    echo "              <tr class=table_border bgcolor='$row_color'><td>&nbsp;$row_count</td>\n";
     echo "                <td>&nbsp;<a class=footer_links title='Edit Group: ".$row["groupname"]."'
                            href=\"groupedit.php?groupname=".$row["groupname"]."&officename=$parent_office\">".$row["groupname"]."</a></td>\n";
     echo "                <td>&nbsp;$parent_office</td>\n";
