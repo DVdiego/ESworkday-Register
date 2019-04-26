@@ -130,7 +130,8 @@ if ($use_reports_password == "yes") {
     echo "
               <li><a href='reports/index.php'><i class='fa fa-list-alt'></i> Reports</a></li>";
 }
-echo "         <li><a href='login.php?login_action=user'><i class='fa fa-user'></i> Profile </a></li>";
+
+echo "         <li><a href='login_user.php?login_action=user'><i class='fa fa-user'></i> Profile </a></li>";
 if ((isset($_SESSION['valid_user'])) || (isset($_SESSION['valid_reports_user'])) || (isset($_SESSION['valid_profile_user'])) || (isset($_SESSION['valid_report_employee'])) || (isset($_SESSION['time_admin_valid_user']))) {
     echo "
 

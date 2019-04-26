@@ -101,9 +101,7 @@ if ($_REQUEST["login_action"] == "admin") {
             echo "  You do not have administration access permission.";
             exit;
     } else { // The user is either not valid or has not entered in his credentials.
-        unset($_SESSION["valid_user"]);
-        unset($_SESSION["time_admin_valid_user"]);
-        unset($_SESSION["valid_reports_user"]);
+
   	    echo '<div class="col-md-12">
                 <div class="login-box">
                   <div class="login-logo">
@@ -164,12 +162,12 @@ if ($_REQUEST["login_action"] == "admin") {
       $login_password = $_POST['login_password'];
 
       // Determine if the user has report access rights. profile
-      $query = "select empfullname, employee_passwd, profile from ".$db_prefix."employees where empfullname = '".$login_userid."'";
-      $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+      $query1 = "select empfullname, employee_passwd, profile from ".$db_prefix."employees where empfullname = '".$login_userid."'";
+      $result1 = mysqli_query($GLOBALS["___mysqli_ston"], $query1);
 
-      while ($row = mysqli_fetch_array($result)) {
-          $employee_username = "".$row['empfullname']."";
-          $employee_password = "".$row['employee_passwd']."";
+      while ($row = mysqli_fetch_array($result1)) {
+          $profile_username = "".$row['empfullname']."";
+          $profile_password = "".$row['employee_passwd']."";
           $profile_auth = "".$row['profile'].""; //cambiar 'profile'
 
       }
@@ -203,11 +201,7 @@ if ($_REQUEST["login_action"] == "admin") {
   }
   */
    else { // The user is either not valid or has not entered in his credentials.
-    unset($_SESSION["valid_user"]);
-    unset($_SESSION["time_admin_valid_user"]);
-    unset($_SESSION["valid_reports_user"]);
-    unset($_SESSION["valid_report_employee"]);
-    unset($_SESSION["valid_profile_user"]);
+
     echo '<div class="col-md-12"><div class="login-box">
             <div class="login-logo">
               <a href="index.php"><b>PHP TIMECLOCK <i class="fa fa-user"></i></b>USER Login</a>
