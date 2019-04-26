@@ -26,7 +26,7 @@ include '../config.inc.php';
 include 'header_colorpicker.php'; //tiene el script de color pick, el metodo get no lo necesita pero el post si. se podria cambiar y no usarlo.
 include 'topmain.php';
 echo "<title>$title - Edit Status</title>\n";
-t
+
 $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 
@@ -78,6 +78,7 @@ echo '      <div class="box-header with-border">
             </div>
             <div class="box-body">';
 echo "         <form name='form' action='$self' method='post'>\n";
+echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr>\n";
 echo "                <th class=rightside_heading nowrap halign=left colspan=3>
                     <img src='../images/icons/application_edit.png' />&nbsp;&nbsp;&nbsp;Edit Status</th>\n";
@@ -168,7 +169,7 @@ $string2 = strstr($post_statusname, "\"");
 
 if ((empty($post_statusname)) || (empty($post_color)) || (!preg_match('/' . "^([[:alnum:]]| |-|_|.)+$" . '/i', $post_statusname)) || ((!preg_match('/' . "^(#[a-fA-F0-9]{6})+$" . '/i', $post_color)) && (!preg_match('/' . "^([a-fA-F0-9]{6})+$" . '/i', $post_color))) || (!empty($string)) || (!empty($string2))) {
 
-
+//
 
 if (empty($post_statusname)) {
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";

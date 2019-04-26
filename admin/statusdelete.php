@@ -41,7 +41,7 @@ echo "        <tr class=right_main_text><td align=center>You are not presently l
 echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='../login.php?login_action=admin'><u>here</u></a> to login.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
-
+include 'leftmain.php'; //esta despues de verficar la sesión para que no cargue el menú lateral sino esta autendicado.
 if ($request == 'GET') {
 
 if (!isset($_GET['statusname'])) {
@@ -77,56 +77,17 @@ if ($in_or_out == '1') {
   exit;
 }
 
-echo "<table width=100% height=89% border=0 cellpadding=0 cellspacing=1>\n";
-echo "  <tr valign=top>\n";
-echo "    <td class=left_main width=180 align=left scope=col>\n";
-echo "      <table class=hide width=100% border=0 cellpadding=1 cellspacing=0>\n";
-echo "        <tr><td class=left_rows height=11></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>Users</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/user.png' alt='User Summary' />&nbsp;&nbsp;
-                <a class=admin_headings href='useradmin.php'>User Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/user_add.png' alt='Create New User' />&nbsp;&nbsp;
-                <a class=admin_headings href='usercreate.php'>Create New User</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/magnifier.png' alt='User Search' />&nbsp;&nbsp;
-                <a class=admin_headings href='usersearch.php'>User Search</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>Offices</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/brick.png' alt='Office Summary' />&nbsp;&nbsp;
-                <a class=admin_headings href='officeadmin.php'>Office Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/brick_add.png' alt='Create New Office' />&nbsp;&nbsp;
-                <a class=admin_headings href='officecreate.php'>Create New Office</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>Groups</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/group.png' alt='Group Summary' />&nbsp;&nbsp;
-                <a class=admin_headings href='groupadmin.php'>Group Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/group_add.png' alt='Create New Group' />&nbsp;&nbsp;
-                <a class=admin_headings href='groupcreate.php'>Create New Group</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>In/Out Status</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application.png' alt='Status Summary' />
-                &nbsp;&nbsp;<a class=admin_headings href='statusadmin.php'>Status Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Edit Status' />
-                &nbsp;&nbsp;<a class=admin_headings href=\"statusedit.php?statusname=$get_status\">Edit Status</a></td></tr>\n";
-echo "        <tr><td class=current_left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Delete Status' />
-                &nbsp;&nbsp;<a class=admin_headings href=\"statusdelete.php?statusname=$get_status\">Delete Status</a></td></tr>\n";
-echo "        <tr><td class=left_rows_border_top height=18 align=left valign=middle><img src='../images/icons/application_add.png' alt='Create Status' />
-                &nbsp;&nbsp;<a class=admin_headings href='statuscreate.php'>Create Status</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2>Miscellaneous</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/clock.png' alt='Modify Time' />
-                &nbsp;&nbsp;<a class=admin_headings href='timeadmin.php'>Modify Time</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application_edit.png' alt='Edit System Settings' />
-                &nbsp;&nbsp;<a class=admin_headings href='sysedit.php'>Edit System Settings</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/database_go.png'
-                alt='Manage Database' />&nbsp;&nbsp;&nbsp;<a class=admin_headings href='database_management.php'>Manage Database</a></td></tr>\n";
-echo "      </table></td>\n";
-echo "    <td align=left class=right_main scope=col>\n";
-echo "      <table width=100% height=100% border=0 cellpadding=10 cellspacing=1>\n";
-echo "        <tr class=right_main_text>\n";
-echo "          <td valign=top>\n";
-echo "            <br />\n";
+
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Status</h3>
+            </div>
+            <div class="box-body">';
+
+echo "         <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "            <form name='form' action='$self' method='post'>\n";
 echo "              <tr>\n";
 echo "                <th class=rightside_heading nowrap halign=left colspan=3>
                     <img src='../images/icons/application_delete.png' />&nbsp;&nbsp;&nbsp;Delete Status</th>\n";
@@ -147,8 +108,18 @@ echo "              <tr><td class=table_rows height=53 align=left colspan=2 styl
                       choices.</td></tr></table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td width=30><input type='image' name='submit' value='Delete Status' src='../images/buttons/next_button.png'></td>
-                  <td><a href='statusadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form></td></tr>\n";
-                  include '../footer.php'; exit;
+                  <td><a href='statusadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr>
+                  </table>
+                </form>\n";
+echo '      </div>
+          </div>
+        </div>
+      </div>';
+include '../theme/templates/endmaincontent.inc';
+include '../theme/templates/controlsidebar.inc';
+include '../theme/templates/endmain.inc';
+include '../theme/templates/adminfooterscripts.inc';
+include '../footer.php';exit;
 }
 
 elseif ($request == 'POST') {
@@ -190,54 +161,17 @@ if ($post_in_out == '1') {
   exit;
 }
 
-echo "<table width=100% height=89% border=0 cellpadding=0 cellspacing=1>\n";
-echo "  <tr valign=top>\n";
-echo "    <td class=left_main width=180 align=left scope=col>\n";
-echo "      <table class=hide width=100% border=0 cellpadding=1 cellspacing=0>\n";
-echo "        <tr><td class=left_rows height=11></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>Users</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/user.png' alt='User Summary' />&nbsp;&nbsp;
-                <a class=admin_headings href='useradmin.php'>User Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/user_add.png' alt='Create New User' />&nbsp;&nbsp;
-                <a class=admin_headings href='usercreate.php'>Create New User</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/magnifier.png' alt='User Search' />&nbsp;&nbsp;
-                <a class=admin_headings href='usersearch.php'>User Search</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>Offices</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/brick.png' alt='Office Summary' />&nbsp;&nbsp;
-                <a class=admin_headings href='officeadmin.php'>Office Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/brick_add.png' alt='Create New Office' />&nbsp;&nbsp;
-                <a class=admin_headings href='officecreate.php'>Create New Office</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>Groups</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/group.png' alt='Group Summary' />&nbsp;&nbsp;
-                <a class=admin_headings href='groupadmin.php'>Group Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/group_add.png' alt='Create New Group' />&nbsp;&nbsp;
-                <a class=admin_headings href='groupcreate.php'>Create New Group</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>In/Out Status</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application.png' alt='Status Summary' />
-                &nbsp;&nbsp;<a class=admin_headings href='statusadmin.php'>Status Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Edit Status' />
-                &nbsp;&nbsp;Edit Status</td></tr>\n";
-echo "        <tr><td class=current_left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Delete Status' />
-                &nbsp;&nbsp;Delete Status</td></tr>\n";
-echo "        <tr><td class=left_rows_border_top height=18 align=left valign=middle><img src='../images/icons/application_add.png' alt='Create Status' />
-                &nbsp;&nbsp;<a class=admin_headings href='statuscreate.php'>Create Status</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2>Miscellaneous</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/clock.png' alt='Modify Time' />
-                &nbsp;&nbsp;<a class=admin_headings href='timeadmin.php'>Modify Time</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application_edit.png' alt='Edit System Settings' />
-                &nbsp;&nbsp;<a class=admin_headings href='sysedit.php'>Edit System Settings</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/database_go.png'
-                alt='Manage Database' />&nbsp;&nbsp;&nbsp;<a class=admin_headings href='database_management.php'>Manage Database</a></td></tr>\n";
-echo "      </table></td>\n";
-echo "    <td align=left class=right_main scope=col>\n";
-echo "      <table width=100% height=100% border=0 cellpadding=10 cellspacing=1>\n";
-echo "        <tr class=right_main_text>\n";
-echo "          <td valign=top>\n";
+
 echo "            <br />\n";
+
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-suitcase"></i>  Create Status</h3>
+            </div>
+            <div class="box-body">';
+
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr>\n";
 echo "                <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td><td class=table_rows_green>&nbsp;Status
@@ -263,8 +197,17 @@ echo "              <tr><td height=15></td></tr>\n";
 echo "            </table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
-echo "              <tr><td><a href='statusadmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr></table>
-                  </td></tr>\n";
-include '../footer.php'; exit;
+echo "              <tr><td><a href='statusadmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr>
+                  </table>\n";
+
+echo '      </div>
+          </div>
+        </div>
+      </div>';
+include '../theme/templates/endmaincontent.inc';
+include '../theme/templates/controlsidebar.inc';
+include '../theme/templates/endmain.inc';
+include '../theme/templates/adminfooterscripts.inc';
+include '../footer.php';exit;
 }
 ?>

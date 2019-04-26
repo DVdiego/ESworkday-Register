@@ -32,14 +32,16 @@ echo '
 
   // display the logo in top left of each page. This will be $logo you setup in config.inc.php. //
   // It will also link you back to your index page. //
-echo '    <!-- Logo -->
-    <a href="index.php" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b><i class="fa fa-clock-o"></i></span>
-      <!-- logo for regular state and mobile devices -->';
+echo '  <!-- Logo -->
+          <a href="index.php" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>A</b><i class="fa fa-clock-o"></i></span>
+        <!-- logo for regular state and mobile devices -->';
 if ($logo == "none") {
-  echo '<span class="logo-lg"><b>PHP</b> <i class="fa fa-clock-o"></i> Timeclock</span></a>'; }
-else { echo "<span class='logo-lg'><img border='0' src='$logo'></span></a>"; }
+echo '<span class="logo-lg"><b>PHP</b> <i class="fa fa-clock-o"></i> Timeclock</span></a>'; }
+else {
+  echo "<span class='logo-lg'><img border='0' src='$logo'></span></a>";
+}
 
 include './theme/templates/topnavpart1.inc';
 
@@ -126,10 +128,10 @@ if ($use_reports_password == "yes") {
                <li><a href='login.php?login_action=reports'><i class='fa fa-globe'></i> Reports</a></li>";
 } elseif ($use_reports_password == "no") {
     echo "
-<li><a href='reports/index.php'><i class='fa fa-list-alt'></i> Reports</a></li>";
+              <li><a href='reports/index.php'><i class='fa fa-list-alt'></i> Reports</a></li>";
 }
-
-if ((isset($_SESSION['valid_user'])) || (isset($_SESSION['valid_reports_user'])) || (isset($_SESSION['valid_report_employee'])) || (isset($_SESSION['time_admin_valid_user']))) {
+echo "         <li><a href='login.php?login_action=user'><i class='fa fa-user'></i> Profile </a></li>";
+if ((isset($_SESSION['valid_user'])) || (isset($_SESSION['valid_reports_user'])) || (isset($_SESSION['valid_profile_user'])) || (isset($_SESSION['valid_report_employee'])) || (isset($_SESSION['time_admin_valid_user']))) {
     echo "
 
                <li><a href='logout.php'><i class='fa fa-sign-out'></i>Logout</a></li>";

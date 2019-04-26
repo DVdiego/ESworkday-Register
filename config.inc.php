@@ -105,6 +105,15 @@ change $use_reports_password to "yes". Default is "no"; */
 $use_reports_password = "yes";
 
 
+
+
+/*para que los empleados tengan acceso a su perfil*/
+
+
+$user_profile = "yes";
+
+
+
 /* Enable the option to log the ip addresses of the connecting computers when users
 punch-in/out, or when a time is manually added, edited, or deleted. Default is
 "yes". */
