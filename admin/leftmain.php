@@ -101,7 +101,7 @@ echo '     <ul class="sidebar-menu">
             <li><a href="groupadmin.php"><i class="fa fa-circle-o"></i> Group Summary</a></li>
 	    <li><a href="groupcreate.php"><i class="fa fa-circle-o"></i> Create New Group</a></li>
           </ul>
-        </li>	
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-sign-out"></i> <span>In/Out Status</span>
@@ -113,7 +113,21 @@ echo '     <ul class="sidebar-menu">
             <li><a href="statusadmin.php"><i class="fa fa-circle-o"></i> Status Summary</a></li>
 	    <li><a href="statuscreate.php"><i class="fa fa-circle-o"></i> Create Status</a></li>
           </ul>
-        </li>	
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-file-text"></i> <span>Contracts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="contractadmin.php"><i class="fa fa-circle-o"></i> Status Summary</a></li>
+	    <li><a href="contractcreate.php"><i class="fa fa-circle-o"></i> Create Contract</a></li>
+          </ul>
+        </li>
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Miscellaneous</span>
