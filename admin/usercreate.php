@@ -475,8 +475,8 @@ elseif ($request == 'POST') {
 		$post_username = addslashes($post_username);
 		$display_name = addslashes($display_name);
 
-		$password = crypt($password, 'xy');
-		$confirm_password = crypt($confirm_password, 'xy');
+		$password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
+		$confirm_password = password_hash($confirm_password, PASSWORD_DEFAULT, ['cost' => 10]);
 
 		$query3 = "insert into ".$db_prefix."employees (empfullname, empDNI, displayname, employee_passwd, email, contract ,groups, office, admin, reports, time_admin, disabled)
 		           values ('".$post_username."', '".$user_dni."', '".$display_name."', '".$password."', '".$email_addy."', '".$type_contracts."','".$group_name."', '".$office_name."', '".$admin_perms."',
