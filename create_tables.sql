@@ -105,6 +105,7 @@ CREATE TABLE groups (
 #
 
 CREATE TABLE info (
+  info_id int(10) NOT NULL auto_increment,
   fullname varchar(50) NOT NULL default '',
   `inout` varchar(50) NOT NULL default '',
   timestamp bigint(14) default NULL,
@@ -112,7 +113,7 @@ CREATE TABLE info (
   ipaddress varchar(39) NOT NULL default '',
   lenth DECIMAL(18.14) NOT NULL default '0.0',
   latitude DECIMAL (18.14) NOT NULL default '0.0',
-  PRIMARY KEY fullname (fullname)
+  PRIMARY KEY (info_id)
 );
 
 # --------------------------------------------------------
