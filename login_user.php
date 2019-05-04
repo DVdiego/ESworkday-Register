@@ -84,7 +84,7 @@
      if (isset($_SESSION['valid_profile'])) {
          echo "
                <script type='text/javascript' language='javascript'>
-                  window.location.href = 'profile/user_profile.php';
+                  window.location.href = './profile/user_profile.php';
                </script>";
          exit;
      } else if (isset($_SESSION['valid_report_employee'])) {
