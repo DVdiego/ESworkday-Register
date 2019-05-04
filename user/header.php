@@ -21,43 +21,41 @@
  ***************************************************************************/
 
 /**
- * This module creates the regular header for the interface.
+ * This module will add the standard headers and checks.
  */
 
-include 'functions.php';
+include '../functions.php';
 
-ob_start();
-echo "<html>";
-
-// grab the connecting IP address. //
+// grab the connecting ip address for the audit log. if more than 1 ip address is returned, accept the first ip and discard the rest. //
 $connecting_ip = get_ipaddress();
 if (empty($connecting_ip)) {
     return FALSE;
 }
 
-// determine if connecting IP address is allowed to connect to PHP Timeclock //
+// determine if connecting ip address is allowed to connect to PHP Timeclock, we need to find a way to do this for hostnames//
 if ($restrict_ips == "yes") {
-    for ($x = 0; $x < count($allowed_networks); $x++) {
+    for ($x=0; $x < count($allowed_networks); $x++) {
         $is_allowed = ip_range($allowed_networks[$x], $connecting_ip);
         if (! empty($is_allowed)) {
             $allowed = TRUE;
         }
     }
-    if (! isset($allowed)) {
-        echo "You are not authorized to view this page.";
+    if (!isset($allowed)) {
+        echo "<html>
+   You are not authorized to view this page.";
         exit;
     }
 }
 
-// connect to db anc check for correct db version //
+// check for correct db version //
 if ($use_persistent_connection == "yes") {
     @ $db = ($GLOBALS["___mysqli_ston"] = mysqli_connect($db_hostname,  $db_username,  $db_password));
 } else {
     @ $db = ($GLOBALS["___mysqli_ston"] = mysqli_connect($db_hostname,  $db_username,  $db_password));
 }
-
 if (! $db) {
-    echo "Error: Could not connect to the database. Please try again later.";
+    echo "<html>
+   Error: Could not connect to the database. Please try again later.";
     exit;
 }
 ((bool)mysqli_query($GLOBALS["___mysqli_ston"], "USE " . $db_name));
@@ -80,55 +78,42 @@ while (@$row = mysqli_fetch_array($db_version_result)) {
 if (($use_client_tz == "yes") && ($use_server_tz == "yes")) {
     $use_client_tz = '$use_client_tz';
     $use_server_tz = '$use_server_tz';
-    echo "Please reconfigure your config.inc.php file, you cannot have both $use_client_tz AND $use_server_tz set to 'yes'";
+    echo "<html>
+   Please reconfigure your config.inc.php file, you cannot have both $use_client_tz AND $use_server_tz set to 'yes'";
     exit;
 }
 
-echo "
+if (empty($creating_backup_file)) { // This allows the database backup code to create a dynamic backup file.
+    echo "<html>
    <head>";
-if ($use_client_tz == "yes") {
-    if (! isset($_COOKIE['tzoffset'])) {
-        include 'tzoffset.php';
-        echo "
-      <meta http-equiv='refresh' content='0;URL=timeclock.php'>";
+    if ($use_client_tz == "yes") {
+        if (! isset($_COOKIE['tzoffset'])) {
+            include '../tzoffset.php';
+            echo "
+      <meta http-equiv='refresh' content='0;URL=index.php'>";
+        }
     }
-}
-
-echo "
-	<title>$title</title>";
-      include 'theme/templates/header.inc';
-echo "
-      <link rel='stylesheet' type='text/css' media='print' href='css/print.css' />";
-// set refresh rate for each page //
-if ($refresh == "none") {
-    echo '
-   </head>';
-} else {
     echo "
-      <meta http-equiv='refresh' content=\"$refresh;URL=timeclock.php\">
-      <script language=\"javascript\" src=\"scripts/pnguin_timeclock.js\"></script>
-
-      <script language=\"javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>
-      <script language=\"javascript\" src=\"https://code.jquery.com/jquery-3.2.1.min.js\"></script>
-
-
-
-   </head>";
-}
-
-global $use_client_tz;
-global $use_server_tz;
-
-// Set timezone information
-if ($use_client_tz == "yes") {
-    if (isset($_COOKIE['tzoffset'])) {
-        $tzo = $_COOKIE['tzoffset'];
-        settype($tzo, "integer");
-        $tzo = $tzo * 60;
+    	<title>$title</title>";
+          include '../theme/templates/adminheader.inc';
+    echo "
+      <link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />
+      <script language=\"javascript\" src=\"../scripts/pnguin.js\"> </script>
+   </head>\n";
+    if ($use_client_tz == "yes") {
+        if (isset($_COOKIE['tzoffset'])) {
+            $tzo = $_COOKIE['tzoffset'];
+            settype($tzo, "integer");
+            $tzo = $tzo * 60;
+        }
+    } elseif ($use_server_tz == "yes") {
+        $tzo = date('Z');
+    } else {
+        $tzo = "1";
     }
-} elseif ($use_server_tz == "yes") {
-    $tzo = date('Z');
-} else {
-    $tzo = "1";
+include '../theme/templates/mainstart.inc';
+    echo "
+
+";
 }
 ?>

@@ -120,8 +120,8 @@ echo "              <div class='form-group'><div class='radio'>
      } else {
      echo "    <div class='radio'><label><input type='radio' name='csv' value='1'> Yes</label></div>   <div class='radio'><label><input type='radio' name='csv' value='0' checked>No</label></div></div>\n";
      }
-      
-     
+
+
      if (strtolower($ip_logging) == "yes") {
      echo "              <div class='form-group'><div class='radio'><label>Display connecting ip address information?</label></div>\n";
      if ($display_ip == "yes") {
@@ -133,7 +133,7 @@ echo "              <div class='radio'><label><input type='radio' name='tmp_disp
      }
 
 
-		     /* debug */ 
+		     /* debug */
 echo '<div class="box-footer">
 <a href="index.php"><button type="submit" name="submit" value="Edit Time" class="btn btn-default pull-right"><i class="fa fa-ban"></i>  Cancel</button></a>
 <button type="submit" class="btn btn-success">Next <i class="fa fa-arrow-right"></i></button></div>
@@ -152,7 +152,7 @@ echo '<div class="box-footer">
 
 include '../theme/templates/endmaincontent.inc';
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/reportsfooterscripts.inc';
 exit;
@@ -511,9 +511,9 @@ echo "            </table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle'
                       src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png'
-                      border='0'></td></tr></table></form>\n"; 
+                      border='0'></td></tr></table></form>\n";
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
 exit;
@@ -540,7 +540,10 @@ $rpt_sec = gmdate('s',$time);
 $rpt_month = gmdate('m',$time);
 $rpt_day = gmdate('d',$time);
 $rpt_year = gmdate('Y',$time);
-$rpt_stamp = time ($rpt_hour, $rpt_min, $rpt_sec, $rpt_month, $rpt_day, $rpt_year);
+//$rpt_stamp = time ($rpt_hour, $rpt_min, $rpt_sec, $rpt_month, $rpt_day, $rpt_year);
+$rpt_stamp = time();
+
+
 
 $rpt_stamp = $rpt_stamp + @$tzo;
 $rpt_time = date($timefmt, $rpt_stamp);

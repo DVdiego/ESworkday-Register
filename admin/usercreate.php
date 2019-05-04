@@ -600,10 +600,13 @@ elseif ($request == 'POST') {
 		                      colspan=2 width=80% style='padding-left:20px;'>$disabled</td></tr>\n";
 		echo "              <tr><td height=15></td></tr>\n";
 		echo "            </table>\n";
-		echo '<div class="box-footer">
-		           <a href="usercreate.php"><button class="btn btn-success">Done</button></a>
-		          </div>';
-		echo '</div></div></div></div>';
+		echo '						<div class="box-footer">
+		           					<a href="usercreate.php"><button class="btn btn-success">Done</button></a>
+		          				</div>';
+		echo '				</div>
+							</div>
+						</div>
+					</div>';
 
 
 		include '../theme/templates/endmaincontent.inc';

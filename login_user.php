@@ -1,24 +1,5 @@
 <?php
-/***************************************************************************
- *   Copyright (C) 2006 by Ken Papizan                                     *
- *   Copyright (C) 2008 by phpTimeClock Team                               *
- *   http://sourceforge.net/projects/phptimeclock                          *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.             *
- ***************************************************************************/
+
  session_start();
 
  include 'config.inc.php';
@@ -30,7 +11,9 @@
  include './theme/templates/beginmaincontent.inc';
 
 
- if (($use_reports_password == "yes") && ($_REQUEST["login_action"] == "user")) { // Determine if the user is trying to log-in to reports
+ //if (($use_reports_password == "yes") && ($_REQUEST["login_action"] == "user")) { // Determine if the user is trying to log-in to reports
+
+
      echo "
        <!-- Reports Login Interface -->
        <title>
@@ -41,8 +24,9 @@
 
      // Determine if the user has entered his authentication credentials
      if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
-         $login_userid = $_POST['login_userid'];
-         $login_password = $_POST['login_password'];
+
+         $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
+         $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
 
          // Determine if the user has report access rights.
          $query = "select empfullname, employee_passwd, reports, `profile` from ".$db_prefix."employees where empfullname = '".$login_userid."'";
@@ -55,7 +39,7 @@
              $profile_auth = "".$row['profile']."";
          }
 
-         // Determine if the user is authorised to view reports
+         // Determine if the user is authorised to view profile
          if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password)) && ($profile_auth == "1")) {
              $_SESSION['valid_profile'] = $login_userid;
          } else if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password))) { // User can view his own hours
@@ -82,18 +66,21 @@
 
      // If the user supplied the proper credentials, send them to the proper location
      if (isset($_SESSION['valid_profile'])) {
+
+        echo "mensaje: valid_profile";
          echo "
                <script type='text/javascript' language='javascript'>
-                  window.location.href = './profile/user_profile.php';
+                  window.location.href = './user/index.php';
                </script>";
          exit;
      } else if (isset($_SESSION['valid_report_employee'])) {
+       echo "mensaje: valid_report_employee";
          echo "
                <script type='text/javascript' language='javascript'>
                   window.location.href = 'timeclock.php';
                </script>";
          exit;
-     } else if ((isset($_SESSION['valid_user'])) || (isset($_SESSION['time_admin_valid_user']))) {
+     } else if ((isset($_SESSION['valid_profile'])) || (isset($_SESSION['time_admin_valid_user']))) {
          echo "
        <br>You do not have report access permission.";
          exit;
@@ -106,7 +93,7 @@
                <div class="login-box-body">
 
 
-                 <form name="auth" method="post" action=" '.$self.' ">
+                 <form name="auth" method="POST" action=" '.$self.' ">
                    <div class="form-group has-feedback">
                      <input type="text" class="form-control" name="login_userid" placeholder="Username">
                      <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -138,7 +125,7 @@
                </script>";
      }
 
-   }
+   //}
  include 'footer.php';
  include 'theme/templates/endmain.inc';
  include 'theme/templates/footerscripts.inc';
