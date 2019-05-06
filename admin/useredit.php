@@ -27,7 +27,7 @@ $request = $_SERVER['REQUEST_METHOD'];
 
 include '../config.inc.php';
 if ($request !== 'POST') {include 'header_get.php';include 'topmain.php'; include 'leftmain.php';}
-echo "<title>$title - Edit User</title>\n";
+echo "<title>$title - Editar Usuario</title>\n";
 
 if (!isset($_SESSION['valid_user'])) {
 
@@ -148,33 +148,55 @@ if (!empty($admin)) {
 }
 if (isset($evil)) {
 
-echo "            <table  class=table>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Cannot edit the Sys Admin properties of this user as this user is the last Sys Admin User in the system. Go back and give another user
-                    Sys Admin privileges before attempting to edit the Sys Admin properties of this user.</td></tr>\n";
-echo "            </table>\n";
+echo "<table  class=table>\n";
+echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+            Cannot edit the Sys Admin properties of this user as this user is the last Sys Admin User in the system. Go back and give another user
+            Sys Admin privileges before attempting to edit the Sys Admin properties of this user.
+        </div></div>';
+echo "</table>\n";
 }
-echo "            <br />\n";
-echo "            <form name='form' action='$self' method='post'>\n";
-echo "            <table class=table>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/user_edit.png' />&nbsp;&nbsp;&nbsp;Edit User</th>\n";
-echo "              </tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
-                      colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$username\">$username</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
-                      <input type='text' size='25' maxlength='50' name='display_name' value=\"$displayname\">&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
-                      <input type='text' size='25' maxlength='75' name='email_addy' value='$user_email'>&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
-                      <select name='office_name' onchange='group_names();'>
-                        <option selected>$office</option>\n";
-echo "                      </select>&nbsp;*</td></tr>\n";
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-user"></i> Crear oficina</h3>
+            </div>
+          <div class="box-body">';
+echo "    <form name='form' action='$self' method='post'>\n";
+echo "     <table class=table>\n";
+echo "       <tr>
+              <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td>
+
+              <td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'>
+                <input type='hidden' name='post_username' value=\"$username\">$username
+              </td>
+            </tr>\n";
+echo "
+            <tr>
+              <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td>
+
+              <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                <input type='text' size='25' maxlength='50' name='display_name' value=\"$displayname\">&nbsp;*
+              </td>
+            </tr>\n";
+echo "
+            <tr>
+              <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td>
+
+              <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                <input type='text' size='25' maxlength='75' name='email_addy' value='$user_email'>&nbsp;*
+              </td>
+            </tr>\n";
+echo "
+            <tr>
+              <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td>
+
+              <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                <select name='office_name' onchange='group_names();'>
+                  <option selected>$office</option>\n";
+echo "               </select>&nbsp;*</td></tr>\n";
 if ($groups_tmp == "") {
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%
                       style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
@@ -237,9 +259,27 @@ if (isset($evil)) {
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=40>&nbsp;</td></tr>\n";
 echo "                  <input type='hidden' name='get_office' value='$get_office'>\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Edit User' align='middle'
-                      src='../images/buttons/next_button.png'></td><td><a href='useradmin.php'><img src='../images/buttons/cancel_button.png'
-                      border='0'></td></tr></table></form>\n";
+echo "              <tr>
+                      <td width=30>
+                        <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-info'>
+                          Editar Usuario
+                        </button>
+                      </td>
+
+                      <td>
+                        <button id='formButtons' class='btn btn-default pull-right'>
+                          <a href='useradmin.php'>
+                            Cancelar
+                          </a>
+                        </button>
+                      </td>
+                    </tr>
+                  </table>
+              </form>\n";
+echo '      </div>
+          </div>
+        </div>
+      </div>';
 		      include '../theme/templates/endmaincontent.inc';
 		      include '../footer.php';
 		      include '../theme/templates/controlsidebar.inc';
@@ -351,118 +391,121 @@ echo "            <br />\n";
 // begin post validation //
 
 if (empty($display_name)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    A Display Name is required.</td></tr>\n";
-echo "            </table>\n";
+  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+               Se requiere un alias de usuario.
+          </div></div>';
 }
 elseif (empty($email_addy)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    An Email Address is required.</td></tr>\n";
-echo "            </table>\n";
+  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+               Se requiere una dirección de email.
+          </div></div>';
 }
 elseif (empty($office_name)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    An Office is required.</td></tr>\n";
-echo "            </table>\n";
+  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+               Se requiere introducir una oficina.
+          </div></div>';
 }
 elseif (empty($group_name)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    A Group is required.</td></tr>\n";
-echo "            </table>\n";
+  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+               Se requiere introducir un grupo.
+          </div></div>';
 }
 elseif (!empty($string)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Double Quotes are not allowed when creating an Username.</td></tr>\n";
-echo "            </table>\n";
+  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+               Double Quotes are not allowed when creating an Username.
+          </div></div>';
 }
 // elseif (!eregi ("^([[:alnum:]]| |-|'|,)+$", $display_name)) {
 //elseif (!preg_match('/' . "^([[:alnum:]]| |-|'|,)+$" . '/i', $display_name)) {
   elseif (!preg_match('/' . "^([[:alnum:]]|Å|Ä|Ö| |-|'|,)+$" . '/i', $display_name)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Alphanumeric characters, hyphens, apostrophes, commas, and spaces are allowed when creating a Display Name.</td></tr>\n";
-echo "            </table>\n";
+    echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+              Alphanumeric characters, hyphens, apostrophes, commas, and spaces are allowed when creating a Display Name.
+            </div></div>';
 }
 // elseif (!eregi ("^([[:alnum:]]|_|\.|-)+@([[:alnum:]]|\.|-)+(\.)([a-z]{2,4})$", $email_addy)) {
 elseif (!preg_match('/' . "^([[:alnum:]]|_|\.|-)+@([[:alnum:]]|\.|-)+(\.)([a-z]{2,4})$" . '/i', $email_addy)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Alphanumeric characters, underscores, periods, and hyphens are allowed when creating an Email Address.</td></tr>\n";
-echo "            </table>\n";
+  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+            Alphanumeric characters, underscores, periods, and hyphens are allowed when creating an Email Address.
+          </div></div>';
 }
 elseif (($admin_perms != '1') && (!empty($admin_perms))) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Choose \"yes\" or \"no\" for Sys Admin Perms.</td></tr>\n";
-echo "            </table>\n";
+  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+            Choose \"yes\" or \"no\" for Sys Admin Perms.
+          </div></div>';
 }
 elseif (($reports_perms != '1') && (!empty($reports_perms))) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Choose \"yes\" or \"no\" for Reports Perms.</td></tr>\n";
-echo "            </table>\n";
+  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+            Choose \"yes\" or \"no\" for Reports Perms.
+          </div></div>';
 }
 elseif (($time_admin_perms != '1') && (!empty($time_admin_perms))) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Choose \"yes\" or \"no\" for Time Admin Perms.</td></tr>\n";
-echo "            </table>\n";
+  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+            Choose \"yes\" or \"no\" for Time Admin Perms.
+          </div></div>';
 }
 elseif (($post_disabled != '1') && (!empty($post_disabled))) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Choose \"yes\" or \"no\" for User Account Disabled.</td></tr>\n";
-echo "            </table>\n";
+  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+            Choose \"yes\" or \"no\" for User Account Disabled.
+          </div></div>';
 }
-
-if (!empty($office_name)) {
+elseif (!empty($office_name)) {
 $query = "select * from ".$db_prefix."offices where officename = '".$office_name."'";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 while ($row=mysqli_fetch_array($result)) {
 $tmp_officename = "".$row['officename']."";
 }
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-if (!isset($tmp_officename)) {echo "Office is not defined.\n"; exit;}
+if (!isset($tmp_officename)) {echo "Office is not defined.\n";}
 }
 
-if (!empty($group_name)) {
+elseif (!empty($group_name)) {
 $query = "select * from ".$db_prefix."groups where groupname = '".$group_name."'";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 while ($row=mysqli_fetch_array($result)) {
 $tmp_groupname = "".$row['groupname']."";
 }
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-if (!isset($tmp_officename)) {echo "Group is not defined.\n"; exit;}
+if (!isset($tmp_officename)) {echo "Group is not defined.\n";}
 }
 
 // end post validation //
 
 if (!empty($string)) {$display_name = stripslashes($display_name);}
 
-echo "            <br />\n";
-echo "            <form name='form' action='$self' method='post'>\n";
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/user_edit.png' />&nbsp;&nbsp;&nbsp;Edit User</th>\n";
-echo "              </tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-user"></i> Crear oficina</h3>
+            </div>
+            <div class="box-body">';
+echo "        <form name='form' action='$self' method='post'>\n";
+echo "          <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+echo "
+                  <tr>
+                    <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
                       colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username'
                       value=\"$post_username\">$tmp_post_username</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
@@ -524,9 +567,27 @@ if (isset($evil)) {
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=40>&nbsp;</td></tr>\n";
 echo "                  <input type='hidden' name='get_office' value='$get_office'>\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Edit User' align='middle'
-                      src='../images/buttons/next_button.png'></td><td><a href='useradmin.php'><img src='../images/buttons/cancel_button.png'
-                      border='0'></td></tr></table></form>\n";
+echo "              <tr>
+                      <td width=30>
+                        <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-info'>
+                          Editar Usuario
+                        </button>
+                      </td>
+
+                      <td>
+                        <button id='formButtons' class='btn btn-default pull-right'>
+                          <a href='useradmin.php'>
+                            Cancelar
+                          </a>
+                        </button>
+                      </td>
+                    </tr>
+                  </table>
+              </form>\n";
+echo '      </div>
+          </div>
+        </div>
+      </div>';
 		      include '../theme/templates/endmaincontent.inc';
 		      include '../footer.php';
 		      include '../theme/templates/controlsidebar.inc';
@@ -608,9 +669,6 @@ echo "                <td class=table_rows width=20 align=center><img src='../im
 echo "            </table>\n";
 echo "            <br />\n";
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/user_edit.png' />&nbsp;&nbsp;&nbsp;Edit User</th>\n";
-echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 
 $query4 = "select empfullname, displayname, email, groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees

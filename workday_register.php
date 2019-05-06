@@ -392,7 +392,7 @@ if ($request == 'POST') { // Process employee's punch information
 
     // begin post validation //
     if ($use_passwd == "yes") {
-        $employee_passwd = crypt($_POST['employee_passwd'], 'xy');
+        $employee_passwd = password_hash($_POST['employee_passwd'], PASSWORD_DEFAULT, ['cost' => 10]);
     }
 
     $query = "select punchitems from ".$db_prefix."punchlist";
@@ -573,7 +573,7 @@ if ($request == 'POST') { // Process employee's punch information
             $tmp_password = "".$row["employee_passwd"]."";
         }
 
-        if ($employee_passwd != $tmp_password) {
+        if (password_verify($employee_passwd,$tmp_password)) {
     	    echo '<div class="col-md-8">
                   <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>

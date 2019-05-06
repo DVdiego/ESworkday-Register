@@ -49,7 +49,7 @@ if ($_REQUEST["login_action"] == "admin") {
     // Determine if the user has entered his authentication credentials
     if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
         $login_userid = $_POST['login_userid'];
-        $login_password = $_POST['login_password'];
+        $login_password = password_hash($_POST['login_password'], PASSWORD_DEFAULT, ['cost' => 10]);
 
         // Determine if the user has sys or time access rights.
         $query = "select empfullname, employee_passwd, admin, time_admin from ".$db_prefix."employees where empfullname = '".$login_userid."'";
@@ -159,7 +159,7 @@ if ($_REQUEST["login_action"] == "admin") {
   if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
 
       $login_userid = $_POST['login_userid'];
-      $login_password = $_POST['login_password'];
+      $login_password = password_hash($_POST['login_password'], PASSWORD_DEFAULT, ['cost' => 10]);
 
       // Determine if the user has report access rights. profile
       $query1 = "select empfullname, employee_passwd, profile from ".$db_prefix."employees where empfullname = '".$login_userid."'";
@@ -171,10 +171,9 @@ if ($_REQUEST["login_action"] == "admin") {
           $profile_auth = "".$row['profile'].""; //cambiar 'profile'
 
       }
-      print_r($row);
 
       // Determine if the user is authorised to view reports
-      if (($login_userid == @$employee_username ) && (password_verify($login_password, @$employee_password)) && ($profile_auth == "1")) {
+      if (($login_userid == @$employee_username ) && (password_verify($login_password, @$profile_password)) && ($profile_auth == "1")) {
           $_SESSION['valid_profile_user'] = $login_userid;
           echo "<i>ENTRA!!!\n";
 
@@ -253,7 +252,7 @@ if ($_REQUEST["login_action"] == "admin") {
     // Determine if the user has entered his authentication credentials
     if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
         $login_userid = $_POST['login_userid'];
-        $login_password = $_POST['login_password'];
+        $login_password = password_hash($_POST['login_password'], PASSWORD_DEFAULT, ['cost' => 10]);
 
         // Determine if the user has report access rights.
         $query = "select empfullname, employee_passwd, reports from ".$db_prefix."employees where empfullname = '".$login_userid."'";
