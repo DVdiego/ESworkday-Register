@@ -34,13 +34,31 @@ $request = $_SERVER['REQUEST_METHOD'];
 if (!isset($_SESSION['valid_user'])) {
 
   echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-  echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Administration</td></tr>\n";
+  echo "  <tr class=right_main_text>
+            <td height=10 align=center valign=top scope=row class=title_underline>
+              PHP Timeclock Administration
+            </td>
+          </tr>\n";
   echo "  <tr class=right_main_text>\n";
   echo "    <td align=center valign=top scope=row>\n";
   echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
-  echo "        <tr class=right_main_text><td align=center>You are not presently logged in, or do not have permission to view this page.</td></tr>\n";
-  echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='../login.php?login_action=admin'><u>here</u></a> to login.</td></tr>\n";
-  echo "      </table><br /></td></tr></table>\n"; exit;
+  echo "        <tr class=right_main_text>
+                  <td align=center>
+                  You are not presently logged in, or do not have permission to view this page.
+                  </td>
+                </tr>\n";
+
+  echo "        <tr class=right_main_text>
+                  <td align=center>
+                    Click <a class=admin_headings href='../login.php?login_action=admin'>
+                      <u>here</u>
+                      </a> to login.
+                  </td>
+                  </tr>\n";
+  echo "      </table><br />
+            </td>
+          </tr>
+        </table>\n"; exit;
 }
 include 'leftmain.php'; //esta despues de verficar la sesión para que no cargue el menú lateral sino esta autendicado.
 if ($request == 'GET') {
@@ -50,14 +68,11 @@ if ($request == 'GET') {
           <div class="col-md-8">
             <div class="box box-info"> ';
   echo '      <div class="box-header with-border">
-                   <h3 class="box-title"><i class="fa fa-suitcase"></i>Create Office</h3>
+                   <h3 class="box-title"><i class="fa fa-suitcase"></i> Crear oficina</h3>
               </div>
               <div class="box-body">';
 echo "          <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_add.png' />&nbsp;&nbsp;&nbsp;Create Office</th>
-                    </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td colspan=2 width=80%
                       style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
@@ -74,9 +89,21 @@ echo "              <tr><td class=table_rows align=right colspan=3 style='color:
 echo "            </table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Create Office' align='middle'
-                      src='../images/buttons/next_button.png'></td><td><a href='officeadmin.php'><img src='../images/buttons/cancel_button.png'
-                      border='0'></td></tr>
+echo "              <tr>
+                      <td width=30>
+                        <button type='submit' name='submit' value='Create Office' class='btn btn-info'>
+                          Crear Oficina
+                        </button>
+                      </td>
+
+                      <td>
+                        <button class='btn btn-default pull-right'>
+                          <a href='officeadmin.php'>
+                            Cancelar
+                          </a>
+                        </button>
+                      </td>
+                    </tr>
                   </table>
               </form>\n";
 
@@ -127,44 +154,80 @@ elseif ($request == 'POST') {
     if (empty($post_officename)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        An Office Name is required.</td></tr>\n";
+    echo "                <td class=table_rows width=20 align=center>
+                            <img src='../images/icons/cancel.png' />
+                          </td>
+
+                          <td class=table_rows_red>
+                            An Office Name is required.
+                          </td>
+                        </tr>\n";
     echo "            </table>\n";
     }
     elseif (!empty($string)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Apostrohpes are not allowed when creating an Office Name.</td></tr>\n";
+    echo "                <td class=table_rows width=20 align=center>
+                            <img src='../images/icons/cancel.png' />
+                          </td>
+
+                          <td class=table_rows_red>
+                            Apostrohpes are not allowed when creating an Office Name.
+                          </td>
+                        </tr>\n";
     echo "            </table>\n";
     }
     elseif (!empty($string2)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Double Quotes are not allowed when creating an Office Name.</td></tr>\n";
+    echo "                <td class=table_rows width=20 align=center>
+                            <img src='../images/icons/cancel.png' />
+                          </td>
+
+                          <td class=table_rows_red>
+                            Double Quotes are not allowed when creating an Office Name.
+                          </td>
+                        </tr>\n";
     echo "            </table>\n";
     }
     elseif (@$tmp_officename == $post_officename) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Office already exists. Create another office.</td></tr>\n";
+    echo "                <td class=table_rows width=20 align=center>
+                            <img src='../images/icons/cancel.png' />
+                          </td>
+
+                          <td class=table_rows_red>
+                            La oficina ya existe. Crea una nueva oficina.
+                          </td>
+                        </tr>\n";
     echo "            </table>\n";
     }
     // elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_officename)) {
     elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_officename)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Alphanumeric characters, hyphens, underscores, spaces, and periods are allowed when creating an Office Name.</td></tr>\n";
+    echo "                <td class=table_rows width=20 align=center>
+                            <img src='../images/icons/cancel.png' />
+                          </td>
+
+                          <td class=table_rows_red>
+                            Alphanumeric characters, hyphens, underscores, spaces, and periods are allowed when creating an Office Name.
+                          </td>
+                        </tr>\n";
     echo "            </table>\n";
     }
     elseif (($create_groups == '1') && (empty($how_many))) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Please input the number of groups you wish to create within this new office.</td></tr>\n";
+    echo "                <td class=table_rows width=20 align=center>
+                            <img src='../images/icons/cancel.png' />
+                          </td>
+
+                          <td class=table_rows_red>
+                            Please input the number of groups you wish to create within this new office.
+                          </td>
+                        </tr>\n";
     echo "            </table>\n";
     }
     elseif (($create_groups == '1') && ($how_many == '0')) {
@@ -198,15 +261,12 @@ elseif ($request == 'POST') {
             <div class="col-md-8">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i>Create Office</h3>
+                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Crear Oficina</h3>
                 </div>
                 <div class="box-body">';
 
     echo "         <form name='form' action='$self' method='post'>\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr>\n";
-    echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_add.png' />&nbsp;&nbsp;&nbsp;Create Office</th>\n";
-    echo "              </tr>\n";
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td colspan=2 width=80%
                           style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
@@ -243,10 +303,22 @@ elseif ($request == 'POST') {
     echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
     echo "            </table>\n";
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-    echo "              <tr><td width=30><input type='image' name='submit' value='Create Office' align='middle'
-                          src='../images/buttons/next_button.png'></td><td><a href='officeadmin.php'><img src='../images/buttons/cancel_button.png'
-                          border='0'></td></tr>
+    echo "              <tr>
+                            <td height=40>&nbsp;</td>
+                        </tr>\n";
+    echo "              <tr>
+                            <td width=30>
+                              <button type='submit' name='submit' value='Create Office' class='btn btn-info'>
+                                Crear oficina
+                              </button>
+                            <td>
+                              <button class='btn btn-default pull-right'>
+                                <a href='officeadmin.php'>
+                                  Cancelar
+                                </a>
+                              </button>
+                            </td>
+                        </tr>
                       </table>
                   </form>\n";
 
@@ -302,16 +374,14 @@ elseif ($request == 'POST') {
               <div class="col-md-8">
                 <div class="box box-info"> ';
       echo '      <div class="box-header with-border">
-                       <h3 class="box-title"><i class="fa fa-suitcase"></i>Create Office</h3>
+                       <h3 class="box-title"><i class="fa fa-suitcase"></i> Crear Oficina</h3>
                   </div>
                   <div class="box-body">';
       }
 
+      //TRADUCIR
       echo "         <form name='form' action='$self' method='post'>\n";
       echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-      echo "              <tr>\n";
-      echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_add.png' />&nbsp;&nbsp;&nbsp;Create Office</th>\n";
-      echo "              </tr>\n";
       echo "              <tr><td height=15></td></tr>\n";
       echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td class=table_rows colspan=2
                             width=80% style='padding-left:20px;'>
@@ -329,20 +399,39 @@ elseif ($request == 'POST') {
       if (@$empty_groupname == '1')  {
       echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
       echo "              <tr>\n";
-      echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>A Group Name is required.</td>
+      //TRADUCIR
+      echo "                <td class=table_rows width=20 align=center>
+                              <img src='../images/icons/cancel.png' />
+                            </td>
+
+                            <td class=table_rows_red>
+                              A Group Name is required.
+                            </td>
                           </tr>\n";
       echo "            </table>\n";
       } elseif (@$evil_groupname == '1') {
       echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
       echo "              <tr>\n";
-      echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                          Alphanumeric characters, hyphens, underscores, spaces, and periods are allowed when creating a Group Name.</td></tr>\n";
+      echo "                <td class=table_rows width=20 align=center>
+                              <img src='../images/icons/cancel.png' />
+                            </td>
+
+                            <td class=table_rows_red>
+                              Alphanumeric characters, hyphens, underscores, spaces, and periods are allowed when creating a Group Name.
+                            </td>
+                          </tr>\n";
       echo "            </table>\n";
       } elseif (@$groupname_array_cnt != @$unique_groupname_array_cnt) {
       echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
       echo "              <tr>\n";
-      echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                          Duplicate Group Name exists.</td></tr>\n";
+      echo "                <td class=table_rows width=20 align=center>
+                              <img src='../images/icons/cancel.png' />
+                            </td>
+
+                            <td class=table_rows_red>
+                              Duplicate Group Name exists.
+                            </td>
+                          </tr>\n";
       echo "            </table>\n";
       }
 
@@ -382,9 +471,19 @@ elseif ($request == 'POST') {
 
       if ((@$empty_groupname == '1') || (@$evil_groupname == '1') || (@$groupname_array_cnt != @$unique_groupname_array_cnt)) {
       echo "              <tr><td height=20>&nbsp;</td></tr>\n";
-      echo "              <tr><td width=30><input type='image' name='submit' value='Create Office' align='middle'
-                            src='../images/buttons/next_button.png'></td><td><a href='officeadmin.php'><img src='../images/buttons/cancel_button.png'
-                            border='0'></td></tr>
+      echo "              <tr>
+                            <td width=30>
+                              <button type='submit' name='submit' value='Create Office' class='btn btn-info'>
+                                Crear oficina
+                              </button>
+                            </td>
+
+                            <td>
+                              <button class='btn btn-default pull-right'>
+                                <a href='officeadmin.php'>Cancelar</a>
+                              </button>
+                            </td>
+                          </tr>
                         </table>
                     </form>\n";
       echo '     </div>
@@ -400,7 +499,12 @@ elseif ($request == 'POST') {
       } else {
 
       echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
-      echo "              <tr><td><a href='officecreate.php'><img src='../images/buttons/done_button.png' border='0'></td></tr>
+      echo "              <tr>
+                            <td>
+                              <a href='officecreate.php'>
+                              <img src='../images/buttons/done_button.png' border='0'>
+                            </td>
+                          </tr>
                         </table>
                     </form>\n";
       echo '     </div>
@@ -421,7 +525,7 @@ elseif ($request == 'POST') {
             <div class="col-md-8">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i>Create Office</h3>
+                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Crear Oficina</h3>
                 </div>
                 <div class="box-body">';
 
@@ -434,10 +538,6 @@ elseif ($request == 'POST') {
 
     echo "          <form name='form' action='$self' method='post'>\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr>\n";
-    echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_add.png' />&nbsp;&nbsp;&nbsp;Create Office
-                          </th>
-                        </tr>\n";
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td class=table_rows colspan=2
                           width=80% style='padding-left:20px;'>
@@ -459,7 +559,15 @@ elseif ($request == 'POST') {
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
     //DIEGO cambie la referencia officeadmin.php
-    echo "              <tr><td><a href='officeadmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr>
+    echo "              <tr>
+                          <td
+                            <button class='btn btn-info'>
+                              <a href='officeadmin.php'>
+                                Crear oficina
+                              </a>
+                            </button>
+                          </td>
+                        </tr>
                       </table>
                     </form>\n";
     echo '         </div>
@@ -501,9 +609,21 @@ elseif ($request == 'POST') {
     }
 
     echo "              <tr><td height=15></td></tr>\n";
-    echo "              <tr><td width=30><input type='image' name='submit' value='Create Office' align='middle'
-                          src='../images/buttons/next_button.png'></td><td><a href='officeadmin.php'><img src='../images/buttons/cancel_button.png'
-                          border='0'></td></tr>
+    echo "              <tr>
+                          <td width=30>
+                            <button type='submit' name='submit' value='Create Office' class='btn btn-info'>
+                              Crear usuario
+                            </button>
+                          </td>
+
+                          <td>
+                            <button class='btn btn-default pull-right'>
+                              <a href='officeadmin.php'>
+                                Cancelar
+                              </a>
+                            </button>
+                          </td>
+                        </tr>
                       </table>
                     </form>\n";
     echo '      </div>
