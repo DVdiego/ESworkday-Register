@@ -31,6 +31,7 @@ $request = $_SERVER['REQUEST_METHOD'];
 
 // set cookie if 'Remember Me?' checkbox is checked, or reset cookie if 'Reset Cookie?' is checked //
 if ($request == 'POST') {
+
     @$remember_me = $_POST['remember_me'];
     @$reset_cookie = $_POST['reset_cookie'];
     @$fullname = stripslashes($_POST['left_fullname']);
@@ -378,6 +379,19 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
               <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
             </div>
           </div>';
+}else if (isset($_SESSION['valid_profile'])) {
+    $logged_in_user = $_SESSION['valid_profile'];
+    echo '
+          <div class="user-panel">
+            <div class="pull-left image">
+              <h3><i class="fa fa-user"></i></h3>
+            </div>
+            <div class="pull-left info">
+              <p>'.$logged_in_user.'</p>
+              <!-- Status -->
+              <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+            </div>
+          </div>';
 }
 
 // end user moved here from topmain
@@ -397,7 +411,7 @@ echo '
                <div class="box-header with-border">
                  <h3 class="box-title">Please punch in below:</h3>
                </div>
-               <!-- /.box-header -->';
+               <!-- /.box-header -->';              
 echo "<div class='box-body'>
 
 	<div class='form-group'>

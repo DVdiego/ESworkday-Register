@@ -237,9 +237,9 @@ echo "            </table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle'
                       src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png'
-                      border='0'></td></tr></table></form>\n"; 
+                      border='0'></td></tr></table></form>\n";
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/reportsfooterscripts.inc';
 exit;
@@ -761,9 +761,9 @@ echo "            </table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle'
                       src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png'
-                      border='0'></td></tr></table></form>\n"; 
+                      border='0'></td></tr></table></form>\n";
 					  include '../footer.php';
-					  include '../theme/templates/controlsidebar.inc'; 
+					  include '../theme/templates/controlsidebar.inc';
 					  include '../theme/templates/endmain.inc';
 					  include '../theme/templates/adminfooterscripts.inc';
 exit;
@@ -789,16 +789,17 @@ if (!empty($to_date)) {
 //if (!empty($from_date)) {$from_timestamp = strtotime($from_date) - @$tzo;}
 //if (!empty($to_date)) {$to_timestamp = strtotime($to_date) + 86400 - @$tzo;}
 
-$time = time();
-$rpt_hour = gmdate('H',$time);
-$rpt_min = gmdate('i',$time);
-$rpt_sec = gmdate('s',$time);
-$rpt_month = gmdate('m',$time);
-$rpt_day = gmdate('d',$time);
-$rpt_year = gmdate('Y',$time);
-$rpt_stamp = time ($rpt_hour, $rpt_min, $rpt_sec, $rpt_month, $rpt_day, $rpt_year);
-
-$rpt_stamp = $rpt_stamp + @$tzo;
+// $time = time();
+// $rpt_hour = gmdate('H',$time);
+// $rpt_min = gmdate('i',$time);
+// $rpt_sec = gmdate('s',$time);
+// $rpt_month = gmdate('m',$time);
+// $rpt_day = gmdate('d',$time);
+// $rpt_year = gmdate('Y',$time);
+// $rpt_stamp = time ($rpt_hour, $rpt_min, $rpt_sec, $rpt_month, $rpt_day, $rpt_year);
+//
+// $rpt_stamp = $rpt_stamp + @$tzo;
+$rpt_stamp = time() + @$tzo;
 $rpt_time = date($timefmt, $rpt_stamp);
 $rpt_date = date($datefmt, $rpt_stamp);
 

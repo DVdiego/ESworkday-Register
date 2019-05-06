@@ -154,6 +154,19 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
               <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
             </div>
           </div>';
+}else if (isset($_SESSION['valid_profile'])) {
+    $logged_in_user = $_SESSION['valid_profile'];
+    echo '
+          <div class="user-panel">
+            <div class="pull-left image">
+              <h3><i class="fa fa-user"></i></h3>
+            </div>
+            <div class="pull-left info">
+              <p>'.$logged_in_user.'</p>
+              <!-- Status -->
+              <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+            </div>
+          </div>';
 }
 
 // end user moved here from topmain
