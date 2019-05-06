@@ -32,11 +32,19 @@ echo "<title>$title - Create User</title>\n";
 if (!isset($_SESSION['valid_user'])) {
 
 
-	echo ' <div class="col-md-4"><div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i> PHP Timeclock Administration</h4>
+	echo ' <div class="col-md-4">
+					<div class="alert alert-danger alert-dismissible">
+          	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+							&times;
+						</button>
+
+						<h4>
+							<i class="icon fa fa-warning"></i>
+							PHP Timeclock Administration
+						</h4>
                 You are not presently logged in, or do not have permission to view this page. Click <a href="../login.php?login_action=admin"><u>here</u></a> to login.
-              </div></div>';
+          </div>
+				</div>';
 
  exit;
 }
@@ -107,8 +115,15 @@ if ($request == 'GET') {
 		echo "            </table>\n";
 
 						      echo '<div class="box-footer">
-						                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Crear usuario</button>
-						                  <button class="btn btn-default pull-right"><a href="usercreate.php">Cancelar</a></button>
+						                  <button id="formButtons" type="submit" name="submit" value="Create User" class="btn btn-info">
+																Crear usuario
+															</button>
+
+															<button id="formButtons"class="btn btn-default pull-right">
+																<a href="usercreate.php">
+																	Cancelar
+																</a>
+															</button>
 						                </div></form>';
 						      echo '</div></div></div></div>';
 				      include '../theme/templates/endmaincontent.inc';
@@ -166,7 +181,6 @@ elseif ($request == 'POST') {
 				        $tmp_username = stripslashes($tmp_username);
 				    }
 
-
 				// begin post validation //
 
 				if (empty($user_dni)) {
@@ -174,7 +188,7 @@ elseif ($request == 'POST') {
 					echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-				                 Se requiere introducir el DNI del empleado.
+				                 	Se requiere introducir el DNI del empleado.
 				              </div></div>';
 				}
 				elseif (empty($display_name)) {
@@ -305,19 +319,14 @@ elseif ($request == 'POST') {
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                 Elige \"si\" o \"no\" para deshabilitar la cuenta.
 				              </div></div>';
-				}
-
-
-
-
-				if (!empty($type_contracts)) {
+				}elseif (!empty($type_contracts)) {
 					$query = "select * from ".$db_prefix."contracts where type_contracts = '".$type_contracts."'";
 					$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 					while ($row=mysqli_fetch_array($result)) {
 						$tmp_type_contracts = "".$row['type_contracts']."";
 					}
 					((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-					if (!isset($tmp_type_contracts)) {echo "El tipo de contrato no está definido..\n"; exit;}
+					if (!isset($tmp_type_contracts)) {echo "El tipo de contrato no está definido..\n"; }
 				}
 				/*
 				if (!empty($user_dni)) {
@@ -328,25 +337,24 @@ elseif ($request == 'POST') {
 					}
 				}
 				*/
-
-				if (!empty($office_name)) {
+				elseif (!empty($office_name)) {
 				$query = "select * from ".$db_prefix."offices where officename = '".$office_name."'";
 				$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 				while ($row=mysqli_fetch_array($result)) {
 				$tmp_officename = "".$row['officename']."";
 				}
 				((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-				if (!isset($tmp_officename)) {echo "La oficina no está definida.\n"; exit;}
+				if (!isset($tmp_officename)) {echo "La oficina no está definida.\n"; }
 				}
 
-				if (!empty($group_name)) {
+				elseif (!empty($group_name)) {
 				$query = "select * from ".$db_prefix."groups where groupname = '".$group_name."'";
 				$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 				while ($row=mysqli_fetch_array($result)) {
 				$tmp_groupname = "".$row['groupname']."";
 				}
 				((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-				if (!isset($tmp_officename)) {echo "El grupo no está definido.\n"; exit;}
+				if (!isset($tmp_officename)) {echo "El grupo no está definido.\n";}
 				}
 
 				// end post validation //
@@ -460,8 +468,8 @@ elseif ($request == 'POST') {
 				//                      src='../images/buttons/next_button.png'></td><td><a href='useradmin.php'><img src='../images/buttons/cancel_button.png'
 				//                      border='0'></td></tr></table></form>\n";
 								      echo '<div class="box-footer">
-								                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Crear usuario</button>
-								                  <button class="btn btn-default pull-right"><a href="usercreate.php">Cancelar</a></button>
+								                  <button id="formButtons" type="submit" name="submit" value="Create User" class="btn btn-info">Crear usuario</button>
+								                  <button id="formButtons" class="btn btn-default pull-right"><a href="usercreate.php">Cancelar</a></button>
 								                </div></form>';
 								      echo '</div></div></div></div>';
 						      include '../theme/templates/endmaincontent.inc';
@@ -601,7 +609,11 @@ elseif ($request == 'POST') {
 		echo "              <tr><td height=15></td></tr>\n";
 		echo "            </table>\n";
 		echo '						<div class="box-footer">
-		           					<a href="usercreate.php"><button class="btn btn-success">Done</button></a>
+		           					<a href="usercreate.php">
+													<button id="formButtons" class="btn btn-success">
+														Done
+													</button>
+												</a>
 		          				</div>';
 		echo '				</div>
 							</div>

@@ -1,5 +1,4 @@
 
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body class="hold-transition skin-yellow sidebar-mini">
 
 <div id="wrapper">
-	

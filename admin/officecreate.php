@@ -91,13 +91,13 @@ echo "            <table align=center width=60% border=0 cellpadding=0 cellspaci
 echo "              <tr><td height=40>&nbsp;</td></tr>\n";
 echo "              <tr>
                       <td width=30>
-                        <button type='submit' name='submit' value='Create Office' class='btn btn-info'>
+                        <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-info'>
                           Crear Oficina
                         </button>
                       </td>
 
                       <td>
-                        <button class='btn btn-default pull-right'>
+                        <button id='formButtons' class='btn btn-default pull-right'>
                           <a href='officeadmin.php'>
                             Cancelar
                           </a>
@@ -150,19 +150,13 @@ elseif ($request == 'POST') {
 
 
   if ((@$tmp_officename == $post_officename) || (empty($post_officename)) || (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_officename)) || ((!preg_match('/' . "^([0-9])$" . '/i', $how_many)) && (isset($how_many))) || (@$how_many == '0') || (($create_groups != '1') && (!empty($create_groups))) || (!empty($string)) || (!empty($string2))) {
-
     if (empty($post_officename)) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center>
-                            <img src='../images/icons/cancel.png' />
-                          </td>
+      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   Se requiere un nombre de usuario.
+                </div></div>';
 
-                          <td class=table_rows_red>
-                            An Office Name is required.
-                          </td>
-                        </tr>\n";
-    echo "            </table>\n";
     }
     elseif (!empty($string)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
@@ -253,6 +247,7 @@ elseif ($request == 'POST') {
     }
     echo "            <br />\n";
 
+
     if (!empty($string)) {$post_officename = stripslashes($post_officename);}
     if (!empty($string2)) {$post_officename = stripslashes($post_officename);}
 
@@ -308,11 +303,11 @@ elseif ($request == 'POST') {
                         </tr>\n";
     echo "              <tr>
                             <td width=30>
-                              <button type='submit' name='submit' value='Create Office' class='btn btn-info'>
+                              <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-info'>
                                 Crear oficina
                               </button>
                             <td>
-                              <button class='btn btn-default pull-right'>
+                              <button id='formButtons' class='btn btn-default pull-right'>
                                 <a href='officeadmin.php'>
                                   Cancelar
                                 </a>
@@ -473,14 +468,16 @@ elseif ($request == 'POST') {
       echo "              <tr><td height=20>&nbsp;</td></tr>\n";
       echo "              <tr>
                             <td width=30>
-                              <button type='submit' name='submit' value='Create Office' class='btn btn-info'>
+                              <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-info'>
                                 Crear oficina
                               </button>
                             </td>
 
                             <td>
-                              <button class='btn btn-default pull-right'>
-                                <a href='officeadmin.php'>Cancelar</a>
+                              <button id='formButtons' class='btn btn-default pull-right'>
+                                <a href='officeadmin.php'>
+                                  Cancelar
+                                </a>
                               </button>
                             </td>
                           </tr>
@@ -561,7 +558,7 @@ elseif ($request == 'POST') {
     //DIEGO cambie la referencia officeadmin.php
     echo "              <tr>
                           <td
-                            <button class='btn btn-info'>
+                            <button id='formButtons' class='btn btn-info'>
                               <a href='officeadmin.php'>
                                 Crear oficina
                               </a>
@@ -611,13 +608,13 @@ elseif ($request == 'POST') {
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr>
                           <td width=30>
-                            <button type='submit' name='submit' value='Create Office' class='btn btn-info'>
+                            <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-info'>
                               Crear usuario
                             </button>
                           </td>
 
                           <td>
-                            <button class='btn btn-default pull-right'>
+                            <button id='formButtons' class='btn btn-default pull-right'>
                               <a href='officeadmin.php'>
                                 Cancelar
                               </a>
