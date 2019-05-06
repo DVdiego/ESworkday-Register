@@ -62,8 +62,6 @@ if (!isset($_SESSION['valid_user'])) {
 }
 include 'leftmain.php'; //esta despues de verficar la sesión para que no cargue el menú lateral sino esta autendicado.
 if ($request == 'GET') {
-
-
   echo '<div class="row">
           <div class="col-md-8">
             <div class="box box-info"> ';
