@@ -326,7 +326,13 @@ elseif ($request == 'POST') {
 						$tmp_type_contracts = "".$row['type_contracts']."";
 					}
 					((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-					if (!isset($tmp_type_contracts)) {echo "El tipo de contrato no está definido..\n"; }
+					if (!isset($tmp_type_contracts)) {
+						echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+					                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+					                 	Se requiere introducir el tipo de contrato del empleado.
+					              </div></div>';
+					}
 				}
 				/*
 				if (!empty($user_dni)) {
@@ -344,7 +350,13 @@ elseif ($request == 'POST') {
 				$tmp_officename = "".$row['officename']."";
 				}
 				((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-				if (!isset($tmp_officename)) {echo "La oficina no está definida.\n"; }
+				if (!isset($tmp_officename)) {
+					echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+				                 	Se requiere introducir el nombre de la oficina.
+				              </div></div>';
+				}
 				}
 
 				elseif (!empty($group_name)) {
@@ -354,7 +366,13 @@ elseif ($request == 'POST') {
 				$tmp_groupname = "".$row['groupname']."";
 				}
 				((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-				if (!isset($tmp_officename)) {echo "El grupo no está definido.\n";}
+				if (!isset($tmp_groupname)) {
+					echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+				                 	Se requiere introducir el nombre del grupo.
+				              </div></div>';
+				}
 				}
 
 				// end post validation //
