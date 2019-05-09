@@ -26,7 +26,7 @@
      if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
 
          $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
-         $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
+         $login_password = password_hash(mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']), PASSWORD_DEFAULT, ['cost' => 10]);
 
          // Determine if the user has report access rights.
          $query = "select empfullname, employee_passwd, reports, `profile` from ".$db_prefix."employees where empfullname = '".$login_userid."'";
@@ -56,6 +56,9 @@
              $admin_auth = "".$row['admin']."";
              $time_admin_auth = "".$row['time_admin']."";
          }
+
+         print_r($login_password);
+         print_r($reports_password);
 
          if (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($admin_auth == "1")) {
              $_SESSION['valid_user'] = $login_userid;
@@ -119,6 +122,7 @@
          if (isset($login_userid)) {
 
              echo "Could not log you in. Either your username or password is incorrect.";
+
          }
          echo "<script language=\"javascript\">
                  document.forms['auth'].login_userid.focus();
