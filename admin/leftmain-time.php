@@ -62,6 +62,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
 
 // end user moved here from topmain
 
+
 $get_user = stripslashes($_GET['username']);
 disabled_acct($get_user);
 
@@ -103,7 +104,7 @@ echo '     <ul class="sidebar-menu">
             <li><a href="groupadmin.php"><i class="fa fa-circle-o"></i> Group Summary</a></li>
 	    <li><a href="groupcreate.php"><i class="fa fa-circle-o"></i> Create New Group</a></li>
           </ul>
-        </li>	
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-sign-out"></i> <span>In/Out Status</span>
@@ -115,7 +116,7 @@ echo '     <ul class="sidebar-menu">
             <li><a href="statusadmin.php"><i class="fa fa-circle-o"></i> Status Summary</a></li>
 	    <li><a href="statuscreate.php"><i class="fa fa-circle-o"></i> Create Status</a></li>
           </ul>
-        </li>	
+        </li>
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Miscellaneous</span>

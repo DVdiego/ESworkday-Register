@@ -79,9 +79,10 @@ echo "Please reconfigure your config.inc.php file, you cannot have both $use_cli
 
 echo "<head>\n";
 if ($use_client_tz == "yes") {
-if (!isset($_COOKIE['tzoffset'])) {
-include '../tzoffset.php';
-echo "<meta http-equiv='refresh' content='0;URL=index.php'>\n";}
+  if (!isset($_COOKIE['tzoffset'])) {
+  include '../tzoffset.php';
+  echo "<meta http-equiv='refresh' content='0;URL=index.php'>\n";
+  }
 }
 include '../theme/templates/adminheader.inc';
 echo "<link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />\n";
@@ -99,8 +100,8 @@ $tzo = $tzo * 60;}
 } elseif ($use_server_tz == "yes") {
   $tzo = date('Z');
 } else {
-  $tzo = "1";}
-  echo "<body class='hold-transition skin-blue-light sidebar-mini' onload='office_names();'>\n";
-  echo '<div id="wrapper">
-	  ';
+  $tzo = "1";
+}
+  echo "<body class='hold-transition $skin_theme sidebar-mini' onload='office_names();'>\n";
+  echo '<div id="wrapper">';
 ?>

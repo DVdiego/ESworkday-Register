@@ -100,8 +100,8 @@ if ($request == 'GET') { // Display employee add time interface
     echo "          <td valign=top>\n";
     echo "            <br />\n";
 	*/
-	
-	
+
+
 
 	echo '<div class="row">
         <div class="col-md-6">
@@ -121,7 +121,7 @@ if ($request == 'GET') { // Display employee add time interface
     echo "              <input class='form-control' type='text' size='12' maxlength='12' id='datepicker' name='post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;\n";
         echo '</div></div>';
 
- 
+
 echo'    <div class="bootstrap-timepicker">
     	                   <div class="form-group">
     	                     <label>Time: ('.$timefmt_24hr_text.')</label>';
@@ -178,13 +178,13 @@ echo'    	                       <div class="input-group-addon">
     echo "              \n";
     echo '<div class="box-footer">
                 <button type="submit" name="submit" value="Add Time" class="btn btn-info">Add time</button>
-                <button type="submit" name="cancel" class="btn btn-default pull-right">Cancel</button>   
+                <button type="submit" name="cancel" class="btn btn-default pull-right"><a href="timeadmin.php">Cancel</a></button>   
               </div></form>';
 
     echo '</div></div></div></div>';
     include '../theme/templates/endmaincontent.inc';
     include '../footer.php';
-	include '../theme/templates/controlsidebar.inc'; 
+	include '../theme/templates/controlsidebar.inc';
 	include '../theme/templates/endmain.inc';
 	include '../theme/templates/reportsfooterscripts.inc';
     exit;
@@ -320,13 +320,13 @@ echo'    	                       <div class="input-group-addon">
     /*
 
 */
-    
+
 //    if ((empty($post_date)) || (empty($post_time)) || ($post_statusname == '1') || (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_statusname)) || (!eregi ("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date))) {
-	
+
     if ((empty($post_date)) || (empty($post_time)) || ($post_statusname == '1') || (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_statusname)) ||
         (!preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4}))$/i", $post_date))
     ) {
-	
+
         $evil_post = '1';
         if (empty($post_date)) {
             echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
@@ -356,7 +356,7 @@ echo'    	                       <div class="input-group-addon">
             echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red> A valid Date is required.</td></tr>\n";
             echo "            </table>\n";
         }
-    } 
+    }
 //	elseif ($timefmt_24hr == '0') {
 //        if ((!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$", $post_time, $time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$", $post_time, $time_regs))) {
 	elseif ($timefmt_24hr == '0') {
@@ -383,8 +383,8 @@ echo'    	                       <div class="input-group-addon">
                 echo "            </table>\n";
             }
         }
-    } 
-	
+    }
+
 //	elseif ($timefmt_24hr == '1') {
 //        if (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])$", $post_time, $time_regs)) {
 	elseif ($timefmt_24hr == '1') {
@@ -503,10 +503,10 @@ if (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4})
         echo "              <tr><td width=30><input type='image' name='submit' value='Add Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
 	include '../theme/templates/endmaincontent.inc';
         include '../footer.php';
-		include '../theme/templates/controlsidebar.inc'; 
+		include '../theme/templates/controlsidebar.inc';
 		include '../theme/templates/endmain.inc';
 		include '../theme/templates/reportsfooterscripts.inc';
-		
+
         exit;
     } else { // Display add time interface
         $post_username = addslashes($post_username);
@@ -581,7 +581,7 @@ if (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4})
                 echo "              <tr><td width=30><input type='image' name='submit' value='Add Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
 		include '../theme/templates/endmaincontent.inc';
                 include '../footer.php';
-				include '../theme/templates/controlsidebar.inc'; 
+				include '../theme/templates/controlsidebar.inc';
 				include '../theme/templates/endmain.inc';
 				include '../theme/templates/reportsfooterscripts.inc';
                 exit;
@@ -669,7 +669,7 @@ echo '<div class="box-header with-border">
 	echo'</div></div></div></div>';
 	include '../theme/templates/endmaincontent.inc';
         include '../footer.php';
-		include '../theme/templates/controlsidebar.inc'; 
+		include '../theme/templates/controlsidebar.inc';
 		include '../theme/templates/endmain.inc';
 		include '../theme/templates/reportsfooterscripts.inc';
         exit;

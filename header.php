@@ -25,7 +25,7 @@
  */
 
 include 'functions.php';
-
+include 'config.inc.php';
 ob_start();
 echo "<html>";
 

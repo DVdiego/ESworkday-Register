@@ -170,7 +170,7 @@ echo '<div class="box-header with-border">
     echo "              <div class='form-group'><label>Display Name:</label> <div class='input-group'><input type='hidden' name='post_displayname' value=\"$displayname\">$displayname\n";
     echo '</div></div>';
 
-    echo "              <div class='form-group'><label>From Date:" .($tmp_datefmt)."</label> <div class='input-group date'><i class='fa fa-calendar'></i><input type='text' maxlength='10' name='post_date' id='datepicker' class='form-control'> &nbsp;*&nbsp;&nbsp; </div></div>\n";
+    echo "              <div class='form-group'><label>From Date: " .($tmp_datefmt)."</label> <div class='input-group date'><i class='fa fa-calendar'></i><input type='text' maxlength='10' name='post_date' id='datepicker' class='form-control'> &nbsp;*&nbsp;&nbsp; </div></div>\n";
     echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
     echo "                <input type='hidden' name='timefmt_24hr' value=\"$timefmt_24hr\">\n";
     echo "                <input type='hidden' name='timefmt_24hr_text' value=\"$timefmt_24hr_text\">\n";
@@ -178,7 +178,7 @@ echo '<div class="box-header with-border">
     echo "                 *&nbsp;required&nbsp;\n";
     echo '<div class="box-footer">
                 <button type="submit" name="submit" value="Edit Time" class="btn btn-info">Edit Time</button>
-                <button type="submit" name="cancel" class="btn btn-default pull-right">Cancel</button>
+                <button type="submit" name="cancel" class="btn btn-default pull-right"><a href="timeadmin.php">Cancel</a></button>
               </div></form>';
 
     echo '</div></div></div></div>';
@@ -345,30 +345,63 @@ echo '<div class="box-header with-border">
     }
 
     if (isset($evil_post)) { // Display error message
-        echo "            <br />\n";
+
+        // echo "            <br />\n";
+        // echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
+        // echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
+        // echo "              <tr>\n";
+        // echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/clock_add.png' />&nbsp;&nbsp;&nbsp;Edit Time </th></tr>\n";
+        // echo "              <tr><td height=15></td></tr>\n";
+        // echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
+        // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Username:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
+        // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Display Name:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_displayname' value=\"$post_displayname\">$post_displayname</td></tr>\n";
+        // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Date: ($tmp_datefmt)</td><td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' size='10' maxlength='10' name='post_date' value='$post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;<a href=\"#\" onclick=\"cal.select(document.forms['form'].post_date,'post_date_anchor','$js_datefmt'); return false;\" name=\"post_date_anchor\" id=\"post_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
+        // echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
+        // echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+        // echo "            </table>\n";
+        // echo "            <div style=\"position:absolute;visibility:hidden;background-color:#ffffff;layer-background-color:#ffffff;\" id=\"mydiv\" height=200>&nbsp;</div>\n";
+        // echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
+        // echo "              <tr><td height=40>&nbsp;</td></tr>\n";
+        // echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr>
+        //                 </table></form>\n";
+
+
+        echo '<div class="row">
+            <div class="col-md-6">
+              <div class="box box-info"> ';
+        echo '<div class="box-header with-border">
+                         <h3 class="box-title"><i class="fa fa-clock-o"></i> Edit Time</h3>
+                       </div><div class="box-body">';
+
         echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/clock_add.png' />&nbsp;&nbsp;&nbsp;Edit Time </th></tr>\n";
-        echo "              <tr><td height=15></td></tr>\n";
-        echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
-        echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Username:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Display Name:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_displayname' value=\"$post_displayname\">$post_displayname</td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Date: ($tmp_datefmt)</td><td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' size='10' maxlength='10' name='post_date' value='$post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;<a href=\"#\" onclick=\"cal.select(document.forms['form'].post_date,'post_date_anchor','$js_datefmt'); return false;\" name=\"post_date_anchor\" id=\"post_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
+        echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
+        echo "              <div class='form-group'><label>Username:</label> <div class='input-group'> <input type='hidden' name='post_username' value=\"$post_username\">$post_username\n";
+        echo '</div></div>';
+        echo "              <div class='form-group'><label>Display Name:</label> <div class='input-group'><input type='hidden' name='post_displayname' value=\"$post_displayname\">$post_displayname\n";
+        echo '</div></div>';
+
+        echo "              <div class='form-group'><label>From Date: " .($tmp_datefmt)."</label> <div class='input-group date'><i class='fa fa-calendar'></i><input type='text' maxlength='10' name='post_date' id='datepicker' class='form-control'> &nbsp;*&nbsp;&nbsp; </div></div>\n";
         echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
-        echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
-        echo "            </table>\n";
-        echo "            <div style=\"position:absolute;visibility:hidden;background-color:#ffffff;layer-background-color:#ffffff;\" id=\"mydiv\" height=200>&nbsp;</div>\n";
-        echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-        echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
-	include '../theme/templates/endmaincontent.inc';
+        echo "                <input type='hidden' name='timefmt_24hr' value=\"$timefmt_24hr\">\n";
+        echo "                <input type='hidden' name='timefmt_24hr_text' value=\"$timefmt_24hr_text\">\n";
+        echo "                <input type='hidden' name='timefmt_size' value=\"$timefmt_size\">\n";
+        echo "                 *&nbsp;required&nbsp;\n";
+        echo '<div class="box-footer">
+                    <button type="submit" name="submit" value="Edit Time" class="btn btn-info">Edit Time</button>
+                    <button type="submit" name="cancel" class="btn btn-default pull-right"><a href="timeadmin.php">Cancel</a></button>
+                  </div></form>';
+
+        echo "</div></div></div></div>";
+        include '../theme/templates/endmaincontent.inc';
         include '../footer.php';
-		include '../theme/templates/controlsidebar.inc';
-		include '../theme/templates/endmain.inc';
-		include '../theme/templates/adminfooterscripts.inc';
+        include '../theme/templates/controlsidebar.inc';
+        include '../theme/templates/endmain.inc';
+        include '../theme/templates/adminfooterscripts.inc';
         exit;
-    } else { // Commit changes to employee's time and audit log
+
+    } else {
+
+      // Commit changes to employee's time and audit log
         if (isset($_POST['tmp_var'])) { // begin post validation //
             if ($_POST['tmp_var'] != '1') {
                 echo "Something is fishy here.\n";
@@ -390,6 +423,7 @@ echo '<div class="box-header with-border">
             // end post validation //
 
             for ($x=0;$x<$final_num_rows;$x++) {
+
                 $final_username[$x] = stripslashes($final_username[$x]);
                 $tmp_username = stripslashes($tmp_username);
 
@@ -397,7 +431,9 @@ echo '<div class="box-header with-border">
                     echo "Something is fishy here.\n";
                     exit;
                 }
+
                 $final_mysql_timestamp[$x] = intval($final_mysql_timestamp[$x]);
+
                 if ((strlen($final_mysql_timestamp[$x]) != "10") || (!is_integer($final_mysql_timestamp[$x]))) {
                     echo "Something is fishy here.\n";
                     exit;
@@ -410,13 +446,14 @@ echo '<div class="box-header with-border">
                     $punchitems = "".$row['punchitems']."";
                 }
                 ((mysqli_free_result($result_sel) || (is_object($result_sel) && (get_class($result_sel) == "mysqli_result"))) ? true : false);
+
                 if (!isset($punchitems)) {
                     echo "Something is fishy here.\n";
                     exit;
                 }
 
  //               $final_notes[$x] = ereg_replace("[^[:alnum:] \,\.\?-]","",$final_notes[$x]);
-		$final_notes[$x] = preg_replace("[^[:alnum:] \,\.\?-]","",$final_notes[$x]);
+		            $final_notes[$x] = preg_replace("[^[:alnum:] \,\.\?-]","",$final_notes[$x]);
                 $final_username[$x] = addslashes($final_username[$x]);
 
                 $query5 = "select * from ".$db_prefix."info where (fullname = '".$final_username[$x]."') and (timestamp = '".$final_mysql_timestamp[$x]."') and (`inout` = '".$final_inout[$x]."')";
@@ -447,7 +484,7 @@ echo '<div class="box-header with-border">
                     if ($timefmt_24hr == '0') {
 //                        if ((!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$", $edit_time_textbox[$x], $time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$", $edit_time_textbox[$x], $time_regs))) {
 
-if ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $edit_time_textbox[$x], $time_regs)) && (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$" . '/i', $edit_time_textbox[$x], $time_regs))) {
+                        if ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $edit_time_textbox[$x], $time_regs)) && (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$" . '/i', $edit_time_textbox[$x], $time_regs))) {
 
                             $evil_time = '1';
                         } else {
@@ -460,23 +497,26 @@ if ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $edit
                                 $evil_time = '1';
                             }
                         }
+
                     } elseif ($timefmt_24hr == '1') {
                       //  if (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])$", $edit_time_textbox[$x], $time_regs)) {
-			if (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])$" . '/i', $edit_time_textbox[$x], $time_regs)) {
-                            $evil_time = '1';
-                        } else {
-                            if (isset($time_regs)) {
-                                $h = $time_regs[1];
-                                $m = $time_regs[2];
-                            }
-                            $h = $time_regs[1]; $m = $time_regs[2];
-                            if (($h > 24) || ($m > 59)) {
-                                $evil_time = '1';
-                            }
-                        }
+  			                if (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])$" . '/i', $edit_time_textbox[$x], $time_regs)) {
+                              $evil_time = '1';
+                          } else {
+                              if (isset($time_regs)) {
+                                  $h = $time_regs[1];
+                                  $m = $time_regs[2];
+                              }
+                              $h = $time_regs[1]; $m = $time_regs[2];
+                              if (($h > 24) || ($m > 59)) {
+                                  $evil_time = '1';
+                              }
+                          }
                     }
                 }
             }
+
+
             for ($x=0;$x<$final_num_rows;$x++) {
                 if (empty($edit_time_textbox[$x])) {
                     $cnt++;
@@ -487,6 +527,16 @@ if ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $edit
             }
 
             if (isset($evil_time) || (($require_time_admin_edit_reason == "yes") && empty($post_why))) { // Display error message
+
+
+
+              echo '<div class="row">
+                  <div class="col-md-6">
+                    <div class="box box-info"> ';
+              echo '<div class="box-header with-border">
+                               <h3 class="box-title"><i class="fa fa-clock-o"></i> Edit Time</h3>
+                             </div><div class="box-body">';
+
                 echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
                 echo "              <tr>\n";
                 if (isset($evil_time)) {
@@ -548,15 +598,26 @@ if ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $edit
                 echo "            <input type='hidden' name='final_num_rows' value=\"$final_num_rows\">\n";
                 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
                 echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-                echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form><\n";
-		include '../theme/templates/endmaincontent.inc';
+                echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr>
+                                </table>
+                          </form><\n";
+
+                echo "</div></div></div></div>";
+		            include '../theme/templates/endmaincontent.inc';
                 include '../footer.php';
-				include '../theme/templates/controlsidebar.inc';
-				include '../theme/templates/endmain.inc';
-				include '../theme/templates/adminfooterscripts.inc';
+        				include '../theme/templates/controlsidebar.inc';
+        				include '../theme/templates/endmain.inc';
+        				include '../theme/templates/adminfooterscripts.inc';
 
                 exit;
-            } elseif (!isset($evil_time) && ((($require_time_admin_edit_reason == "yes") && (!empty($post_why))) || ($require_time_admin_edit_reason == "no"))) { // Commit employee's time, status changes and audit log to the database
+            } elseif (!isset($evil_time) && ((($require_time_admin_edit_reason == "yes") && (!empty($post_why))) || ($require_time_admin_edit_reason == "no"))) {
+              // Commit employee's time, status changes and audit log to the database
+              echo '<div class="row">
+                  <div class="col-md-6">
+                    <div class="box box-info"> ';
+              echo '<div class="box-header with-border">
+                               <h3 class="box-title"><i class="fa fa-clock-o"></i> Edit Time</h3>
+                             </div><div class="box-body">';
                 echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
                 echo "              <tr>\n";
                 echo "              <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td><td class=table_rows_green> &nbsp;Time edited successfully.</td></tr>\n";
@@ -605,7 +666,7 @@ if ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $edit
                     $post_why = '';
                 } else {
                 //    $post_why = ereg_replace("[^[:alnum:] \,\.\?-]", "", $post_why);
-		    $post_why = preg_replace("[^[:alnum:] \,\.\?-]", "", $post_why);
+		                  $post_why = preg_replace("[^[:alnum:] \,\.\?-]", "", $post_why);
                 }
 
                 for ($x=0;$x<$final_num_rows;$x++) {
@@ -672,11 +733,14 @@ if ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $edit
                 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
                 echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
                 echo "              <tr><td><a href='timeadmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr></table>\n";
-		include '../theme/templates/endmaincontent.inc';
+
+                echo "</div></div></div></div>";
+
+                include '../theme/templates/endmaincontent.inc';
                 include '../footer.php';
-				include '../theme/templates/controlsidebar.inc';
-				include '../theme/templates/endmain.inc';
-				include '../theme/templates/adminfooterscripts.inc';
+                include '../theme/templates/controlsidebar.inc';
+                include '../theme/templates/endmain.inc';
+                include '../theme/templates/adminfooterscripts.inc';
                 exit;
             }
         } else { // Display time editing interface
@@ -724,32 +788,62 @@ if ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $edit
              $post_date = "$day/$month/$year";
 
             }
+
+            echo '<div class="row">
+                <div class="col-md-6">
+                  <div class="box box-info"> ';
+            echo '<div class="box-header with-border">
+                             <h3 class="box-title"><i class="fa fa-clock-o"></i> Edit Time</h3>
+                           </div><div class="box-body">';
+
             echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
             echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
             echo "              <tr>\n";
             echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red> No time for was found in the system for $post_username on $post_date.</td></tr>\n";
             echo "            </table>\n";
             echo "            <br />\n";
-            echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-            echo "              <tr>\n";
-            echo "                <th class=rightside_heading nowrap halign=left colspan=4><img src='../images/icons/clock_edit.png' />&nbsp;&nbsp;&nbsp;Edit Time </th></tr>\n";
-            echo "              <tr><td height=15></td></tr>\n";
             echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
-            echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Username:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
-            echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Display Name:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_displayname' value=\"$post_displayname\">$post_displayname</td></tr>\n";
-            echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Date: ($tmp_datefmt)</td><td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' size='10' maxlength='10' name='post_date' value='$post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;<a href=\"#\" onclick=\"cal.select(document.forms['form'].post_date,'post_date_anchor','$js_datefmt'); return false;\" name=\"post_date_anchor\" id=\"post_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
+            echo "              <div class='form-group'><label>Username:</label> <div class='input-group'> <input type='hidden' name='post_username' value=\"$post_username\">$post_username\n";
+            echo '</div></div>';
+            echo "              <div class='form-group'><label>Display Name:</label> <div class='input-group'><input type='hidden' name='post_displayname' value=\"$post_displayname\">$post_displayname\n";
+            echo '</div></div>';
+
+            echo "              <div class='form-group'><label>From Date: " .($tmp_datefmt)."</label> <div class='input-group date'><i class='fa fa-calendar'></i><input type='text' maxlength='10' name='post_date' id='datepicker' class='form-control'> &nbsp;*&nbsp;&nbsp; </div></div>\n";
             echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
-            echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
-            echo "            </table>\n";
-            echo "            <div style=\"position:absolute;visibility:hidden;background-color:#ffffff;layer-background-color:#ffffff;\" id=\"mydiv\" height=200>&nbsp;</div>\n";
-            echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-            echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-            echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
-	    include '../theme/templates/endmaincontent.inc';
+            echo "                <input type='hidden' name='timefmt_24hr' value=\"$timefmt_24hr\">\n";
+            echo "                <input type='hidden' name='timefmt_24hr_text' value=\"$timefmt_24hr_text\">\n";
+            echo "                <input type='hidden' name='timefmt_size' value=\"$timefmt_size\">\n";
+            echo "                 *&nbsp;required&nbsp;\n";
+            echo '<div class="box-footer">
+                        <button type="submit" name="submit" value="Edit Time" class="btn btn-info">Edit Time</button>
+                        <button type="submit" name="cancel" class="btn btn-default pull-right"><a href="timeadmin.php">Cancel</a></button>
+                      </div></form>';
+
+            echo "</div></div></div></div>";
+
+
+            // echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
+            //
+            // echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+            // echo "              <tr>\n";
+            // echo "                <th class=rightside_heading nowrap halign=left colspan=4><img src='../images/icons/clock_edit.png' />&nbsp;&nbsp;&nbsp;Edit Time </th></tr>\n";
+            // echo "              <tr><td height=15></td></tr>\n";
+            // echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
+            // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Username:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
+            // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Display Name:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_displayname' value=\"$post_displayname\">$post_displayname</td></tr>\n";
+            // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Date: ($tmp_datefmt)</td><td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' size='10' maxlength='10' name='post_date' value='$post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;<a href=\"#\" onclick=\"cal.select(document.forms['form'].post_date,'post_date_anchor','$js_datefmt'); return false;\" name=\"post_date_anchor\" id=\"post_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
+            // echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
+            // echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+            // echo "            </table>\n";
+            // echo "            <div style=\"position:absolute;visibility:hidden;background-color:#ffffff;layer-background-color:#ffffff;\" id=\"mydiv\" height=200>&nbsp;</div>\n";
+            // echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
+            // echo "              <tr><td height=40>&nbsp;</td></tr>\n";
+            // echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
+            include '../theme/templates/endmaincontent.inc';
             include '../footer.php';
-			include '../theme/templates/controlsidebar.inc';
-			include '../theme/templates/endmain.inc';
-			include '../theme/templates/adminfooterscripts.inc';
+            include '../theme/templates/controlsidebar.inc';
+            include '../theme/templates/endmain.inc';
+            include '../theme/templates/adminfooterscripts.inc';
             exit;
         }
 	echo '<div class="row">

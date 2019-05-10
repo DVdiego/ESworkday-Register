@@ -119,8 +119,8 @@ if ($request == 'GET') {
 																Crear usuario
 															</button>
 
-															<button id="formButtons"class="btn btn-default pull-right">
-																<a href="usercreate.php">
+															<button id="formButtons" class="btn btn-default pull-right">
+																<a href="useradmin.php">
 																	Cancelar
 																</a>
 															</button>
@@ -487,7 +487,7 @@ elseif ($request == 'POST') {
 				//                      border='0'></td></tr></table></form>\n";
 								      echo '<div class="box-footer">
 								                  <button id="formButtons" type="submit" name="submit" value="Create User" class="btn btn-info">Crear usuario</button>
-								                  <button id="formButtons" class="btn btn-default pull-right"><a href="usercreate.php">Cancelar</a></button>
+								                  <button id="formButtons" class="btn btn-default pull-right"><a href="useradmin.php">Cancelar</a></button>
 								                </div></form>';
 								      echo '</div></div></div></div>';
 						      include '../theme/templates/endmaincontent.inc';
@@ -627,7 +627,7 @@ elseif ($request == 'POST') {
 		echo "              <tr><td height=15></td></tr>\n";
 		echo "            </table>\n";
 		echo '						<div class="box-footer">
-		           					<a href="usercreate.php">
+		           					<a href="useradmin.php">
 													<button id="formButtons" class="btn btn-success">
 														Done
 													</button>

@@ -101,7 +101,7 @@ $tzo = $tzo * 60;}
   $tzo = "1";}
 //echo "<body>\n";
 // echo "<body onload='office_names();'>\n";
-echo '<body class="hold-transition skin-blue-light" sidebar-mini onload="office_names();">
+echo "<body class='hold-transition $skin_theme' sidebar-mini onload='office_names();'>
 
-<div id="wrapper">';
+<div id='wrapper'>";
 ?>

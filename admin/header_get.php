@@ -100,7 +100,7 @@ $tzo = $tzo * 60;}
   $tzo = date('Z');
 } else {
   $tzo = "1";}
-  echo "<body class='hold-transition skin-blue-light sidebar-mini' onload='office_names();'>\n";
+  echo "<body class='hold-transition $skin_theme sidebar-mini' onload='office_names();'>\n";
   echo '<div id="wrapper">
 	  ';
 ?>

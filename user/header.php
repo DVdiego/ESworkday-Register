@@ -112,8 +112,6 @@ if (empty($creating_backup_file)) { // This allows the database backup code to c
         $tzo = "1";
     }
 include '../theme/templates/mainstart.inc';
-    echo "
 
-";
 }
 ?>

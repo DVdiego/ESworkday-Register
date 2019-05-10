@@ -27,7 +27,7 @@
 
 session_start();
 
-include 'config.inc.php';
+
 include 'header.php';
 
 
