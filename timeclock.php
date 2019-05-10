@@ -144,13 +144,13 @@ $tclock_time = date($timefmt, $tclock_stamp);
 $tclock_date = date($datefmt, $tclock_stamp);
 $report_name="Current Status Report";
 
-echo '  <!-- start misc -->
-      <section class="content-header">
-	      <h1>'.$report_name.'<small>As of: '.$tclock_time.', '.$tclock_date.'</small></h1>
-	    </section>';
+// echo '  <!-- start misc -->
+//       <section class="content-header">
+// 	      <h1>'.$report_name.'<small>As of: '.$tclock_time.', '.$tclock_date.'</small></h1>
+// 	    </section>';
 
 // Add the current status of the employees are retrieved from the querry stored in $result
-include 'display.php';
+//include 'display.php';
 
 
 if (! isset($_GET['printer_friendly'])) {

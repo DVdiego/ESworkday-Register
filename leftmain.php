@@ -411,7 +411,7 @@ echo '
                <div class="box-header with-border">
                  <h3 class="box-title">Please punch in below:</h3>
                </div>
-               <!-- /.box-header -->';              
+               <!-- /.box-header -->';
 echo "<div class='box-body'>
 
 	<div class='form-group'>
@@ -870,7 +870,7 @@ if (! isset($_GET['printer_friendly']) && ($message_of_the_day != "none")) {
 		<!-- Message Of The Day Display -->
 	        <div class="col-md-4">
 		<div class="callout callout-success">
-                <h4>Message Of The Day:</h4>
+                <h4>Mensaje:</h4>
 
                 <p>'.htmlspecialchars($message_of_the_day).'</p>
               </div>
@@ -882,11 +882,11 @@ if (! isset($_GET['printer_friendly']) && ($message_of_the_day != "none")) {
     echo " ";
 }
 
-      if (! isset($_GET['printer_friendly'])) {
-      	echo ' <a href="timeclock.php?printer_friendly=true" class="btn btn-app">
-                      <i class="glyphicon glyphicon-print"></i> Printer Friendly Page
-                    </a>';
-      }
+      // if (! isset($_GET['printer_friendly'])) {
+      // 	echo ' <a href="timeclock.php?printer_friendly=true" class="btn btn-app">
+      //                 <i class="glyphicon glyphicon-print"></i> Printer Friendly Page
+      //               </a>';
+      // }
 
 
 echo '
