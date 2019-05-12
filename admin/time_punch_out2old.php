@@ -31,8 +31,9 @@ $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 
 include '../config.inc.php';
-include 'header_date.php';
-include 'topmain.php';
+include '../functions.php';
+// include 'header_date.php';
+// include 'topmain.php';
 //include 'leftmain-time.php';
 
 // Get the connecting IP address.
@@ -409,7 +410,7 @@ if ((empty($post_date)) || (empty($post_time)) || (!preg_match('/' . "^([0-9]{1,
             </tr>";
         } elseif
 //	(!eregi ("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date)) {
-(!preg_match('/' . "^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$".'/i', $post_date)) {
+(!preg_match('/' . "^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$" . '/i', $post_date)) {
 
             echo "
                <td valign=top>

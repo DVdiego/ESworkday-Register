@@ -26,7 +26,7 @@ session_start();
  * This module will delete a punch made by an employee and place that change in an aduit log.
  */
 
-include 'config.inc.php';
+include '../config.inc.php';
 include 'header_date.php';
 include 'topmain.php';
 include 'leftmain-time.php';
