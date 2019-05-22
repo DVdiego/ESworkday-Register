@@ -323,11 +323,11 @@ include './theme/templates/leftnavstart.inc';
 
 
 
+
 //user moved here from topmain
 if (isset($_SESSION['valid_user'])) {
 $logged_in_user = $_SESSION['valid_user'];
-echo '
-      <div class="user-panel">
+echo '<div class="user-panel">
         <div class="pull-left image">
           <h3><i class="fa fa-user-secret text-orange"></i></h3>
         </div>
@@ -341,8 +341,7 @@ echo '
 
 else if (isset($_SESSION['time_admin_valid_user'])) {
     $logged_in_user = $_SESSION['time_admin_valid_user'];
-    echo '
-          <div class="user-panel">
+    echo '<div class="user-panel">
             <div class="pull-left image">
               <h3><i class="fa fa-user-secret text-red"></i></h3>
             </div>
@@ -414,13 +413,7 @@ echo '
                <!-- /.box-header -->';
 echo "<div class='box-body'>
 
-	<div class='form-group'>
-
-
-
-                           <label>Name:</label>
-
-                        ";
+	<div class='form-group'><label>Name:</label>";
 
 // query to populate dropdown with employee names //
 if ($show_display_name == "yes") {
@@ -550,7 +543,7 @@ if (! isset($_COOKIE['remember_me'])) {
 
 echo "
                       <div class='form-group'>
-<button type='submit' class='btn btn-lg btn-primary'>Punch Status</button>
+<button type='submit' id='button-primary' class='btn btn-lg btn-primary'>Punch Status</button>
                          </div>
                   </div></form>";
 

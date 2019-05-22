@@ -87,14 +87,14 @@ if ($request == 'GET') {
             <div class="col-md-8">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Edit Group</h3>
+                     <h3 class="box-title"><i class="fa fa-users"></i> Edit Group</h3>
                 </div>
                 <div class="box-body">';
     echo "            <form name='form' action='$self' method='post'>\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "              <tr>\n";
-    echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_edit.png' />&nbsp;&nbsp;&nbsp;Edit Group
-                    -&nbsp;$get_group</th>\n";
+    echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_edit.png' />&nbsp;&nbsp;&nbsp;Group
+                    ->&nbsp;$get_group</th>\n";
     echo "              </tr>\n";
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Group Name:</td><td colspan=2 width=80%
@@ -156,7 +156,7 @@ if ($request == 'GET') {
 
     if ($user_count_rows > '0') {
 
-      echo "            <br/><br/><hr class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+      echo "            <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
       echo '          <div class="box-body table-responsive no-padding">'; /*FLAG*///
       echo "            <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>\n";
       echo "              <tr><th class=table_heading_no_color nowrap width=100% halign=left>Members of $get_group Group in $get_office Office</th></tr>\n";
@@ -434,15 +434,15 @@ elseif ($request == 'POST') {
                 <div class="col-md-8">
                   <div class="box box-info"> ';
         echo '      <div class="box-header with-border">
-                         <h3 class="box-title"><i class="fa fa-suitcase"></i> Edit Group</h3>
+                         <h3 class="box-title"><i class="fa fa-users"></i> Edit Group</h3>
                     </div>
                     <div class="box-body">';
 
         echo "         <form name='form' action='$self' method='post'>\n";
         echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
         echo "              <tr>\n";
-        echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_edit.png' />&nbsp;&nbsp;&nbsp;Edit Group
-                            -&nbsp;$get_group</th>\n";
+        echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_edit.png' />&nbsp;&nbsp;&nbsp;Group
+                            ->&nbsp;$get_group</th>\n";
         echo "              </tr>\n";
         echo "              <tr><td height=15></td></tr>\n";
         echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Group Name:</td><td colspan=2 width=80%
@@ -507,7 +507,7 @@ elseif ($request == 'POST') {
 
         if ($user_count_rows > '0') {
 
-          echo "            <br/><br/><hr class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+          echo "            <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
           echo '          <div class="box-body table-responsive no-padding">';
           echo "            <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>\n";
           echo "              <tr><th class=table_heading_no_color nowrap width=100% halign=left>Members of $get_group Group in $get_office Office</th></tr>\n";
@@ -639,7 +639,7 @@ elseif ($request == 'POST') {
                 <div class="col-md-8">
                   <div class="box box-info"> ';
         echo '      <div class="box-header with-border">
-                         <h3 class="box-title"><i class="fa fa-suitcase"></i> Edit Group</h3>
+                         <h3 class="box-title"><i class="fa fa-users"></i> Edit Group</h3>
                     </div>
                     <div class="box-body">';
 
@@ -651,8 +651,8 @@ elseif ($request == 'POST') {
         echo "            <br />\n";
         echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
         echo "              <tr>\n";
-        echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_edit.png' />&nbsp;&nbsp;&nbsp;Edit Group
-                        -&nbsp;$get_group</th>\n";
+        echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_edit.png' />&nbsp;&nbsp;&nbsp;Group
+                        ->&nbsp;$get_group</th>\n";
         echo "              </tr>\n";
         echo "              <tr><td height=15></td></tr>\n";
         echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Group Name:</td><td align=left class=table_rows
@@ -686,7 +686,7 @@ elseif ($request == 'POST') {
 
         if ($user_count_rows > '0') {
 
-          echo "            <br/><br/><hr class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+          echo "            <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
           echo '          <div class="box-body table-responsive no-padding">';
           echo "            <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>\n";
           echo "              <tr><th class=table_heading_no_color nowrap width=100% halign=left>Members of $post_groupname Group in $post_officename

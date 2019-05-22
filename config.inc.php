@@ -50,7 +50,10 @@
 /* skin theme adminlte dist/css/skins/ */
 
 $skin_theme = "skin-green";
-
+$display_logo_report = "none";
+$version_worktime = "premium";
+$enterprise_name = "DEMO";
+$enterprise_nif = "123A";
 /* mysql info
         --- $db_hostname is the hostname for your mysql server, default is localhost.
         --- $db_username is the mysql username you created during the install.
@@ -461,13 +464,13 @@ $city = "Segovia, Spain";
 
 /* The name of the company whose hours are being tracked. */
 
-$company_name = "iSoft Solutions";
+$company_name = "WorkTime";
 
 
 /* Sets the title in the header. This is what the page will be named by default when you
 make a "favorite" or "bookmark" in your browser. Change as you see fit. */
 
-$title = "$company_name Timeclock";
+$title = "$company_name Control BETA";
 
 
 /* --- DO NOT CHANGE ANYTHING BELOW THIS LINE!!! --- */

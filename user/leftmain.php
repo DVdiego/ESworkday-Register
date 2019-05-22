@@ -1,5 +1,6 @@
 <?php
 
+
 include '../theme/templates/leftnavstart.inc';
 
 //user moved here from topmain
@@ -63,7 +64,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
     echo '
           <div class="user-panel">
             <div class="pull-left image">
-              <h3><i class="fa fa-user"></i></h3>
+              <h3><i class="fa fa-user text-blue"></i></h3>
             </div>
             <div class="pull-left info">
               <p>'.$logged_in_user.'</p>
@@ -78,10 +79,11 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
 
 echo '<ul class="sidebar-menu"><li class="header">Profile</li>';
 
-echo"<li><a href=\"useredit.php?username=".$_SESSION['valid_profile']."\">Edit Perfil</a></li>\n";
+echo "<li><a href=\"useredit.php?username=".$_SESSION['valid_profile']."\">Edit Perfil</a></li>\n";
 
-echo "   <li><a class=admin_headings href=\"chngpasswd.php?username=".$_SESSION['valid_profile']."\">Change Password</a></li>\n";
+echo "<li><a class=admin_headings href=\"chngpasswd.php?username=".$_SESSION['valid_profile']."\">Change Password</a></li>\n";
 
+echo "<li><a href=\"user_reports.php?username=".$_SESSION['valid_profile']."\">Generar Reporte</a></li>\n";
 
 echo '</ul>';
 

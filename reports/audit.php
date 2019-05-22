@@ -31,6 +31,9 @@ $request = $_SERVER['REQUEST_METHOD'];
 $current_page = "audit.php";
 
 include '../config.inc.php';
+include '../admin/header_date.php';
+include '../admin/topmain.php';
+include 'leftmain.php';
 
 if ($use_reports_password == "yes") {
     if (!isset($_SESSION['valid_reports_user'])) {
@@ -52,21 +55,24 @@ if ($use_reports_password == "yes") {
 echo "<title>$title - Audit Log</title>\n";
 
 if ($request == 'GET') {
-    include '../admin/header_date.php';
 
-    if ($use_reports_password == "yes") {
-        include '../admin/topmain.php';
-    } else {
-        include 'topmain.php';
-    }
+    // include '../admin/header_date.php';
+    // include 'leftmain.php';
+    //
+    // if ($use_reports_password == "yes") {
+    //     include '../admin/topmain.php';
+    // } else {
+    //     include 'topmain.php';
+    // }
 
-    echo "<table width=100% height=89% border=0 cellpadding=0 cellspacing=1>\n";
-    echo "  <tr valign=top>\n";
-    echo "    <td>\n";
-    echo "      <table width=100% height=100% border=0 cellpadding=10 cellspacing=1>\n";
-    echo "        <tr class=right_main_text>\n";
-    echo "          <td valign=top>\n";
-    echo "            <br />\n";
+
+    echo '<div class="row">
+            <div class="col-md-8">
+              <div class="box box-info"> ';
+    echo '      <div class="box-header with-border">
+                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Audit Log</h3>
+                </div>
+                <div class="box-body">';
     echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/information.png' /></td><td class=table_rows style='color:#3366CC;'>This report will display all information pertaining to punch-in/out times that have been added, edited, or deleted from PHP Timeclock.</td></tr>\n";
@@ -93,11 +99,21 @@ if ($request == 'GET') {
     echo "              <tr><td height=10></td></tr>\n";
     echo "            </table>\n";
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form></td></tr>\n";
-    include '../footer.php';
-    exit;
+    echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr>
+                      </table>
+                    </form>\n";
+
+                    echo '      </div>
+                              </div>
+                            </div>
+                          </div>';
+                    include '../theme/templates/endmaincontent.inc';
+                    include '../theme/templates/controlsidebar.inc';
+                    include '../theme/templates/endmain.inc';
+                    include '../theme/templates/adminfooterscripts.inc';
+                    include '../footer.php';exit;
 } else {
-    include '../admin/header_date.php';
+    //include '../admin/header_date.php';
 
     $from_date = $_POST['from_date'];
     $to_date = $_POST['to_date'];

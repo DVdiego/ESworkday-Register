@@ -122,7 +122,7 @@ if ($_REQUEST["login_action"] == "admin") {
                       </div>
                       <div class="row">
                         <div class="col-xs-4">
-                          <button type="submit" class="btn btn-primary btn-block btn-flat" onClick="admin.php">Log In</button>
+                          <button type="submit" id=button-primary class="btn btn-primary btn-block btn-flat" onClick="admin.php">Log In</button>
         	                <input type="hidden" name="login_action" value="admin">
                         </div>
                     <!-- /.col -->
@@ -219,7 +219,7 @@ if ($_REQUEST["login_action"] == "admin") {
                 </div>
                 <div class="row">
                   <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat" onClick="admin.php">Log In</button>
+              <button type="submit" id=button-primary class="btn btn-primary btn-block btn-flat" onClick="admin.php">Log In</button>
                <input type="hidden" name="login_action" value="reports">
                   </div>
                   <!-- /.col -->
@@ -329,7 +329,7 @@ if ($_REQUEST["login_action"] == "admin") {
                   </div>
                   <div class="row">
                     <div class="col-xs-4">
-            	  <button type="submit" class="btn btn-primary btn-block btn-flat" onClick="admin.php">Log In</button>
+            	  <button type="submit" id=button-primary class="btn btn-primary btn-block btn-flat" onClick="admin.php">Log In</button>
             	   <input type="hidden" name="login_action" value="reports">
                     </div>
                     <!-- /.col -->

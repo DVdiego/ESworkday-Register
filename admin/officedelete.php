@@ -109,10 +109,7 @@ echo '           <div class="box-header with-border">
                  <div class="box-body">';
 echo "              <table class=table>\n";
 echo "                <form name='form' action='$self' method='post'>\n";
-echo "                  <tr>\n";
-echo "                    <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_delete.png' />&nbsp;&nbsp;&nbsp;Delete Office
-                          </th>\n";
-echo "                  </tr>\n";
+
 echo "                  <tr><td height=15></td></tr>\n";
 echo "                  <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td>
                             <td align=left class=table_rows width=80% style='padding-left:20px;'><input type='hidden' name='post_officename' value=\"$officename\">$get_office</td>
@@ -171,10 +168,7 @@ include '../footer.php';exit;
                    <div class="box-body">';
 echo "               <table class=table>\n";
 echo "                 <form name='form' action='$self' method='post'>\n";
-echo "                  <tr>\n";
-echo "                    <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_delete.png' />&nbsp;&nbsp;&nbsp;Delete Office
-                          </th>\n";
-echo "                  </tr>\n";
+
 echo "                  <tr><td height=15></td></tr>\n";
 echo "                  <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td align=left class=table_rows
                         width=80% style='padding-left:20px;'><input type='hidden' name='post_officename' value=\"$officename\">$get_office</td>
@@ -271,22 +265,7 @@ if ($group_cnt != $tmp_group_cnt) {echo "Posted group count does not equal actua
 // end post validation //
 
 
-/*
-if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_officename)) {
 
-echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Edit Office' />&nbsp;&nbsp;
-                <a class=admin_headings href=\"officeedit.php?officename=$post_officename\">Edit Office</a></td></tr>\n";
-echo "        <tr><td class=current_left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Delete Office' />
-                &nbsp;&nbsp;<a class=admin_headings href=\"officedelete.php?officename=$post_officename\">Delete Office</a></td></tr>\n";
-
-} else {
-
-echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Edit Office' />&nbsp;&nbsp;
-                Edit Office</td></tr>\n";
-echo "        <tr><td class=current_left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Delete Office' />
-                &nbsp;&nbsp;Delete Office</td></tr>\n";
-}
-*/
 include 'leftmain.php';
 echo '<div class="row">
         <div class="col-md-8">
@@ -325,9 +304,7 @@ if ((empty($office_name)) || (empty($group_name))) {
                 echo "<br />\n";
 }
             echo "    <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-            echo "      <tr>\n";
-            echo "      <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_delete.png' />&nbsp;&nbsp;&nbsp;Delete Office</th>\n";
-            echo "      </tr>\n";
+
             echo "      <tr><td height=15></td>
                         </tr>\n";
 

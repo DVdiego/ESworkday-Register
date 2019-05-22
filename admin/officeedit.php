@@ -86,14 +86,13 @@ if ($request == 'GET') {
           <div class="col-md-8">
             <div class="box box-info"> ';
   echo '      <div class="box-header with-border">
-                   <h3 class="box-title"><i class="fa fa-suitcase"></i>Edit Office</h3>
+                   <h3 class="box-title"><i class="fa fa-suitcase"></i> Edit Office</h3>
               </div>
               <div class="box-body">';
   echo "         <form name='form' action='$self' method='post'>\n";
   echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
   echo "              <tr>\n";
-  echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_edit.png' />&nbsp;&nbsp;&nbsp;Edit Office
-                      -&nbsp;$get_office</th>\n";
+  echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_edit.png' />&nbsp;&nbsp;&nbsp;Office&nbsp->&nbsp;$get_office</th>\n";
   echo "              </tr>\n";
   echo "              <tr><td height=15></td></tr>\n";
   echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Office Name:</td><td colspan=2 width=80%
@@ -124,7 +123,7 @@ if ($request == 'GET') {
   if ($group_cnt != '0') {
 
     echo "  </form>\n";
-    echo "             <br/><br/><hr class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+    echo "             <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
     echo '<div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-group"></i>Office Groups</h3>
           </div>';
@@ -312,14 +311,13 @@ if ($request == 'GET') {
             <div class="col-md-8">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i>Edit Office</h3>
+                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Edit Office</h3>
                 </div>
                 <div class="box-body">';
     echo "        <form name='form' action='$self' method='post'>\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "              <tr>\n";
-    echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_edit.png' />&nbsp;&nbsp;&nbsp;Edit Office
-                          -&nbsp;$get_office</th>\n";
+    echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_edit.png' />&nbsp;&nbsp;&nbsp;Office&nbsp->&nbsp;$get_office</th>\n";
     echo "              </tr>\n";
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Office Name:</td><td colspan=2 width=80%
@@ -349,7 +347,7 @@ if ($request == 'GET') {
     if ($group_cnt != '0') {
 
       echo "</form>\n";
-      echo "            <br/><br/><hr class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+      echo "            <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
       echo '<div class="box-header with-border">
                        <h3 class="box-title"><i class="fa fa-group"></i>Office Groups</h3>
             </div>';
@@ -439,7 +437,7 @@ if ($request == 'GET') {
             <div class="col-md-8">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i>Edit Office</h3>
+                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Edit Office</h3>
                 </div>
                 <div class="box-body">';
     echo "         <table align=center class=table>\n";
@@ -451,8 +449,7 @@ if ($request == 'GET') {
     echo "            <br />\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "              <tr>\n";
-    echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_edit.png' />&nbsp;&nbsp;&nbsp;Edit Office
-                         -&nbsp;$get_office</th>\n";
+    echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/brick_edit.png' />&nbsp;&nbsp;&nbsp;Office&nbsp->&nbsp;$get_office</th>\n";
     echo "              </tr>\n";
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Office Name:</td><td align=left class=table_rows
@@ -476,7 +473,7 @@ if ($request == 'GET') {
     if ($group_cnt != '0') {
 
       echo "</table>\n";
-      echo "             <br/><br/><hr class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+      echo "             <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
       echo '<div class="box-header with-border">
                        <h3 class="box-title"><i class="fa fa-group"></i>Office Groups</h3>
             </div>';

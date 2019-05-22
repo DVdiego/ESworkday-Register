@@ -82,7 +82,7 @@ echo '<div class="row">
         <div class="col-md-8">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Status</h3>
+                 <h3 class="box-title"><i class="fa fa-exchange"></i> Create Status</h3>
             </div>
             <div class="box-body">';
 
@@ -168,7 +168,7 @@ echo '<div class="row">
         <div class="col-md-8">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-suitcase"></i>  Create Status</h3>
+                 <h3 class="box-title"><i class="fa fa-exchange"></i>  Create Status</h3>
             </div>
             <div class="box-body">';
 

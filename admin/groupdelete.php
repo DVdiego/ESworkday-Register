@@ -98,7 +98,7 @@ if ($request == 'GET') {
               <div class="col-md-8">
                   <div class="box box-info"> ';
     echo '           <div class="box-header with-border">
-                       <h3 class="box-title"><i class="fa fa-suitcase"></i> Delete Groups</h3>
+                       <h3 class="box-title"><i class="fa fa-users"></i> Delete Groups</h3>
                      </div>
                      <div class="box-body">';
     echo "              <table class=table>\n";
@@ -243,7 +243,7 @@ elseif ($request == 'POST') {
             <div class="col-md-8">
               <div class="box box-info"> ';
     echo '     <div class="box-header with-border">
-                       <h3 class="box-title"><i class="fa fa-suitcase"></i> Delete Groups</h3>
+                       <h3 class="box-title"><i class="fa fa-users"></i> Delete Groups</h3>
                </div>
                <div class="box-body">';
     echo "          <table class=table>\n";

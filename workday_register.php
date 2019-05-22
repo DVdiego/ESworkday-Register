@@ -97,7 +97,9 @@ if ($request == 'POST') {
 
 include './theme/templates/leftnavstart.inc';
 
-
+echo "<div class='user-panel'>
+                <img id='logo-leftmain' src='images/logos/logo.png' >
+      </div>";
 //user moved here from topmain
 if (isset($_SESSION['valid_user'])) {
 $logged_in_user = $_SESSION['valid_user'];

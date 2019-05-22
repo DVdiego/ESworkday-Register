@@ -37,7 +37,7 @@ echo '    <!-- Logo -->
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b><i class="fa fa-clock-o"></i></span>
       <!-- logo for regular state and mobile devices -->';
-if ($logo == "none") {     echo '<span class="logo-lg"><b>PHP</b> <i class="fa fa-clock-o"></i> Timeclock</span></a>'; }
+if ($logo == "none") {     echo '<span class="logo-lg"><b>WorkTime</b> <i class="fa fa-clock-o"></i> Control</span></a>'; }
 else { echo "<span class='logo-lg'><img border='0' src='$logo'></span></a>"; }
 
 include '../theme/templates/topnavpart1.inc';

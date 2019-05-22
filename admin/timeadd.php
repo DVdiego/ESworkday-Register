@@ -103,40 +103,41 @@ if ($request == 'GET') { // Display employee add time interface
 
 
 
-	echo '<div class="row">
-        <div class="col-md-6">
-          <div class="box box-info"> ';
-    echo '<div class="box-header with-border">
-	                 <h3 class="box-title">Add Time</h3>
-	               </div><div class="box-body">';
+  echo '<div class="row">
+          <div class="col-md-8">
+            <div class="box box-info"> ';
+  echo '      <div class="box-header with-border">
+                   <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Status</h3>
+              </div>
+              <div class="box-body">';
+
     echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
-    echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
-    echo '<div class="form-group"><label>Username:</label><div class="input-group">';
+    echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
+    echo '              <div class="form-group"><label>Username:</label><div class="input-group">';
     echo "               <input type='hidden' name='post_username' value=\"$username\">$username\n";
-    echo '</div></div>';
-    echo '<div class="form-group"><label>Display Name:</label><div class="input-group">';
-    echo "               <input type='hidden' name='post_displayname' value=\"$displayname\">$displayname\n";
-        echo '</div></div>';
-    echo '<div class="form-group"><label>Date: ('.$tmp_datefmt.')</label><div class="input-group">';
-    echo "              <input class='form-control' type='text' size='12' maxlength='12' id='datepicker' name='post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;\n";
-        echo '</div></div>';
+    echo '              </div></div>';
+    echo '              <div class="form-group"><label>Display Name:</label><div class="input-group">';
+    echo "                <input type='hidden' name='post_displayname' value=\"$displayname\">$displayname\n";
+    echo '              </div></div>';
+    echo '              <div class="form-group"><label>Date: ('.$tmp_datefmt.')</label><div class="input-group">';
+    echo "                <input class='form-control' type='text' size='12' maxlength='12' id='datepicker' name='post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;\n";
+    echo '              </div></div>';
 
 
-echo'    <div class="bootstrap-timepicker">
-    	                   <div class="form-group">
-    	                     <label>Time: ('.$timefmt_24hr_text.')</label>';
+    echo'               <div class="bootstrap-timepicker">
+    	                    <div class="form-group">
+    	                      <label>Time: ('.$timefmt_24hr_text.')</label>';
 
-echo'    	                     <div class="input-group">
+   echo'    	              <div class="input-group">
     	                       <input type="text" size="10" maxlength="10" class="form-control timepicker" name="post_time">';
-echo'    	                       <div class="input-group-addon">
-    	                         <i class="fa fa-clock-o"></i>
-    	                       </div>
-    	                     </div>
+   echo'   	                  <div class="input-group-addon">
+    	                          <i class="fa fa-clock-o"></i>
+  	                          </div>
+    	                      </div>
     	                     <!-- /.input group -->
-    	                   </div>
+    	                    </div>
     	                   <!-- /.form group -->
-    	                 </div>
-    	               ';
+    	                 </div>';
 
 
 //    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Time:</td><td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'> <div class='bootstrap-timepicker'><input id='timepicker1' type='text' class='form-control bootstrap-timepicker timepicker' size='10'  name='post_time'><i class='icon-time'></i>&nbsp;*&nbsp;&nbsp; <a style='text-decoration:none;font-size:11px;color:#27408b;'>($timefmt_24hr_text)</a></div></td></tr>\n";
@@ -178,7 +179,7 @@ echo'    	                       <div class="input-group-addon">
     echo "              \n";
     echo '<div class="box-footer">
                 <button type="submit" name="submit" value="Add Time" class="btn btn-info">Add time</button>
-                <button type="submit" name="cancel" class="btn btn-default pull-right"><a href="timeadmin.php">Cancel</a></button>   
+                <button type="submit" name="cancel" class="btn btn-default pull-right"><a href="timeadmin.php">Cancel</a></button>
               </div></form>';
 
     echo '</div></div></div></div>';

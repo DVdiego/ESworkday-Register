@@ -33,7 +33,7 @@ $request = $_SERVER['REQUEST_METHOD'];
 include '../config.inc.php';
 include 'header_date.php';
 include 'topmain.php';
-//include 'leftmain-time.php';
+include 'leftmain.php';
 
 // Get the connecting IP address.
 $connecting_ip = get_ipaddress();
@@ -174,166 +174,27 @@ if (($timefmt == "G:i") || ($timefmt == "H:i")) {
   $timefmt_size = '8';
 }
 
-echo "
-<!-- Create Administration Interface -->
-<table width=100% height=89% border=0 cellpadding=0 cellspacing=1>
-   <tr valign=top>
-      <td class=left_main width=180 align=left scope=col>
-         <table class=hide width=100% border=0 cellpadding=1 cellspacing=0>
-            <tr>
-               <td class=left_rows height=11> </td>
-            </tr>
-            <tr>
-               <td class=left_rows_headings height=18 valign=middle>
-                  Users
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/user.png' alt='User Summary' />&nbsp;&nbsp;
-                  <a class=admin_headings href='useradmin.php'>
-                     User Summary
-                  </a>
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/user_add.png' alt='Create New User' />&nbsp;&nbsp;
-                  <a class=admin_headings href='usercreate.php'>
-                     Create New User
-                  </a>
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/magnifier.png' alt='User Search' />&nbsp;&nbsp;
-                  <a class=admin_headings href='usersearch.php'>
-                     User Search
-                  </a></td></tr>
-            <tr>
-               <td class=left_rows height=33 ></td>
-            </tr>
-            <tr>
-               <td class=left_rows_headings height=18 valign=middle>
-                  Offices
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/brick.png' alt='Office Summary' />&nbsp;&nbsp;
-                  <a class=admin_headings href='officeadmin.php'>
-                     Office Summary
-                  </a>
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/brick_add.png' alt='Create New Office' />&nbsp;&nbsp;
-                  <a class=admin_headings href='officecreate.php'>
-                     Create New Office
-                  </a>
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=33> </td>
-            </tr>
-            <tr>
-               <td class=left_rows_headings height=18 valign=middle>
-                  Groups
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/group.png' alt='Group Summary' />&nbsp;&nbsp;
-                  <a class=admin_headings href='groupadmin.php'>
-                     Group Summary
-                  </a>
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/group_add.png' alt='Create New Group' />&nbsp;&nbsp;
-                  <a class=admin_headings href='groupcreate.php'>
-                     Create New Group
-                  </a>
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=33> </td>
-            </tr>
-            <tr>
-               <td class=left_rows_headings height=18 valign=middle colspan=2>
-                  In/Out Status
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/application.png' alt='Status Summary' />&nbsp;&nbsp;
-                  <a class=admin_headings href='statusadmin.php'>
-                     Status Summary
-                  </a>
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/application_add.png' alt='Create Status' />&nbsp;&nbsp;
-                  <a class=admin_headings href='statuscreate.php'>
-                     Create Status
-                  </a>
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=33> </td>
-            </tr>
-            <tr>
-               <td class=left_rows_headings height=18 valign=middle colspan=2>
-                  Miscellaneous
-               </td>
-            </tr>
-            <tr>
-               <td class=current_left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/clock.png' alt='Modify Time' />&nbsp;&nbsp;
-                  <a class=admin_headings href='timeadmin.php'>
-                     Modify Time
-                  </a>
-               </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/application_edit.png' alt='Edit System Settings' />&nbsp;&nbsp;
-                  <a class=admin_headings href='sysedit.php'>
-                     Edit System Settings
-                  </a>
-              </td>
-            </tr>
-            <tr>
-               <td class=left_rows height=18 align=left valign=middle>
-                  <img src='../images/icons/database_go.png' alt='Manage Database' />&nbsp;&nbsp;
-                  <a class=admin_headings href='database_management.php'>
-                     Manage Database
-                  </a>
-               </td>
-           </tr>
-         </table>
-      </td>
-      <td align=left class=right_main scope=col>
-         <table width=100% height=100% border=0 cellpadding=10 cellspacing=1>
-            <tr class=right_main_text>";
+
 
 if ($request == 'POST') { // Validate user input
     $post_punch_out = $_POST['punch_out'];
     $post_office = $_POST['office_name'];
     $post_group = $_POST['group_name'];
 
-    $post_confirmed_punch = $_POST['confirmed_punch'];
+    //$post_confirmed_punch = $_POST['confirmed_punch'];
+  // if(empty($post_confirmed_punch)){
+  //   $post_confirmed_punch = True;
+  // }
+    $post_confirmed_punch = True;
     $post_date = $_POST['post_date'];
     $post_time = $_POST['post_time'];
     $post_statusname = $_POST['post_statusname'];
 
+
+    echo "date: $post_date  time: $post_time\n";
     // Begin Input Validation
     if (($post_punch_out == "office") && empty($post_office)) { // Ensure an office has been selected when punching out an office.
-        echo "
-               <td valign=top>
+        echo "<td valign=top>
                   <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
                      <tr>
                         <td class=table_rows_red>
@@ -344,8 +205,7 @@ if ($request == 'POST') { // Validate user input
             </tr>";
         $input_invalid = True;
     } else if (($post_punch_out == "group") && empty($post_group)) { // Ensure a group has been selected when punching out a group
-        echo "
-               <td valign=top>
+        echo "<td valign=top>
                   <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
                      <tr>
                         <td class=table_rows_red>
@@ -356,8 +216,7 @@ if ($request == 'POST') { // Validate user input
             </tr>";
         $input_invalid = True;
     } else if (empty($post_punch_out)) { // Ensure a punch selection has been made
-        echo "
-               <td valign=top>
+        echo "<td valign=top>
                   <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
                      <tr>
                         <td class=table_rows_red>
@@ -368,8 +227,7 @@ if ($request == 'POST') { // Validate user input
             </tr>";
         $input_invalid = True;
     } else if (empty($post_statusname) || ($post_statusname == "1")) { // Ensure an out status is selected
-        echo "
-               <td valign=top>
+        echo "<td valign=top>
                   <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
                      <tr>
                         <td class=table_rows_red>
@@ -381,35 +239,35 @@ if ($request == 'POST') { // Validate user input
         $input_invalid = True;
     }
 
-//    if ((empty($post_date)) || (empty($post_time)) ||  (!eregi("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date))) {
-if ((empty($post_date)) || (empty($post_time)) || (!preg_match('/' . "^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$" . '/i', $post_date))) {
+    //if ((empty($post_date)) || (empty($post_time)) ||  (!eregi("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date))) {
+    if ((empty($post_date)) || (empty($post_time)) || (!preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4}))$/i", $post_date))) {
 
-        $input_invalid = True;
-        if (empty($post_date)) {
-            echo "
-               <td valign=top>
-                  <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
-                     <tr>
-                        <td class=table_rows_red>
-                           A valid date is required.
-                        </td>
-                     </tr>
-               </td>
-            </tr>";
-        } elseif (empty($post_time)) {
-            echo "
-               <td valign=top>
-                  <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
-                     <tr>
-                        <td class=table_rows_red>
-                           A valid time is required.
-                        </td>
-                     </tr>
-               </td>
-            </tr>";
-        } elseif
+          $input_invalid = True;
+          if (empty($post_date)) {
+              echo "
+                 <td valign=top>
+                    <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
+                       <tr>
+                          <td class=table_rows_red>
+                             A valid date is required.
+                          </td>
+                       </tr>
+                 </td>
+              </tr>";
+          } elseif (empty($post_time)) {
+              echo "
+                 <td valign=top>
+                    <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
+                       <tr>
+                          <td class=table_rows_red>
+                             A valid time is required.
+                          </td>
+                       </tr>
+                 </td>
+              </tr>";
+          } elseif
 //	(!eregi ("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date)) {
-(!preg_match('/' . "^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$".'/i', $post_date)) {
+          (!preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4}))$/i", $post_date)) {
 
             echo "
                <td valign=top>
@@ -424,9 +282,9 @@ if ((empty($post_date)) || (empty($post_time)) || (!preg_match('/' . "^([0-9]{1,
         }
     } elseif ($timefmt_24hr == '0') {
 //        if ((!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$", $post_time, $time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$", $post_time, $time_regs))) {
-if ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $post_time, $time_regs)) && (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$" . '/i', $post_time, $time_regs))) {
+          if ((!preg_match("/^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$/i", $post_time, $time_regs)) && (!preg_match("/^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$/i", $post_time, $time_regs))) {
 
-// if ((!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$", $post_time, $time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$", $post_time, $time_regs))) {
+ // if ((!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$", $post_time, $time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$", $post_time, $time_regs))) {
             $input_invalid = True;
             echo "
                <td valign=top>
@@ -459,8 +317,8 @@ if ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $post
             }
         }
     } elseif ($timefmt_24hr == '1') {
-//          if (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])$", $post_time, $time_regs)) {
-if (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])$" . '/i', $post_time, $time_regs)) {
+        // if (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])$", $post_time, $time_regs)) {
+      if (!preg_match("/^([0-9]?[0-9])+:+([0-9]+[0-9])$/i", $post_time, $time_regs)) {
             $input_invalid = True;
             echo "
                <td valign=top>
@@ -494,14 +352,16 @@ if (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])$" . '/i', $post_time, $tim
         }
     }
 
-//    if (eregi ("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date, $date_regs)) {
-    if (preg_match('/' . "^([0-9]{1,2})[-\,\/,.]([0-9]{1,2})[-\,\/,.](([0-9]{2})|([0-9]{4}))$" . '/i', $post_date, $date_regs)) {
+    //if (eregi ("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date, $date_regs)) {
+    if (preg_match("/^([0-9]{1,2})[-\,\/,.]([0-9]{1,2})[-\,\/,.](([0-9]{2})|([0-9]{4}))$/i", $post_date, $date_regs)) {
+
         if ($calendar_style == "amer") {
             if (isset($date_regs)) { // Format the date to American style
                 $month = $date_regs[1];
                 $day = $date_regs[2];
                 $year = $date_regs[3];
             }
+
             if ($month > 12 || $day > 31) { // Ensure valid date
                 $input_invalid = True;
                 if (!isset($evil_post)) {
@@ -514,7 +374,7 @@ if (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])$" . '/i', $post_time, $tim
                         </td>
                      </tr>
                </td>
-            </tr>";
+               </tr>";
                 }
             }
         } elseif ($calendar_style == "euro") {
@@ -555,40 +415,39 @@ if (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])$" . '/i', $post_time, $tim
     }
 }
 
+
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-suitcase"></i> Check out Employees</h3>
+            </div>
+            <div class="box-body">';
 if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch Selection Interface
-    echo "
-               <td valign=top>
-                  <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
-                     <tr>
-                        <th class=table_heading_no_color nowrap width=100% align=left>
-                           Punch Out Employees
-                        </th>
-                     </tr>
-                  </table>
-                  <table class=table_border width=90% align=center border=0 cellpadding=0 cellspacing=0>
-                     <form name='form' action='$self' method='post' onsubmit='return isDate();'>
-                        <tr class=right_main_text>
+
+
+    echo "     <form name='form' action='$self' method='post' onsubmit='return isDate();'>\n";
+    echo "            <table align=center class=table width=100% border=0 cellpadding=3 cellspacing=0>\n";
+    echo "                <tr class=right_main_text>
                            <td class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
                               Punch Out Employees From:
                               <span style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
                                  *
                               </span>
                            </td>
-                           <td align=center class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
-                              <input type='radio' name='punch_out' value='office' checked='checked'>
-                                 Selected Office
-                              </input>
-                           </td>
-                           <td align=center class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
-                              <input type='radio' name='punch_out' value='group'>
-                                 Selected Group
-                              </input>
-                           </td>
-                           <td align=center class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
-                              <input type='radio' name='punch_out' value='everyone'>
-                                 All Punched In Employees
-                              </input>
-                           </td>
+
+                          <td>
+                          <div class='radio'>
+                            <label><input type='radio' name='punch_out' value='office'>Selected Office</label>
+                          </div>
+                          <div class='radio'>
+                            <label><input type='radio' name='punch_out' value='group'>Selected Group</label>
+                          </div>
+                          <div class='radio'>
+                            <label><input type='radio' name='punch_out' value='everyone'>All Check In Employees</label>
+                          </div>
+                          </td>
+
                         </tr>
                         <tr class=right_main_text>
                            <td align=right class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
@@ -680,23 +539,15 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                               </a>
                            </td>
                         </tr>
-                     </form>
-                  </table>
-               </td>
-            </tr>";
+                      </table>
+                     </form>";
+
+
 } else if ($request == 'POST' && empty($post_confirmed_punch)) { // Output Confirmation Punch Interface
-    echo "
-       <td valign=top>
-         <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
-            <tr>
-            <th class=table_heading_no_color nowrap width=100% align=left>
-                Confirm Punch Out Selection
-            </th>
-            </tr>
-         </table>
-         <table class=table_border width=90% align=center border=0 cellpadding=0 cellspacing=0>
-            <form name='form' action='$self' method='post' onsubmit=\"return isDate();\">
-               <tr>
+
+    echo "<form name='form' action='$self' method='post' onsubmit=\"return isDate();\">\n";
+    echo "   <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+    echo "           <tr>
                    <td height=11> </td>
                </tr>
                <tr class=right_main_text>
@@ -722,8 +573,12 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                <input type='hidden' name='post_time' value='$post_time'>
                <input type='hidden' name='post_statusname' value='$post_statusname'>
                <input type='hidden' name='confirmed_punch' value='True'>
-            </form> ";
+
+            </table>
+          </form> ";
+
 } else { // Complete Punch Out Request
+
     // Determine who the authenticated user is for audit log
     if (isset($_SESSION['valid_user'])) {
         $user = $_SESSION['valid_user'];
@@ -772,15 +627,16 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
     while ($row = mysqli_fetch_array($result)) {
         $passes++;
         // Configure the current time to insert for audit log
-        $time = time();
-        $time_hour = gmdate('H', $time);
-        $time_min = gmdate('i', $time);
-        $time_sec = gmdate('s', $time) + $passes; // Ensures audit time stamps vary
-        $time_month = gmdate('m', $time);
-        $time_day = gmdate('d', $time);
-        $time_year = gmdate('Y', $time);
-        $time_tz_stamp = time($time_hour, $time_min, $time_sec, $time_month, $time_day, $time_year);
-
+        // $time = time();
+        // $time_hour = gmdate('H', $time);
+        // $time_min = gmdate('i', $time);
+        // $time_sec = gmdate('s', $time) + $passes; // Ensures audit time stamps vary
+        // $time_month = gmdate('m', $time);
+        // $time_day = gmdate('d', $time);
+        // $time_year = gmdate('Y', $time);
+        // $time_tz_stamp = time($time_hour, $time_min, $time_sec, $time_month, $time_day, $time_year);
+        setlocale(LC_ALL, 'es_ES.UTF-8');
+        $time_tz_stamp = time();
         $employee = "".$row['empfullname']."";
         if (strtolower($ip_logging) == "yes") {
             $query = "INSERT INTO ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress) VALUES ('".$employee."', '".$post_statusname."', '".$timestamp."', '".$admin_note."', '".$connecting_ip."')";
@@ -808,17 +664,10 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
     }
     ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
+
+    echo "<form name='form' action='$self' method='post'>\n";
+    echo "   <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "
-       <td valign=top>
-         <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
-            <tr>
-            <th class=table_heading_no_color nowrap width=100% align=left>
-                Employee Punch Out Completed
-            </th>
-            </tr>
-         </table>
-         <table class=table_border width=90% align=center border=0 cellpadding=0 cellspacing=0>
-            <form name='form' action='$self' method='post'>
                <tr>
                    <td height=11> </td>
                </tr>
@@ -837,8 +686,9 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                <input type='hidden' name='post_time' value='$post_time'>
                <input type='hidden' name='post_statusname' value='$post_statusname'>
                <input type='hidden' name='confirmed_punch' value='True'>
-            </form>
-         </table>
+           </table>
+         </form>
+
          <table width=60% border=0 cellpadding=0 cellspacing=3>
             <tr>
                <td height=20 align=left>
@@ -851,12 +701,16 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                     <img src='../images/buttons/done_button.png' border='0'>
                   </a>
                </td>
-            </tr>";
+            </tr>
+        </table>";
 }
-echo "
-         </table>
-      </td>
-   </tr>";
-include "../footer.php";
-exit;
+echo '      </div>
+          </div>
+        </div>
+      </div>';
+include '../theme/templates/endmaincontent.inc';
+include '../theme/templates/controlsidebar.inc';
+include '../theme/templates/endmain.inc';
+include '../theme/templates/adminfooterscripts.inc';
+include '../footer.php';exit;
 ?>

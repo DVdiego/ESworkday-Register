@@ -62,6 +62,13 @@ include 'topmain.php';
 include 'leftmain.php';
 }
 
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-user"></i> Hours Worked Report</h3>
+            </div>
+            <div class="box-body">';
 
 echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
 echo "            <table class='table' align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
@@ -238,11 +245,15 @@ echo "            <table align=center width=60% border=0 cellpadding=0 cellspaci
 echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle'
                       src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png'
                       border='0'></td></tr></table></form>\n";
-include '../footer.php';
+echo '      </div>
+          </div>
+        </div>
+      </div>';
+include '../theme/templates/endmaincontent.inc';
 include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
-include '../theme/templates/reportsfooterscripts.inc';
-exit;
+include '../theme/templates/adminfooterscripts.inc';
+include '../footer.php';exit;
 
 } else {
 
@@ -591,7 +602,17 @@ echo "            </table>\n";
 }}}}
 
 if (isset($evil_post)) {
+
+
+
 echo "            <br />\n";
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-suitcase"></i>  Create Status</h3>
+            </div>
+            <div class="box-body">';
 echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr>\n";
@@ -762,11 +783,17 @@ echo "            <table align=center width=60% border=0 cellpadding=0 cellspaci
 echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle'
                       src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png'
                       border='0'></td></tr></table></form>\n";
-					  include '../footer.php';
-					  include '../theme/templates/controlsidebar.inc';
-					  include '../theme/templates/endmain.inc';
-					  include '../theme/templates/adminfooterscripts.inc';
-exit;
+
+
+echo '      </div>
+          </div>
+        </div>
+      </div>';
+include '../theme/templates/endmaincontent.inc';
+include '../theme/templates/controlsidebar.inc';
+include '../theme/templates/endmain.inc';
+include '../theme/templates/adminfooterscripts.inc';
+include '../footer.php';exit;
 }
 
 // end post validation //

@@ -107,8 +107,6 @@ elseif ($request == 'POST') {
 
     // begin post validation //
 
-
-
     $post_contractname = stripslashes($post_contractname);
     $post_contractname = addslashes($post_contractname);
 
@@ -124,22 +122,22 @@ elseif ($request == 'POST') {
         }
     }
 
-    // if ((empty($post_statusname)) || (empty($post_color)) || (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_statusname)) || (isset($dupe)) || ((!eregi ("^(#[a-fA-F0-9]{6})+$", $post_color)) && (!eregi ("^([a-fA-F0-9]{6})+$", $post_color))) || (!empty($string)) || (!empty($string2))) {
+    // if ((empty($post_contractname)) || (empty($post_dailyhours)) || (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_contractname)) || (isset($dupe)) || ((!eregi ("^(#[a-fA-F0-9]{6})+$", $post_dailyhours)) && (!eregi ("^([a-fA-F0-9]{6})+$", $post_dailyhours))) || (!empty($string)) || (!empty($string2))) {
 
-    if ((empty($post_statusname)) || (empty($post_color)) || (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_statusname)) || (isset($dupe)) || ((!preg_match('/' . "^(#[a-fA-F0-9]{6})+$" . '/i', $post_color)) && (!preg_match('/' . "^([a-fA-F0-9]{6})+$" . '/i', $post_color))) || (!empty($string)) || (!empty($string2))) {
+    if ((empty($post_contractname)) || (empty($post_dailyhours)) || (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_contractname)) || (isset($dupe)) || ((!preg_match('/' . "^(#[a-fA-F0-9]{6})+$" . '/i', $post_dailyhours)) && (!preg_match('/' . "^([a-fA-F0-9]{6})+$" . '/i', $post_dailyhours))) || (!empty($string)) || (!empty($string2))) {
 
-    if (empty($post_statusname)) {
+    if (empty($post_contractname)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>\n";
     echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
                         A Status Name is required.</td></tr>\n";
     echo "            </table>\n";
     }
-    elseif (empty($post_color)) {
+    elseif (empty($post_dailyhours)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>\n";
     echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        A Color is required.</td></tr>\n";
+                        A post dailyhours is required.</td></tr>\n";
     echo "            </table>\n";
     }elseif (!empty($string)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
@@ -151,21 +149,14 @@ elseif ($request == 'POST') {
     echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
                         Double Quotes are not allowed.</td></tr>\n";
     echo "            </table>\n";
-    // }elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_statusname)) {
-    }elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_statusname)) {
+    // }elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_contractname)) {
+    }elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_contractname)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>\n";
     echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
                         Alphanumeric characters, hyphens, underscores, spaces, and periods are allowed when editing a Status Name.</td></tr>\n";
     echo "            </table>\n";
-    }
-    // elseif ((!eregi ("^(#[a-fA-F0-9]{6})+$", $post_color)) && (!eregi ("^([a-fA-F0-9]{6})+$", $post_color))) {
-    elseif ((!preg_match('/' . "^(#[a-fA-F0-9]{6})+$" . '/i', $post_color)) && (!preg_match('/' . "^([a-fA-F0-9]{6})+$" . '/i', $post_color))) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        The '#' symbol followed by letters A-F, or numbers 0-9 are allowed when editing a Color.</td></tr>\n";
-    echo "            </table>\n";
+
     }elseif (isset($dupe)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
@@ -173,8 +164,8 @@ elseif ($request == 'POST') {
     echo "            </table>\n";
     }
 
-    if (!empty($string)) {$post_statusname = stripslashes($post_statusname);}
-    if (!empty($string2)) {$post_statusname = stripslashes($post_statusname);}
+    if (!empty($string)) {$post_contractname = stripslashes($post_contractname);}
+    if (!empty($string2)) {$post_contractname = stripslashes($post_contractname);}
 
     echo "            <br />\n";
 

@@ -51,7 +51,7 @@ if ($request == 'GET') {
           <div class="col-md-8">
             <div class="box box-info"> ';
   echo '      <div class="box-header with-border">
-                   <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Group</h3>
+                   <h3 class="box-title"><i class="fa fa-users"></i> Create Group</h3>
               </div>
               <div class="box-body">';
 echo "          <form name='form' action='$self' method='post'>\n";
@@ -194,7 +194,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
             <div class="col-md-8">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Group</h3>
+                     <h3 class="box-title"><i class="fa fa-users"></i> Create Group</h3>
                 </div>
                 <div class="box-body">';
     echo "         <form name='form' action='$self' method='post'>\n";
@@ -261,7 +261,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
             <div class="col-md-8">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Group</h3>
+                     <h3 class="box-title"><i class="fa fa-users"></i> Create Group</h3>
                 </div>
                 <div class="box-body">';
 

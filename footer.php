@@ -44,18 +44,18 @@ if (! empty($email) && ($email != "none")) {
 // Determine if the application information is set
 if (empty($company_name) || empty($app_version)) {
     echo "
-               <a class=footer_links href='https://github.com/' target='_blank'>Powered by PhpTimeClock</a>";
+               <a class=footer_links href='http://isoftsolutions.es' target='_blank'>Powered by iSoftSolutions</a>";
 } else {
     echo "
-               <a class=footer_links href='https://github.com/' target='_blank'> $company_name is Powered by PhpTimeClock $app_version</a>";
+               <a class=footer_links href='http://isoftsolutions.es' target='_blank'> $company_name is Powered by iSoftSolutions $app_version</a>";
 }
 
 echo '
 	</div>
 <!-- Default to the left -->
 
-Powered by <a class="footer_links" href="http://nginx.org/">NGINX</a> &nbsp;&#177 <a class="footer_links" href="http://mysql.org">mysql</a>&nbsp;&#177
-<a class="footer_links" href="http://php.net">&nbsp;PHP</a> &nbsp;&#8226; <a class="footer_links" href="https://almsaeedstudio.com">AdminLTE theme</a> &nbsp;&#177 <a class="footer_links" href="http://getbootstrap.com">Bootstrap</a>
+Powered by <a class="footer_links" href="http://mysql.org">mysql</a>&nbsp;&#177
+<a class="footer_links" href="http://php.net">&nbsp;PHP</a> &nbsp;&#8226; <a class="footer_links" href="http://getbootstrap.com">Bootstrap</a>
 
  </footer>
 ';

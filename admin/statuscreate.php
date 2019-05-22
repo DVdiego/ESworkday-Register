@@ -50,14 +50,12 @@ if ($request == 'GET') {
           <div class="col-md-8">
             <div class="box box-info"> ';
   echo '      <div class="box-header with-border">
-                   <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Status</h3>
+                   <h3 class="box-title"><i class="fa fa-exchange"></i> Create Status</h3>
               </div>
               <div class="box-body">';
 echo "          <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3>
-                    <img src='../images/icons/application_add.png' />&nbsp;&nbsp;&nbsp;Create Status</th></tr>\n";
+
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Status Name:</td><td colspan=2 width=80%
                       style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
@@ -189,14 +187,13 @@ elseif ($request == 'POST') {
             <div class="col-md-8">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i>  Create Status</h3>
+                     <h3 class="box-title"><i class="fa fa-exchange"></i>  Create Status</h3>
                 </div>
                 <div class="box-body">';
 
     echo "         <form name='form' action='$self' method='post'>\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
-                          <img src='../images/icons/application_add.png' />&nbsp;&nbsp;&nbsp;Create Status</th></tr>\n";
+
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Status Name:</td><td colspan=2 width=80%
                           style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
@@ -253,7 +250,7 @@ elseif ($request == 'POST') {
             <div class="col-md-8">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Status</h3>
+                     <h3 class="box-title"><i class="fa fa-exchange"></i> Create Status</h3>
                 </div>
                 <div class="box-body">';
 
@@ -264,9 +261,7 @@ elseif ($request == 'POST') {
     echo "            </table>\n";
     echo "            <br />\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3>
-                          <img src='../images/icons/application_add.png' />&nbsp;&nbsp;&nbsp;Create Status</th>\n";
-    echo "              </tr>\n";
+
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Status Name:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$post_statusname</td></tr>\n";

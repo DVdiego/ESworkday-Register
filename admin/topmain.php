@@ -37,7 +37,7 @@ echo '    <!-- Logo -->
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b><i class="fa fa-clock-o"></i></span>
       <!-- logo for regular state and mobile devices -->';
-if ($logo == "none") {     echo '<span class="logo-lg"><b>PHP</b> <i class="fa fa-clock-o"></i> Timeclock</span></a>'; }
+if ($logo == "none") {     echo '<span class="logo-lg"><b>WorkTime</b> <i class="fa fa-clock-o"></i> Control</span></a>'; }
 else { echo "<span class='logo-lg'><img border='0' src='$logo'></span></a>"; }
 
 include '../theme/templates/topnavpart1.inc';
@@ -45,7 +45,7 @@ include '../theme/templates/topnavpart1.inc';
 // if db is out of date, report it here //
 if (($dbexists <> "1") || (@$my_dbversion <> $dbversion)) {
     echo "
-                 <li><a href=#>***Your database is out of date.*** 
+                 <li><a href=#>***Your database is out of date.***
                  &nbsp;&nbsp;&nbsp; Upgrade it via the admin section.</a></li>";
 }
 
@@ -55,7 +55,7 @@ if (($dbexists <> "1") || (@$my_dbversion <> $dbversion)) {
 if ($date_link == "none") {
     if ($use_client_tz == "yes") {
         echo "
-            
+
                   If the times below appear to be an hour off, click
                   <a href='../resetcookie.php'>
                      here
@@ -67,12 +67,12 @@ if ($date_link == "none") {
 } else {
     if ($use_client_tz == "yes") {
         echo "
-            
-               
+
+
                   If the times below appear to be an hour off, click
                   <a href='../resetcookie.php'>
                      here
-                  </a> to reset. 
+                  </a> to reset.
                  If that doesn't work, restart your web browser and reset again.";
     }
 
@@ -93,7 +93,7 @@ echo "
 
 if ($use_reports_password == "yes") {
     echo "
-            
+
                <li><a href='../login.php?login_action=reports'><i class='fa fa-globe'></i> Reports</a></li>";
 } elseif ($use_reports_password == "no") {
     echo " <li><a href='../reports/index.php'><i class='fa fa-list-alt'></i> Reports</a></li>";

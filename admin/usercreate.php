@@ -139,7 +139,7 @@ elseif ($request == 'POST') {
 
 		$post_username = stripslashes($_POST['post_username']);
 		$user_dni = $_POST['user_dni'];
-		echo "$user_dni";
+		
 		$display_name = stripslashes($_POST['display_name']);
 		$password = $_POST['password'];
 		$confirm_password = $_POST['confirm_password'];
@@ -565,9 +565,6 @@ elseif ($request == 'POST') {
 		               </div><div class="box-body">';
 
 		echo "            <table class=table>\n";
-		echo "              <tr>\n";
-		echo "                <th class=rightside_heading nowrap halign=left colspan=3><i class='fa fa-user-plus'></i>&nbsp;&nbsp;&nbsp;Crear usuario
-		                		</th></tr>\n";
 		echo "              <tr><td height=15></td></tr>\n";
 
 		$query4 = "select empfullname, empDNI, displayname, email, contract ,groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
