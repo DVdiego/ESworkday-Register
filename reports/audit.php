@@ -42,7 +42,7 @@ if ($use_reports_password == "yes") {
         include '../admin/topmain.php';
 
         echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-        echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Reports</td></tr>\n";
+        echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Reports</td></tr>\n";
         echo "  <tr class=right_main_text>\n";
         echo "    <td align=center valign=top scope=row>\n";
         echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
@@ -75,7 +75,7 @@ if ($request == 'GET') {
                 <div class="box-body">';
     echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/information.png' /></td><td class=table_rows style='color:#3366CC;'>This report will display all information pertaining to punch-in/out times that have been added, edited, or deleted from PHP Timeclock.</td></tr>\n";
+    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/information.png' /></td><td class=table_rows style='color:#3366CC;'>This report will display all information pertaining to punch-in/out times that have been added, edited, or deleted from WorkTime Control.</td></tr>\n";
     echo "            </table>\n";
     echo "            <br />\n";
 
@@ -361,14 +361,17 @@ if ($request == 'GET') {
         $to_date = $_POST['to_date'];
     }
 
-    $time = time();
-    $rpt_hour = gmdate('H',$time);
-    $rpt_min = gmdate('i',$time);
-    $rpt_sec = gmdate('s',$time);
-    $rpt_month = gmdate('m',$time);
-    $rpt_day = gmdate('d',$time);
-    $rpt_year = gmdate('Y',$time);
-    $rpt_stamp = mktime ($rpt_hour, $rpt_min, $rpt_sec, $rpt_month, $rpt_day, $rpt_year);
+    // $time = time();
+    // $rpt_hour = gmdate('H',$time);
+    // $rpt_min = gmdate('i',$time);
+    // $rpt_sec = gmdate('s',$time);
+    // $rpt_month = gmdate('m',$time);
+    // $rpt_day = gmdate('d',$time);
+    // $rpt_year = gmdate('Y',$time);
+    // $rpt_stamp = mktime ($rpt_hour, $rpt_min, $rpt_sec, $rpt_month, $rpt_day, $rpt_year);
+
+
+    $rpt_stamp = time();
 
     $rpt_stamp = $rpt_stamp + @$tzo;
     $rpt_time = date($timefmt, $rpt_stamp);

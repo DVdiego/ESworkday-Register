@@ -1,4 +1,4 @@
-PHP Timeclock
+WorkTime Control
 Version 1.1
 http://sourceforge.net/projects/phptimeclock
 Copyright (C) 2008 phpTimeClock Team
@@ -39,21 +39,21 @@ New Install
 --- Open the index page with your web browser.
 --- Click on the Administration link on the right side of the page. Input "admin" (without the quotes)
     for the username and "admin" (without the quotes) for the password. Please change the password
-    for this admin user after the initial setup of PHP Timeclock is complete.
+    for this admin user after the initial setup of WorkTime Control is complete.
 --- Create at least one office by clicking on the Create Office link on the left side of the page.
     You MUST create an office to achieve the desired results. Create more offices if needed.
 --- Create at least one group by clicking on the Create Group link on the left side of the page.
     You MUST create a group to achieve the desired results. Create more groups if needed.
 --- Add your users by clicking on the Create New Users link, and assign them to the office(s) and
     group(s) you created above. Give Sys Admin level access for users who will administrate
-    PHP Timeclock. Give Time Admin level access for users who will need to edit users' time, but
+    WorkTime Control. Give Time Admin level access for users who will need to edit users' time, but
     who will not need Sys Admin level access. If you require the reports to be secured so only
     certain users can run them, then give these users reports level access.
 
     *** Admin level access and reports level access are completely separate from each other. Just
     *** because a user has admin level access does not give that user reports level access. You must
     *** specifically give them reports level access when you are creating or editing the users,
-    *** if you choose to secure these reports for these users. To make PHP Timeclock lock down the
+    *** if you choose to secure these reports for these users. To make WorkTime Control lock down the
     *** reports to only these users, set the use_reports_password setting in config.inc.php to "yes".
 
 Upgrading from 1.05 to 1.1

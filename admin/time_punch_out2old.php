@@ -137,7 +137,7 @@ if ((!isset($_SESSION['valid_user'])) && (!isset($_SESSION['time_admin_valid_use
       <table width=100% border=0 cellpadding=7 cellspacing=1>
         <tr class=right_main_text>
            <td height=10 align=center valign=top scope=row class=title_underline>
-              PHP Timeclock Administration
+              WorkTime Control Administration
            </td>
         </tr>
         <tr class=right_main_text>

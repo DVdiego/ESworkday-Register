@@ -74,10 +74,11 @@ echo '     <ul class="sidebar-menu">
           </a>
           <ul class="treeview-menu">
             <li><a href="useradmin.php"><i class="fa fa-circle-o"></i> User Summary</a></li>
-	    <li><a href="usercreate.php"><i class="fa fa-user-plus"></i> Create New User</a></li>
-	    <li><a href="usersearch.php"><i class="fa fa-search"></i> User Search</a></li>
+            <li><a href="usercreate.php"><i class="fa fa-user-plus"></i> Create New User</a></li>
+	          <li><a href="usersearch.php"><i class="fa fa-search"></i> User Search</a></li>
           </ul>
-        </li>
+       </li>
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-building"></i> <span>Offices</span>

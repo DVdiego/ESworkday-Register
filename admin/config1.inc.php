@@ -65,23 +65,23 @@ $db_name = "timeclock";
 
 
 /* This adds a prefix to the tablenames in the database. This can be helpful if you
-have an existing mysql database that you would like to use with PHP Timeclock.
+have an existing mysql database that you would like to use with WorkTime Control.
 If you are unaware of what is meant by "table prefix", then please leave this
 option as is. Default is to leave it blank. */
 
 $db_prefix = "";
 
 
-/* Choose "yes" to restrict the ip addresses that can connect to PHP Timeclock. If
+/* Choose "yes" to restrict the ip addresses that can connect to WorkTime Control. If
 "yes" is chosen, you MUST input the allowed networks in the $allowed_networks
 array below. Otherwise, choosing "yes" here and leaving $allowed_networks
-blank will cause PHP Timeclock to reject everyone attempting to connect to it.
+blank will cause WorkTime Control to reject everyone attempting to connect to it.
 Default is "no". */
 
 $restrict_ips = "no";
 
 
-/* Insert the networks or ip addresses you wish to allow to connect to PHP Timeclock
+/* Insert the networks or ip addresses you wish to allow to connect to WorkTime Control
 into the $allowed_networks array below. There is not a limit on how many networks
 or addresses that can be included in this array. This will currently only work for
 ipv4 addresses, ipv6 may be supported in a future release. If $restrict_ips is
@@ -105,7 +105,7 @@ $allowed_networks = array();
 
 /* Choose "yes" if you want to disable the Edit System Settings page within PHP
 Timeclock. This page allows you to make *most* of your changes to the
-config.inc.php file through the PHP Timeclock interface instead of editing
+config.inc.php file through the WorkTime Control interface instead of editing
 the config.inc.php file by hand. Many will view this as a possible security risk
 and might would rather disable this functionality. Default is "no". */
 
@@ -155,7 +155,7 @@ $require_time_admin_edit_reason = "yes";
 
 /* Choose the way dates are displayed. DO NOT EDIT THESE DATE VARIABLES MANUALLY UNLESS YOU
 KNOW WHAT YOU ARE DOING. Instead, change these date variables via the Edit System Settings
-page in the Administration section of PHP Timeclock (sysedit.php). $datefmt default is
+page in the Administration section of WorkTime Control (sysedit.php). $datefmt default is
 "n/j/y", $js_datefmt default is "M/d/yy", $tmp_datefmt default is "m/d/yy", and
 $calendar_style default is "amer". You will need to choose date formats with matching
 numbers, ie: if format number 10 is used for $datefmt, then format number 10 will need to
@@ -378,7 +378,7 @@ $user_or_display = "display";
 
 
 /* Choose whether to include in the reports the ip addresses of the systems that connect to
-sign-in/out into PHP Timeclock or not. This option is useful for auditing purposes. The
+sign-in/out into WorkTime Control or not. This option is useful for auditing purposes. The
 ip_logging option must be set to "yes" in order for this option to work as expected.
 Default is "yes". */
 

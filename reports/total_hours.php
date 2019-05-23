@@ -38,7 +38,7 @@ include 'leftmain.php';
 echo "<title>$title</title>\n";
 
 echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Reports</td></tr>\n";
+echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Reports</td></tr>\n";
 echo "  <tr class=right_main_text>\n";
 echo "    <td align=center valign=top scope=row>\n";
 echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
@@ -823,10 +823,10 @@ if (!empty($to_date)) {
 // $rpt_month = gmdate('m',$time);
 // $rpt_day = gmdate('d',$time);
 // $rpt_year = gmdate('Y',$time);
-// $rpt_stamp = time ($rpt_hour, $rpt_min, $rpt_sec, $rpt_month, $rpt_day, $rpt_year);
-//
-// $rpt_stamp = $rpt_stamp + @$tzo;
-$rpt_stamp = time() + @$tzo;
+$rpt_stamp = time ();
+
+$rpt_stamp = $rpt_stamp + @$tzo;
+
 $rpt_time = date($timefmt, $rpt_stamp);
 $rpt_date = date($datefmt, $rpt_stamp);
 

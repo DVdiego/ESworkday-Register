@@ -22,8 +22,8 @@
 
 ////////////////////////////////////////////
 /* Copied from PHP Weather version 1.62.  */
-/* Line 109 was added for php timeclock.  */
-/* Line 110 was edited for php timeclock. */
+/* Line 109 was added for WorkTime Control.  */
+/* Line 110 was edited for WorkTime Control. */
 ////////////////////////////////////////////
 /* Discontinued, does not work on PHP 7 */
 

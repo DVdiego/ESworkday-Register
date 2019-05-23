@@ -36,7 +36,7 @@ if (!isset($_SESSION['valid_user'])) {
   echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
   echo "  <tr class=right_main_text>
             <td height=10 align=center valign=top scope=row class=title_underline>
-              PHP Timeclock Administration
+              WorkTime Control Administration
             </td>
           </tr>\n";
   echo "  <tr class=right_main_text>\n";

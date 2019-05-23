@@ -385,7 +385,7 @@ echo '<div class="row">
 
 
 if ($request == 'POST') { // Process employee's punch information
-    // signin/signout data passed over from timeclock.php //
+    // signin/signout data passed over from worktime.php //
     $inout = $_POST['left_inout'];
 //    $notes = ereg_replace("[^[:alnum:] \,\.\?-]","",strtolower($_POST['left_notes']));
 //revisar filtrado de carcateres
@@ -677,7 +677,7 @@ if (! isset($_GET['printer_friendly']) && ($message_of_the_day != "none")) {
       //
       //
       // 	echo ' <div class="col-md-4">
-      //   <a href="timeclock.php?printer_friendly=true" class="btn btn-app">
+      //   <a href="worktime.php?printer_friendly=true" class="btn btn-app">
       //                 <i class="glyphicon glyphicon-print"></i> Printer Friendly Page
       //               </a>
       //         </div>';

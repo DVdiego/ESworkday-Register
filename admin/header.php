@@ -32,7 +32,7 @@ if (empty($connecting_ip)) {
     return FALSE;
 }
 
-// determine if connecting ip address is allowed to connect to PHP Timeclock, we need to find a way to do this for hostnames//
+// determine if connecting ip address is allowed to connect to WorkTime Control, we need to find a way to do this for hostnames//
 if ($restrict_ips == "yes") {
     for ($x=0; $x < count($allowed_networks); $x++) {
         $is_allowed = ip_range($allowed_networks[$x], $connecting_ip);

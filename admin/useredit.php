@@ -32,7 +32,7 @@ echo "<title>$title - Editar Usuario</title>\n";
 if (!isset($_SESSION['valid_user'])) {
 
 echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Administration</td></tr>\n";
+echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Administration</td></tr>\n";
 echo "  <tr class=right_main_text>\n";
 echo "    <td align=center valign=top scope=row>\n";
 echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
@@ -46,7 +46,7 @@ if ($request == 'GET') {
 if (!isset($_GET['username'])) {
 
       echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-      echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Error!</td></tr>\n";
+      echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Error!</td></tr>\n";
       echo "  <tr class=right_main_text>\n";
       echo "    <td align=center valign=top scope=row>\n";
       echo "      <table width=300 border=0 cellpadding=5 cellspacing=0>\n";
@@ -71,7 +71,7 @@ echo "        <tr><td class=left_rows_headings height=18 valign=middle>Users</td
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/user.png' alt='User Summary' />&nbsp;&nbsp;
                 <a class=admin_headings href='useradmin.php'>User Summary</a></td></tr>\n";
 echo "        <tr><td class=current_left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Edit User' />
-                &nbsp;&nbsp;<a class=admin_headings href=\"useredit.php?username=$get_user&officename=$get_office\">Edit User</a></td></tr>\n";
+                &nbsp;&nbsp;<a class=admin_headings href=\"useredit.php?username=$get_user&officename=$get_office\">Editar Empleado</a></td></tr>\n";
 echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Change Password' />
                 &nbsp;&nbsp;<a class=admin_headings href=\"chngpasswd.php?username=$get_user&officename=$get_office\">Change Password</a></td></tr>\n";
 echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Delete User' />
@@ -161,7 +161,7 @@ echo '<div class="row">
         <div class="col-md-8">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-user"></i> Crear oficina</h3>
+                 <h3 class="box-title"><i class="fa fa-user"></i> Editar Empleado</h3>
             </div>
           <div class="box-body">';
 echo "    <form name='form' action='$self' method='post'>\n";
@@ -345,7 +345,7 @@ echo "        <tr><td class=left_rows_headings height=18 valign=middle>Users</td
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/user.png' alt='User Summary' />&nbsp;&nbsp;
                 <a class=admin_headings href='useradmin.php'>User Summary</a></td></tr>\n";
 echo "        <tr><td class=current_left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Edit User' />
-                &nbsp;&nbsp;<a class=admin_headings href=\"useredit.php?username=$tmp_post_username&officename=$get_office\">Edit User</a></td></tr>\n";
+                &nbsp;&nbsp;<a class=admin_headings href=\"useredit.php?username=$tmp_post_username&officename=$get_office\">Editar Empleado</a></td></tr>\n";
 echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Change Password' />
                 &nbsp;&nbsp;<a class=admin_headings href=\"chngpasswd.php?username=$tmp_post_username&officename=$get_office\">Change Password</a></td>
                 </tr>\n";
@@ -498,7 +498,7 @@ echo '<div class="row">
         <div class="col-md-8">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-user"></i> Crear oficina</h3>
+                 <h3 class="box-title"><i class="fa fa-user"></i> Editar Empleado</h3>
             </div>
             <div class="box-body">';
 echo "        <form name='form' action='$self' method='post'>\n";
@@ -619,7 +619,7 @@ echo "        <tr><td class=left_rows_headings height=18 valign=middle>Users</td
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/user.png' alt='User Summary' />&nbsp;&nbsp;
                 <a class=admin_headings href='useradmin.php'>User Summary</a></td></tr>\n";
 echo "        <tr><td class=current_left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Edit User' />
-                &nbsp;&nbsp;<a class=admin_headings href=\"useredit.php?username=$tmp_post_username&officename=$office_name\">Edit User</a></td></tr>\n";
+                &nbsp;&nbsp;<a class=admin_headings href=\"useredit.php?username=$tmp_post_username&officename=$office_name\">Editar Empleado</a></td></tr>\n";
 echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Change Password' />
                 &nbsp;&nbsp;<a class=admin_headings href=\"chngpasswd.php?username=$tmp_post_username&officename=$office_name\">Change Password</a></td>
                 </tr>\n";

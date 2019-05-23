@@ -106,7 +106,7 @@
        echo "mensaje: valid_report_employee";
          echo "
                <script type='text/javascript' language='javascript'>
-                  window.location.href = 'timeclock.php';
+                  window.location.href = 'worktime.php';
                </script>";
          exit;
      } else if ((isset($_SESSION['valid_profile'])) || (isset($_SESSION['time_admin_valid_user']))) {

@@ -1,4 +1,4 @@
-PHP Timeclock
+WorkTime Control
 Version 1.1
 http://sourceforge.net/projects/phptimeclock
 Copyright (C) 2008 phpTimeClock Team
@@ -6,7 +6,7 @@ Based upon phptimeclock which is Copyright 2006 Ken Papizan
 Licensed under the GPL
 
 
-PHP Timeclock Changelog
+WorkTime Control Changelog
 -----------------------
 1.1 Oct. 10, 2008
 Bugs:
@@ -78,7 +78,7 @@ Other things to note:
     $calendar_style = "euro" in config.inc.php.
 --- Fixed a bug in the Upgrade Database page. If magic_quotes_runtime was turned
     on in php.ini, the script would tell you that your mysql user did not have
-    the appropriate privileges to the PHP Timeclock database, even if the user
+    the appropriate privileges to the WorkTime Control database, even if the user
     did.
 --- Fixed a bug where if the "Remember Me" checkbox is checked on the main page
     and output_buffering is set to "Off" in php.ini, a php error would display
@@ -97,8 +97,8 @@ Other things to note:
     details of all additions, deletions, and edits of a person's time for a
     given date range when it's done via the Add/Edit/Delete Time pages.
 --- Added the ability to allow only certain networks or ip addresses to connect
-    to PHP Timeclock. (Thanks for the idea Jim Blansett.)
---- Added the option to utilize table prefixes within PHP Timeclock. This can
+    to WorkTime Control. (Thanks for the idea Jim Blansett.)
+--- Added the option to utilize table prefixes within WorkTime Control. This can
     be helpful if you have an existing mysql database that you would like to
     use with this app. (Thanks for the idea Fred.)
 --- Added an option to export the reports in csv format.
@@ -375,7 +375,7 @@ Other things to note:
     http://666/.
 --- Combined daterptinfo.php and daterpt.php into one page, did the same for employeerpt.php
     and employeerptinfo.php, currmonthrpt.php and currmonthrptinfo.php, todayrpt.php and
-    todayrptinfo.php, current_status.php and timeclock.php.
+    todayrptinfo.php, current_status.php and worktime.php.
 --- Removed alink and avisited classes from default.css, as they were not being used
     anywhere in the code anyway.
 --- Rewrote the code so it wouldn't matter if register_globals or magic_quotes_gpc are

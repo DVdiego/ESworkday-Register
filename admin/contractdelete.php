@@ -32,7 +32,7 @@ echo "<title>$title - Delete Contract</title>\n";
 if (!isset($_SESSION['valid_user'])) {
 
 echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Administration</td></tr>\n";
+echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Administration</td></tr>\n";
 echo "  <tr class=right_main_text>\n";
 echo "    <td align=center valign=top scope=row>\n";
 echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
@@ -46,7 +46,7 @@ if ($request == 'GET') {
 if ((!isset($_GET['groupname'])) && (!isset($_GET['officename']))) {
 
 echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Error!</td></tr>\n";
+echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Error!</td></tr>\n";
 echo "  <tr class=right_main_text>\n";
 echo "    <td align=center valign=top scope=row>\n";
 echo "      <table width=300 border=0 cellpadding=5 cellspacing=0>\n";

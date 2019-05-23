@@ -1,4 +1,4 @@
-PHP Timeclock
+WorkTime Control
 Version 1.1
 http://sourceforge.net/projects/phptimeclock
 Copyright (C) 2008 phpTimeClock Team
@@ -25,7 +25,7 @@ PHP Weather is licensed under the GPL.
 
 PURPOSE:
 
-PHP Timeclock is a web-based application that is designed to replace manual punchclocks or
+WorkTime Control is a web-based application that is designed to replace manual punchclocks or
 timeclocks to keep up with employees' work hours. In a very basic sense, it can replace
 sign-in/sign-out sheets that many companies use to track where their employees are at any
 given point of the day.

@@ -41,7 +41,7 @@ if (! isset($_SESSION['valid_user'])) {
                <table width=100% border=0 cellpadding=7 cellspacing=1>
                   <tr>
                      <td height=10 align=center valign=top scope=row class=title_underline>
-                        PHP Timeclock Administration
+                        WorkTime Control Administration
                      </td>
                   </tr>
                   <tr>

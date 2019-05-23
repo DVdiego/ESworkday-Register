@@ -46,7 +46,7 @@ if (!isset($_SESSION['valid_user'])) {
    <table width=100% border=0 cellpadding=7 cellspacing=1>
       <tr class=right_main_text>
          <td height=10 align=center valign=top scope=row class=title_underline>
-            PHP Timeclock Administration
+            WorkTime Control Administration
          </td>
       </tr>
       <tr class=right_main_text>
@@ -84,7 +84,7 @@ echo "
 
 ";
 
-// determine the privileges of the PHP Timeclock user //
+// determine the privileges of the WorkTime Control user //
 $result = mysqli_query($GLOBALS["___mysqli_ston"], "show grants for current_user()");
 while ($row = mysqli_fetch_array($result)) {
     $abc = stripslashes("".$row["0"]."");
@@ -122,7 +122,7 @@ if (! empty($count)) {
                      </tr>
                      <tr>
                         <td colspan=2 class=table_rows align=left valign=bottom style='padding-left:32px;padding-right:32px;'>
-                           In the process of upgrading the database, all necessary modifications and changes of the db will be completed, including any alterations, conversions, or additions that are needed for this release of PHP Timeclock to function properly.
+                           In the process of upgrading the database, all necessary modifications and changes of the db will be completed, including any alterations, conversions, or additions that are needed for this release of WorkTime Control to function properly.
                         </td>
                      </tr>
                      <tr>

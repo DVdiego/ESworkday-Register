@@ -20,5 +20,5 @@
  *   51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA.             *
  ***************************************************************************/
 
-header("Location: timeclock.php");
+header("Location: worktime.php");
 ?>

@@ -30,7 +30,7 @@ if (empty($connecting_ip)) {
     return FALSE;
 }
 
-// determine if connecting ip address is allowed to connect to PHP Timeclock //
+// determine if connecting ip address is allowed to connect to WorkTime Control //
 
 if ($restrict_ips == "yes") {
   for ($x=0; $x<count($allowed_networks); $x++) {

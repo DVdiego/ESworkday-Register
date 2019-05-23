@@ -21,7 +21,7 @@ $current_page = "worker_reports.php";
 if (!isset($_SESSION['valid_profile'])) {
 
 echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Administration</td></tr>\n";
+echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Administration</td></tr>\n";
 echo "  <tr class=right_main_text>\n";
 echo "    <td align=center valign=top scope=row>\n";
 echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
@@ -57,14 +57,13 @@ $_SERVER['username'] = $_GET['username'];
   ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
   if (!isset($username)) {echo "username is not defined for this user.\n"; exit;}
 
-  echo '  <div class="box box-primary">
-            <div class="box-header with-border">
-                <h3 align="center" class="box-title">Generar Informe</h3>
-            </div>
-                 <!-- /.box-header -->';
-  echo "    <div class='box-body'>";
 
-    echo "<div id='form-container' class='col-sm-12 col-md-6 col-lg-6'>";
+    echo '<div class="row">
+            <div class="col-md-8">
+              <div class="box box-info"> ';
+    echo '      <div class="box-header with-border">
+                   <h3 class="box-title"><i class="fa fa-file-o"></i> Generar Informe</h3>
+                 </div><div class="box-body">';
     echo "<form class='form-horizontal' role='form' name='timeclock' action='$self' method='post'>";
 
 
@@ -97,7 +96,12 @@ $_SERVER['username'] = $_GET['username'];
     echo "<div>";
     echo "<div>";
 echo "<div>";
-echo " <tr><td height=90%></td></tr>\n";
+//echo " <tr><td height=90%></td></tr>\n";
+include '../theme/templates/endmaincontent.inc';
+include '../footer.php';
+include '../theme/templates/controlsidebar.inc';
+include '../theme/templates/endmain.inc';
+include '../theme/templates/adminfooterscripts.inc';
 
 //echo "</div>"; # se supone que cierra "<div class='col-sm-12 col-md-10 col-lg-10'>";
 }

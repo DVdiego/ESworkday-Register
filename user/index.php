@@ -95,28 +95,29 @@ while ($row=mysqli_fetch_array($result4)) {
 }
 ((mysqli_free_result($result4) || (is_object($result4) && (get_class($result4) == "mysqli_result"))) ? true : false);
 
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$username</td></tr>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre Empleado:</td><td align=left class=table_rows
+											colspan=2 width=80% style='padding-left:20px;'>$displayname</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>DNI:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$user_dni</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td align=left class=table_rows
-											colspan=2 width=80% style='padding-left:20px;'>$displayname</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Password:</td><td align=left class=table_rows
-											colspan=2 width=80% style='padding-left:20px;'>***hidden***</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$user_email</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contract:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contrato:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$user_contract</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$office</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Grupo:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$groups</td></tr>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contraseña:</td><td align=left class=table_rows
+											colspan=2 width=80% style='padding-left:20px;'>***hidden***</td></tr>\n";
+
 
 echo "              <tr><td height=15></td></tr>\n";
 echo "            </table>\n";
-echo '						<div class="box-footer">
-										<a href="usercreate.php"><button class="btn btn-success">Done</button></a>
-									</div>';
+// echo '						<div class="box-footer">
+// 										<a href="index.php"><button class="btn btn-success">Done</button></a>
+// 									</div>';
 echo '				</div>
 					</div>
 				</div>

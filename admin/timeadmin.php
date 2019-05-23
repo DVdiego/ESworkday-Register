@@ -40,7 +40,7 @@ echo "<title>$title - Modify Employee's Time</title>\n";
 // Ensure a valid login
 if ((!isset($_SESSION['valid_user'])) && (!isset($_SESSION['time_admin_valid_user']))) {
     echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-    echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Administration</td></tr>\n";
+    echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Administration</td></tr>\n";
     echo "  <tr class=right_main_text>\n";
     echo "    <td align=center valign=top scope=row>\n";
     echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";

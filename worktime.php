@@ -44,7 +44,7 @@ if (! isset($_GET['printer_friendly'])) {
 }
 
 
-$current_page = "timeclock.php";
+$current_page = "worktime.php";
 
 if (! isset($_GET['printer_friendly'])) {
     echo " <!-- debug caller 1 --> ";

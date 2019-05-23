@@ -80,7 +80,7 @@ while ($row = mysqli_fetch_array($result)) {
             if (! isset($_GET['printer_friendly'])) {
                 echo "
                               <td align=right colspan=2>
-                                 <a style='font-size:11px;color:#853d27;' href='timeclock.php?printer_friendly=true'>
+                                 <a style='font-size:11px;color:#853d27;' href='worktime.php?printer_friendly=true'>
                                     Printer Friendly Page
                                  </a>
                               </td>

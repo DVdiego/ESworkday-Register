@@ -26,7 +26,7 @@
  */
 
 echo "              System Settings";
-echo "              Listed below are the settings that have been chosen within config.inc.php, the config file for PHP Timeclock.\n";
+echo "              Listed below are the settings that have been chosen within config.inc.php, the config file for WorkTime Control.\n";
 
 echo '<div class="row">
         <div class="col-xs-12">
@@ -53,10 +53,10 @@ $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
 echo "              <tr><td>db_password:</td> <td>********</td> <td>This is the mysql password for the username you created during the install.</td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
 // Display database prefix
-echo "              <tr><td>db_prefix:</td> <td>$db_prefix</td> <td>This adds a prefix to the tablenames in the database. This can be helpful if you have an existing mysql database that you would like to use with PHP Timeclock. If you are unaware of what is meant by 'table prefix', then please leave this option as is. Default is to leave it blank.</td></tr>\n";
+echo "              <tr><td>db_prefix:</td> <td>$db_prefix</td> <td>This adds a prefix to the tablenames in the database. This can be helpful if you have an existing mysql database that you would like to use with WorkTime Control. If you are unaware of what is meant by 'table prefix', then please leave this option as is. Default is to leave it blank.</td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
 // Display database version
-echo "              <tr><td>dbversion:</td> <td>$dbversion</td> <td>This is the versioning number of the current database for PHP Timeclock.</td></tr>\n";
+echo "              <tr><td>dbversion:</td> <td>$dbversion</td> <td>This is the versioning number of the current database for WorkTime Control.</td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2: $color1;
 // Display database persistent connection usage
 echo "              <tr><td>use_persistent_connection:</td> <td>$use_persistent_connection</td> <td>This provides the option for PhpTimeClock to use persistent database connections. Using persistent connections improves server performances. Disable this option if you are limited by the number of connections you are allowed on your server. Default is \"<b>yes</b>\".</td></tr>\n";
@@ -70,10 +70,10 @@ $row_count++; $row_color = ($row_count % 2) ? $color2: $color1;
 echo "              <tr><td>use_reports_password:</td> <td>$use_reports_password</td> <td>If ALL users need access to ALL the reports provided, then set this to \"no\". Default is \"<b>no</b>\".</td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2: $color1;
 // Display the restricted ips option
-echo "              <tr><td>restrict_ips:</td> <td>$restrict_ips</td> <td>Choose \"yes\" to restrict the ip addresses that can connect to PHP Timeclock. If \"yes\" is chosen, you MUST input the allowed networks in the allowed_networks array below. Otherwise, choosing \"yes\" here and leaving allowed_networks blank will cause PHP Timeclock to reject everyone attempting to connect to it. Default is \"<b>no</b>\".</td></tr>\n";
+echo "              <tr><td>restrict_ips:</td> <td>$restrict_ips</td> <td>Choose \"yes\" to restrict the ip addresses that can connect to WorkTime Control. If \"yes\" is chosen, you MUST input the allowed networks in the allowed_networks array below. Otherwise, choosing \"yes\" here and leaving allowed_networks blank will cause WorkTime Control to reject everyone attempting to connect to it. Default is \"<b>no</b>\".</td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2: $color1;
 // Displayed the allowed networks
-echo "              <tr><td>allowed_networks:</td> <td>view these via the 'Edit System Settings' link on the left.</td> <td>These are the networks or ip addresses you wish to allow to connect to PHP Timeclock. There is not a limit on how many networks or addresses that can be included in this array. This will currently only work for ipv4 addresses, ipv6 may be supported in a future release. If restrict_ips is set to \"no\", this option is ignored.</td></tr>\n";
+echo "              <tr><td>allowed_networks:</td> <td>view these via the 'Edit System Settings' link on the left.</td> <td>These are the networks or ip addresses you wish to allow to connect to WorkTime Control. There is not a limit on how many networks or addresses that can be included in this array. This will currently only work for ipv4 addresses, ipv6 may be supported in a future release. If restrict_ips is set to \"no\", this option is ignored.</td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2: $color1;
 // Display if IPs are logged
 echo "              <tr><td>ip_logging:</td> <td>$ip_logging</td> <td>Enable the option to log the ip addresses of the connecting computers when users punch-in/out, or when a time is manually added, edited, or deleted. Default is \"<b>yes</b>\". </td></tr>\n";
@@ -127,7 +127,7 @@ $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
 echo "              <tr><td>user_or_display:</td> <td>$user_or_display</td> <td>Choose whether to print displaynames or usernames for each user when reports are run. Options for this variable are \"user\" and \"display\". Default is \"<b>user</b>\".</td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
 // Display if IPs are to be listed in the reports
-echo "              <tr><td>display_ip:</td> <td>$display_ip</td> <td>Choose whether to include in the reports the ip addresses of the systems that connect to sign-in/out into PHP Timeclock or not. This option is useful for auditing purposes. The <b>ip_logging</b> option must be set to \"<b>yes</b>\" in order for this option to work as expected. Default is \"<b>yes</b>\".</td></tr>\n";
+echo "              <tr><td>display_ip:</td> <td>$display_ip</td> <td>Choose whether to include in the reports the ip addresses of the systems that connect to sign-in/out into WorkTime Control or not. This option is useful for auditing purposes. The <b>ip_logging</b> option must be set to \"<b>yes</b>\" in order for this option to work as expected. Default is \"<b>yes</b>\".</td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
 // Display if the report should be exported to a coma seperate values file.
 echo "              <tr><td>export_csv:</td> <td>$export_csv</td> <td>Choose \"<b>yes</b>\" to export the reports to a comma delimited file (.csv). Default is \"<b>no</b>\".</td></tr>\n";
@@ -156,7 +156,7 @@ $row_count = '0'; $row_color = ($row_count % 2) ? $color2 : $color1;
 echo "              <tr><td nowrap style='border:solid #888888;border-width:0px 0px 1px 0px;' colspan=3>&nbsp;</td></tr>\n";
 echo "              <tr><th colspan=3 class=table_heading_no_color nowrap align=left>Display Settings</th></tr>\n";
 // The first colour to display
-echo "              <tr><td>color1:</td> <td>$color1</td> <td>When times are displayed in PHP Timeclock, they are displayed with these two alternating row colors. Default is \"<b>#EFEFEF</b>\". </td></tr>\n";
+echo "              <tr><td>color1:</td> <td>$color1</td> <td>When times are displayed in WorkTime Control, they are displayed with these two alternating row colors. Default is \"<b>#EFEFEF</b>\". </td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
 // The second colour to display
 echo "              <tr><td>color2:</td> <td>$color2</td> <td>Default is \"<b>#FBFBFB</b>\". </td></tr>\n";
@@ -220,7 +220,7 @@ $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
 echo "              <tr><td>logo:</td> <td>$logo</td> <td>This is a logo or graphic displayed in the top left of each page. Set it to \"none\" to ignore this option. </td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
 // The system refresh interval
-echo "              <tr><td>refresh:</td> <td>$refresh</td> <td>Sets the refresh rate (in seconds) for the application. If PHP Timeclock is kept open, it will refresh this number of seconds to display the most current information. Set it to \"none\" to ignore this option. Default is <b>300</b>. </td></tr>\n";
+echo "              <tr><td>refresh:</td> <td>$refresh</td> <td>Sets the refresh rate (in seconds) for the application. If WorkTime Control is kept open, it will refresh this number of seconds to display the most current information. Set it to \"none\" to ignore this option. Default is <b>300</b>. </td></tr>\n";
 // Display column name
 echo "
               <tr>

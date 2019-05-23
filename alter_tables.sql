@@ -26,7 +26,7 @@
 ###################################################################
 #                                                                 #
 # If upgrading from version 1.01 or 1.0, run these sql statements #
-# below on the PHP Timeclock database.                            #
+# below on the WorkTime Control database.                            #
 #                                                                 #
 ###################################################################
 
@@ -76,7 +76,7 @@ ALTER TABLE `employees` ADD `disabled` TINYINT(1) NOT NULL default '0';
 ########################################################################
 #                                                                      #
 # If upgrading from version 0.9.4-1 or 0.9.4, run these sql statements #
-# below on the PHP Timeclock database.                                 #
+# below on the WorkTime Control database.                                 #
 #                                                                      #
 ########################################################################
 

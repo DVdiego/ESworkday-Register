@@ -40,7 +40,7 @@ if (!isset($_SESSION['valid_user'])) {
 
 						<h4>
 							<i class="icon fa fa-warning"></i>
-							PHP Timeclock Administration
+							WorkTime Control Administration
 						</h4>
                 You are not presently logged in, or do not have permission to view this page. Click <a href="../login.php?login_action=admin"><u>here</u></a> to login.
           </div>

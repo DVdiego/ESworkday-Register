@@ -27,7 +27,8 @@ session_start();
  */
 
 include '../config.inc.php';
-include 'header_date.php';
+// include 'header_date.php';
+include 'header.php';
 include 'topmain.php';
 include 'leftmain-time.php';
 
@@ -49,7 +50,7 @@ if (($timefmt == "G:i") || ($timefmt == "H:i")) {
 // Ensure the user has access rights to editing time.
 if ((!isset($_SESSION['valid_user'])) && (!isset($_SESSION['time_admin_valid_user']))) {
     echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-    echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Administration</td></tr>\n";
+    echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Administration</td></tr>\n";
     echo "  <tr class=right_main_text>\n";
     echo "    <td align=center valign=top scope=row>\n";
     echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
@@ -62,7 +63,7 @@ if ((!isset($_SESSION['valid_user'])) && (!isset($_SESSION['time_admin_valid_use
 if ($request == 'GET') { // Display employee select interface for deleting an employee's time
     if (!isset($_GET['username'])) { // Make sure there is a logged in user
         echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-        echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Error!</td></tr>\n";
+        echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Error!</td></tr>\n";
         echo "  <tr class=right_main_text>\n";
         echo "    <td align=center valign=top scope=row>\n";
         echo "      <table width=300 border=0 cellpadding=5 cellspacing=0>\n";
@@ -142,12 +143,19 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
     echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
     echo "               <div class='form-group'><label>Username: $username</label><input type='hidden' name='post_username' value=\"$username\"></div>\n";
     echo "              <div class='form-group'><label>Display Name: $displayname</label><input type='hidden' name='post_displayname' value=\"$displayname\"></div>\n";
-    echo "              <div class='form-group'><label>Date: ($tmp_datefmt)</label><div class='input-group date'><i class='fa fa-calendar'></i> <input type='text' id='datepicker' name='post_date'>&nbsp;*&nbsp;&nbsp;</div></div> \n";
-    echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
-    echo "                <input type='hidden' name='timefmt_24hr' value=\"$timefmt_24hr\">\n";
-    echo "                <input type='hidden' name='timefmt_24hr_text' value=\"$timefmt_24hr_text\">\n";
-    echo "                <input type='hidden' name='timefmt_size' value=\"$timefmt_size\">\n";
-    echo "                <div class='form-group'><label class='text-muted'>*&nbsp;required&nbsp;</label></div>\n";
+    // echo "              <div class='form-group'><label>Date: ($tmp_datefmt)</label><div class='input-group date'><i class='fa fa-calendar'></i> <input type='text' id='datepicker' name='post_date'>&nbsp;*&nbsp;&nbsp;</div></div> \n";
+    // echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
+    // echo "                <input type='hidden' name='timefmt_24hr' value=\"$timefmt_24hr\">\n";
+    // echo "                <input type='hidden' name='timefmt_24hr_text' value=\"$timefmt_24hr_text\">\n";
+    // echo "                <input type='hidden' name='timefmt_size' value=\"$timefmt_size\">\n";
+    // echo "                <div class='form-group'><label class='text-muted'>*&nbsp;required&nbsp;</label></div>\n";
+
+    echo "    <div class='form-group'>
+                <label>Fecha:</label>
+                <input type='date' size='10' maxlength='10' name='post_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
+                <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                 </div>";
     echo '<div class="box-footer">
                 <button type="submit" name="submit" value="Delete Time" class="btn btn-danger">Delete Time</button>
                 <button type="submit" name="cancel" class="btn btn-default pull-right"><a href="timeadmin.php">Cancel</a></button>

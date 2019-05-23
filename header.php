@@ -35,7 +35,7 @@ if (empty($connecting_ip)) {
     return FALSE;
 }
 
-// determine if connecting IP address is allowed to connect to PHP Timeclock //
+// determine if connecting IP address is allowed to connect to WorkTime Control //
 if ($restrict_ips == "yes") {
     for ($x = 0; $x < count($allowed_networks); $x++) {
         $is_allowed = ip_range($allowed_networks[$x], $connecting_ip);
@@ -90,7 +90,7 @@ if ($use_client_tz == "yes") {
     if (! isset($_COOKIE['tzoffset'])) {
         include 'tzoffset.php';
         echo "
-      <meta http-equiv='refresh' content='0;URL=timeclock.php'>";
+      <meta http-equiv='refresh' content='0;URL=worktime.php'>";
     }
 }
 
@@ -105,7 +105,7 @@ if ($refresh == "none") {
    </head>';
 } else {
     echo "
-      <meta http-equiv='refresh' content=\"$refresh;URL=timeclock.php\">
+      <meta http-equiv='refresh' content=\"$refresh;URL=worktime.php\">
       <script language=\"javascript\" src=\"scripts/pnguin_timeclock.js\"></script>
 
       <script language=\"javascript\" src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>

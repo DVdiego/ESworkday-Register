@@ -47,7 +47,7 @@ if (! isset($_SESSION['valid_report_employee'])) {
       <table width=100% border=0 cellpadding=7 cellspacing=1>
          <tr class=right_main_text>
             <td height=10 align=center valign=top scope=row class=title_underline>
-               PHP Timeclock Reports
+               WorkTime Control Reports
             </td>
          </tr>
          <tr class=right_main_text>
@@ -664,14 +664,14 @@ if ($request == 'GET' || (! $is_valid_input)) { // Get the employee's report sel
             </td>
          </tr>";
 } else if ($request == "POST") { // Generate the employee's report
-    $time = time();
-    $rpt_hour = gmdate('H',$time);
-    $rpt_min = gmdate('i',$time);
-    $rpt_sec = gmdate('s',$time);
-    $rpt_month = gmdate('m',$time);
-    $rpt_day = gmdate('d',$time);
-    $rpt_year = gmdate('Y',$time);
-    $rpt_stamp = time ($rpt_hour, $rpt_min, $rpt_sec, $rpt_month, $rpt_day, $rpt_year);
+    // $time = time();
+    // $rpt_hour = gmdate('H',$time);
+    // $rpt_min = gmdate('i',$time);
+    // $rpt_sec = gmdate('s',$time);
+    // $rpt_month = gmdate('m',$time);
+    // $rpt_day = gmdate('d',$time);
+    // $rpt_year = gmdate('Y',$time);
+    $rpt_stamp = time ();
 
     $rpt_stamp = $rpt_stamp + @$tzo;
     $rpt_time = date($timefmt, $rpt_stamp);
@@ -860,7 +860,7 @@ if ($request == 'GET' || (! $is_valid_input)) { // Get the employee's report sel
 	       echo '</div></div></div>';
 }
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/reportsfooterscripts.inc';
 exit;

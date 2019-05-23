@@ -77,13 +77,18 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
 // end user moved here from topmain
 
 
-echo '<ul class="sidebar-menu"><li class="header">Profile</li>';
+echo '<ul class="sidebar-menu"><li class="header">Perfil</li>';
 
-echo "<li><a href=\"useredit.php?username=".$_SESSION['valid_profile']."\">Edit Perfil</a></li>\n";
+echo "<li class='treeview'>
+        <a href=\"useredit.php?username=".$_SESSION['valid_profile']."\">
+          <i class='fa fa-user'></i><span>Editar Perfil</span>
+        </a>
+      </li>\n";
 
-echo "<li><a class=admin_headings href=\"chngpasswd.php?username=".$_SESSION['valid_profile']."\">Change Password</a></li>\n";
+echo "<li class='treeview'>
+      <a class=admin_headings href=\"chngpasswd.php?username=".$_SESSION['valid_profile']."\"><i class='fa fa-lock'></i><span>Cambiar Contraseña</span></a></li>\n";
 
-echo "<li><a href=\"user_reports.php?username=".$_SESSION['valid_profile']."\">Generar Reporte</a></li>\n";
+echo "<li class='treeview'><a href=\"user_reports.php?username=".$_SESSION['valid_profile']."\"><i class='fa fa-file-o'></i><span>Generar Reporte</span></a></li>\n";
 
 echo '</ul>';
 

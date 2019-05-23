@@ -46,7 +46,7 @@ $row_color = ($row_count % 2) ? $color2 : $color1;
 // Make sure the user is authorised to make changes.
 if (!isset($_SESSION['valid_user'])) {
     echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-    echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Administration</td></tr>\n";
+    echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Administration</td></tr>\n";
     echo "  <tr class=right_main_text>\n";
     echo "    <td align=center valign=top scope=row>\n";
     echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
@@ -156,13 +156,13 @@ end moved */
             $process_group = posix_getgrgid(posix_getgid());
 
             echo "            <table class='table' width=100% border=0 cellpadding=0 cellspacing=0>\n";
-            echo "              <tr><td height=25 class=table_rows_red>The PHP Timeclock config file, config.inc.php, <b><i>is not writable</i></b> by your webserver user:&nbsp;";
+            echo "              <tr><td height=25 class=table_rows_red>The WorkTime Control config file, config.inc.php, <b><i>is not writable</i></b> by your webserver user:&nbsp;";
             echo "<b>";
             echo $process_user['name'];
             echo "</b>.<b>";
             echo $process_group['name'];
             echo "</b>&nbsp;&nbsp;(user.group).</td></tr>\n";
-            echo "              <tr><td height=25 class=table_rows_red>To edit the System Settings within PHP Timeclock, either change the permissions on config.inc.php for this user, or assign this file to another owner, preferably your webserver user.</td></tr>\n";
+            echo "              <tr><td height=25 class=table_rows_red>To edit the System Settings within WorkTime Control, either change the permissions on config.inc.php for this user, or assign this file to another owner, preferably your webserver user.</td></tr>\n";
             echo "              <tr><td height=25 class=table_rows_red> Current owner of config.inc.php is&nbsp;<b>";
             echo $user["name"];
             echo "</b>.<b>";
@@ -176,8 +176,8 @@ end moved */
             exit;
         } else {
             echo "            <table width=100% border=0 cellpadding=0 cellspacing=0>\n";
-            echo "              <tr><td height=25 class=table_rows_red>The PHP Timeclock config file, config.inc.php, <b><i>is not writable</i></b> by your webserver user!</td></tr>\n";
-            echo "              <tr><td height=25 class=table_rows_red>To edit the System Settings within PHP Timeclock, either change the permissions on config.inc.php for this user, or assign this file to another owner, preferably your webserver user.</td></tr>\n";
+            echo "              <tr><td height=25 class=table_rows_red>The WorkTime Control config file, config.inc.php, <b><i>is not writable</i></b> by your webserver user!</td></tr>\n";
+            echo "              <tr><td height=25 class=table_rows_red>To edit the System Settings within WorkTime Control, either change the permissions on config.inc.php for this user, or assign this file to another owner, preferably your webserver user.</td></tr>\n";
             echo "            </table>\n";
             include '../footer.php';
 	    include '../theme/templates/controlsidebar.inc'; 
@@ -370,7 +370,7 @@ end moved */
 
     echo "            <table class='table table-hover'>\n";
     echo "              <tr><th colspan=3 class=table_heading_no_color nowrap align=left>Edit System Settings</th></tr>\n";
-    echo "              <tr><td colspan=3 class=table_rows width=10% align=left style='padding-left:4px;'>Listed below are the settings that have been chosen within config.inc.php, the config file for PHP Timeclock. Edit as you see fit. Then click the \"Next\" button near the bottom of the page to continue.</td></tr>\n";
+    echo "              <tr><td colspan=3 class=table_rows width=10% align=left style='padding-left:4px;'>Listed below are the settings that have been chosen within config.inc.php, the config file for WorkTime Control. Edit as you see fit. Then click the \"Next\" button near the bottom of the page to continue.</td></tr>\n";
     echo "              <tr><td height=40 class=table_rows width=10% align=left style='padding-left:4px;color:#27408b;'><b><u>VARIABLE</u></b></td> <td class=table_rows width=10% align=left style='color:#27408b;'><b><u>VALUE</u></b></td> <td class=table_rows width=80% align=left style='padding-left:10px;color:#27408b;'><b><u>DESCRIPTION</u></b></td></tr>\n";
     // Database settings
     echo "              <tr><th colspan=3 class=table_heading_no_color nowrap align=left>mysql DB Settings</th></tr>\n";
@@ -391,11 +391,11 @@ end moved */
     echo "              <input type=\"hidden\" name=\"db_password\" value=\"$db_password\">\n";
     $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
     // Display database prefix
-    echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>db_prefix:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>$db_prefix</td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This adds a prefix to the tablenames in the database. This can be helpful if you have an existing mysql database that you would like to use with PHP Timeclock. If you are unaware of what is meant by 'table prefix', then please leave this option as is. Default is to leave it blank.</td></tr>\n";
+    echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>db_prefix:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>$db_prefix</td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This adds a prefix to the tablenames in the database. This can be helpful if you have an existing mysql database that you would like to use with WorkTime Control. If you are unaware of what is meant by 'table prefix', then please leave this option as is. Default is to leave it blank.</td></tr>\n";
     echo "              <input type=\"hidden\" name=\"db_prefix\" value=\"$db_prefix\">\n";
     $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
     // Display database version
-    echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>dbversion:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>$dbversion</td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This is the versioning number of the current database for PHP Timeclock.</td></tr>\n";
+    echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>dbversion:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>$dbversion</td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This is the versioning number of the current database for WorkTime Control.</td></tr>\n";
     echo "              <input type=\"hidden\" name=\"dbversion\" value=\"$dbversion\">\n";
     $row_count++; $row_color = ($row_count % 2) ? $color2: $color1;
     // Display database persistent connection usage
@@ -448,7 +448,7 @@ end moved */
         echo "                  <td bgcolor='$row_color' class=table_rows_red width=10% align=left valign=top><b>\"Yes\" or \"No\" has not been chosen in config.inc.php</b></td>\n";
         echo "              <input type=\"hidden\" name=\"restrict_ips\" value=\"2\">\n";
     }
-    echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Choose \"yes\" to restrict the ip addresses that can connect to PHP Timeclock. If \"yes\" is chosen, you MUST input the allowed networks in the allowed_networks array below. Otherwise, choosing \"yes\" here and leaving allowed_networks blank will cause PHP Timeclock to reject everyone attempting to connect to it. Default is \"<b>no</b>\".</td></tr>\n";
+    echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Choose \"yes\" to restrict the ip addresses that can connect to WorkTime Control. If \"yes\" is chosen, you MUST input the allowed networks in the allowed_networks array below. Otherwise, choosing \"yes\" here and leaving allowed_networks blank will cause WorkTime Control to reject everyone attempting to connect to it. Default is \"<b>no</b>\".</td></tr>\n";
     $row_count++; $row_color = ($row_count % 2) ? $color2: $color1;
     // What networks are allowed
     echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>allowed_networks:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>\n";
@@ -468,7 +468,7 @@ end moved */
         }
     }
     echo "                  </td>\n";
-    echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>These are the networks or ip addresses you wish to allow to connect to PHP Timeclock. This will currently only work for ipv4 addresses, ipv6 may be supported in a future release. If <b>restrict_ips</b> is set to \"<b>no</b>\", this option is ignored. To add more than 5 networks, you will need to add them manually in config.inc.php.<p> <b><u>examples that will work</u></b>:<br>10.0.0.4<br>192.168.1.[11-20]<br>192.168.1.0/24<br>192.0.0.0/8<br><br> <b><u>examples that will NOT work</u></b>:<br>10.1.1.15[0-9]<br>10.1.1.1 - 10.1.1.254<br>10.1.1.</p><br></td></tr>\n";
+    echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>These are the networks or ip addresses you wish to allow to connect to WorkTime Control. This will currently only work for ipv4 addresses, ipv6 may be supported in a future release. If <b>restrict_ips</b> is set to \"<b>no</b>\", this option is ignored. To add more than 5 networks, you will need to add them manually in config.inc.php.<p> <b><u>examples that will work</u></b>:<br>10.0.0.4<br>192.168.1.[11-20]<br>192.168.1.0/24<br>192.0.0.0/8<br><br> <b><u>examples that will NOT work</u></b>:<br>10.1.1.15[0-9]<br>10.1.1.1 - 10.1.1.254<br>10.1.1.</p><br></td></tr>\n";
     $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
     // IP logging
     echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>ip_logging:</td>\n";
@@ -697,7 +697,7 @@ end moved */
         echo "                  <td bgcolor='$row_color' class=table_rows_red width=10% align=left valign=top><b>\"Yes\" or \"No\" has not been chosen in config.inc.php</b></td>\n";
         echo "              <input type=\"hidden\" name=\"display_ip\" value=\"2\">\n";
     }
-    echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Choose whether to include in the reports the ip addresses of the systems that connect to sign-in/out into PHP Timeclock or not. This option is useful for auditing purposes. The <b>ip_logging</b> option must be set to \"<b>yes</b>\" in order for this option to work as expected. Default is \"<b>yes</b>\".</td></tr>\n";
+    echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Choose whether to include in the reports the ip addresses of the systems that connect to sign-in/out into WorkTime Control or not. This option is useful for auditing purposes. The <b>ip_logging</b> option must be set to \"<b>yes</b>\" in order for this option to work as expected. Default is \"<b>yes</b>\".</td></tr>\n";
     $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
     // Export to CSV option
     echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>export_csv:</td>\n";
@@ -756,7 +756,7 @@ end moved */
     echo "              <tr><td nowrap style='border:solid #888888;border-width:0px 0px 1px 0px;' colspan=3>&nbsp;</td></tr>\n";
     echo "              <tr><th colspan=3 class=table_heading_no_color nowrap align=left>Display Settings</th></tr>\n";
     // Colour 1 option
-    echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>color1:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"10\" maxlength=\"7\" name=\"color1\" value=\"$color1\" /></td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>When times are displayed anywhere within PHP Timeclock, they are displayed with these two alternating row colors. Default is \"<b>#EFEFEF</b>\". </td></tr>\n";
+    echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>color1:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"10\" maxlength=\"7\" name=\"color1\" value=\"$color1\" /></td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>When times are displayed anywhere within WorkTime Control, they are displayed with these two alternating row colors. Default is \"<b>#EFEFEF</b>\". </td></tr>\n";
     $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
     // Colour 2 option
     echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>color2:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"10\" maxlength=\"7\" name=\"color2\" value=\"$color2\" /></td> <td bgcolor='$row_color' class=table_rows width=80% alitn=left style='padding-left:10px;' valign=top>Default is \"<b>#FBFBFB</b>\".</td></tr>\n";
@@ -897,14 +897,14 @@ end moved */
         }
     }
     echo "                  </td>\n";
-    echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>These are the display names for the links chosen above, meaning these are the items that are actually displayed in PHP Timeclock. The number of display_links MUST equal the number of links you have chosen above, in order for this option to work as expected. To add more than 10 links, you will need to add them manually in config.inc.php. Leave all 10 blanks empty to ignore this option. </td></tr>\n";
+    echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>These are the display names for the links chosen above, meaning these are the items that are actually displayed in WorkTime Control. The number of display_links MUST equal the number of links you have chosen above, in order for this option to work as expected. To add more than 10 links, you will need to add them manually in config.inc.php. Leave all 10 blanks empty to ignore this option. </td></tr>\n";
     $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
     // Display logo
     $logo = htmlentities($logo);
     echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>logo:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"30\" maxlength=\"200\" name=\"logo\" value=\"$logo\" /></td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This is a logo or graphic displayed in the top left of each page. Set it to \"none\" to ignore this option. </td></tr>\n";
     $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
     // Refresh rate
-    echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>refresh:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"10\" maxlength=\"10\" name=\"refresh\" value=\"$refresh\" /></td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Sets the refresh rate (in seconds) for the application. If PHP Timeclock is kept open, it will refresh this number of seconds to display the most current information. Set it to \"none\" to ignore this option. Default is <b>300</b>. </td></tr>\n";
+    echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>refresh:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"10\" maxlength=\"10\" name=\"refresh\" value=\"$refresh\" /></td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Sets the refresh rate (in seconds) for the application. If WorkTime Control is kept open, it will refresh this number of seconds to display the most current information. Set it to \"none\" to ignore this option. Default is <b>300</b>. </td></tr>\n";
     $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
     // Display column name
     echo "
@@ -1568,7 +1568,7 @@ end moved */
         echo "            <br />\n";
         echo "            <table width=100% border=0 cellpadding=0 cellspacing=0>\n";
         echo "              <tr><th colspan=3 class=table_heading_no_color nowrap align=left>Edit System Settings</th></tr>\n";
-        echo "              <tr><td colspan=3 class=table_rows width=10% align=left style='padding-left:4px;'>Listed below are the settings that have been chosen within config.inc.php, the config file for PHP Timeclock. Edit as you see fit. Then click the \"Next\" button near the bottom of the page to continue.</td></tr>\n";
+        echo "              <tr><td colspan=3 class=table_rows width=10% align=left style='padding-left:4px;'>Listed below are the settings that have been chosen within config.inc.php, the config file for WorkTime Control. Edit as you see fit. Then click the \"Next\" button near the bottom of the page to continue.</td></tr>\n";
         echo "              <tr><td height=40 class=table_rows width=10% align=left style='padding-left:4px;color:#27408b;'><b><u>VARIABLE</u></b></td> <td class=table_rows width=10% align=left style='color:#27408b;'><b><u>VALUE</u></b></td> <td class=table_rows width=80% align=left style='padding-left:10px;color:#27408b;'><b><u>DESCRIPTION</u></b></td></tr>\n";
         echo "              <tr><th colspan=3 class=table_heading_no_color nowrap align=left>mysql DB Settings</th></tr>\n";
         echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>db_hostname:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>$db_hostname</td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This is the hostname for your mysql server, default is <b>localhost</b>.</td></tr>\n";
@@ -1583,10 +1583,10 @@ end moved */
         echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>db_password:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>********</td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This is the mysql password for the username you created during the install.</td></tr>\n";
         echo "              <input type=\"hidden\" name=\"db_password\" value=\"$post_db_password\">\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
-        echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>db_prefix:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>$db_prefix</td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This adds a prefix to the tablenames in the database. This can be helpful if you have an existing mysql database that you would like to use with PHP Timeclock. If you are unaware of what is meant by 'table prefix', then please leave this option as is. Default is to leave it blank.</td></tr>\n";
+        echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>db_prefix:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>$db_prefix</td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This adds a prefix to the tablenames in the database. This can be helpful if you have an existing mysql database that you would like to use with WorkTime Control. If you are unaware of what is meant by 'table prefix', then please leave this option as is. Default is to leave it blank.</td></tr>\n";
         echo "              <input type=\"hidden\" name=\"db_prefix\" value=\"$post_db_prefix\">\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
-        echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>dbversion:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>$dbversion</td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This is the versioning number of the current database for PHP Timeclock.</td></tr>\n";
+        echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>dbversion:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>$dbversion</td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This is the versioning number of the current database for WorkTime Control.</td></tr>\n";
         echo "              <input type=\"hidden\" name=\"dbversion\" value=\"$post_dbversion\">\n";
         echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>use_persistent_connection:</td>\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
@@ -1633,7 +1633,7 @@ end moved */
             echo "                  <td bgcolor='$row_color' class=table_rows_red width=10% align=left valign=top><b>\"Yes\" or \"No\" has not been chosen in config.inc.php</b></td>\n";
             echo "              <input type=\"hidden\" name=\"restrict_ips\" value=\"2\">\n";
         }
-        echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Choose \"yes\" to restrict the ip addresses that can connect to PHP Timeclock. If \"yes\" is chosen, you MUST input the allowed networks in the allowed_networks array below. Otherwise, choosing \"yes\" here and leaving allowed_networks blank will cause PHP Timeclock to reject everyone attempting to connect to it. Default is \"<b>no</b>\".</td></tr>\n";
+        echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Choose \"yes\" to restrict the ip addresses that can connect to WorkTime Control. If \"yes\" is chosen, you MUST input the allowed networks in the allowed_networks array below. Otherwise, choosing \"yes\" here and leaving allowed_networks blank will cause WorkTime Control to reject everyone attempting to connect to it. Default is \"<b>no</b>\".</td></tr>\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2: $color1;
         echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>allowed_networks:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top>\n";
         for ($x=0;$x<count($post_allowed_networks);$x++) {
@@ -1645,7 +1645,7 @@ end moved */
             }
         }
         echo "                  </td>\n";
-        echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>These are the networks or ip addresses you wish to allow to connect to PHP Timeclock. This will currently only work for ipv4 addresses, ipv6 may be supported in a future release. If <b>restrict_ips</b> is set to \"<b>no</b>\", this option is ignored. To add more than 5 networks, you will need to add them manually in config.inc.php.<p> <b><u>examples that will work</u></b>:<br>10.0.0.4<br>192.168.1.[11-20]<br>192.168.1.0/24<br>192.0.0.0/8<br><br> <b><u>examples that will NOT work</u></b>:<br>10.1.1.15[0-9]<br>10.1.1.1 - 10.1.1.254<br>10.1.1.</p><br></td></tr>\n";
+        echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>These are the networks or ip addresses you wish to allow to connect to WorkTime Control. This will currently only work for ipv4 addresses, ipv6 may be supported in a future release. If <b>restrict_ips</b> is set to \"<b>no</b>\", this option is ignored. To add more than 5 networks, you will need to add them manually in config.inc.php.<p> <b><u>examples that will work</u></b>:<br>10.0.0.4<br>192.168.1.[11-20]<br>192.168.1.0/24<br>192.0.0.0/8<br><br> <b><u>examples that will NOT work</u></b>:<br>10.1.1.15[0-9]<br>10.1.1.1 - 10.1.1.254<br>10.1.1.</p><br></td></tr>\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
         echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>ip_logging:</td>\n";
         if ($post_ip_logging == "1") {
@@ -1862,7 +1862,7 @@ end moved */
             echo "                  <td bgcolor='$row_color' class=table_rows_red width=10% align=left valign=top><b>\"Yes\" or \"No\" has not been chosen in config.inc.php</b></td>\n";
             echo "              <input type=\"hidden\" name=\"display_ip\" value=\"2\">\n";
         }
-        echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Choose whether to include in the reports the ip addresses of the systems that connect to sign-in/out into PHP Timeclock or not. This option is useful for auditing purposes. The <b>ip_logging</b> option must be set to \"<b>yes</b>\" in order for this option to work as expected. Default is \"<b>yes</b>\".</td></tr>\n";
+        echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Choose whether to include in the reports the ip addresses of the systems that connect to sign-in/out into WorkTime Control or not. This option is useful for auditing purposes. The <b>ip_logging</b> option must be set to \"<b>yes</b>\" in order for this option to work as expected. Default is \"<b>yes</b>\".</td></tr>\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
         echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>export_csv:</td>\n";
         if ($post_export_csv == "1") {
@@ -1913,7 +1913,7 @@ end moved */
         $row_count = '0'; $row_color = ($row_count % 2) ? $color2 : $color1;
         echo "              <tr><td nowrap style='border:solid #888888;border-width:0px 0px 1px 0px;' colspan=3>&nbsp;</td></tr>\n";
         echo "              <tr><th colspan=3 class=table_heading_no_color nowrap align=left>Display Settings</th></tr>\n";
-        echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>color1:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"10\" maxlength=\"7\" name=\"color1\" value=\"$post_color1\" /></td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>When times are displayed anywhere within PHP Timeclock, they are displayed with these two alternating row colors. Default is \"<b>#EFEFEF</b>\". </td></tr>\n";
+        echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>color1:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"10\" maxlength=\"7\" name=\"color1\" value=\"$post_color1\" /></td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>When times are displayed anywhere within WorkTime Control, they are displayed with these two alternating row colors. Default is \"<b>#EFEFEF</b>\". </td></tr>\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
         echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>color2:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"10\" maxlength=\"7\" name=\"color2\" value=\"$post_color2\" /></td> <td bgcolor='$row_color' class=table_rows width=80% alitn=left style='padding-left:10px;' valign=top>Default is \"<b>#FBFBFB</b>\".</td></tr>\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
@@ -2029,13 +2029,13 @@ end moved */
             }
         }
         echo "                  </td>\n";
-        echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>These are the display names for the links chosen above, meaning these are the items that are actually displayed in PHP Timeclock. The number of display_links MUST equal the number of links you have chosen above, in order for this option to work as expected. To add more than 10 links, you will need to add them manually in config.inc.php. Leave all 10 blanks empty to ignore this option.</td></tr>\n";
+        echo "                  <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>These are the display names for the links chosen above, meaning these are the items that are actually displayed in WorkTime Control. The number of display_links MUST equal the number of links you have chosen above, in order for this option to work as expected. To add more than 10 links, you will need to add them manually in config.inc.php. Leave all 10 blanks empty to ignore this option.</td></tr>\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
         $post_logo = stripslashes($post_logo);
         $post_logo = htmlentities($post_logo);
         echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>logo:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"30\" maxlength=\"200\" name=\"logo\" value=\"$post_logo\" /></td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>This is a logo or graphic displayed in the top left of each page. Set it to \"none\" to ignore this option. </td></tr>\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
-        echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>refresh:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"10\" maxlength=\"10\" name=\"refresh\" value=\"$post_refresh\" /></td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Sets the refresh rate (in seconds) for the application. If PHP Timeclock is kept open, it will refresh this number of seconds to display the most current information. Set it to \"none\" to ignore this option. Default is <b>300</b>. </td></tr>\n";
+        echo "              <tr><td bgcolor='$row_color' class=table_rows width=10% align=left style='padding-left:4px;' valign=top>refresh:</td> <td bgcolor='$row_color' class=table_rows width=10% align=left valign=top><input type=\"text\" size=\"10\" maxlength=\"10\" name=\"refresh\" value=\"$post_refresh\" /></td> <td bgcolor='$row_color' class=table_rows width=80% align=left style='padding-left:10px;' valign=top>Sets the refresh rate (in seconds) for the application. If WorkTime Control is kept open, it will refresh this number of seconds to display the most current information. Set it to \"none\" to ignore this option. Default is <b>300</b>. </td></tr>\n";
         $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
         // Display column name
         echo "
@@ -2592,23 +2592,23 @@ $db_name = "'. $post_db_name .'";
 
 
 /* This adds a prefix to the tablenames in the database. This can be helpful if you
-have an existing mysql database that you would like to use with PHP Timeclock.
+have an existing mysql database that you would like to use with WorkTime Control.
 If you are unaware of what is meant by "table prefix", then please leave this
 option as is. Default is to leave it blank. */
 
 $db_prefix = "'. $post_db_prefix .'";
 
 
-/* Choose "yes" to restrict the ip addresses that can connect to PHP Timeclock. If
+/* Choose "yes" to restrict the ip addresses that can connect to WorkTime Control. If
 "yes" is chosen, you MUST input the allowed networks in the $allowed_networks
 array below. Otherwise, choosing "yes" here and leaving $allowed_networks
-blank will cause PHP Timeclock to reject everyone attempting to connect to it.
+blank will cause WorkTime Control to reject everyone attempting to connect to it.
 Default is "no". */
 
 $restrict_ips = "'. $post_restrict_ips .'";
 
 
-/* Insert the networks or ip addresses you wish to allow to connect to PHP Timeclock
+/* Insert the networks or ip addresses you wish to allow to connect to WorkTime Control
 into the $allowed_networks array below. There is not a limit on how many networks
 or addresses that can be included in this array. This will currently only work for
 ipv4 addresses, ipv6 may be supported in a future release. If $restrict_ips is
@@ -2632,7 +2632,7 @@ $allowed_networks = '. $post_allowed_networks .'
 
 /* Choose "yes" if you want to disable the Edit System Settings page within PHP
 Timeclock. This page allows you to make *most* of your changes to the
-config.inc.php file through the PHP Timeclock interface instead of editing
+config.inc.php file through the WorkTime Control interface instead of editing
 the config.inc.php file by hand. Many will view this as a possible security risk
 and might would rather disable this functionality. Default is "no". */
 
@@ -2682,7 +2682,7 @@ $require_time_admin_edit_reason = "'. $post_require_time_admin_edit_reason .'";
 
 /* Choose the way dates are displayed. DO NOT EDIT THESE DATE VARIABLES MANUALLY UNLESS YOU
 KNOW WHAT YOU ARE DOING. Instead, change these date variables via the Edit System Settings
-page in the Administration section of PHP Timeclock (sysedit.php). $datefmt default is
+page in the Administration section of WorkTime Control (sysedit.php). $datefmt default is
 "n/j/y", $js_datefmt default is "M/d/yy", $tmp_datefmt default is "m/d/yy", and
 $calendar_style default is "amer". You will need to choose date formats with matching
 numbers, ie: if format number 10 is used for $datefmt, then format number 10 will need to
@@ -2902,7 +2902,7 @@ $user_or_display = "'. $post_user_or_display .'";
 
 
 /* Choose whether to include in the reports the ip addresses of the systems that connect to
-sign-in/out into PHP Timeclock or not. This option is useful for auditing purposes. The
+sign-in/out into WorkTime Control or not. This option is useful for auditing purposes. The
 ip_logging option must be set to "yes" in order for this option to work as expected.
 Default is "yes". */
 

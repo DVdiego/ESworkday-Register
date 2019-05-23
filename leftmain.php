@@ -604,7 +604,7 @@ echo "
 ";
 
 if ($request == 'POST') { // Process employee's punch information
-    // signin/signout data passed over from timeclock.php //
+    // signin/signout data passed over from worktime.php //
     $inout = $_POST['left_inout'];
 //    $notes = ereg_replace("[^[:alnum:] \,\.\?-]","",strtolower($_POST['left_notes']));
 //revisar filtrado de carcateres
@@ -810,17 +810,17 @@ if ($request == 'POST') { // Process employee's punch information
     @$displayname = addslashes($displayname);
 
     // configure timestamp to insert/update //
-    $time = time();
-    $hour = gmdate('H',$time);
-    $min = gmdate('i',$time);
-    $sec = gmdate('s',$time);
-    $month = gmdate('m',$time);
-    $day = gmdate('d',$time);
-    $year = gmdate('Y',$time);
-  $tz_stamp = mktime ($hour, $min, $sec, $month, $day, $year);
+    // $time = time();
+    // $hour = gmdate('H',$time);
+    // $min = gmdate('i',$time);
+    // $sec = gmdate('s',$time);
+    // $month = gmdate('m',$time);
+    // $day = gmdate('d',$time);
+    // $year = gmdate('Y',$time);
+  // $tz_stamp = mktime ($hour, $min, $sec, $month, $day, $year);
   // testing better ways
 
-  //$tz_stamp = time ($hour, $min, $sec, $month, $day, $year);
+  $tz_stamp = time ();
 
     if ($show_display_name == "yes") {
         $sel_query = "select empfullname from ".$db_prefix."employees where displayname = '".$displayname."'";
@@ -876,7 +876,7 @@ if (! isset($_GET['printer_friendly']) && ($message_of_the_day != "none")) {
 }
 
       // if (! isset($_GET['printer_friendly'])) {
-      // 	echo ' <a href="timeclock.php?printer_friendly=true" class="btn btn-app">
+      // 	echo ' <a href="worktime.php?printer_friendly=true" class="btn btn-app">
       //                 <i class="glyphicon glyphicon-print"></i> Printer Friendly Page
       //               </a>';
       // }

@@ -65,3 +65,24 @@ div.box.box-primary {
   background-color: #00a65a !important;
   border-color: #222d32 !important;
 }
+
+
+
+/*separadores formularios*/
+hr {
+
+}
+
+hr.separate-infos {
+    border-top: 1px solid green;
+}
+
+hr.separate-days {
+    border-top: 2px solid red;
+}
+
+p.present-sum {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: green;
+}

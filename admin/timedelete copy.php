@@ -49,7 +49,7 @@ if (($timefmt == "G:i") || ($timefmt == "H:i")) {
 // Ensure the user has access rights to editing time.
 if ((!isset($_SESSION['valid_user'])) && (!isset($_SESSION['time_admin_valid_user']))) {
     echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-    echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Administration</td></tr>\n";
+    echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Administration</td></tr>\n";
     echo "  <tr class=right_main_text>\n";
     echo "    <td align=center valign=top scope=row>\n";
     echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
@@ -62,7 +62,7 @@ if ((!isset($_SESSION['valid_user'])) && (!isset($_SESSION['time_admin_valid_use
 if ($request == 'GET') { // Display employee select interface for deleting an employee's time
     if (!isset($_GET['username'])) { // Make sure there is a logged in user
         echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-        echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>PHP Timeclock Error!</td></tr>\n";
+        echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Error!</td></tr>\n";
         echo "  <tr class=right_main_text>\n";
         echo "    <td align=center valign=top scope=row>\n";
         echo "      <table width=300 border=0 cellpadding=5 cellspacing=0>\n";
