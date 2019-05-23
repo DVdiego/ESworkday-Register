@@ -134,8 +134,18 @@ echo "            <br />\n";
 
 $get_user = addslashes($get_user);
 
-$query = "select empfullname from ".$db_prefix."employees where empfullname = '".$get_user."'";
+
+if($login_with_fullname == "yes"){
+  $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$get_user."'";
+}elseif ($login_with_displayname == "yes"){
+  $query = "select empfullname from ".$db_prefix."employees where displayname = '".$get_user."'";
+}elseif ($login_with_dni == "yes"){
+  $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$get_user."'";
+}
+
+
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
 while ($row=mysqli_fetch_array($result)) {
 $username = stripslashes("".$row['empfullname']."");
 }
@@ -151,11 +161,16 @@ if (!isset($username)) {echo "username is not defined for this user.\n"; exit;}
 // ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 // }
 // if (!isset($getoffice)) {echo "Office is not defined for this user. Go back and associate this user with an office.\n"; exit;}
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-exchange"></i> Change Password</h3>
+            </div>
+            <div class="box-body">';
 
-echo "            <table class=table>\n";
 echo "            <form name='form' action='$self' method='post'>\n";
-echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/lock_edit.png' />&nbsp;&nbsp;&nbsp;Change
-                      Password</th></tr>\n";
+echo "            <table class=table>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td style='padding-left:20px;'
                       align=left class=table_rows width=80%><input type='hidden' name='post_username' value=\"$username\">$username</td></tr>\n";
@@ -172,6 +187,12 @@ echo "              <tr><td height=40>&nbsp;</td></tr>\n";
 echo "              <tr><td width=30><input type='image' name='submit' value='Change Password'
                   src='../images/buttons/next_button.png'></td>
                   <td><a href='useradmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
+
+
+echo '      </div>
+          </div>
+        </div>
+      </div>';
 	      include '../theme/templates/endmaincontent.inc';
 	      include '../footer.php';
 	      include '../theme/templates/controlsidebar.inc';
@@ -294,6 +315,13 @@ echo "            </table>\n";
 if (isset($evil_password)) {
 
 echo "            <br />\n";
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-exchange"></i> Create Status</h3>
+            </div>
+            <div class="box-body">';
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/lock_edit.png' />&nbsp;&nbsp;&nbsp;Change
@@ -352,13 +380,15 @@ echo "            <table align=center width=60% border=0 cellpadding=0 cellspaci
 echo "              <tr><td height=40>&nbsp;</td></tr>\n";
 echo "              <tr><td><a href='useradmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr>
             </table>\n";
-include '../theme/templates/endmaincontent.inc';
-include '../footer.php';
-include '../theme/templates/controlsidebar.inc';
-include '../theme/templates/endmain.inc';
-include '../theme/templates/adminfooterscripts.inc';
-
-exit;
+            echo '      </div>
+                      </div>
+                    </div>
+                  </div>';
+            include '../theme/templates/endmaincontent.inc';
+            include '../theme/templates/controlsidebar.inc';
+            include '../theme/templates/endmain.inc';
+            include '../theme/templates/adminfooterscripts.inc';
+            include '../footer.php';exit;
 }
 }
 ?>

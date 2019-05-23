@@ -61,9 +61,22 @@ echo "            <table class=table>\n";
 
 echo "              <tr><td height=15></td></tr>\n";
 
-$query4 = "select empfullname, empDNI, displayname, email, contract ,groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
-		where empfullname = '".$_SESSION['valid_profile']."'
-					order by empfullname";
+
+
+if($login_with_fullname == "yes"){
+
+	$query4 = "select empfullname, empDNI, displayname, email, contract ,groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
+			where empfullname = '".$_SESSION['valid_profile']."' order by empfullname";
+}elseif ($login_with_displayname == "yes"){
+
+	$query4 = "select empfullname, empDNI, displayname, email, contract ,groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
+			where displayname = '".$_SESSION['valid_profile']."' order by empfullname";
+}elseif ($login_with_dni == "yes"){
+
+	$query4 = "select empfullname, empDNI, displayname, email, contract ,groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
+			where empDNI = '".$_SESSION['valid_profile']."' order by empfullname";
+}
+
 $result4 = mysqli_query($GLOBALS["___mysqli_ston"], $query4);
 
 while ($row=mysqli_fetch_array($result4)) {

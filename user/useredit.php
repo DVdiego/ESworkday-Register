@@ -102,7 +102,7 @@ echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application.png' alt='Status Summary' />
                 &nbsp;&nbsp;<a class=admin_headings href='statusadmin.php'>Status Summary</a></td></tr>\n";
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application_add.png' alt='Create Status' />&nbsp;&nbsp;
-                <a class=admin_headings href='statuscreate.php'>Create Status</a></td></tr>\n";
+                <a class=admin_headings href='statuscreate.php'>Edit User</a></td></tr>\n";
 echo "        <tr><td class=left_rows height=33></td></tr>\n";
 echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2>Miscellaneous</td></tr>\n";
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/clock.png' alt='Modify Time' />
@@ -122,7 +122,16 @@ $get_user = addslashes($get_user);
 
 $row_count = 0;
 
-$query = "select * from ".$db_prefix."employees where empfullname = '".$get_user."' order by empfullname";
+
+
+if($login_with_fullname == "yes"){
+  $query = "select * from ".$db_prefix."employees where empfullname = '".$get_user."' order by empfullname";
+}elseif ($login_with_displayname == "yes"){
+  $query = "select * from ".$db_prefix."employees where displayname = '".$get_user."' order by empfullname";
+}elseif ($login_with_dni == "yes"){
+  $query = "select * from ".$db_prefix."employees where empDNI = '".$get_user."' order by empfullname";
+}
+
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 while ($row=mysqli_fetch_array($result)) {
@@ -160,12 +169,17 @@ echo "                <td class=table_rows width=20 align=center><img src='../im
                     Sys Admin privileges before attempting to edit the Sys Admin properties of this user.</td></tr>\n";
 echo "            </table>\n";
 }
+
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-exchange"></i> Edit User</h3>
+            </div>
+            <div class="box-body">';
 echo "            <br />\n";
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table class=table>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/user_edit.png' />&nbsp;&nbsp;&nbsp;Edit User</th>\n";
-echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
                       colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$username\">$username</td></tr>\n";
@@ -187,12 +201,15 @@ echo "                  <input type='hidden' name='get_office' value='$get_offic
 echo "              <tr><td width=30><input type='image' name='submit' value='Edit User' align='middle'
                       src='../images/buttons/next_button.png'></td><td><a href='useradmin.php'><img src='../images/buttons/cancel_button.png'
                       border='0'></td></tr></table></form>\n";
-		      include '../theme/templates/endmaincontent.inc';
-		      include '../footer.php';
-		      include '../theme/templates/controlsidebar.inc';
-		      include '../theme/templates/endmain.inc';
-		      include '../theme/templates/adminfooterscripts.inc';
-		      exit;
+echo '      </div>
+          </div>
+        </div>
+      </div>';
+include '../theme/templates/endmaincontent.inc';
+include '../theme/templates/controlsidebar.inc';
+include '../theme/templates/endmain.inc';
+include '../theme/templates/adminfooterscripts.inc';
+include '../footer.php';exit;
 }
 
 elseif ($request == 'POST') {
@@ -279,7 +296,7 @@ echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application.png' alt='Status Summary' />
                 &nbsp;&nbsp;<a class=admin_headings href='statusadmin.php'>Status Summary</a></td></tr>\n";
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application_add.png' alt='Create Status' />&nbsp;&nbsp;
-                <a class=admin_headings href='statuscreate.php'>Create Status</a></td></tr>\n";
+                <a class=admin_headings href='statuscreate.php'>Edit User</a></td></tr>\n";
 echo "        <tr><td class=left_rows height=33></td></tr>\n";
 echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2>Miscellaneous</td></tr>\n";
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/clock.png' alt='Modify Time' />
@@ -401,13 +418,16 @@ if (!isset($tmp_officename)) {echo "Group is not defined.\n"; exit;}
 // end post validation //
 
 if (!empty($string)) {$display_name = stripslashes($display_name);}
-
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-exchange"></i> Edit User</h3>
+            </div>
+            <div class="box-body">';
 echo "            <br />\n";
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/user_edit.png' />&nbsp;&nbsp;&nbsp;Edit User</th>\n";
-echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
                       colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username'
@@ -431,11 +451,15 @@ echo "                  <input type='hidden' name='get_office' value='$get_offic
 echo "              <tr><td width=30><input type='image' name='submit' value='Edit User' align='middle'
                       src='../images/buttons/next_button.png'></td><td><a href='useradmin.php'><img src='../images/buttons/cancel_button.png'
                       border='0'></td></tr></table></form>\n";
-		      include '../theme/templates/endmaincontent.inc';
-		      include '../footer.php';
-		      include '../theme/templates/controlsidebar.inc';
-		      include '../theme/templates/endmain.inc';
-		      include '../theme/templates/adminfooterscripts.inc';
+                      echo '      </div>
+                                </div>
+                              </div>
+                            </div>';
+                      include '../theme/templates/endmaincontent.inc';
+                      include '../theme/templates/controlsidebar.inc';
+                      include '../theme/templates/endmain.inc';
+                      include '../theme/templates/adminfooterscripts.inc';
+                      include '../footer.php';exit;
 $post_username = stripslashes($post_username);
 $display_name = stripslashes($display_name);
 exit;
@@ -489,7 +513,7 @@ echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application.png' alt='Status Summary' />
                 &nbsp;&nbsp;<a class=admin_headings href='statusadmin.php'>Status Summary</a></td></tr>\n";
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application_add.png' alt='Create Status' />&nbsp;&nbsp;
-                <a class=admin_headings href='statuscreate.php'>Create Status</a></td></tr>\n";
+                <a class=admin_headings href='statuscreate.php'>Edit User</a></td></tr>\n";
 echo "        <tr><td class=left_rows height=33></td></tr>\n";
 echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2>Miscellaneous</td></tr>\n";
 echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/clock.png' alt='Modify Time' />
@@ -510,11 +534,15 @@ echo "              <tr>\n";
 echo "                <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td>
                 <td class=table_rows_green>&nbsp;User properties updated successfully.</td></tr>\n";
 echo "            </table>\n";
+echo '<div class="row">
+        <div class="col-md-8">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-exchange"></i> Edit User</h3>
+            </div>
+            <div class="box-body">';
 echo "            <br />\n";
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/user_edit.png' />&nbsp;&nbsp;&nbsp;Edit User</th>\n";
-echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 
 $query4 = "select empfullname, displayname, email, groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
@@ -565,11 +593,14 @@ echo "            </table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
 echo "              <tr><td><a href='useradmin.php'><img src='../images/buttons/done_button.png' border='0'></a></td></tr></table>\n";
+echo '      </div>
+          </div>
+        </div>
+      </div>';
 include '../theme/templates/endmaincontent.inc';
-include '../footer.php';
 include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
- exit;
+include '../footer.php';exit;
 }
 ?>

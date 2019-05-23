@@ -161,7 +161,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
     echo '
           <div class="user-panel">
             <div class="pull-left image">
-              <h3><i class="fa fa-user"></i></h3>
+              <h3><i class="fa fa-user text-blue"></i></h3>
             </div>
             <div class="pull-left info">
               <p>'.$logged_in_user.'</p>
@@ -622,10 +622,19 @@ if ($request == 'POST') { // Process employee's punch information
         }
     }
 
+    if(empty($_POST['latitude']) || empty($_POST['longitude'])){
+
+      $lat = 0;
+      $lon = 0;
+    }else {
+      $lat = $_POST['latitude'];
+      $lon = $_POST['longitude'];
+    }
+
     if (strtolower($ip_logging) == "yes") {
-        $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress) values ('".$fullname."', '".$inout."', '".$tz_stamp."', '".$notes."', '".$connecting_ip."')";
+        $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress, latitude, longitude) values ('".$fullname."', '".$inout."', '".$tz_stamp."', '".$notes."', '".$connecting_ip."','" . $lat . "','" . $lon . "')";
     } else {
-        $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes) values ('".$fullname."', '".$inout."', '".$tz_stamp."', '".$notes."')";
+        $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, latitude, longitude) values ('".$fullname."', '".$inout."', '".$tz_stamp."', '".$notes."','" . $lat . "','" . $lon . "')";
     }
 
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
@@ -680,3 +689,26 @@ echo '
 	<!-- /.extra messages -->
 	';
 ?>
+<script>
+  window.addEventListener('load',function() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(funcExito, funcError, {});
+      } else {
+          alert('No geolocation supported');
+      }
+  },false);
+
+    function funcExito(result) {
+
+      var latitude = document.querySelector('input[name="latitude"]');
+      var longitude = document.querySelector('input[name="longitude"]');
+
+      latitude.value = result.coords.latitude;
+      longitude.value = result.coords.longitude;
+    }
+
+    function funcError(err) {
+      alert(err.message);
+    }
+</script>
+<script language=\"javascript\" src=\"../scripts/reverse_geolocation.js\"></script>

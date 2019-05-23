@@ -54,6 +54,11 @@ $display_logo_report = "none";
 $version_worktime = "premium";
 $enterprise_name = "DEMO";
 $enterprise_nif = "123A";
+
+//
+$login_with_fullname = "none";
+$login_with_displayname = "yes";
+$login_with_dni = "none";
 /* mysql info
         --- $db_hostname is the hostname for your mysql server, default is localhost.
         --- $db_username is the mysql username you created during the install.

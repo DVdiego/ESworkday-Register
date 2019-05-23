@@ -111,10 +111,11 @@ CREATE TABLE info (
   timestamp bigint(14) default NULL,
   notes varchar(250) default NULL,
   ipaddress varchar(39) NOT NULL default '',
-  lenth DECIMAL(18.14) NOT NULL default '0.0',
-  latitude DECIMAL (18.14) NOT NULL default '0.0',
+  latitude DECIMAL(18.14) NOT NULL default '0.0',
+  longitude DECIMAL (18.14) NOT NULL default '0.0',
   PRIMARY KEY (info_id)
 );
+
 
 # --------------------------------------------------------
 

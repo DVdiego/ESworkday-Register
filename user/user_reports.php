@@ -3,14 +3,15 @@
 session_start();
 
 
-echo "<title>$title</title>\n";
 
+
+include '../config.inc.php';
 include 'header.php';
 include 'topmain.php';
+include 'leftmain.php';
 
 
-
-
+echo "<title>$title</title>\n";
 $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 setlocale(LC_ALL,'es_ES.UTF-8');
@@ -38,9 +39,17 @@ $_SERVER['username'] = $_GET['username'];
   $get_user = $_SERVER['username'];
   if (get_magic_quotes_gpc()) {$get_user = stripslashes($get_user);}
   $get_user = addslashes($get_user);
-  echo "name:".$_SERVER['username']."";
-  echo "name 2:".$get_user."";
-  $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$get_user."'";
+
+
+
+  if($login_with_fullname == "yes"){
+    $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$get_user."'";
+  }elseif ($login_with_displayname == "yes"){
+    $query = "select empfullname from ".$db_prefix."employees where displayname = '".$get_user."'";
+  }elseif ($login_with_dni == "yes"){
+    $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$get_user."' ";
+  }
+
   $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
   while ($row=mysqli_fetch_array($result)) {
   $username = stripslashes("".$row['empfullname']."");
@@ -48,21 +57,21 @@ $_SERVER['username'] = $_GET['username'];
   ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
   if (!isset($username)) {echo "username is not defined for this user.\n"; exit;}
 
+  echo '  <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 align="center" class="box-title">Generar Informe</h3>
+            </div>
+                 <!-- /.box-header -->';
+  echo "    <div class='box-body'>";
 
     echo "<div id='form-container' class='col-sm-12 col-md-6 col-lg-6'>";
     echo "<form class='form-horizontal' role='form' name='timeclock' action='$self' method='post'>";
 
-    echo '  <div class="box box-primary">
-              <div class="box-header with-border">
-                  <h3 align="center" class="box-title">Historia de Empleado</h3>
-              </div>
-                   <!-- /.box-header -->';
-    echo "    <div class='box-body'>";
 
     echo "    <div class='form-group'>
-                <label>Fecha inicio:</label>
+                <label>Nombre:</label>
 
-                <input type='password' name='post_username' maxlength='25' class='form-control' value=\"$username\">$username
+                <input type='hidden' name='post_username' maxlength='25' class='form-control' value=\"$username\">$username
 
                  </div>";
 
@@ -86,8 +95,8 @@ $_SERVER['username'] = $_GET['username'];
             </div>
           </form>";
     echo "<div>";
-    //echo "<div>";
-
+    echo "<div>";
+echo "<div>";
 echo " <tr><td height=90%></td></tr>\n";
 
 //echo "</div>"; # se supone que cierra "<div class='col-sm-12 col-md-10 col-lg-10'>";
@@ -95,10 +104,7 @@ echo " <tr><td height=90%></td></tr>\n";
 
 if($request == 'POST') {
     //Begin post validation
-
-    $_SERVER['username'] = $_GET['username'];
     $emp_fullname = $_POST['post_username'];
-    echo "fullname: ".$emp_fullname."  o ".$_SERVER['username'];
     $from_date = $_POST['from_date'];
     $to_date = $_POST['to_date'];
 

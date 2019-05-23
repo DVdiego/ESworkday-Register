@@ -14,11 +14,10 @@
  //if (($use_reports_password == "yes") && ($_REQUEST["login_action"] == "user")) { // Determine if the user is trying to log-in to reports
 
 
-     echo "
-       <!-- Reports Login Interface -->
-       <title>
-          $title - User Login
-       </title>";
+     echo " <!-- Reports Login Interface -->
+             <title>
+                $title - User Login
+             </title>";
 
      $self = $_SERVER['PHP_SELF'];
 
@@ -30,16 +29,44 @@
          $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
 
 
-         // Determine if the user has report access rights.
-         $query = "select empfullname, employee_passwd, reports, `profile` from ".$db_prefix."employees where empfullname = '".$login_userid."'";
-         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-         while ($row = mysqli_fetch_array($result)) {
-             $reports_username = "".$row['empfullname']."";
-             $reports_password = "".$row['employee_passwd']."";
-             $reports_auth = "".$row['reports']."";
-             $profile_auth = "".$row['profile']."";
-         }
+        if($login_with_fullname == "yes"){
+
+          $query = "select empfullname, employee_passwd, reports, `profile` from ".$db_prefix."employees where empfullname = '".$login_userid."'";
+          $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+          while ($row = mysqli_fetch_array($result)) {
+              $reports_username = "".$row['empfullname']."";
+              $reports_password = "".$row['employee_passwd']."";
+              $reports_auth = "".$row['reports']."";
+              $profile_auth = "".$row['profile']."";
+          }
+
+        }elseif ($login_with_displayname == "yes"){
+
+          $query = "select displayname, employee_passwd, reports, `profile` from ".$db_prefix."employees where displayname = '".$login_userid."'";
+          $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+          while ($row = mysqli_fetch_array($result)) {
+              $reports_username = "".$row['displayname']."";
+              $reports_password = "".$row['employee_passwd']."";
+              $reports_auth = "".$row['reports']."";
+              $profile_auth = "".$row['profile']."";
+          }
+        }elseif ($login_with_dni == "yes"){
+
+          $query = "select empDNI, employee_passwd, reports, `profile` from ".$db_prefix."employees where empDNI = '".$login_userid."'";
+          $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+          while ($row = mysqli_fetch_array($result)) {
+              $reports_username = "".$row['empDNI']."";
+              $reports_password = "".$row['employee_passwd']."";
+              $reports_auth = "".$row['reports']."";
+              $profile_auth = "".$row['profile']."";
+          }
+        }
+         // Determine if the user has report access rights.
+
 
          // Determine if the user is authorised to view profile
          if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password)) && ($profile_auth == "1")) {
@@ -90,7 +117,7 @@
 
  	    echo '<div class="col-md-12"><div class="login-box">
                <div class="login-logo">
-                 <a href="index.php"><b>PHP TIMECLOCK <i class="fa fa-clock-o"></i></b>USER Login</a>
+                 <a href="index.php"><b>WorkTime <i class="fa fa-clock-o"></i></b>User Login</a>
                </div><!-- /.login-logo -->
                <div class="login-box-body">
 

@@ -51,6 +51,35 @@ if ($_REQUEST["login_action"] == "admin") {
         $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
         $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
 
+
+
+        if($login_with_fullname == "yes"){
+
+          $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login_userid."'";
+          $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+          while ($row = mysqli_fetch_array($result)) {
+              $login_userid = "".$row['empfullname']."";
+          }
+
+        }elseif ($login_with_displayname == "yes"){
+
+          $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login_userid."'";
+          $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+          while ($row = mysqli_fetch_array($result)) {
+              $login_userid = "".$row['empfullname']."";
+          }
+
+        }elseif ($login_with_dni == "yes"){
+          $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login_userid."'";
+          $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+          while ($row = mysqli_fetch_array($result)) {
+              $login_userid = "".$row['empfullname']."";
+          }
+        }
+
         // Determine if the user has sys or time access rights.
         $query = "select empfullname, employee_passwd, admin, time_admin from ".$db_prefix."employees where empfullname = '".$login_userid."'";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
@@ -105,7 +134,7 @@ if ($_REQUEST["login_action"] == "admin") {
   	    echo '<div class="col-md-12">
                 <div class="login-box">
                   <div class="login-logo">
-                    <a href="index.php"><b>PHP TIMECLOCK <i class="fa fa-clock-o"></i></b>Admin Login</a>
+                    <a href="index.php"><b>WorkTime <i class="fa fa-clock-o"></i></b>Admin Login</a>
                   </div>
                   <!-- /.login-logo -->
                   <div class="login-box-body">
@@ -130,116 +159,19 @@ if ($_REQUEST["login_action"] == "admin") {
                     </form>
 
                   </div>
-                  <!-- /.login-box-body -->
-                </div>
-              <!-- /.login-box -->
-          </div>';
-
-
-          // Did the user enter invalid credentials
-          if (isset($login_userid)) {
-              echo "Could not log you in. Either your username or password is incorrect.";
-          }
+                  <!-- /.login-box-body -->';
+                  if (isset($login_userid)) {
+                    echo "<div class='alert alert-dange' role='alert'>
+                            Could not log you in. Either your username or password is incorrect.
+                          </div>";
+                  }
+                  echo '</div><!-- /.login-box -->
+                  </div>';
           echo "
             <script language=\"javascript\">
               document.forms['auth'].login_userid.focus();
             </script>";
     }
-} elseif (($user_profile == "yes") && ($_REQUEST["login_action"] == "user")) { //determina las credentials de usuario son correctas.
-
-  echo "
-    <!-- User Login Interface -->
-    <title>
-       $title - USER Login
-    </title>";
-
-  $self = $_SERVER['PHP_SELF'];
-
-  // Determine if the user has entered his authentication credentials
-  if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
-
-    $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
-    $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
-
-      // Determine if the user has report access rights. profile
-      $query1 = "select empfullname, employee_passwd, profile from ".$db_prefix."employees where empfullname = '".$login_userid."'";
-      $result1 = mysqli_query($GLOBALS["___mysqli_ston"], $query1);
-
-      while ($row = mysqli_fetch_array($result1)) {
-          $profile_username = "".$row['empfullname']."";
-          $profile_password = "".$row['employee_passwd']."";
-          $profile_auth = "".$row['profile'].""; //cambiar 'profile'
-
-      }
-
-      // Determine if the user is authorised to view reports
-      if (($login_userid == @$employee_username ) && (password_verify($login_password, @$profile_password)) && ($profile_auth == "1")) {
-          $_SESSION['valid_profile_user'] = $login_userid;
-          echo "<i>ENTRA!!!\n";
-
-      }
-
-
-  }
-
-
-
-  // If the user supplied the proper credentials, send them to the proper location
-  if (isset($_SESSION['valid_profile_user'])) {
-      echo "
-        <script type='text/javascript' language='javascript'>
-           window.location.href = 'profile/user_profile.php';
-        </script>";
-      exit;
-  }
-  /*else if (! isset($_SESSION['valid_profile_user'])) {
-      echo "
-        <br>You do not have user profile access permission.";
-      exit;
-
-  }
-  */
-   else { // The user is either not valid or has not entered in his credentials.
-
-    echo '<div class="col-md-12"><div class="login-box">
-            <div class="login-logo">
-              <a href="index.php"><b>PHP TIMECLOCK <i class="fa fa-user"></i></b>USER Login</a>
-            </div><!-- /.login-logo -->
-            <div class="login-box-body">
-
-
-              <form name="auth" method="post" action=" '.$self.' ">
-                <div class="form-group has-feedback">
-                  <input type="text" class="form-control" name="login_userid" placeholder="Username">
-                  <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                </div>
-                <div class="form-group has-feedback">
-                  <input type="password" name="login_password" class="form-control" placeholder="Password">
-                  <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>
-                <div class="row">
-                  <div class="col-xs-4">
-              <button type="submit" id=button-primary class="btn btn-primary btn-block btn-flat" onClick="admin.php">Log In</button>
-               <input type="hidden" name="login_action" value="reports">
-                  </div>
-                  <!-- /.col -->
-                </div>
-              </form>
-
-            </div><!-- /.login-box-body -->
-          </div><!-- /.login-box -->
-
-        </div>';
-      // Determine if the user has supplied incorrect credentials.
-      if (isset($login_userid)) {
-          echo "Could not log you in. Either your username or password is incorrect.";
-      }
-      echo "<script language=\"javascript\">
-              document.forms['auth'].login_userid.focus();
-            </script>";
-  }
-
-
 } else if (($use_reports_password == "yes") && ($_REQUEST["login_action"] == "reports")) { // Determine if the user is trying to log-in to reports
     echo "
       <!-- Reports Login Interface -->
@@ -253,6 +185,35 @@ if ($_REQUEST["login_action"] == "admin") {
     if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
       $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
       $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
+
+
+
+      if($login_with_fullname == "yes"){
+
+        $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login_userid."'";
+        $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+        while ($row = mysqli_fetch_array($result)) {
+            $login_userid = "".$row['empfullname']."";
+        }
+
+      }elseif ($login_with_displayname == "yes"){
+
+        $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login_userid."'";
+        $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+        while ($row = mysqli_fetch_array($result)) {
+            $login_userid = "".$row['empfullname']."";
+        }
+
+      }elseif ($login_with_dni == "yes"){
+        $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login_userid."'";
+        $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+        while ($row = mysqli_fetch_array($result)) {
+            $login_userid = "".$row['empfullname']."";
+        }
+      }
 
         // Determine if the user has report access rights.
         $query = "select empfullname, employee_passwd, reports from ".$db_prefix."employees where empfullname = '".$login_userid."'";
@@ -313,7 +274,7 @@ if ($_REQUEST["login_action"] == "admin") {
       unset($_SESSION["valid_report_employee"]);
 	    echo '<div class="col-md-12"><div class="login-box">
               <div class="login-logo">
-                <a href="index.php"><b>PHP TIMECLOCK <i class="fa fa-clock-o"></i></b>Reports Login</a>
+                <a href="index.php"><b>WorkTime <i class="fa fa-clock-o"></i></b>Reports Login</a>
               </div><!-- /.login-logo -->
               <div class="login-box-body">
 
@@ -336,14 +297,15 @@ if ($_REQUEST["login_action"] == "admin") {
                   </div>
                 </form>
 
-              </div><!-- /.login-box-body -->
-            </div><!-- /.login-box -->
-
-          </div>';
+              </div><!-- /.login-box-body -->';
+              if (isset($login_userid)) {
+                echo "<div class='alert alert-dange' role='alert'>
+                        Could not log you in. Either your username or password is incorrect.
+                      </div>";
+              }
+              echo '</div><!-- /.login-box -->
+              </div>';
         // Determine if the user has supplied incorrect credentials.
-        if (isset($login_userid)) {
-            echo "Could not log you in. Either your username or password is incorrect.";
-        }
         echo "<script language=\"javascript\">
                 document.forms['auth'].login_userid.focus();
               </script>";
