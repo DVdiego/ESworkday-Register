@@ -95,7 +95,7 @@ if ($request == 'GET') {
       echo "            <br />\n";
     }
     echo '<div class="row">
-              <div class="col-md-8">
+              <div id="float_window" class="col-md-10">
                   <div class="box box-info"> ';
     echo '           <div class="box-header with-border">
                        <h3 class="box-title"><i class="fa fa-users"></i> Delete Groups</h3>
@@ -240,7 +240,7 @@ elseif ($request == 'POST') {
     /*FLAG*/ //no entiendo, si lo pongo en otra parte da problemas con las vistas,se descuadra el formculario.
     include 'leftmain.php';
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '     <div class="box-header with-border">
                        <h3 class="box-title"><i class="fa fa-users"></i> Delete Groups</h3>

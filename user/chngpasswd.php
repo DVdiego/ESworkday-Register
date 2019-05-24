@@ -44,9 +44,6 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 }
 
 
-
-
-
 if ($request == 'GET') {
 
   if($_SESSION['valid_profile'] != $_GET['username']){
@@ -101,7 +98,7 @@ $username = stripslashes("".$row['empfullname']."");
 if (!isset($username)) {echo "username is not defined for this user.\n"; exit;}
 
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-lock"></i> Cambiar Contraseña</h3>
@@ -189,7 +186,7 @@ elseif ($request == 'POST') {
 
       echo "            <br />\n";
       echo '<div class="row">
-              <div class="col-md-8">
+              <div id="float_window" class="col-md-10">
                 <div class="box box-info"> ';
       echo '      <div class="box-header with-border">
                        <h3 class="box-title"><i class="fa fa-lock"></i> Cambiar Contraseña</h3>
@@ -237,7 +234,7 @@ elseif ($request == 'POST') {
 
             $post_username = stripslashes($post_username);
             echo '<div class="row">
-                    <div class="col-md-8">
+                    <div id="float_window" class="col-md-10">
                       <div class="box box-info"> ';
             echo '      <div class="box-header with-border">
                              <h3 class="box-title"><i class="fa fa-lock"></i> Cambiar Contraseña</h3>

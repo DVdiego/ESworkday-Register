@@ -156,7 +156,7 @@ echo "            </table>\n";
 }
 
 echo '<div class="row">
-    <div class="col-md-8">
+    <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
     <h3 class="box-title"><i class="fa fa-user-plus"></i> Delete User</h3>
@@ -357,7 +357,7 @@ echo "            <br />\n";
 
 
 echo '<div class="row">
-    <div class="col-md-8">
+    <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
     <h3 class="box-title"><i class="fa fa-user-plus"></i> User deleted successfully.</h3>

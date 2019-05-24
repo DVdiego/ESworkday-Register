@@ -105,7 +105,7 @@ if ($request == 'GET') { // Display employee add time interface
 
 
   echo '<div class="row">
-          <div class="col-md-8">
+          <div id="float_window" class="col-md-10">
             <div class="box box-info"> ';
   echo '      <div class="box-header with-border">
                    <h3 class="box-title"><i class="fa fa-clock-o"></i> Añadir Tiempo</h3>
@@ -457,7 +457,7 @@ if (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4})
     if ((isset($evil_post)) || (isset($evil_date)) || (isset($evil_time)) || (isset($evil_why))) { // Display error message
         echo "            <br />\n";
           echo '<div class="row">
-                  <div class="col-md-8">
+                  <div id="float_window" class="col-md-10">
                     <div class="box box-info"> ';
           echo '      <div class="box-header with-border">
                            <h3 class="box-title"><i class="fa fa-clock-o"></i> Añadir Tiempo</h3>
@@ -566,7 +566,7 @@ if (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4})
                 echo "            <br />\n";
 
                 echo '<div class="row">
-                        <div class="col-md-8">
+                        <div id="float_window" class="col-md-10">
                           <div class="box box-info"> ';
                 echo '      <div class="box-header with-border">
                                  <h3 class="box-title"><i class="fa fa-clock-o"></i> Añadir Tiempo</h3>
@@ -712,7 +712,7 @@ if (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4})
         $date_format = strftime("%A %d de %B del %Y", $timestamp + $tzo);
 
         echo '<div class="row">
-          <div class="col-md-8">
+          <div id="float_window" class="col-md-10">
             <div class="box box-info"> ';
         echo '<div class="box-header with-border">
                        <h3 class="box-title"><i class="fa fa-clock-o"></i> Tiempo añadido satisfactoriamente</h3>

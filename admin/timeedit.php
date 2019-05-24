@@ -331,7 +331,7 @@ echo '<div class="box-header with-border">
         // echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
         // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Username:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
         // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Display Name:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_displayname' value=\"$post_displayname\">$post_displayname</td></tr>\n";
-        // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Date: ($tmp_datefmt)</td><td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' size='10' maxlength='10' name='post_date' value='$post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;<a href=\"#\" onclick=\"cal.select(document.forms['form'].post_date,'post_date_anchor','$js_datefmt'); return false;\" name=\"post_date_anchor\" id=\"post_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
+        // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Date: ($tmp_datefmt)</td><td colspan=2 width=80% style='padding-left:20px;'><input type='text' size='10' maxlength='10' name='post_date' value='$post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;<a href=\"#\" onclick=\"cal.select(document.forms['form'].post_date,'post_date_anchor','$js_datefmt'); return false;\" name=\"post_date_anchor\" id=\"post_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
         // echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
         // echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
         // echo "            </table>\n";
@@ -579,7 +579,7 @@ echo '<div class="box-header with-border">
                     $row_count++;
                 }
                 if  ($require_time_admin_edit_reason == "yes") {
-                    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reason For Modification:</td><td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' size='25' maxlength='250' name='post_why' value='$post_why'>&nbsp;* Required</td></tr>\n";
+                    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reason For Modification:</td><td colspan=2 width=80% style='padding-left:20px;'><input type='text' size='25' maxlength='250' name='post_why' value='$post_why'>&nbsp;* Required</td></tr>\n";
                 } else if  ($require_time_admin_edit_reason == "no") {
                     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reason For Modification:</td><td colspan=2 width=80% style='font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' size='25' maxlength='250' name='post_why' value='$post_why'></td></tr>\n";
                 }
@@ -829,7 +829,7 @@ echo '<div class="box-header with-border">
             // echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
             // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Username:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
             // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Display Name:</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'> <input type='hidden' name='post_displayname' value=\"$post_displayname\">$post_displayname</td></tr>\n";
-            // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Date: ($tmp_datefmt)</td><td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' size='10' maxlength='10' name='post_date' value='$post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;<a href=\"#\" onclick=\"cal.select(document.forms['form'].post_date,'post_date_anchor','$js_datefmt'); return false;\" name=\"post_date_anchor\" id=\"post_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
+            // echo "              <tr><td class=table_rows height=25 style='padding-left:32px;' width=20% nowrap>Date: ($tmp_datefmt)</td><td colspan=2 width=80% style='padding-left:20px;'><input type='text' size='10' maxlength='10' name='post_date' value='$post_date'>&nbsp;*&nbsp;&nbsp;&nbsp;<a href=\"#\" onclick=\"cal.select(document.forms['form'].post_date,'post_date_anchor','$js_datefmt'); return false;\" name=\"post_date_anchor\" id=\"post_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
             // echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
             // echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
             // echo "            </table>\n";
@@ -845,7 +845,7 @@ echo '<div class="box-header with-border">
             exit;
         }
 	echo '<div class="row">
-    <div class="col-md-8">
+    <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-clock-o"></i> Please enter a time in the New Time box or boxes you wish to edit below</h3>
@@ -910,7 +910,7 @@ echo'    	                       <div class="input-group-addon">
                 $row_count++;
             }
             if ($require_time_admin_edit_reason == "yes") {
-                echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reason For Modification:</td><td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' size='25' maxlength='250' name='post_why' value='$post_why'>&nbsp;* Required</td></tr>\n";
+                echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reason For Modification:</td><td colspan=2 width=80% style='padding-left:20px;'><input type='text' size='25' maxlength='250' name='post_why' value='$post_why'>&nbsp;* Required</td></tr>\n";
             } else if ($require_time_admin_edit_reason == "no") {
                 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reason For Modification:</td><td colspan=2 width=80% style='font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' size='25' maxlength='250' name='post_why' value='$post_why'> </td></tr>\n";
             }

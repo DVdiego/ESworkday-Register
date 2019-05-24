@@ -59,43 +59,45 @@ $_SERVER['username'] = $_GET['username'];
 
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                    <h3 class="box-title"><i class="fa fa-file-o"></i> Generar Informe</h3>
-                 </div><div class="box-body">';
-    echo "<form class='form-horizontal' role='form' name='timeclock' action='$self' method='post'>";
+                 </div>
+                <div class="box-body">';
+    echo "<form id='form_reports' class='form-horizontal' role='form' name='timeclock' action='$self' method='post'>";
 
-
+    echo "<div id='content'>";
     echo "    <div class='form-group'>
                 <label>Nombre:</label>
 
                 <input type='hidden' name='post_username' maxlength='25' class='form-control' value=\"$username\">$username
 
-                 </div>";
+              </div>";
 
     echo "    <div class='form-group'>
                 <label>Fecha inicio:</label>
                 <input type='date' size='10' maxlength='10' name='from_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
                 <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                 return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-                 </div>";
+              </div>";
 
    echo "    <div class='form-group'>
                <label>Fecha fin:</label>
                <input type='date' size='10' maxlength='10' name='to_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
                <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt');
                return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-                </div>";
+            </div>";
 
     echo "    <div class='form-group'>
                 <button type='submit' class='btn btn-lg btn-primary'>Consultar</button>
-              </div>
-            </div>
+              </div>";
+    echo "</div>
           </form>";
-    echo "<div>";
-    echo "<div>";
-echo "<div>";
+    echo "</div>";
+    echo "</div>";
+echo "</div>";
+echo "</div>";
 //echo " <tr><td height=90%></td></tr>\n";
 include '../theme/templates/endmaincontent.inc';
 include '../footer.php';

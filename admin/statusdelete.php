@@ -79,7 +79,7 @@ if ($in_or_out == '1') {
 
 
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-exchange"></i> Create Status</h3>
@@ -165,7 +165,7 @@ if ($post_in_out == '1') {
 echo "            <br />\n";
 
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-exchange"></i>  Create Status</h3>

@@ -149,7 +149,7 @@ if (!empty($admin)) {
 if (isset($evil)) {
 
 echo "<table  class=table>\n";
-echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
             Cannot edit the Sys Admin properties of this user as this user is the last Sys Admin User in the system. Go back and give another user
@@ -158,7 +158,7 @@ echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible"
 echo "</table>\n";
 }
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-user"></i> Editar Empleado</h3>
@@ -177,7 +177,7 @@ echo "
             <tr>
               <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td>
 
-              <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+              <td colspan=2 width=80% style='padding-left:20px;'>
                 <input type='text' size='25' maxlength='50' name='display_name' value=\"$displayname\">&nbsp;*
               </td>
             </tr>\n";
@@ -185,7 +185,7 @@ echo "
             <tr>
               <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td>
 
-              <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+              <td colspan=2 width=80% style='padding-left:20px;'>
                 <input type='text' size='25' maxlength='75' name='email_addy' value='$user_email'>&nbsp;*
               </td>
             </tr>\n";
@@ -193,18 +193,18 @@ echo "
             <tr>
               <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td>
 
-              <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+              <td colspan=2 width=80% style='padding-left:20px;'>
                 <select name='office_name' onchange='group_names();'>
                   <option selected>$office</option>\n";
 echo "               </select>&nbsp;*</td></tr>\n";
 if ($groups_tmp == "") {
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='group_name' onfocus='group_names();'>
                         <option selected>&nbsp;</option>\n";
 } else {
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='group_name' onfocus='group_names();'>
                         <option selected>$groups_tmp</option>\n";
 }
@@ -391,35 +391,35 @@ echo "            <br />\n";
 // begin post validation //
 
 if (empty($display_name)) {
-  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                Se requiere un alias de usuario.
           </div></div>';
 }
 elseif (empty($email_addy)) {
-  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                Se requiere una dirección de email.
           </div></div>';
 }
 elseif (empty($office_name)) {
-  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                Se requiere introducir una oficina.
           </div></div>';
 }
 elseif (empty($group_name)) {
-  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                Se requiere introducir un grupo.
           </div></div>';
 }
 elseif (!empty($string)) {
-  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                Double Quotes are not allowed when creating an Username.
@@ -428,7 +428,7 @@ elseif (!empty($string)) {
 // elseif (!eregi ("^([[:alnum:]]| |-|'|,)+$", $display_name)) {
 //elseif (!preg_match('/' . "^([[:alnum:]]| |-|'|,)+$" . '/i', $display_name)) {
   elseif (!preg_match('/' . "^([[:alnum:]]|Å|Ä|Ö| |-|'|,)+$" . '/i', $display_name)) {
-    echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+    echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
               Alphanumeric characters, hyphens, apostrophes, commas, and spaces are allowed when creating a Display Name.
@@ -436,35 +436,35 @@ elseif (!empty($string)) {
 }
 // elseif (!eregi ("^([[:alnum:]]|_|\.|-)+@([[:alnum:]]|\.|-)+(\.)([a-z]{2,4})$", $email_addy)) {
 elseif (!preg_match('/' . "^([[:alnum:]]|_|\.|-)+@([[:alnum:]]|\.|-)+(\.)([a-z]{2,4})$" . '/i', $email_addy)) {
-  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
             Alphanumeric characters, underscores, periods, and hyphens are allowed when creating an Email Address.
           </div></div>';
 }
 elseif (($admin_perms != '1') && (!empty($admin_perms))) {
-  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
             Choose \"yes\" or \"no\" for Sys Admin Perms.
           </div></div>';
 }
 elseif (($reports_perms != '1') && (!empty($reports_perms))) {
-  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
             Choose \"yes\" or \"no\" for Reports Perms.
           </div></div>';
 }
 elseif (($time_admin_perms != '1') && (!empty($time_admin_perms))) {
-  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
             Choose \"yes\" or \"no\" for Time Admin Perms.
           </div></div>';
 }
 elseif (($post_disabled != '1') && (!empty($post_disabled))) {
-  echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
             Choose \"yes\" or \"no\" for User Account Disabled.
@@ -495,7 +495,7 @@ if (!isset($tmp_officename)) {echo "Group is not defined.\n";}
 if (!empty($string)) {$display_name = stripslashes($display_name);}
 
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-user"></i> Editar Empleado</h3>
@@ -509,17 +509,17 @@ echo "
                       colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username'
                       value=\"$post_username\">$tmp_post_username</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='50' name='display_name' value=\"$display_name\">&nbsp;*</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='75' name='email_addy' value='$email_addy'>&nbsp;*</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='office_name' onchange='group_names();'>\n";
 echo "                      </select>&nbsp;*</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='group_name' onfocus='group_names();'>
                         <option selected>$group_name</option>\n";
 echo "                      </select>&nbsp;*</td></tr>\n";

@@ -92,7 +92,7 @@ echo "            <br />\n";
 	*/
 	
 	echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
     echo '<div class="box-header with-border">
 	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Search for User</h3>
@@ -101,17 +101,17 @@ echo "            <br />\n";
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='25' maxlength='50' name='post_username'
                       onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
                       form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\" ></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='25' maxlength='50' name='display_name'
                       onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
                       form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='25' maxlength='75' name='email_addy'
                       onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
                       form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\"></td></tr>\n";
@@ -282,7 +282,7 @@ if (!isset($tmp_officename)) {echo "Group is not defined.\n"; exit;}
 if (isset($evil_input)) {
 
 	echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
     echo '<div class="box-header with-border">
 	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Search for User</h3>
@@ -291,17 +291,17 @@ if (isset($evil_input)) {
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
+                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
                       name='post_username' value='$post_username'
                       onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
                       form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
+                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
                       name='display_name' value='$display_name'
                       onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
                       form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text style='color:red;' size='25' maxlength='75'
+                      style='padding-left:20px;'><input type='text style='color:red;' size='25' maxlength='75'
                       name='email_addy' value='$email_addy'
                       onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
                       form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\"></td></tr>\n";
@@ -508,7 +508,7 @@ echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
 
 
 echo '<div class="row">
-    <div class="col-md-8">
+    <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-search-plus"></i> Search for User</h3>
@@ -516,17 +516,17 @@ echo '<div class="box-header with-border">
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
+                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
                       name='post_username' value=\"$post_username\"
                       onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
                       form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
+                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
                       name='display_name' value=\"$display_name\"
                       onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
                       form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text style='color:red;' size='25' maxlength='75'
+                      style='padding-left:20px;'><input type='text style='color:red;' size='25' maxlength='75'
                       name='email_addy' value=\"$email_addy\"
                       onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
                       form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\"></td></tr>\n";

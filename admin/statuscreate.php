@@ -47,7 +47,7 @@ include 'leftmain.php'; //esta despues de verficar la sesión para que no cargue
 if ($request == 'GET') {
 
   echo '<div class="row">
-          <div class="col-md-8">
+          <div id="float_window" class="col-md-10">
             <div class="box box-info"> ';
   echo '      <div class="box-header with-border">
                    <h3 class="box-title"><i class="fa fa-exchange"></i> Create Status</h3>
@@ -58,13 +58,13 @@ echo "            <table align=center class=table_border width=60% border=0 cell
 
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Status Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='20' maxlength='50' name='post_statusname'>&nbsp;*</td>
                     </tr>\n";
 
 /*
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='20' maxlength='7' name='post_color'>&nbsp;*&nbsp;&nbsp;<a href=\"#\"
                       onclick=\"cp.select(document.forms['form'].post_color,'pick');return false;\" name=\"pick\" id=\"pick\"
                       style='font-size:11px;color:#27408b;'>Pick Color</a></td><
@@ -72,7 +72,7 @@ echo "              <tr><td class=table_rows height=25 width=20% style='padding-
                     */
 echo "              <tr>
                       <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color html:</td>
-                      <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      <td colspan=2 width=80% style='padding-left:20px;'>
                       <input type='color' name='post_color' value='#ff0000'>&nbsp;*</td>
                     </tr>\n";
 
@@ -184,7 +184,7 @@ elseif ($request == 'POST') {
     echo "            <br />\n";
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-exchange"></i>  Create Status</h3>
@@ -196,10 +196,10 @@ elseif ($request == 'POST') {
 
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Status Name:</td><td colspan=2 width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                          style='padding-left:20px;'><input type='text'
                           size='20' maxlength='50' name='post_statusname' value=\"$post_statusname\">&nbsp;*</td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color:</td><td colspan=2 width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                          style='padding-left:20px;'><input type='text'
                           size='20' maxlength='7' name='post_color' value=\"$post_color\">&nbsp;*&nbsp;&nbsp;<a href=\"#\"
                           onclick=\"cp.select(document.forms['form'].post_color,'pick');return false;\" name=\"pick\" id=\"pick\"
                           style='font-size:11px;color:#27408b;'>Pick Color</a></td></tr>\n";
@@ -247,7 +247,7 @@ elseif ($request == 'POST') {
 
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-exchange"></i> Create Status</h3>

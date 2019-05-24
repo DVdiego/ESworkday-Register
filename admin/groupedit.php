@@ -84,7 +84,7 @@ if ($request == 'GET') {
 
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-users"></i> Edit Group</h3>
@@ -98,7 +98,7 @@ if ($request == 'GET') {
     echo "              </tr>\n";
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Group Name:</td><td colspan=2 width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                          style='padding-left:20px;'><input type='text'
                           size='25' maxlength='50' name='post_groupname' value=\"$get_group\">&nbsp;*</td></tr>\n";
 
     // query to populate dropdown with office names //
@@ -431,7 +431,7 @@ elseif ($request == 'POST') {
         echo "            <br />\n";
 
         echo '<div class="row">
-                <div class="col-md-8">
+                <div id="float_window" class="col-md-10">
                   <div class="box box-info"> ';
         echo '      <div class="box-header with-border">
                          <h3 class="box-title"><i class="fa fa-users"></i> Edit Group</h3>
@@ -446,7 +446,7 @@ elseif ($request == 'POST') {
         echo "              </tr>\n";
         echo "              <tr><td height=15></td></tr>\n";
         echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Group Name:</td><td colspan=2 width=80%
-                              style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                              style='padding-left:20px;'><input type='text'
                               size='25' maxlength='50' name='post_groupname' value=\"$post_groupname\">&nbsp;*</td></tr>\n";
 
         // query to populate dropdown with office names //
@@ -636,7 +636,7 @@ elseif ($request == 'POST') {
         $result5 = mysqli_query($GLOBALS["___mysqli_ston"], $query5);
 
         echo '<div class="row">
-                <div class="col-md-8">
+                <div id="float_window" class="col-md-10">
                   <div class="box box-info"> ';
         echo '      <div class="box-header with-border">
                          <h3 class="box-title"><i class="fa fa-users"></i> Edit Group</h3>

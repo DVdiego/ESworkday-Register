@@ -67,6 +67,21 @@ div.box.box-primary {
 }
 
 
+/*ventanas flotantes*/
+#float_window{
+
+  margin: auto !important;
+  float: none !important;
+}
+
+
+/**/
+#wrapper > div.content-wrapper{
+  background-color: #0000001f !important;
+
+}
+
+
 
 /*separadores formularios*/
 hr {

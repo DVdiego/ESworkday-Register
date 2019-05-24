@@ -420,7 +420,7 @@ if ($request == 'GET' || (! $is_valid_input)) { // Get the employee's report sel
                                  <td class=table_rows style='padding-left:32px;' width=20% nowrap>
                                     From Date: ($tmp_datefmt)
                                  </td>
-                                 <td style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;' width=80% >
+                                 <td style='padding-left:20px;' width=80% >
                                     <input id='datepicker' type='text' size='10' maxlength='10' name='from_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
                                     <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt'); return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'>
                                        Pick Date
@@ -431,7 +431,7 @@ if ($request == 'GET' || (! $is_valid_input)) { // Get the employee's report sel
                                  <td class=table_rows style='padding-left:32px;' width=20% nowrap>
                                     To Date: ($tmp_datefmt)
                                  </td>
-                                 <td style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;' width=80% >
+                                 <td style='padding-left:20px;' width=80% >
                                     <input id='datepicker1' type='text' size='10' maxlength='10' name='to_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
                                     <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt'); return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'>
                                        Pick Date

@@ -51,7 +51,7 @@ if ($use_reports_password == "yes") {
 
 
 echo '<div class="row">
-		<div class="col-md-8">
+		<div id="float_window" class="col-md-10">
 			<div class="box box-info"> ';
 echo '<div class="box-header with-border">
 								 <h3 class="box-title"><i class="fa fa-user-plus"></i>Perfil Usuario</h3>

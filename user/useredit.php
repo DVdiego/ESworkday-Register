@@ -124,7 +124,7 @@ echo "            </table>\n";
 }
 
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-user"></i> Edit User</h3>
@@ -137,10 +137,10 @@ echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
                       colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$username\">$username</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='50' name='display_name' value=\"$displayname\">&nbsp;*</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='75' name='email_addy' value='$user_email'>&nbsp;*</td></tr>\n";
 
 echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
@@ -255,7 +255,7 @@ elseif ($request == 'POST') {
 
         if (!empty($string)) {$display_name = stripslashes($display_name);}
         echo '<div class="row">
-                <div class="col-md-8">
+                <div id="float_window" class="col-md-10">
                   <div class="box box-info"> ';
         echo '      <div class="box-header with-border">
                          <h3 class="box-title"><i class="fa fa-user"></i> Edit User</h3>
@@ -269,10 +269,10 @@ elseif ($request == 'POST') {
                               colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username'
                               value=\"$post_username\">$tmp_post_username</td></tr>\n";
         echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-                              style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                              style='padding-left:20px;'>
                               <input type='text' size='25' maxlength='50' name='display_name' value=\"$display_name\">&nbsp;*</td></tr>\n";
         echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-                              style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                              style='padding-left:20px;'>
                               <input type='text' size='25' maxlength='75' name='email_addy' value='$email_addy'>&nbsp;*</td></tr>\n";
 
 
@@ -318,7 +318,7 @@ elseif ($request == 'POST') {
 
     echo "            </table>\n";
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-user"></i> Edit User</h3>

@@ -83,7 +83,7 @@ if ($request == 'GET') {
 
 
   echo '<div class="row">
-          <div class="col-md-8">
+          <div id="float_window" class="col-md-10">
             <div class="box box-info"> ';
   echo '      <div class="box-header with-border">
                    <h3 class="box-title"><i class="fa fa-suitcase"></i> Editar Oficina ' . $get_office . '</h3>
@@ -320,7 +320,7 @@ if ($request == 'GET') {
     echo "            <br />\n";
 
     if (empty($post_officename)) {
-      echo ' <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo ' <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                      Se requiere un nombre de oficina.
@@ -328,7 +328,7 @@ if ($request == 'GET') {
     }
     // elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_officename)) {
     elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_officename)) {
-      echo ' <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo ' <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                       <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                       No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un usuario.
@@ -337,7 +337,7 @@ if ($request == 'GET') {
 
     echo "            <br />\n";
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-suitcase"></i> Editar Oficina ' . $get_office . '</h3>
@@ -500,14 +500,14 @@ if ($request == 'GET') {
     $query5 = "update ".$db_prefix."offices set officename = ('".$post_officename."') where officename = ('".$get_office."')";
     $result5 = mysqli_query($GLOBALS["___mysqli_ston"], $query5);
 
-    echo ' <div class="col-md-8"><div class="alert alert-info alert-dismissible">
+    echo ' <div class="col-md-6"><div class="alert alert-info alert-dismissible">
                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                               <h4><i class="icon fa fa-info-circle"></i>Información</h4>
                                 Los datos de la oficina ' . $post_officename . ' se ha modificado con éxito.
                             </div></div>';
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-suitcase"></i> Editar Oficina</h3>

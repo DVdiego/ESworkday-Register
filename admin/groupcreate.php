@@ -48,7 +48,7 @@ include 'leftmain.php'; //esta despues de verficar la sesión para que no cargue
 if ($request == 'GET') {
 
   echo '<div class="row">
-          <div class="col-md-8">
+          <div id="float_window" class="col-md-10">
             <div class="box box-info"> ';
   echo '      <div class="box-header with-border">
                    <h3 class="box-title"><i class="fa fa-users"></i> Create Group</h3>
@@ -61,7 +61,7 @@ echo "                <th class=rightside_heading nowrap halign=left colspan=3><
                     </th>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group Name:</td><td colspan=2 align=left width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='50' name='post_groupname'>&nbsp;*</td>
                     </tr>\n";
 
@@ -71,7 +71,7 @@ $query = "select * from ".$db_prefix."offices order by officename asc";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Parent Office:</td><td colspan=2 align=left width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='select_office_name'>\n";
 echo "                        <option value ='1'>Choose One</option>\n";
 
@@ -191,7 +191,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     if (!empty($string2)) {$post_groupname = stripslashes($post_groupname);}
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-users"></i> Create Group</h3>
@@ -205,7 +205,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     echo "              </tr>\n";
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group Name:</td><td colspan=2 align=left width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                          style='padding-left:20px;'>
                           <input type='text' size='25' maxlength='50' name='post_groupname' value=\"$post_groupname\">&nbsp;*</td></tr>\n";
 
     if (!empty($string)) {$post_groupname = addslashes($post_groupname);}
@@ -217,7 +217,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Parent Office:</td><td colspan=2 align=left width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                          style='padding-left:20px;'>
                           <select name='select_office_name'>\n";
     echo "                        <option value ='1'>Choose One</option>\n";
 
@@ -258,7 +258,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
 
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-users"></i> Create Group</h3>

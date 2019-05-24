@@ -139,7 +139,7 @@ echo "                <th class=rightside_heading nowrap halign=left colspan=3><
 echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Group Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='25' maxlength='50' name='post_groupname' value=\"$get_group\">&nbsp;*</td></tr>\n";
 
 // query to populate dropdown with office names //
@@ -502,7 +502,7 @@ echo "                <th class=rightside_heading nowrap halign=left colspan=3><
 echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Group Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='25' maxlength='50' name='post_groupname' value=\"$post_groupname\">&nbsp;*</td></tr>\n";
 
 // query to populate dropdown with office names //

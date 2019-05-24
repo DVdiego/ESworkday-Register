@@ -45,7 +45,7 @@ if ($request == 'GET') {
 
 
 	echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
     echo '<div class="box-header with-border">
 	                 <h3 class="box-title"><i class="fa fa-user-plus"></i> Create User</h3>
@@ -306,7 +306,7 @@ $confirm_password = crypt($confirm_password, 'xy');
 
 
 echo '<div class="row">
-    <div class="col-md-8">
+    <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-user-plus"></i> Create User</h3>
@@ -454,7 +454,7 @@ echo "            <br />\n";
 
 
 echo '<div class="row">
-    <div class="col-md-8">
+    <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-user-plus"></i> User created successfully.</h3>

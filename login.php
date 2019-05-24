@@ -329,3 +329,12 @@ include 'footer.php';
 include 'theme/templates/endmain.inc';
 include 'theme/templates/footerscripts.inc';
 ?>
+<style type="text/css">
+#wrapper > div {
+
+
+      margin-left: 0px !important;
+      background-color: #ffffff !important;
+}
+
+</style>

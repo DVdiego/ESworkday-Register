@@ -99,7 +99,7 @@ echo "                <th class=rightside_heading nowrap halign=left colspan=3><
 echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group Name:</td><td colspan=2 align=left width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='50' name='post_groupname'>&nbsp;*</td></tr>\n";
 
 // query to populate dropdown with parent offices //
@@ -108,7 +108,7 @@ $query = "select * from ".$db_prefix."offices order by officename asc";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Parent Office:</td><td colspan=2 align=left width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='select_office_name'>\n";
 echo "                        <option value ='1'>Choose One</option>\n";
 
@@ -260,7 +260,7 @@ echo "                <th class=rightside_heading nowrap halign=left colspan=3><
 echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group Name:</td><td colspan=2 align=left width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='50' name='post_groupname' value=\"$post_groupname\">&nbsp;*</td></tr>\n";
 
 if (!empty($string)) {$post_groupname = addslashes($post_groupname);}
@@ -272,7 +272,7 @@ $query = "select * from ".$db_prefix."offices order by officename asc";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Parent Office:</td><td colspan=2 align=left width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='select_office_name'>\n";
 echo "                        <option value ='1'>Choose One</option>\n";
 

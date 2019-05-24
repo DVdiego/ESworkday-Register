@@ -71,7 +71,7 @@ $in_or_out = "".$row['in_or_out']."";
 }
 
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Status</h3>
@@ -84,13 +84,13 @@ echo "                <th class=rightside_heading nowrap halign=left colspan=3>
 echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Status Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='20' maxlength='50' name='post_statusname' value=\"$punchitem\">&nbsp;*</td></tr>\n";
 
 
 /*
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='20' maxlength='7' name='post_color' value=\"$color\">&nbsp;*&nbsp;&nbsp;<a href=\"#\"
                       onclick=\"cp.select(document.forms['form'].post_color,'pick');return false;\" name=\"pick\" id=\"pick\"
                       style='font-size:11px;color:#27408b;'>Pick Color</a></td>
@@ -98,7 +98,7 @@ echo "              <tr><td class=table_rows height=25 width=20% style='padding-
 */
 echo "              <tr>
                       <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color html:</td>
-                      <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      <td colspan=2 width=80% style='padding-left:20px;'>
                       <input type='color' name='post_color' value=\"$color\">&nbsp;*</td>
                     </tr>\n";
 
@@ -217,7 +217,7 @@ if (!empty($string2)) {$post_statusname = stripslashes($post_statusname);}
 echo "            <br />\n";
 
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-suitcase"></i>  Create Status</h3>
@@ -233,10 +233,10 @@ echo "                <th class=rightside_heading nowrap halign=left colspan=3>
 echo "              </tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Status Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='20' maxlength='50' name='post_statusname' value=\"$post_statusname\">&nbsp;*</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                      style='padding-left:20px;'><input type='text'
                       size='20' maxlength='7' name='post_color' value=\"$post_color\">&nbsp;*&nbsp;&nbsp;<a href=\"#\"
                       onclick=\"cp.select(document.forms['form'].post_color,'pick');return false;\" name=\"pick\" id=\"pick\"
                       style='font-size:11px;color:#27408b;'>Pick Color</a></td></tr>\n";
@@ -288,7 +288,7 @@ $query2 = "update ".$db_prefix."info set `inout` = ('".$post_statusname."') wher
 $result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query2);
 
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Status</h3>

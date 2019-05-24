@@ -53,7 +53,7 @@ if ($request == 'GET') {
 
 
 			echo '<div class="row">
-		        <div class="col-md-8">
+		        <div id="float_window" class="col-md-10">
 		          <div class="box box-info"> ';
 		    echo '<div class="box-header with-border">
 			                 <h3 class="box-title"><i class="fa fa-user-plus"></i> Create User</h3>
@@ -383,7 +383,7 @@ elseif ($request == 'POST') {
 
 
 				echo '<div class="row">
-				    <div class="col-md-8">
+				    <div id="float_window" class="col-md-10">
 				      <div class="box box-info"> ';
 				echo '<div class="box-header with-border">
 				                 <h3 class="box-title"><i class="fa fa-user-plus"></i>Crear usuario</h3>
@@ -555,7 +555,7 @@ elseif ($request == 'POST') {
 
 
 		echo '<div class="row">
-		    <div class="col-md-8">
+		    <div id="float_window" class="col-md-10">
 		      <div class="box box-info"> ';
 		echo '<div class="box-header with-border">
 		                 <h3 class="box-title"><i class="fa fa-user-plus"></i>Usuario creado con éxito.</h3>

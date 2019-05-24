@@ -571,7 +571,7 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                         <tr class=right_main_text>
                            <td class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
                               Punch Out Employees From:
-                              <span style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                              <span style='padding-left:20px;'>
                                  *
                               </span>
                            </td>
@@ -619,7 +619,7 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                            <td align=right class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
                               Punch Out Status:
                            </td>
-                           <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                           <td colspan=2 width=80% style='padding-left:20px;'>
                               <select name='post_statusname'>
                                  <option value ='1'>
                                     Choose One
@@ -645,7 +645,7 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                            <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
                               Date: ($tmp_datefmt)
                            </td>
-                           <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                           <td colspan=2 width=80% style='padding-left:20px;'>
                               <input type='text' size='10' maxlength='10' name='post_date' value='$post_date'>
                               &nbsp; *&nbsp;&nbsp; &nbsp;
                               <a href=\"#\" onclick=\"cal.select(document.forms['form'].post_date,'post_date_anchor','$js_datefmt'); return false;\" name=\"post_date_anchor\" id=\"post_date_anchor\" style='font-size:11px;color:#27408b;'>
@@ -657,7 +657,7 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                            <td class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
                               Time: ($timefmt_24hr_text)
                            </td>
-                           <td colspan=2 width=80% style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                           <td colspan=2 width=80% style='padding-left:20px;'>
                               <input type='text' size='10' maxlength='$timefmt_size' name='post_time' value='$post_time'>
                               &nbsp; *&nbsp;&nbsp;
                            </td>

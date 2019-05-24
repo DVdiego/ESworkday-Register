@@ -63,7 +63,7 @@ if (!isset($_SESSION['valid_user'])) {
 include 'leftmain.php'; //esta despues de verficar la sesión para que no cargue el menú lateral sino esta autendicado.
 if ($request == 'GET') {
   echo '<div class="row">
-          <div class="col-md-8">
+          <div id="float_window" class="col-md-10">
             <div class="box box-info"> ';
   echo '      <div class="box-header with-border">
                    <h3 class="box-title"><i class="fa fa-suitcase"></i> Crear oficina</h3>
@@ -73,7 +73,7 @@ echo "          <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='50' name='post_officename'>&nbsp;*</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Create Groups Within This Office?</td>\n";
 echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='create_groups' value='1'
@@ -148,7 +148,7 @@ elseif ($request == 'POST') {
 
   if ((@$tmp_officename == $post_officename) || (empty($post_officename)) || (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_officename)) || ((!preg_match('/' . "^([0-9])$" . '/i', $how_many)) && (isset($how_many))) || (@$how_many == '0') || (($create_groups != '1') && (!empty($create_groups))) || (!empty($string)) || (!empty($string2))) {
     if (empty($post_officename)) {
-      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo '        <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                    Se requiere un nombre de oficina.
@@ -156,21 +156,21 @@ elseif ($request == 'POST') {
 
     }
     elseif (!empty($string)) {
-      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo '        <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                    No están permitidos los apóstrofes en el nombre.
                 </div></div>';
     }
     elseif (!empty($string2)) {
-      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo '        <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                    No se permiten dobles comillas para el nombre.
                 </div></div>';
     }
     elseif (@$tmp_officename == $post_officename) {
-      echo ' <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo ' <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                       La oficina ya existe, por favor introduzca otro nombre.
@@ -178,21 +178,21 @@ elseif ($request == 'POST') {
     }
     // elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_officename)) {
     elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_officename)) {
-      echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo '  <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                    No se permiten guiones, guiones bajos, espacios o caracteres alfanuméricos en el nombre.
                 </div></div>';
     }
     elseif (($create_groups == '1') && (empty($how_many))) {
-      echo '    <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo '    <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                    Por favor, introduzca el número de grupos que desea crear para esta oficina.
                 </div></div>';
     }
     elseif (($create_groups == '1') && ($how_many == '0')) {
-      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo '        <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                    Ha decidido crear grupos para esta oficina. Por favor introduzca un número diferente de 0.
@@ -200,13 +200,13 @@ elseif ($request == 'POST') {
     }
     // elseif (!eregi ("^([0-9])$", $how_many)) {
     elseif (!preg_match('/' . "^([0-9])$" . '/i', $how_many)) {
-      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo '        <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                    Solo se permiten caracteres numéricos en el campo de grupos.
                 </div></div>';
     }elseif (($create_groups != '1') && (!empty($create_groups))) {
-      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+      echo '        <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                    Por favor, elija \'si\' o \'no\' para la pregunta <i>¿Cuántos grupos tiene la oficina?.
@@ -225,7 +225,7 @@ elseif ($request == 'POST') {
 
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-suitcase"></i> Crear Oficina</h3>
@@ -236,7 +236,7 @@ elseif ($request == 'POST') {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td colspan=2 width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                          style='padding-left:20px;'>
                           <input type='text' size='25' maxlength='50' name='post_officename' value=\"$post_officename\">&nbsp;*</td></tr>\n";
 
     if (!empty($string)) {$post_officename = addslashes($post_officename);}
@@ -337,7 +337,7 @@ elseif ($request == 'POST') {
         }
 
       echo '<div class="row">
-              <div class="col-md-8">
+              <div id="float_window" class="col-md-10">
                 <div class="box box-info"> ';
       echo '      <div class="box-header with-border">
                        <h3 class="box-title"><i class="fa fa-suitcase"></i> Crear Oficina</h3>
@@ -491,7 +491,7 @@ elseif ($request == 'POST') {
 
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-suitcase"></i> Crear Oficina</h3>

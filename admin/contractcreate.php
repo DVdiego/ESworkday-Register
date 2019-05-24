@@ -47,7 +47,7 @@ include 'leftmain.php'; //esta despues de verficar la sesión para que no cargue
 if ($request == 'GET') {
 
   echo '<div class="row">
-          <div class="col-md-8">
+          <div id="float_window" class="col-md-10">
             <div class="box box-info"> ';
   echo '      <div class="box-header with-border">
                    <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Contract</h3>
@@ -60,17 +60,17 @@ echo "                <th class=rightside_heading nowrap halign=left colspan=3>
                     <img src='../images/icons/application_add.png' />&nbsp;&nbsp;&nbsp;Create Contract</th></tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contract Type Name:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='20' maxlength='50' name='post_contractname'>&nbsp;*</td>
                     </tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Daily Hours:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='20' maxlength='50' name='post_dailyhours'>&nbsp;*</td>
                     </tr>\n";
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Cost Overtime:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <input type='text' size='20' maxlength='50' name='post_overtime'>&nbsp;*</td>
                     </tr>\n";
 
@@ -170,7 +170,7 @@ elseif ($request == 'POST') {
     echo "            <br />\n";
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-suitcase"></i>  Create Status</h3>
@@ -184,16 +184,16 @@ elseif ($request == 'POST') {
     echo "              <tr><td height=15></td></tr>\n";
 
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contract Type Name:</td><td colspan=2 width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'><input type='text'
+                          style='padding-left:20px;'><input type='text'
                           size='20' maxlength='50' name='post_contractname' value=\"$post_contractname\">&nbsp;*</td></tr>\n";
 
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Daily Hours:</td><td colspan=2 width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                          style='padding-left:20px;'>
                           <input type='text' size='20' maxlength='50' name='post_dailyhours' value=\"$post_dailyhours\">&nbsp;*</td>
                         </tr>\n";
 
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Cost Overtime:</td><td colspan=2 width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                          style='padding-left:20px;'>
                           <input type='text' size='20' maxlength='50' name='post_overtime' value=\"$post_overtime\">&nbsp;*</td>
                         </tr>\n";
 
@@ -229,7 +229,7 @@ elseif ($request == 'POST') {
 
 
     echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-suitcase"></i> Create Contract</h3>
@@ -248,15 +248,15 @@ elseif ($request == 'POST') {
     echo "              </tr>\n";
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contract Type Name:</td><td colspan=2 width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>$post_contractname</td>
+                          style='padding-left:20px;'>$post_contractname</td>
                           </tr>\n";
 
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Daily Hours:</td><td colspan=2 width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>$post_dailyhours</td>
+                          style='padding-left:20px;'>$post_dailyhours</td>
                         </tr>\n";
 
     echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Cost Overtime:</td><td colspan=2 width=80%
-                          style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>$post_overtime</td>
+                          style='padding-left:20px;'>$post_overtime</td>
                         </tr>\n";
     echo "            </table>\n";
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";

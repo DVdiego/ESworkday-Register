@@ -88,13 +88,13 @@ $result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 if ($user_cnt > 0) {
   echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
   if ($user_cnt == 1) {
-  echo ' <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo ' <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                     Esta oficina contiene ' . $user_cnt . ' usuario. El usuario debe de ser movido a otro grupo de otra oficina antes de poder eliminar la oficina.
                 </div></div>';
   } else {
-  echo ' <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+  echo ' <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                       Esta oficina contiene ' . $user_cnt . ' usuarios. Los usuarioa deben de ser movidos a otro grupo de otra oficina antes de poder eliminar la oficina.
@@ -103,7 +103,7 @@ if ($user_cnt > 0) {
 echo "            </table>\n";
 echo "            <br />\n";
 echo '<div class="row">
-          <div class="col-md-8">
+          <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
 echo '           <div class="box-header with-border">
                    <h3 class="box-title"><i class="fa fa-suitcase"></i> Eliminar oficina</h3>
@@ -174,7 +174,7 @@ include '../footer.php';exit;
 } elseif ($user_cnt == '0') {
 
   echo '<div class="row">
-            <div class="col-md-8">
+            <div id="float_window" class="col-md-10">
                 <div class="box box-info"> ';
   echo '           <div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-suitcase"></i> Eliminar oficina</h3>
@@ -295,7 +295,7 @@ if ($group_cnt != $tmp_group_cnt) {echo "Posted group count does not equal actua
 
 include 'leftmain.php';
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '     <div class="box-header with-border">
                    <h3 class="box-title"><i class="fa fa-suitcase"></i> Eliminar oficina</h3>

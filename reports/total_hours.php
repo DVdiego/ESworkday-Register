@@ -63,7 +63,7 @@ include 'leftmain.php';
 }
 
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-user"></i> Hours Worked Report</h3>
@@ -84,7 +84,7 @@ $query = "select empfullname from ".$db_prefix."employees order by empfullname a
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 align=left width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                   <select name='user_name'>\n";
 echo "                    <option value ='All'>All</option>\n";
 
@@ -97,24 +97,24 @@ echo "                  </select>&nbsp;*</td></tr>\n";
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 } else {
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Office:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='office_name' onchange='group_names();'>\n";
 echo "                      </select></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Group:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='group_name' onchange='user_names();'>\n";
 echo "                      </select></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Username:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='user_name'>\n";
 echo "                      </select></td></tr>\n";
 }
 // echo "              <tr><td class=table_rows style='padding-left:32px;' width=20% nowrap>From Date: ($tmp_datefmt)</td><td
-//                       style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;' width=80% >
+//                       style='padding-left:20px;' width=80% >
 //                       <input type='text' size='10' maxlength='10' name='from_date' id='datepicker'>&nbsp;*&nbsp;&nbsp;
 //                       </td><tr>\n";
 // echo "              <tr><td class=table_rows style='padding-left:32px;' width=20% nowrap>To Date: ($tmp_datefmt)</td><td
-//                       style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;' width=80% >
+//                       style='padding-left:20px;' width=80% >
 //                       <input type='text' size='10' maxlength='10' name='to_date' id='datepicker1'>&nbsp;*&nbsp;&nbsp;
 //                       </td><tr>\n";
 echo "<tr><td>";
@@ -622,7 +622,7 @@ if (isset($evil_post)) {
 
 echo "            <br />\n";
 echo '<div class="row">
-        <div class="col-md-8">
+        <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-suitcase"></i>  Create Status</h3>
@@ -641,7 +641,7 @@ $query = "select empfullname from ".$db_prefix."employees order by empfullname a
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 align=left width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                   <select name='user_name'>\n";
 echo "                    <option value ='All'>All</option>\n";
 
@@ -655,27 +655,27 @@ echo "                  </select>&nbsp;*</td></tr>\n";
 } else {
 
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Office:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='office_name' onchange='group_names();'>\n";
 echo "                      </select></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Group:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='group_name' onfocus='group_names();'>
                           <option selected>$group_name</option>\n";
 echo "                      </select></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Username:</td><td colspan=2 width=80%
-                      style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;'>
+                      style='padding-left:20px;'>
                       <select name='user_name' onfocus='user_names();'>
                           <option selected>$fullname</option>\n";
 echo "                      </select></td></tr>\n";
 }
 // echo "              <tr><td class=table_rows style='padding-left:32px;' width=20% nowrap>From Date: ($tmp_datefmt)</td><td
-//                       style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;' width=80% >
+//                       style='padding-left:20px;' width=80% >
 //                       <input type='text' size='10' maxlength='10' name='from_date' value='$from_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
 //                       <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
 //                       return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
 // echo "              <tr><td class=table_rows style='padding-left:32px;' width=20% nowrap>To Date: ($tmp_datefmt)</td><td
-//                       style='color:red;font-family:Tahoma;font-size:10px;padding-left:20px;' width=80% >
+//                       style='padding-left:20px;' width=80% >
 //                       <input type='text' size='10' maxlength='10' name='to_date' value='$to_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
 //                       <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt');
 //                       return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";

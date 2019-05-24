@@ -405,7 +405,7 @@ if ($request == 'POST') { // Process employee's punch information
     }
 
     if (! isset($tmp_inout)) {
-	    echo '<div class="col-md-8">
+	    echo '<div id="float_window" class="col-md-10">
               <div class="callout callout-danger">
                   <h4><i class="fa fa-bullhorn"></i> Error</h4>
                   <p>Status is not in the database.</p>
@@ -416,7 +416,7 @@ if ($request == 'POST') { // Process employee's punch information
 
     if ($show_display_name == "yes") {
         if (! $displayname && ! $inout) {
-    	    echo '<div class="col-md-8">
+    	    echo '<div id="float_window" class="col-md-10">
                   <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>
                     <p>You have not chosen a username or a status. Please try again..</p>
@@ -431,7 +431,7 @@ if ($request == 'POST') { // Process employee's punch information
         }
 
         if (! $displayname) {
-      	    echo '<div class="col-md-8">
+      	    echo '<div id="float_window" class="col-md-10">
                     <div class="callout callout-danger">
                       <h4><i class="fa fa-bullhorn"></i> Error</h4>
                       <p>You have not chosen a username. Please try again.</p>
@@ -447,7 +447,7 @@ if ($request == 'POST') { // Process employee's punch information
     } elseif ($show_display_name == "no") {
 
         if (! $fullname && ! $inout) {
-    	    echo '<div class="col-md-8">
+    	    echo '<div id="float_window" class="col-md-10">
                   <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>
                     <p>You have not chosen a username or a status. Please try again.</p>
@@ -464,7 +464,7 @@ if ($request == 'POST') { // Process employee's punch information
         }
 
         if (! $fullname) {
-        	    echo '<div class="col-md-8">
+        	    echo '<div id="float_window" class="col-md-10">
                       <div class="callout callout-danger">
                         <h4><i class="fa fa-bullhorn"></i> Error</h4>
                         <p>You have not chosen a username. Please try again.</p>
@@ -482,7 +482,7 @@ if ($request == 'POST') { // Process employee's punch information
     }
 
     if (! $inout) {
-	    echo '<div class="col-md-8">
+	    echo '<div id="float_window" class="col-md-10">
               <div class="callout callout-danger">
                 <h4><i class="fa fa-bullhorn"></i> Error</h4>
                 <p>You have not chosen a status. Please try again.</p>
@@ -549,7 +549,7 @@ if ($request == 'POST') { // Process employee's punch information
 
     // Verify that the employee is not selecting the same status as his current status
     if ($selectedStatus == $currentStatus) {
-	    echo '<div class="col-md-8">
+	    echo '<div id="float_window" class="col-md-10">
               <div class="callout callout-danger">
                 <h4><i class="fa fa-bullhorn"></i> Error</h4>
                 <p>The current punch status for '.$fullname.' is '.$currentPunchName.' . Please use a different status.</p>
@@ -576,7 +576,7 @@ if ($request == 'POST') { // Process employee's punch information
         }
 
         if (password_verify($employee_passwd,$tmp_password)) {
-    	    echo '<div class="col-md-8">
+    	    echo '<div id="float_window" class="col-md-10">
                   <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>
                     <p>You have entered the wrong password for '.$fullname.'. Please try again.</p>
@@ -641,7 +641,7 @@ if ($request == 'POST') { // Process employee's punch information
 
     $update_query = "update ".$db_prefix."employees set tstamp = '".$tz_stamp."' where empfullname = '".$fullname."'";
     $other_result = mysqli_query($GLOBALS["___mysqli_ston"], $update_query);
-	    echo '<div class="col-md-8">
+	    echo '<div id="float_window" class="col-md-10">
               <div class="callout callout-success">
                 <h4><i class="fa fa-bullhorn"></i> </h4>
                 <p> Status changed successfully for '.$fullname.' to a status of '.$inout.'.</p>
@@ -659,7 +659,7 @@ if ($request == 'POST') { // Process employee's punch information
 if (! isset($_GET['printer_friendly']) && ($message_of_the_day != "none")) {
 	echo '
 		<!-- Message Of The Day Display -->
-	        <div class="col-md-8">
+	        <div id="float_window" class="col-md-10">
 		<div class="callout callout-success">
                 <h4>Mensaje:</h4>
 

@@ -67,7 +67,7 @@ include 'leftmain.php';
 
 
 echo ' <div class="row">
- <div class="col-md-8">
+ <div id="float_window" class="col-md-10">
           <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title"><i class="fa fa-book"></i> Daily Time Report</h3>
