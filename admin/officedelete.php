@@ -1,4 +1,4 @@
-<?php
+ Eliminar oficina<?php
 /***************************************************************************
  *   Copyright (C) 2006 by Ken Papizan                                     *
  *   Copyright (C) 2008 by phpTimeClock Team                               *
@@ -29,7 +29,7 @@ include '../config.inc.php';
 
 
 if ($request !== 'POST') {include 'header_get.php';include 'topmain.php'; include 'leftmain.php';}
-echo "<title>$title - Delete Office</title>\n";
+echo "<title>$title -  Eliminar oficina</title>\n";
 
 if (!isset($_SESSION['valid_user'])) {
 
@@ -104,11 +104,11 @@ echo '<div class="row">
           <div class="col-md-8">
               <div class="box box-info"> ';
 echo '           <div class="box-header with-border">
-                   <h3 class="box-title"><i class="fa fa-suitcase"></i>Delete Office</h3>
+                   <h3 class="box-title"><i class="fa fa-suitcase"></i> Eliminar oficina</h3>
                  </div>
                  <div class="box-body">';
 echo "              <table class=table>\n";
-echo "                <form name='form' action='$self' method='post'>\n";
+echo "                <form name='form' action='$self' method='post'>\n";echo "                  </tr>\n";
 
 echo "                  <tr><td height=15></td></tr>\n";
 echo "                  <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td>
@@ -163,7 +163,7 @@ include '../footer.php';exit;
             <div class="col-md-8">
                 <div class="box box-info"> ';
   echo '           <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i>Delete Office</h3>
+                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Eliminar oficina</h3>
                    </div>
                    <div class="box-body">';
 echo "               <table class=table>\n";
@@ -271,7 +271,7 @@ echo '<div class="row">
         <div class="col-md-8">
           <div class="box box-info"> ';
 echo '     <div class="box-header with-border">
-                   <h3 class="box-title"><i class="fa fa-suitcase"></i>Delete Office</h3>
+                   <h3 class="box-title"><i class="fa fa-suitcase"></i>Eliminar oficina</h3>
            </div>
            <div class="box-body">';
 echo "        <table class=table>\n";
