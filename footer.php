@@ -54,8 +54,7 @@ echo '
 	</div>
 <!-- Default to the left -->
 
-Powered by <a class="footer_links" href="http://mysql.org">mysql</a>&nbsp;&#177
-<a class="footer_links" href="http://php.net">&nbsp;PHP</a> &nbsp;&#8226; <a class="footer_links" href="http://getbootstrap.com">Bootstrap</a>
+Soporte <a class="footer_links" href="mailto:soporte@isoftsolutions.es" target="_blank">soporte@isoftsolutions.es</a> <i class="fa fa-envelope" />
 
  </footer>
 ';
