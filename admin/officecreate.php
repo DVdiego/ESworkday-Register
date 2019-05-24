@@ -96,9 +96,8 @@ echo "              <tr>
 
                       <td>
                         <button id='formButtons' class='btn btn-default pull-right'>
-                          <a href='officeadmin.php'>
-                            Cancelar
-                          </a>
+                          Cancelar
+                          <a href='officeadmin.php' />
                         </button>
                       </td>
                     </tr>
@@ -152,91 +151,66 @@ elseif ($request == 'POST') {
       echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-                   Se requiere un nombre de usuario.
+                   Se requiere un nombre de oficina.
                 </div></div>';
 
     }
     elseif (!empty($string)) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center>
-                            <img src='../images/icons/cancel.png' />
-                          </td>
-
-                          <td class=table_rows_red>
-                            Apostrohpes are not allowed when creating an Office Name.
-                          </td>
-                        </tr>\n";
-    echo "            </table>\n";
+      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   No están permitidos los apóstrofes en el nombre.
+                </div></div>';
     }
     elseif (!empty($string2)) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center>
-                            <img src='../images/icons/cancel.png' />
-                          </td>
-
-                          <td class=table_rows_red>
-                            Double Quotes are not allowed when creating an Office Name.
-                          </td>
-                        </tr>\n";
-    echo "            </table>\n";
+      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   No se permiten dobles comillas para el nombre.
+                </div></div>';
     }
     elseif (@$tmp_officename == $post_officename) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center>
-                            <img src='../images/icons/cancel.png' />
-                          </td>
-
-                          <td class=table_rows_red>
-                            La oficina ya existe. Crea una nueva oficina.
-                          </td>
-                        </tr>\n";
-    echo "            </table>\n";
+      echo ' <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      La oficina ya existe, por favor introduzca otro nombre.
+                  </div></div>';
     }
     // elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_officename)) {
     elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_officename)) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center>
-                            <img src='../images/icons/cancel.png' />
-                          </td>
-
-                          <td class=table_rows_red>
-                            Alphanumeric characters, hyphens, underscores, spaces, and periods are allowed when creating an Office Name.
-                          </td>
-                        </tr>\n";
-    echo "            </table>\n";
+      echo '  <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   No se permiten guiones, guiones bajos, espacios o caracteres alfanuméricos en el nombre.
+                </div></div>';
     }
     elseif (($create_groups == '1') && (empty($how_many))) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center>
-                            <img src='../images/icons/cancel.png' />
-                          </td>
-
-                          <td class=table_rows_red>
-                            Please input the number of groups you wish to create within this new office.
-                          </td>
-                        </tr>\n";
-    echo "            </table>\n";
+      echo '    <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   Por favor, introduzca el número de grupos que desea crear para esta oficina.
+                </div></div>';
     }
     elseif (($create_groups == '1') && ($how_many == '0')) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        You have chosen to create groups within this new office. Please input a number other than '0' for 'How Many?'.</td></tr>\n";
-    echo "            </table>\n";
+      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   Ha decidido crear grupos para esta oficina. Por favor introduzca un número diferente de 0.
+                </div></div>';
     }
     // elseif (!eregi ("^([0-9])$", $how_many)) {
     elseif (!preg_match('/' . "^([0-9])$" . '/i', $how_many)) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Only numeric characters are allowed for an office count.</td></tr>\n";
-    echo "            </table>\n";
+      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   Solo se permiten caracteres numéricos en el campo de grupos.
+                </div></div>';
     }elseif (($create_groups != '1') && (!empty($create_groups))) {
+      echo '        <div class="col-md-8"><div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   Por favor, elija \'si\' o \'no\' para la pregunta <i>¿Cuántos grupos tiene la oficina?.
+                </div></div>';
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>\n";
     echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
@@ -306,9 +280,8 @@ elseif ($request == 'POST') {
                               </button>
                             <td>
                               <button id='formButtons' class='btn btn-default pull-right'>
-                                <a href='officeadmin.php'>
-                                  Cancelar
-                                </a>
+                                Cancelar
+                                <a href='officeadmin.php' />
                               </button>
                             </td>
                         </tr>
@@ -473,9 +446,8 @@ elseif ($request == 'POST') {
 
                             <td>
                               <button id='formButtons' class='btn btn-default pull-right'>
-                                <a href='officeadmin.php'>
-                                  Cancelar
-                                </a>
+                                Cancelar
+                                <a href='officeadmin.php' />
                               </button>
                             </td>
                           </tr>
@@ -496,8 +468,10 @@ elseif ($request == 'POST') {
       echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
       echo "              <tr>
                             <td>
-                              <a href='officecreate.php'>
-                              <img src='../images/buttons/done_button.png' border='0'>
+                              <button id='formButtons' class='btn btn-success pull-left'>
+                                Aceptar
+                                <a href='usercreate.php'>
+                              </button>
                             </td>
                           </tr>
                         </table>
@@ -557,9 +531,8 @@ elseif ($request == 'POST') {
     echo "              <tr>
                           <td
                             <button id='formButtons' class='btn btn-info'>
-                              <a href='officeadmin.php'>
-                                Crear oficina
-                              </a>
+                              Crear oficina
+                              <a href='officeadmin.php' />
                             </button>
                           </td>
                         </tr>
@@ -607,15 +580,14 @@ elseif ($request == 'POST') {
     echo "              <tr>
                           <td width=30>
                             <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-info'>
-                              Crear usuario
+                              Crear oficina
                             </button>
                           </td>
 
                           <td>
-                            <button id='formButtons' class='btn btn-default pull-right'>
-                              <a href='officeadmin.php'>
-                                Cancelar
-                              </a>
+                            <button id='formButtons' class='btn btn-info pull-right'>
+                              Cancelar
+                              <a href='officeadmin.php' />
                             </button>
                           </td>
                         </tr>

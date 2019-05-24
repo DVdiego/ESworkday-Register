@@ -120,9 +120,8 @@ if ($request == 'GET') {
 															</button>
 
 															<button id="formButtons"class="btn btn-default pull-right">
-																<a href="usercreate.php">
-																	Cancelar
-																</a>
+																Cancelar
+																<a href="usercreate.php" />
 															</button>
 						                </div></form>';
 						      echo '</div></div></div></div>';
@@ -185,11 +184,7 @@ elseif ($request == 'POST') {
 
 				if (empty($user_dni)) {
 
-					echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
-				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-				                 	Se requiere introducir el DNI del empleado.
-				              </div></div>';
+
 				}
 				elseif (empty($display_name)) {
 
@@ -487,7 +482,7 @@ elseif ($request == 'POST') {
 				//                      border='0'></td></tr></table></form>\n";
 								      echo '<div class="box-footer">
 								                  <button id="formButtons" type="submit" name="submit" value="Create User" class="btn btn-info">Crear usuario</button>
-								                  <button id="formButtons" class="btn btn-default pull-right"><a href="usercreate.php">Cancelar</a></button>
+								                  <button id="formButtons" class="btn btn-default pull-right">Cancelar<a href="usercreate.php" /></button>
 								                </div></form>';
 								      echo '</div></div></div></div>';
 						      include '../theme/templates/endmaincontent.inc';
@@ -627,11 +622,10 @@ elseif ($request == 'POST') {
 		echo "              <tr><td height=15></td></tr>\n";
 		echo "            </table>\n";
 		echo '						<div class="box-footer">
-		           					<a href="usercreate.php">
-													<button id="formButtons" class="btn btn-success">
-														Done
-													</button>
-												</a>
+												<button id="formButtons" class="btn btn-success">
+													Aceptar
+													<a href="usercreate.php" />
+												</button>
 		          				</div>';
 		echo '				</div>
 							</div>
