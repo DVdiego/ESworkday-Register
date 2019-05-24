@@ -622,8 +622,9 @@ elseif ($request == 'POST') {
 		echo "            </table>\n";
 		echo '						<div class="box-footer">
 												<button id="formButtons" class="btn btn-success">
-													Aceptar
-													<a href="usercreate.php" />
+													<a href="usercreate.php" >
+														Aceptar
+													</a>
 												</button>
 		          				</div>';
 		echo '				</div>
