@@ -134,10 +134,10 @@ if ($request == 'GET') { // Display employee add time interface
     	                      <label>Time: ('.$timefmt_24hr_text.')</label>';
 
    echo'    	              <div class="input-group">
-    	                       <input type="text" size="10" maxlength="10" class="form-control timepicker" name="post_time">';
-   echo'   	                  <div class="input-group-addon">
-    	                          <i class="fa fa-clock-o"></i>
-  	                          </div>
+    	                         <input type="text" size="10" maxlength="10" class="form-control timepicker" name="post_time">';
+   echo'   	                      <div class="input-group-addon">
+    	                               <i class="fa fa-clock-o"></i>
+  	                              </div>
     	                      </div>
     	                     <!-- /.input group -->
     	                    </div>

@@ -96,9 +96,9 @@ if (empty($creating_backup_file)) { // This allows the database backup code to c
     echo "
     	<title>$title</title>";
           include '../theme/templates/adminheader.inc';
+    echo "<link rel='stylesheet' type='text/css' href='../css/styles.css' />\n";      
     echo "
       <link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />
-      <link rel='stylesheet' type='text/css' media='print' href='../css/styles.css' />
       <script language=\"javascript\" src=\"../scripts/pnguin.js\"> </script>
    </head>\n";
     if ($use_client_tz == "yes") {

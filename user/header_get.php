@@ -86,6 +86,7 @@ if ($use_client_tz == "yes") {
 }
 include '../theme/templates/adminheader.inc';
 echo "<link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />\n";
+echo "<link rel='stylesheet' type='text/css' href='../css/styles.css' />\n";
 // echo "<script type=\"text/javascript\" src=\"../scripts/CalendarPopup.js\"></script>\n";
 // echo "<script language=\"javascript\">document.write(getCalendarStyles());</script>\n";
 echo "<script language=\"javascript\" src=\"../scripts/pnguin.js\"></script>\n";

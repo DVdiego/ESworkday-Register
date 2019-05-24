@@ -106,42 +106,6 @@ if ($request == 'GET') { // Display employee select interface for editing an emp
         exit;
     }
 
-	/*
-    $get_user = stripslashes($_GET['username']);
-
-    disabled_acct($get_user);
-
-    echo "<table width=100% height=89% border=0 cellpadding=0 cellspacing=1>\n";
-    echo "  <tr valign=top>\n";
-    echo "    <td class=left_main width=180 align=left scope=col>\n";
-    echo "      <table width=100% border=0 cellpadding=1 cellspacing=0>\n";
-    echo "        <tr><td class=left_rows height=11></td></tr>\n";
-    echo "        <tr><td class=left_rows_headings height=18 valign=middle>Users</td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/user.png' alt='User Summary' />&nbsp;&nbsp; <a class=admin_headings href='useradmin.php'>User Summary</a></td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/user_add.png' alt='Create New User' />&nbsp;&nbsp; <a class=admin_headings href='usercreate.php'>Create New User</a></td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/magnifier.png' alt='User Search' />&nbsp;&nbsp; <a class=admin_headings href='usersearch.php'>User Search</a></td></tr>\n";
-    echo "        <tr><td class=left_rows height=33></td></tr>\n";
-    echo "        <tr><td class=left_rows_headings height=18 valign=middle>Offices</td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/brick.png' alt='Office Summary' />&nbsp;&nbsp; <a class=admin_headings href='officeadmin.php'>Office Summary</a></td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/brick_add.png' alt='Create New Office' />&nbsp;&nbsp; <a class=admin_headings href='officecreate.php'>Create New Office</a></td></tr>\n";
-    echo "        <tr><td class=left_rows height=33></td></tr>\n";
-    echo "        <tr><td class=left_rows_headings height=18 valign=middle>Groups</td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/group.png' alt='Group Summary' />&nbsp;&nbsp; <a class=admin_headings href='groupadmin.php'>Group Summary</a></td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/group_add.png' alt='Create New Group' />&nbsp;&nbsp; <a class=admin_headings href='groupcreate.php'>Create New Group</a></td></tr>\n";
-    echo "        <tr><td class=left_rows height=33></td></tr>\n";
-    echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2>In/Out Status</td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application.png' alt='Status Summary' /> &nbsp;&nbsp;<a class=admin_headings href='statusadmin.php'>Status Summary</a></td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application_add.png' alt='Create Status' />&nbsp;&nbsp; <a class=admin_headings href='statuscreate.php'>Create Status</a></td></tr>\n";
-    echo "        <tr><td class=left_rows height=33></td></tr>\n";
-    echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2>Miscellaneous</td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/clock.png' alt='Modify Time' /> &nbsp;&nbsp;<a class=admin_headings href='timeadmin.php'>Modify Time</a></td></tr>\n";
-    echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Add Time' /> &nbsp;&nbsp;<a class=admin_headings href=\"timeadd.php?username=$get_user\">Add Time</a></td></tr>\n";
-    echo "        <tr><td class=current_left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Edit Time' /> &nbsp;&nbsp;<a class=admin_headings href=\"timeedit.php?username=$get_user\">Edit Time</a></td></tr>\n";
-    echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Delete Time' /> &nbsp;&nbsp;<a class=admin_headings href=\"timedelete.php?username=$get_user\">Delete Time</a></td></tr>\n";
-    echo "        <tr><td class=left_rows_border_top height=18 align=left valign=middle><img src='../images/icons/application_edit.png' alt='Edit System Settings' /> &nbsp;&nbsp;<a class=admin_headings href='sysedit.php'>Edit System Settings</a></td></tr>\n";
-    echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/database_go.png' alt='Manage Database' />&nbsp;&nbsp;&nbsp;<a class=admin_headings href='database_management.php'>Manage Database</a></td></tr>\n";
-    echo "      </table></td>\n";
-	*/
 
     $get_user = addslashes($get_user);
 
@@ -153,7 +117,8 @@ if ($request == 'GET') { // Display employee select interface for editing an emp
         $displayname = stripslashes("".$row['displayname']."");
     }
     ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-    $get_user = stripslashes($get_user);
+
+    $get_user = stripslashes($_GET['username']);
 
 
 echo '<div class="row">
@@ -196,7 +161,8 @@ echo '<div class="box-header with-border">
 	include '../theme/templates/adminfooterscripts.inc';
     exit;
 } elseif ($request == 'POST') { // Display interface for editing the selected employee's time.
-    $get_user = stripslashes($_POST['get_user']);
+    //$get_user = stripslashes($_POST['get_user']);
+
     $post_username = stripslashes($_POST['post_username']);
     $post_displayname = stripslashes($_POST['post_displayname']);
     $post_date = $_POST['post_date'];
@@ -264,9 +230,11 @@ echo '<div class="box-header with-border">
 
     // begin post validation //
 
-    if ($get_user != $post_username) {
-        exit;
-    }
+/*FLAG*/
+    // if ($get_user != $post_username) {
+    //
+    //     exit;
+    // }
 
     // end post validation //
 
@@ -317,39 +285,40 @@ echo '<div class="box-header with-border">
         echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red> A valid Date is required.</td></tr>\n";
         echo "            </table>\n";
 //    } elseif (eregi ("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date, $date_regs)) {
-    } elseif (preg_match('/' . "^([0-9]{1,2})[-\,\/,.]([0-9]{1,2})[-\,\/,.](([0-9]{2})|([0-9]{4}))$" . '/i', $post_date, $date_regs)) {
-        if ($calendar_style == "amer") {
-            if (isset($date_regs)) {
-                $month = $date_regs[1];
-                $day = $date_regs[2];
-                $year = $date_regs[3];
-            }
-            if ($month > 12 || $day > 31) {
-                $evil_post = '1';
-                if (!isset($evil_post)) {
-                    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-                    echo "              <tr>\n";
-                    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red> A valid Date is required.</td></tr>\n";
-                    echo "            </table>\n";
-                }
-            }
-        } elseif ($calendar_style == "euro") {
-            if (isset($date_regs)) {
-                $month = $date_regs[2];
-                $day = $date_regs[1];
-                $year = $date_regs[3];
-            }
-            if ($month > 12 || $day > 31) {
-                $evil_post = '1';
-                if (!isset($evil_post)) {
-                    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-                    echo "              <tr>\n";
-                    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red> A valid Date is required.</td></tr>\n";
-                    echo "            </table>\n";
-                }
-            }
-        }
     }
+    // elseif (preg_match('/' . "^([0-9]{1,2})[-\,\/,.]([0-9]{1,2})[-\,\/,.](([0-9]{2})|([0-9]{4}))$" . '/i', $post_date, $date_regs)) {
+    //     if ($calendar_style == "amer") {
+    //         if (isset($date_regs)) {
+    //             $month = $date_regs[1];
+    //             $day = $date_regs[2];
+    //             $year = $date_regs[3];
+    //         }
+    //         if ($month > 12 || $day > 31) {
+    //             $evil_post = '1';
+    //             if (!isset($evil_post)) {
+    //                 echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
+    //                 echo "              <tr>\n";
+    //                 echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red> A valid Date is required.</td></tr>\n";
+    //                 echo "            </table>\n";
+    //             }
+    //         }
+    //     } elseif ($calendar_style == "euro") {
+    //         if (isset($date_regs)) {
+    //             $month = $date_regs[2];
+    //             $day = $date_regs[1];
+    //             $year = $date_regs[3];
+    //         }
+    //         if ($month > 12 || $day > 31) {
+    //             $evil_post = '1';
+    //             if (!isset($evil_post)) {
+    //                 echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
+    //                 echo "              <tr>\n";
+    //                 echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red> A valid Date is required.</td></tr>\n";
+    //                 echo "            </table>\n";
+    //             }
+    //         }
+    //     }
+    // }
 
     if (isset($evil_post)) { // Display error message
 
@@ -460,7 +429,7 @@ echo '<div class="box-header with-border">
                 }
 
  //               $final_notes[$x] = ereg_replace("[^[:alnum:] \,\.\?-]","",$final_notes[$x]);
-		            $final_notes[$x] = preg_replace("[^[:alnum:] \,\.\?-]","",$final_notes[$x]);
+		            $final_notes[$x] = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/',"",$final_notes[$x]);
                 $final_username[$x] = addslashes($final_username[$x]);
 
                 $query5 = "select * from ".$db_prefix."info where (fullname = '".$final_username[$x]."') and (timestamp = '".$final_mysql_timestamp[$x]."') and (`inout` = '".$final_inout[$x]."')";
@@ -473,12 +442,13 @@ echo '<div class="box-header with-border">
                 }
 
                 if (!empty($edit_time_textbox[$x])) { // configure timestamp to insert/update //
-                    if ($calendar_style == "euro") {
-                      $post_date = "$day/$month/$year";
 
-                    } elseif ($calendar_style == "amer") {
-                     //   $post_date = "$month/$day/$year";
-                    }
+                    // if ($calendar_style == "euro") {
+                    //   $post_date = "$day/$month/$year";
+                    //
+                    // } elseif ($calendar_style == "amer") {
+                    //  //   $post_date = "$month/$day/$year";
+                    // }
 
                     $tmp_timestamp = strtotime($post_date) - @$tzo;
                     $tmp_calc = $timestamp + 86400 - @$tzo;
@@ -560,10 +530,10 @@ echo '<div class="box-header with-border">
 
                 // configure date to display correctly //
 
-                if ($calendar_style == "euro") {
-
-                    $post_date = "$day/$month/$year";
-                }
+                // if ($calendar_style == "euro") {
+                //
+                //     $post_date = "$day/$month/$year";
+                // }
 
                 echo "                <th class=rightside_heading nowrap halign=left colspan=4><img src='../images/icons/clock_edit.png' />&nbsp;&nbsp;&nbsp;Edit Time for $post_username on $post_date</th></tr>\n";
                 echo "              <tr><td height=15></td></tr>\n";
@@ -576,7 +546,27 @@ echo '<div class="box-header with-border">
                     $row_color = ($row_count % 2) ? $color1 : $color2;
                     $final_username[$x] = stripslashes($final_username[$x]);
                     echo "              <tr class=display_row>\n";
-                    echo "                <td nowrap width=1% style='padding-right:5px;padding-left:10px;' class=table_rows><input type='text' size='7' maxlength='$timefmt_size' name='edit_time_textbox[$x]' value=\"$edit_time_textbox[$x]\"></td>\n";
+
+
+                    // echo "                <td nowrap width=1% style='padding-right:5px;padding-left:10px;' class=table_rows><input type='text' size='7' maxlength='$timefmt_size' name='edit_time_textbox[$x]' value=\"$edit_time_textbox[$x]\"></td>\n";
+
+                    echo "                <td nowrap width=1% style='padding-right:5px;padding-left:10px;' class=table_rows>";
+                    echo'    <div class="bootstrap-timepicker">
+                        	                   <div class="form-group">';
+
+
+                    		      echo'    	                     <div class="input-group">';
+                    		      echo "                      <input type='text' size='10' class='form-control timepicker' maxlength='$timefmt_size' name='edit_time_textbox[$x]'>";
+                    echo'    	                       <div class="input-group-addon">
+                        	                         <i class="fa fa-clock-o"></i>
+                        	                       </div>
+                        	                     </div>
+                        	                     <!-- /.input group -->
+                        	                   </div>
+                        	                   <!-- /.form group -->
+                        	                 </div>
+                        	               ';
+
                     echo "                <td nowrap align=left style='width:7%;padding-left:15px;background-color:$row_color;color:".$row["color"]."'>$final_inout[$x]</td>\n";
                     echo "                <td nowrap align=left style='padding-left:20px;' width=4% bgcolor='$row_color'>$final_time[$x]</td>\n";
                     echo "                <td style='padding-left:25px;' bgcolor='$row_color'>$final_notes[$x]</td>\n";
@@ -635,10 +625,10 @@ echo '<div class="box-header with-border">
                 echo "              <tr>\n";
 
                 // configure date to display correctly //
-                if ($calendar_style == "euro") {
-                   $post_date = "$day/$month/$year";
-
-                }
+                // if ($calendar_style == "euro") {
+                //    $post_date = "$day/$month/$year";
+                //
+                // }
                 echo "                <th class=rightside_heading nowrap halign=left colspan=5><img src='../images/icons/clock_edit.png' />&nbsp;&nbsp;&nbsp;Edited Time for $post_username on $post_date</th></tr>\n";
                 echo "              <tr><td height=15></td></tr>\n";
                 echo "                <tr><td width=1% class=table_rows style='padding-left:5px;padding-right:5px;'></td><td nowrap width=1% class=column_headings style='padding-right:5px;'><b>New Time<b></td>\n";
@@ -674,7 +664,7 @@ echo '<div class="box-header with-border">
                     $post_why = '';
                 } else {
                 //    $post_why = ereg_replace("[^[:alnum:] \,\.\?-]", "", $post_why);
-		                  $post_why = preg_replace("[^[:alnum:] \,\.\?-]", "", $post_why);
+		                  $post_why = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/', "", $post_why);
                 }
 
                 for ($x=0;$x<$final_num_rows;$x++) {
@@ -690,12 +680,12 @@ echo '<div class="box-header with-border">
 
                         // configure timestamp to insert/update //
 
-                        if ($calendar_style == "euro") {
-                            $post_date = "$day/$month/$year";
-
-                        } elseif ($calendar_style == "amer") {
-                            $post_date = "$month/$day/$year";
-                        }
+                        // if ($calendar_style == "euro") {
+                        //     $post_date = "$day/$month/$year";
+                        //
+                        // } elseif ($calendar_style == "amer") {
+                        //     $post_date = "$month/$day/$year";
+                        // }
 
                         $newTimeStamp[$x] = strtotime($post_date . " " . $edit_time_textbox[$x]) - $tzo;
 
@@ -754,12 +744,12 @@ echo '<div class="box-header with-border">
         } else { // Display time editing interface
             // configure timestamp to insert/update //
 
-            if ($calendar_style == "euro") {
-                $post_date = "$day/$month/$year";
-
-            } elseif ($calendar_style == "amer") {
-                $post_date = "$month/$day/$year";
-            }
+            // if ($calendar_style == "euro") {
+            //     $post_date = "$day/$month/$year";
+            //
+            // } elseif ($calendar_style == "amer") {
+            //     $post_date = "$month/$day/$year";
+            // }
 
             $row_count = '0';
             $timestamp = strtotime($post_date) - @$tzo;
@@ -792,10 +782,10 @@ echo '<div class="box-header with-border">
 
         if (!isset($time_set)) {
             // configure date to display correctly //
-            if ($calendar_style == "euro") {
-             $post_date = "$day/$month/$year";
-
-            }
+            // if ($calendar_style == "euro") {
+            //  $post_date = "$day/$month/$year";
+            //
+            // }
 
             echo '<div class="row">
                 <div class="col-md-6">
@@ -866,9 +856,9 @@ echo '<div class="box-header with-border">
 
         // configure date to display correctly //
 
-        if ($calendar_style == "euro") {
-          $post_date = "$day/$month/$year";
-        }
+        // if ($calendar_style == "euro") {
+        //   $post_date = "$day/$month/$year";
+        // }
 
         echo "                <th class=rightside_heading nowrap halign=left colspan=4><img src='../images/icons/clock_edit.png' />&nbsp;&nbsp;&nbsp;Edit Time for $post_username on $post_date</th></tr>\n";
         echo "              <tr><td height=15></td></tr>\n";
@@ -891,10 +881,10 @@ echo "              <tr class=display_row>\n";
 echo "                <td nowrap width=1% style='padding-right:5px;padding-left:10px;' class=table_rows>";
 echo'    <div class="bootstrap-timepicker">
     	                   <div class="form-group">';
-    	              //       <label>Time: ('.$timefmt_24hr_text.')</label>
+
 
 		      echo'    	                     <div class="input-group">';
-		      echo "                      <input type='text' size='10' class='form-control timepicker3' maxlength='$timefmt_size' name='edit_time_textbox[$x]'>";
+		      echo "                      <input type='text' size='10' class='form-control timepicker' maxlength='$timefmt_size' name='edit_time_textbox[$x]'>";
 echo'    	                       <div class="input-group-addon">
     	                         <i class="fa fa-clock-o"></i>
     	                       </div>

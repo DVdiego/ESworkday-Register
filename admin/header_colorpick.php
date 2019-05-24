@@ -86,6 +86,7 @@ if ($use_client_tz == "yes") {
   }
 }
 echo "<link rel='stylesheet' type='text/css' media='screen' href='../css/default.css' />\n";
+echo "<link rel='stylesheet' type='text/css' href='../css/styles.css' />\n";
 echo "<link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />\n";
 echo "<script language=\"javascript\" src=\"../scripts/ColorPicker2.js\"></script>\n";
 echo "<script language=\"javascript\">var cp = new ColorPicker();</script>\n";
