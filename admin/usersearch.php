@@ -90,14 +90,14 @@ echo "        <tr class=right_main_text>\n";
 echo "          <td valign=top>\n";
 echo "            <br />\n";
 	*/
-	
+
 	echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
     echo '<div class="box-header with-border">
 	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Search for User</h3>
 	               </div><div class="box-body">';
-		       
+
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
@@ -129,12 +129,12 @@ echo "            </table>\n";
 
 		      echo '<div class="box-footer">
 		                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Search</button>
-		                  <button class="btn btn-default pull-right"><a href="usersearch.php">Cancel</a></button>   
+		                  <button class="btn btn-default pull-right"><a href="usersearch.php">Cancel</a></button>
 		                </div></form>';
 		      echo '</div></div></div></div>';
 		      include '../theme/templates/endmaincontent.inc';
 		      include '../footer.php';
-		      include '../theme/templates/controlsidebar.inc'; 
+		      include '../theme/templates/controlsidebar.inc';
 		      include '../theme/templates/endmain.inc';
 		      include '../theme/templates/adminfooterscripts.inc';
 		       exit;
@@ -208,7 +208,7 @@ echo "    <td align=left class=right_main scope=col>\n";
 echo "      <table width=100% height=100% border=0 cellpadding=10 cellspacing=1>\n";
 echo "        <tr class=right_main_text>\n";
 echo "          <td valign=top>\n";
-	
+
 	*/
 // if (!eregi ("^([[:alnum:]]| |-|'|,)+$", $post_username)) {
 if (!preg_match('/' . "^([[:alnum:]]| |-|'|,)+$" . '/i', $post_username)) {
@@ -219,7 +219,7 @@ if ($post_username == "") {} else {
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
                 Alphanumeric characters, hyphens, apostrophes, commas, and spaces are allowed when searching for a Username.
               </div></div>';
-			  
+
 $evil_input = "1";
 }}
 //if (!eregi ("^([[:alnum:]]| |-|'|,)+$", $display_name)) {
@@ -287,7 +287,7 @@ if (isset($evil_input)) {
     echo '<div class="box-header with-border">
 	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Search for User</h3>
 	               </div><div class="box-body">';
-				   
+
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
@@ -319,12 +319,12 @@ echo "              <tr><td class=table_rows align=right colspan=3 style='color:
 echo "            </table>\n";
 				      echo '<div class="box-footer">
 				                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Search</button>
-				                  <button class="btn btn-default pull-right"><a href="usersearch.php">Cancel</a></button>   
+				                  <button class="btn btn-default pull-right"><a href="usersearch.php">Cancel</a></button>
 				                </div></form>';
-			echo '</div></div></div></div>';		  
+			echo '</div></div></div></div>';
 		      include '../theme/templates/endmaincontent.inc';
 		      include '../footer.php';
-		      include '../theme/templates/controlsidebar.inc'; 
+		      include '../theme/templates/controlsidebar.inc';
 		      include '../theme/templates/endmain.inc';
 		      include '../theme/templates/adminfooterscripts.inc';
 exit;
@@ -498,67 +498,67 @@ echo "              </tr>\n";
 
 if ($row_count == "0") {
 
-$post_username = stripslashes($post_username);
+	$post_username = stripslashes($post_username);
 
-echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-            A user was not found matching your criteria. Please try again.
-          </div></div>';
+	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	            <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+	            A user was not found matching your criteria. Please try again.
+	          </div></div>';
 
 
-echo '<div class="row">
-    <div id="float_window" class="col-md-10">
-      <div class="box box-info"> ';
-echo '<div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Search for User</h3>
-               </div><div class="box-body">';
-echo "            <form name='form' action='$self' method='post'>\n";
-echo "            <table align=center class=table>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
-                      name='post_username' value=\"$post_username\"
-                      onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
-                      form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
-                      name='display_name' value=\"$display_name\"
-                      onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
-                      form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text style='color:red;' size='25' maxlength='75'
-                      name='email_addy' value=\"$email_addy\"
-                      onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
-                      form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\"></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'>
-                      <select name='office_name' onchange='group_names();'>\n";
-echo "                      </select></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'>
-                      <select name='group_name' onfocus='group_names();'>
-                        <option selected>$group_name</option>\n";
-echo "                      </select></td></tr>\n";
-echo "              <tr><td class=table_rows align=right colspan=3> </td></tr>\n";
-echo "            </table>\n";
-				      echo '<div class="box-footer">
-				                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Search</button>
-				                  <button class="btn btn-default pull-right"><a href="usersearch.php">Cancel</a></button>   
-				                </div></form>';
-			echo '</div></div></div></div>';				  
-					  
-		      include '../theme/templates/endmaincontent.inc';
-		      include '../footer.php';
-		      include '../theme/templates/controlsidebar.inc'; 
-		      include '../theme/templates/endmain.inc';
-		      include '../theme/templates/adminfooterscripts.inc';
-		      exit;
+	echo '<div class="row">
+	    <div id="float_window" class="col-md-10">
+	      <div class="box box-info"> ';
+	echo '<div class="box-header with-border">
+	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Search for User</h3>
+	               </div><div class="box-body">';
+	echo "            <form name='form' action='$self' method='post'>\n";
+	echo "            <table align=center class=table>\n";
+	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
+	                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
+	                      name='post_username' value=\"$post_username\"
+	                      onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
+	                      form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
+	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
+	                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
+	                      name='display_name' value=\"$display_name\"
+	                      onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
+	                      form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
+	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
+	                      style='padding-left:20px;'><input type='text style='color:red;' size='25' maxlength='75'
+	                      name='email_addy' value=\"$email_addy\"
+	                      onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
+	                      form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\"></td></tr>\n";
+	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td colspan=2 width=80%
+	                      style='padding-left:20px;'>
+	                      <select name='office_name' onchange='group_names();'>\n";
+	echo "                      </select></td></tr>\n";
+	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%
+	                      style='padding-left:20px;'>
+	                      <select name='group_name' onfocus='group_names();'>
+	                        <option selected>$group_name</option>\n";
+	echo "                      </select></td></tr>\n";
+	echo "              <tr><td class=table_rows align=right colspan=3> </td></tr>\n";
+echo "            	</table>\n";
+	echo '<div class="box-footer">
+	            <button type="submit" name="submit" value="Create User" class="btn btn-info">Search</button>
+	            <button class="btn btn-default pull-right"><a href="usersearch.php">Cancel</a></button>
+	          </div></form>';
+	echo '</div></div></div></div>';
+
+			      include '../theme/templates/endmaincontent.inc';
+			      include '../footer.php';
+			      include '../theme/templates/controlsidebar.inc';
+			      include '../theme/templates/endmain.inc';
+			      include '../theme/templates/adminfooterscripts.inc';
+			      exit;
 } else {
 
 echo "            </table>\n";
 include '../theme/templates/endmaincontent.inc';
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
  exit;

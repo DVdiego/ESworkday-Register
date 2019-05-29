@@ -109,6 +109,7 @@ if ($request == 'GET') { // Display employee select interface for editing an emp
 
     $get_user = addslashes($get_user);
 
+
     $query = "select * from ".$db_prefix."employees where empfullname = '".$get_user."' order by empfullname";
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
@@ -122,7 +123,7 @@ if ($request == 'GET') { // Display employee select interface for editing an emp
 
 
 echo '<div class="row">
-    <div class="col-md-6">
+    <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-clock-o"></i> Edit Time</h3>
@@ -131,6 +132,7 @@ echo '<div class="box-header with-border">
 
     echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
     echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
+    echo "                <input type='hidden' name='get_user' value='$get_user'>\n";
     echo "              <div class='form-group'><label>Username:</label> <div class='input-group'> <input type='hidden' name='post_username' value=\"$username\">$username\n";
     echo '</div></div>';
     echo "              <div class='form-group'><label>Display Name:</label> <div class='input-group'><input type='hidden' name='post_displayname' value=\"$displayname\">$displayname\n";
@@ -161,7 +163,9 @@ echo '<div class="box-header with-border">
 	include '../theme/templates/adminfooterscripts.inc';
     exit;
 } elseif ($request == 'POST') { // Display interface for editing the selected employee's time.
-    //$get_user = stripslashes($_POST['get_user']);
+
+
+    @$get_user = stripslashes($_POST['get_user']);
 
     $post_username = stripslashes($_POST['post_username']);
     $post_displayname = stripslashes($_POST['post_displayname']);
@@ -343,7 +347,7 @@ echo '<div class="box-header with-border">
 
 
         echo '<div class="row">
-            <div class="col-md-6">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
         echo '<div class="box-header with-border">
                          <h3 class="box-title"><i class="fa fa-clock-o"></i> Edit Time</h3>
@@ -508,7 +512,7 @@ echo '<div class="box-header with-border">
 
 
               echo '<div class="row">
-                  <div class="col-md-6">
+                  <div id="float_window" class="col-md-10">
                     <div class="box box-info"> ';
               echo '<div class="box-header with-border">
                                <h3 class="box-title"><i class="fa fa-clock-o"></i> Edit Time</h3>
@@ -591,7 +595,7 @@ echo '<div class="box-header with-border">
                 echo "            <input type='hidden' name='post_username' value=\"$post_username\">\n";
                 echo "            <input type='hidden' name='post_displayname' value=\"$post_displayname\">\n";
                 echo "            <input type='hidden' name='post_date' value=\"$post_date\">\n";
-                echo "            <input type='hidden' name='get_user' value=\"$get_user\">\n";
+
                 echo "            <input type='hidden' name='final_num_rows' value=\"$final_num_rows\">\n";
                 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
                 echo "              <tr><td height=40>&nbsp;</td></tr>\n";
@@ -610,7 +614,7 @@ echo '<div class="box-header with-border">
             } elseif (!isset($evil_time) && ((($require_time_admin_edit_reason == "yes") && (!empty($post_why))) || ($require_time_admin_edit_reason == "no"))) {
               // Commit employee's time, status changes and audit log to the database
               echo '<div class="row">
-                  <div class="col-md-6">
+                  <div id="float_window" class="col-md-10">
                     <div class="box box-info"> ';
               echo '<div class="box-header with-border">
                                <h3 class="box-title"><i class="fa fa-clock-o"></i> Edit Time</h3>
@@ -788,7 +792,7 @@ echo '<div class="box-header with-border">
             // }
 
             echo '<div class="row">
-                <div class="col-md-6">
+                <div id="float_window" class="col-md-10">
                   <div class="box box-info"> ';
             echo '<div class="box-header with-border">
                              <h3 class="box-title"><i class="fa fa-clock-o"></i> Edit Time</h3>
@@ -807,7 +811,7 @@ echo '<div class="box-header with-border">
             echo '</div></div>';
 
             echo "              <div class='form-group'><label>From Date: " .($tmp_datefmt)."</label> <div class='input-group date'><i class='fa fa-calendar'></i><input type='text' maxlength='10' name='post_date' id='datepicker' class='form-control'> &nbsp;*&nbsp;&nbsp; </div></div>\n";
-            echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
+
             echo "                <input type='hidden' name='timefmt_24hr' value=\"$timefmt_24hr\">\n";
             echo "                <input type='hidden' name='timefmt_24hr_text' value=\"$timefmt_24hr_text\">\n";
             echo "                <input type='hidden' name='timefmt_size' value=\"$timefmt_size\">\n";

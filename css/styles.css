@@ -71,7 +71,7 @@ div.box.box-primary {
 #float_window{
 
   margin: auto !important;
-  float: none !important;
+  float: initial !important;
 }
 
 

@@ -81,7 +81,10 @@ if ($request == 'GET') { // Display employee add time interface
 
 
 */
+    $get_user = stripslashes($_GET['username']);
     $get_user = addslashes($get_user);
+
+
 
     $query = "select * from ".$db_prefix."employees where empfullname = '".$get_user."' order by empfullname";
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
@@ -92,7 +95,7 @@ if ($request == 'GET') { // Display employee add time interface
     }
     ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
-    $get_user = stripslashes($_GET['username']);
+
 
 	/*
     echo "    <td align=left class=right_main scope=col>\n";
@@ -114,6 +117,7 @@ if ($request == 'GET') { // Display employee add time interface
 
     echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
     echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
+
     echo '              <div class="form-group"><label>Username:</label><div class="input-group">';
     echo "               <input type='hidden' name='post_username' value=\"$username\">$username\n";
     echo '              </div></div>';
@@ -123,10 +127,12 @@ if ($request == 'GET') { // Display employee add time interface
 
     echo "    <div class='form-group'>
                 <label>Fecha:</label>
-                <input type='date' size='10' maxlength='10' name='post_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
-                <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
-                return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-                 </div>";
+                <div class='input-group'>
+                  <input type='date' size='10' maxlength='10' name='post_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
+                  <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                  return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                </div>
+              </div>";
 
 
     echo'               <div class="bootstrap-timepicker">
@@ -139,9 +145,7 @@ if ($request == 'GET') { // Display employee add time interface
     	                               <i class="fa fa-clock-o"></i>
   	                              </div>
     	                      </div>
-    	                     <!-- /.input group -->
     	                    </div>
-    	                   <!-- /.form group -->
     	                 </div>';
 
 
@@ -176,20 +180,23 @@ if ($request == 'GET') { // Display employee add time interface
 
     echo "            \n";
     echo "              \n";
+
+    echo '</div>';
     echo '<div class="box-footer">
                 <button type="submit" name="submit" value="Add Time" class="btn btn-info">Add time</button>
                 <button type="submit" name="cancel" class="btn btn-default pull-right"><a href="timeadmin.php">Cancel</a></button>
               </div></form>';
+    echo '</div></div></div>';
 
-    echo '</div></div></div></div>';
     include '../theme/templates/endmaincontent.inc';
     include '../footer.php';
-	include '../theme/templates/controlsidebar.inc';
-	include '../theme/templates/endmain.inc';
-	include '../theme/templates/reportsfooterscripts.inc';
+    include '../theme/templates/controlsidebar.inc';
+    include '../theme/templates/endmain.inc';
+    include '../theme/templates/reportsfooterscripts.inc';
     exit;
 } elseif ($request == 'POST') { // Add the time for the employee
-    //$get_user = stripslashes($_POST['get_user']);
+    @$get_user = stripslashes($_POST['get_user']);
+
     $post_username = stripslashes($_POST['post_username']);
     $post_displayname = stripslashes($_POST['post_displayname']);
     $post_date = $_POST['post_date'];
@@ -475,9 +482,11 @@ if (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4})
 
             echo "    <div class='form-group'>
                         <label>Fecha:</label>
+                        <div class='input-group'>
                         <input type='date' size='10' maxlength='10' name='post_date' value=\"$post_date\" style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
                         <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                         return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                         </div>
                          </div>";
 
 
@@ -584,9 +593,11 @@ if (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4})
 
                   echo "    <div class='form-group'>
                               <label>Fecha:</label>
+                              <div class='input-group'>
                               <input type='date' size='10' maxlength='10' name='post_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
                               <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                               return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                               </div>
                                </div>";
 
 

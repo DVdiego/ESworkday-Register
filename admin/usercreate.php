@@ -139,7 +139,7 @@ elseif ($request == 'POST') {
 		include 'header_post.php'; include 'topmain.php'; include 'leftmain.php';
 
 		$post_username = stripslashes($_POST['post_username']);
-		$user_dni = $_POST['user_dni'];
+		@$user_dni = $_POST['user_dni'];
 
 		$display_name = stripslashes($_POST['display_name']);
 		$password = $_POST['password'];

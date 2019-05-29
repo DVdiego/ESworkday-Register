@@ -130,14 +130,14 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
     echo "          <td valign=top>\n";
     echo "            <br />\n";
 	*/
-	
+
 	echo '<div class="row">
 	    <div class="col-md-6">
 	      <div class="box box-info"> ';
 	echo '<div class="box-header with-border">
 	                 <h3 class="box-title"><i class="fa fa-clock-o"></i> Delete Time</h3>
 	               </div><div class="box-body">';
-		       
+
     echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
     echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
     echo "               <div class='form-group'><label>Username: $username</label><input type='hidden' name='post_username' value=\"$username\"></div>\n";
@@ -150,13 +150,13 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
     echo "                <div class='form-group'><label class='text-muted'>*&nbsp;required&nbsp;</label></div>\n";
     echo '<div class="box-footer">
                 <button type="submit" name="submit" value="Delete Time" class="btn btn-danger">Delete Time</button>
-                <button type="submit" name="cancel" class="btn btn-default pull-right">Cancel</button>   
+                <button type="submit" name="cancel" class="btn btn-default pull-right">Cancel</button>
               </div></form>';
 
     echo '</div></div></div></div>';
         include '../theme/templates/endmaincontent.inc';
     include '../footer.php';
-	include '../theme/templates/controlsidebar.inc'; 
+	include '../theme/templates/controlsidebar.inc';
 	include '../theme/templates/endmain.inc';
 	include '../theme/templates/adminfooterscripts.inc';
     exit;
@@ -276,11 +276,11 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
         echo "              <tr>\n";
         echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red> A valid Date is required.</td></tr>\n";
         echo "            </table>\n";
-    } 
+    }
 	// elseif (eregi ("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date, $date_regs)) {
-//		elseif (preg_match('%' . "^([0-9]{1,2})-,/,.-,/,.$" . '%i', $post_date, $date_regs)) 
-//		elseif (preg_match('/' . "^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$" . '/i', $post_date, $date_regs)) 	
-	 	elseif (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4}))$/i", $post_date , $date_regs))	
+//		elseif (preg_match('%' . "^([0-9]{1,2})-,/,.-,/,.$" . '%i', $post_date, $date_regs))
+//		elseif (preg_match('/' . "^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$" . '/i', $post_date, $date_regs))
+	 	elseif (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4}))$/i", $post_date , $date_regs))
 		{
         if ($calendar_style == "amer") {
             if (isset($date_regs)) {
@@ -335,7 +335,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
         echo "              <tr><td width=30><input type='image' name='submit' value='Delete Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
 	        include '../theme/templates/endmaincontent.inc';
         include '../footer.php';
-		include '../theme/templates/controlsidebar.inc'; 
+		include '../theme/templates/controlsidebar.inc';
 		include '../theme/templates/endmain.inc';
 		include '../theme/templates/adminfooterscripts.inc';
         exit;
@@ -392,7 +392,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
                 $post_why = '';
             } else {
               //  $post_why = ereg_replace("[^[:alnum:] \,\.\?-]", "", $post_why);
-		$post_why = preg_replace("[^[:alnum:] \,\.\?-]", "", $post_why);
+		$post_why = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/', "", $post_why);
             }
 
             for ($x=0;$x<$final_num_rows;$x++) {
@@ -425,7 +425,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
                 }
 
 		// $final_notes[$x] = ereg_replace("[^[:alnum:] \,\.\?-]","",$final_notes[$x]);
-	        $final_notes[$x] = preg_replace("[^[:alnum:] \,\.\?-]","",$final_notes[$x]);
+	        $final_notes[$x] = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/',"",$final_notes[$x]);
                 $final_username[$x] = addslashes($final_username[$x]);
 
                 $query5 = "select * from ".$db_prefix."info where (fullname = '".$final_username[$x]."') and (timestamp = '".$final_mysql_timestamp[$x]."') and (`inout` = '".$final_inout[$x]."') and (notes = '".$final_notes[$x]."')";
@@ -507,7 +507,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             echo "              <tr><td><a href='timeadmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr></table>\n";
 	    include '../theme/templates/endmaincontent.inc';
             include '../footer.php';
-			include '../theme/templates/controlsidebar.inc'; 
+			include '../theme/templates/controlsidebar.inc';
 			include '../theme/templates/endmain.inc';
 			include '../theme/templates/adminfooterscripts.inc';
             exit;
@@ -616,10 +616,10 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             echo "              <tr><td width=30><input type='image' name='submit' value='Delete Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
 	    include '../theme/templates/endmaincontent.inc';
             include '../footer.php';
-			include '../theme/templates/controlsidebar.inc'; 
+			include '../theme/templates/controlsidebar.inc';
 			include '../theme/templates/endmain.inc';
 			include '../theme/templates/adminfooterscripts.inc';
-			
+
             exit;
         } else { // Present interface for the date selection for the admin
             // configure timestamp to insert/update //
@@ -683,7 +683,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             echo "              <tr><td width=30><input type='image' name='submit' value='Delete Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
 	    include '../theme/templates/endmaincontent.inc';
             include '../footer.php';
-			include '../theme/templates/controlsidebar.inc'; 
+			include '../theme/templates/controlsidebar.inc';
 			include '../theme/templates/endmain.inc';
 			include '../theme/templates/adminfooterscripts.inc';
             exit;
@@ -752,7 +752,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             echo "              <tr><td width=30><input type='image' name='submit' value='Delete Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='timeadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form></div></div></div>\n";
 	    include '../theme/templates/endmaincontent.inc';
             include '../footer.php';
-			include '../theme/templates/controlsidebar.inc'; 
+			include '../theme/templates/controlsidebar.inc';
 			include '../theme/templates/endmain.inc';
 			include '../theme/templates/adminfooterscripts.inc';
             exit;

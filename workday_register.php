@@ -44,39 +44,7 @@ if ($request == 'POST') {
         exit;
     }
 
-    // begin post validation //
-    if ($show_display_name == "yes") {
-        if (isset($displayname)) {
-            $displayname = addslashes($displayname);
-            $query = "select displayname from ".$db_prefix."employees where displayname = '".$displayname."'";
-            $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-            while ($row = mysqli_fetch_array($emp_name_result)) {
-                $tmp_displayname = "".$row['displayname']."";
-            }
-            if ((!isset($tmp_displayname)) && (!empty($displayname))) {
-                echo "Username is not in the database.";
-                exit;
-            }
-            $displayname = stripslashes($displayname);
-        }
-    } elseif ($show_display_name == "no") {
-        if (isset($fullname)) {
-            $fullname = addslashes($fullname);
-            $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$fullname."'";
-            $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-
-            while ($row = mysqli_fetch_array($emp_name_result)) {
-                $tmp_empfullname = "".$row['empfullname']."";
-            }
-            if ((!isset($tmp_empfullname)) && (!empty($fullname))) {
-                echo "Username is not in the database.";
-                exit;
-            }
-            $fullname = stripslashes($fullname);
-        }
-    }
-    // end post validation //
 
     if (isset($remember_me)) {
         if ($show_display_name == "yes") {
@@ -413,6 +381,48 @@ if ($request == 'POST') { // Process employee's punch information
             </div>';exit;
     }
     // end post validation //
+    if ($show_display_name == "yes") {
+        if (isset($displayname)) {
+            $displayname = addslashes($displayname);
+            $query = "select displayname from ".$db_prefix."employees where displayname = '".$displayname."'";
+            $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+            while ($row = mysqli_fetch_array($emp_name_result)) {
+                $tmp_displayname = "".$row['displayname']."";
+            }
+            if ((!isset($tmp_displayname)) && (!empty($displayname))) {
+
+                echo '<div id="float_window" class="col-md-10">
+                        <div class="callout callout-danger">
+                          <h4><i class="fa fa-bullhorn"></i> Error</h4>
+                          <p>Username is not in the database.</p>
+                        </div>
+                      </div>';
+                exit;
+            }
+            $displayname = stripslashes($displayname);
+        }
+    } elseif ($show_display_name == "no") {
+        if (isset($fullname)) {
+            $fullname = addslashes($fullname);
+            $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$fullname."'";
+            $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+            while ($row = mysqli_fetch_array($emp_name_result)) {
+                $tmp_empfullname = "".$row['empfullname']."";
+            }
+            if ((!isset($tmp_empfullname)) && (!empty($fullname))) {
+              echo '<div id="float_window" class="col-md-10">
+                      <div class="callout callout-danger">
+                        <h4><i class="fa fa-bullhorn"></i> Error</h4>
+                        <p>Username is not in the database.</p>
+                      </div>
+                    </div>';
+                exit;
+            }
+            $fullname = stripslashes($fullname);
+        }
+    }
 
     if ($show_display_name == "yes") {
         if (! $displayname && ! $inout) {
@@ -423,8 +433,7 @@ if ($request == 'POST') { // Process employee's punch information
                   </div>
                 </div>';
             // Return the employee back to the punch interface after 5 seconds
-            echo "
-                   <head>
+            echo "<head>
                       <meta http-equiv='refresh' content=5;url=index.php>
                    </head>";
             exit;

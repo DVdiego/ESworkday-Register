@@ -63,7 +63,16 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
 // end user moved here from topmain
 
 
-$get_user = stripslashes($_GET['username']);
+@$get_user = stripslashes($_GET['username']);
+
+if(!empty($get_user)){
+  $_SESSION['get_user'] = $get_user;
+  // echo "almacena sesión: ".$_SESSION['get_user']."";
+
+}
+
+
+
 disabled_acct($get_user);
 
 echo '     <ul class="sidebar-menu">
@@ -126,9 +135,9 @@ echo '     <ul class="sidebar-menu">
           </a>
           <ul class="treeview-menu">
             <li><a href="timeadmin.php"><i class="fa fa-clock-o"></i> Modify Time</a></li>
-			<li><a href="timeadd.php?username='.$get_user.'"><i class="fa fa-clock-o"></i> Add Time</a></li>
-			<li><a href="timeedit.php?username='.$get_user.'"><i class="fa fa-clock-o"></i> Edit Time</a></li>
-			<li><a href="timedelete.php?username='.$get_user.'"><i class="fa fa-clock-o"></i> Delete Time</a></li>
+			<li><a href="timeadd.php?username='.$_SESSION['get_user'].'"><i class="fa fa-clock-o"></i> Add Time</a></li>
+			<li><a href="timeedit.php?username='.$_SESSION['get_user'].'"><i class="fa fa-clock-o"></i> Edit Time</a></li>
+			<li><a href="timedelete.php?username='.$_SESSION['get_user'].'"><i class="fa fa-clock-o"></i> Delete Time</a></li>
             <li><a href="sysedit.php"><i class="fa fa-code"></i> Edit System Settings</a></li>
 	    <li><a href="database_management.php"><i class="fa fa-database"></i> Manage Database</a></li>
           </ul>

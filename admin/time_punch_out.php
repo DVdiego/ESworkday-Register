@@ -31,98 +31,11 @@ $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 
 include '../config.inc.php';
-include 'header_date.php';
+include 'header.php';
 include 'topmain.php';
 include 'leftmain.php';
 
-// Get the connecting IP address.
-$connecting_ip = get_ipaddress();
-if (empty($connecting_ip)) {
-    return False;
-}
-
-// Determine if the connecting ip address is allowed to connect.
-if ($restrict_ips == "yes") {
-    for ($x=0; $x<count($allowed_networks); $x++) {
-        $is_allowed = ip_range($allowed_networks[$x], $connecting_ip);
-        if (!empty($is_allowed)) {
-            $allowed = TRUE;
-        }
-    }
-    if (!isset($allowed)) {
-        echo "You are not authorized to view this page.";
-        exit;
-    }
-}
-
-// Ensure correct database version.
-if ($use_persistent_connection == "yes") {
-    @ $db = ($GLOBALS["___mysqli_ston"] = mysqli_connect($db_hostname,  $db_username,  $db_password));
-} else {
-    @ $db = ($GLOBALS["___mysqli_ston"] = mysqli_connect($db_hostname,  $db_username,  $db_password));
-}
-if (! $db) {
-    echo "Error: Could not connect to the database. Please try again later.";
-    exit;
-}
-((bool)mysqli_query($GLOBALS["___mysqli_ston"], "USE " . $db_name));
-
-$result = mysqli_query($GLOBALS["___mysqli_ston"], "SHOW TABLES LIKE '".$db_prefix."dbversion'");
-@$rows = mysqli_num_rows($result);
-if ($rows == "1") {
-    $dbexists = "1";
-} else {
-    $dbexists = "0";
-}
-
-$db_version_result = mysqli_query($GLOBALS["___mysqli_ston"], "SELECT * FROM ".$db_prefix."dbversion");
-while (@$row = mysqli_fetch_array($db_version_result)) {
-    @$my_dbversion = "".$row["dbversion"]."";
-}
-
-// Include CSS and Timezone offset
-if (($use_client_tz == "yes") && ($use_server_tz == "yes")) {
-    $use_client_tz = '$use_client_tz';
-    $use_server_tz = '$use_server_tz';
-    echo "Please reconfigure your config.inc.php file, you cannot have both $use_client_tz AND $use_server_tz set to 'yes'";
-    exit;
-}
-
-echo "<head>";
-if ($use_client_tz == "yes") {
-    if (!isset($_COOKIE['tzoffset'])) {
-        include '../tzoffset.php';
-        echo "<meta http-equiv='refresh' content='0;URL=index.php'>";
-    }
-}
-echo "
-   <link rel='stylesheet' type='text/css' media='screen' href='../css/default.css' />
-   <link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />
-   <script type='text/javascript' src='../scripts/CalendarPopup.js'>
-   </script>
-   <script language='javascript'>
-      document.write(getCalendarStyles());
-   </script>
-   <script language='javascript'>
-      var cal = new CalendarPopup('mydiv');
-   </script>
-   <script language='javascript' src='../scripts/pnguin.js'>
-   </script> ";
-   include '../scripts/dropdown_get.php';
-echo "
-</head>";
-
-if ($use_client_tz == "yes") {
-    if (isset($_COOKIE['tzoffset'])) {
-        $tzo = $_COOKIE['tzoffset'];
-        settype($tzo, "integer");
-        $tzo = $tzo * 60;
-    }
-} elseif ($use_server_tz == "yes") {
-    $tzo = date('Z');
-} else {
-    $tzo = "1";
-}
+include '../scripts/dropdown_get.php';
 echo "
 <body onload='office_names();'>
    <title>
@@ -191,7 +104,6 @@ if ($request == 'POST') { // Validate user input
     $post_statusname = $_POST['post_statusname'];
 
 
-    echo "date: $post_date  time: $post_time\n";
     // Begin Input Validation
     if (($post_punch_out == "office") && empty($post_office)) { // Ensure an office has been selected when punching out an office.
         echo "<td valign=top>
@@ -240,7 +152,9 @@ if ($request == 'POST') { // Validate user input
     }
 
     //if ((empty($post_date)) || (empty($post_time)) ||  (!eregi("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date))) {
-    if ((empty($post_date)) || (empty($post_time)) || (!preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4}))$/i", $post_date))) {
+    if ((empty($post_date)) || (empty($post_time))
+    //|| (!preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4}))$/i", $post_date))
+    ){
 
           $input_invalid = True;
           if (empty($post_date)) {
@@ -265,21 +179,22 @@ if ($request == 'POST') { // Validate user input
                        </tr>
                  </td>
               </tr>";
-          } elseif
+          }
+          // elseif
 //	(!eregi ("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date)) {
-          (!preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4}))$/i", $post_date)) {
-
-            echo "
-               <td valign=top>
-                  <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
-                     <tr>
-                        <td class=table_rows_red>
-                           A valid date is required.
-                        </td>
-                     </tr>
-               </td>
-            </tr>";
-        }
+        //   (!preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4}))$/i", $post_date)) {
+        //
+        //     echo "
+        //        <td valign=top>
+        //           <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
+        //              <tr>
+        //                 <td class=table_rows_red>
+        //                    A valid date is required.
+        //                 </td>
+        //              </tr>
+        //        </td>
+        //     </tr>";
+        // }
     } elseif ($timefmt_24hr == '0') {
 //        if ((!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$", $post_time, $time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$", $post_time, $time_regs))) {
           if ((!preg_match("/^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$/i", $post_time, $time_regs)) && (!preg_match("/^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$/i", $post_time, $time_regs))) {
@@ -353,53 +268,53 @@ if ($request == 'POST') { // Validate user input
     }
 
     //if (eregi ("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date, $date_regs)) {
-    if (preg_match("/^([0-9]{1,2})[-\,\/,.]([0-9]{1,2})[-\,\/,.](([0-9]{2})|([0-9]{4}))$/i", $post_date, $date_regs)) {
-
-        if ($calendar_style == "amer") {
-            if (isset($date_regs)) { // Format the date to American style
-                $month = $date_regs[1];
-                $day = $date_regs[2];
-                $year = $date_regs[3];
-            }
-
-            if ($month > 12 || $day > 31) { // Ensure valid date
-                $input_invalid = True;
-                if (!isset($evil_post)) {
-                    echo "
-               <td valign=top>
-                  <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
-                     <tr>
-                        <td class=table_rows_red>
-                           A valid date is required.
-                        </td>
-                     </tr>
-               </td>
-               </tr>";
-                }
-            }
-        } elseif ($calendar_style == "euro") {
-            if (isset($date_regs)) { // Format the date to European style
-                $month = $date_regs[2];
-                $day = $date_regs[1];
-                $year = $date_regs[3];
-            }
-            if ($month > 12 || $day > 31) { // Ensure valid date
-                $input_invalid = True;
-                if (!isset($evil_post)) {
-                    echo "
-               <td valign=top>
-                  <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
-                     <tr>
-                        <td class=table_rows_red>
-                           A valid date is required.
-                        </td>
-                     </tr>
-               </td>
-            </tr>";
-                }
-            }
-        }
-    }
+    // if (preg_match("/^([0-9]{1,2})[-\,\/,.]([0-9]{1,2})[-\,\/,.](([0-9]{2})|([0-9]{4}))$/i", $post_date, $date_regs)) {
+    //
+    //     if ($calendar_style == "amer") {
+    //         if (isset($date_regs)) { // Format the date to American style
+    //             $month = $date_regs[1];
+    //             $day = $date_regs[2];
+    //             $year = $date_regs[3];
+    //         }
+    //
+    //         if ($month > 12 || $day > 31) { // Ensure valid date
+    //             $input_invalid = True;
+    //             if (!isset($evil_post)) {
+    //                 echo "
+    //            <td valign=top>
+    //               <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
+    //                  <tr>
+    //                     <td class=table_rows_red>
+    //                        A valid date is required.
+    //                     </td>
+    //                  </tr>
+    //            </td>
+    //            </tr>";
+    //             }
+    //         }
+    //     } elseif ($calendar_style == "euro") {
+    //         if (isset($date_regs)) { // Format the date to European style
+    //             $month = $date_regs[2];
+    //             $day = $date_regs[1];
+    //             $year = $date_regs[3];
+    //         }
+    //         if ($month > 12 || $day > 31) { // Ensure valid date
+    //             $input_invalid = True;
+    //             if (!isset($evil_post)) {
+    //                 echo "
+    //            <td valign=top>
+    //               <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
+    //                  <tr>
+    //                     <td class=table_rows_red>
+    //                        A valid date is required.
+    //                     </td>
+    //                  </tr>
+    //            </td>
+    //         </tr>";
+    //             }
+    //         }
+    //     }
+    // }
 
     // End Input Validation
     if (empty($input_invalid)) { // Create message to display for confirmation and successful punch
@@ -498,29 +413,31 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                         <tr>
                            <td height=11> </td>
                         </tr>
-                        <input type='hidden' name='date_format' value='$js_datefmt'>
-                        <tr>
-                           <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
-                              Date: ($tmp_datefmt)
-                           </td>
-                           <td colspan=2 width=80% style='padding-left:20px;'>
-                              <input type='text' size='10' maxlength='10' name='post_date' value='$post_date'>
-                              &nbsp; *&nbsp;&nbsp; &nbsp;
-                              <a href=\"#\" onclick=\"cal.select(document.forms['form'].post_date,'post_date_anchor','$js_datefmt'); return false;\" name=\"post_date_anchor\" id=\"post_date_anchor\" style='font-size:11px;color:#27408b;'>
-                                 Pick Date
-                              </a>
-                           </td>
-                        </tr>
-                        <tr>
-                           <td class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
-                              Time: ($timefmt_24hr_text)
-                           </td>
-                           <td colspan=2 width=80% style='padding-left:20px;'>
-                              <input type='text' size='10' maxlength='$timefmt_size' name='post_time' value='$post_time'>
-                              &nbsp; *&nbsp;&nbsp;
-                           </td>
-                        </tr>
-                        <input type='hidden' name='timefmt_24hr' value='$timefmt_24hr'>
+                        <input type='hidden' name='date_format' value='$js_datefmt'>";
+echo "<tr><td>";
+echo "    <div class='form-group'>
+            <label>Fecha:</label>
+            <input type='date' size='10' maxlength='10' name='post_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
+            <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+            return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+             </div>";
+
+echo "</tr></td>";
+echo "<tr><td>";
+echo'               <div class="bootstrap-timepicker">
+ 	                    <div class="form-group">
+ 	                      <label>Time: ('.$timefmt_24hr_text.')</label>';
+
+echo'    	              <div class="input-group">
+ 	                         <input type="text" size="10" maxlength="10" class="form-control timepicker" name="post_time">';
+echo'   	                      <div class="input-group-addon">
+ 	                               <i class="fa fa-clock-o"></i>
+	                              </div>
+ 	                      </div>
+ 	                    </div>
+ 	                 </div>';
+echo "</tr></td>";
+echo "                  <input type='hidden' name='timefmt_24hr' value='$timefmt_24hr'>
                         <input type='hidden' name='timefmt_24hr_text' value='$timefmt_24hr_text'>
                         <input type='hidden' name='timefmt_size' value=\"$timefmt_size\">
                         <tr>
@@ -528,9 +445,7 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                               * &nbsp; required &nbsp;
                            </td>
                         </tr>
-                        <div style='position:absolute; visibility:hidden; background-color:#ffffff; layer-background-color:#ffffff;' id='mydiv' height=200>
-                           &nbsp;
-                        </div>
+
                         <tr>
                            <td>
                               <input type='image' name='submit' value='Edit Time' src='../images/buttons/next_button.png'>
@@ -588,11 +503,11 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
         $user = "";
     }
     // Create selected time stamp
-    if ($calendar_style == "euro") {
-        $post_date = "$day/$month/$year";
-    } elseif ($calendar_style == "amer") {
-        $post_date = "$month/$day/$year";
-    }
+    // if ($calendar_style == "euro") {
+    //     $post_date = "$day/$month/$year";
+    // } elseif ($calendar_style == "amer") {
+    //     $post_date = "$month/$day/$year";
+    // }
     $timestamp = strtotime($post_date . " " . $post_time) - $tzo;
 
     // Build an SQL statment of all the in status' available.

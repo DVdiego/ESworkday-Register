@@ -162,10 +162,16 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
                         Double Quotes are not allowed when creating a Group Name.</td></tr>\n";
     echo "            </table>\n";
     }elseif (empty($post_groupname)) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        A Group Name is required.</td></tr>\n";
-    echo "            </table>\n";
+    // echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
+    // echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
+    //                     A Group Name is required.</td></tr>\n";
+    // echo "            </table>\n";
+
+echo '        <div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+             Se requiere un nombre de grupo.
+          </div>';
     //}elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_groupname)) {
     }elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_groupname)) {
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
