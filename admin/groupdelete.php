@@ -104,10 +104,6 @@ if ($request == 'GET') {
     echo "              <table class=table>\n";
     echo "              <form name='form' action='$self' method='post'>\n";
     echo "                <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-    echo "                   <tr>\n";
-    echo "                    <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_delete.png' />&nbsp;&nbsp;&nbsp;Delete Group
-                              </th>\n";
-    echo "                   </tr>\n";
     echo "                   <tr><td height=15></td></tr>\n";
     echo "                   <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group Name:</td><td align=left width=80%
                                 style='padding-left:20px;' class=table_rows><input type='hidden' name='post_groupname'
@@ -275,10 +271,6 @@ elseif ($request == 'POST') {
     echo "            <br />\n";
     echo "            <form name='form' action='$self' method='post'>\n";
     echo "              <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-    echo "                <tr>\n";
-    echo "                  <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_delete.png' />&nbsp;&nbsp;&nbsp;Delete Group
-                            </th>\n";
-    echo "                  </tr>\n";
     echo "                <tr><td height=15></td></tr>\n";
 
     if (((isset($office_name)) && (empty($office_name))) || ((isset($group_name)) && (empty($group_name))) ||
