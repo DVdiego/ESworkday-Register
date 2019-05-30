@@ -414,7 +414,7 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                            <td height=11> </td>
                         </tr>
                         <input type='hidden' name='date_format' value='$js_datefmt'>";
-echo "<tr><td>";
+echo "<tr>";
 echo "    <div class='form-group'>
             <label>Fecha:</label>
             <input type='date' size='10' maxlength='10' name='post_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
@@ -422,7 +422,7 @@ echo "    <div class='form-group'>
             return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
              </div>";
 
-echo "</tr></td>";
+echo "</tr>";
 echo "<tr><td>";
 echo'               <div class="bootstrap-timepicker">
  	                    <div class="form-group">

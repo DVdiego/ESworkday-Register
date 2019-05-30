@@ -148,12 +148,18 @@ echo "
           Punch out employee's with a current status of in
         </a>
      </td>
+     <td>
+       <a title='Punch multiple employees' href='time_punch_employees.php'>
+         <img border=0 src='../images/icons/clock.png' />
+         Punch out employee's
+       </a>
+    </td>
   </tr>
 </table>
 </div>
 </div></div></div>";
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
 exit;
