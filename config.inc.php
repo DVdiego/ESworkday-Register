@@ -478,6 +478,12 @@ make a "favorite" or "bookmark" in your browser. Change as you see fit. */
 $title = "$company_name Control BETA";
 
 
+/* Contenidl de las etiquetas meta para mejorar el posicionamiento SEO*/
+$description = "<meta name='description' content='WorkTime Control es la aplicación que necesita para llevar un control óptimo, eficaz y rápido de la jornada de sus empleados.'";
+$keywords = "<meta name='keywords' content='jornada, laboral, ley, horario, control, empleados, inspección, trabajo'";
+$viewport = "<meta name='viewport' content='width=device-width, initial-scale=1.0'";
+$author = "<meta name='author' content='iSoft Solutions'";
+
 /* --- DO NOT CHANGE ANYTHING BELOW THIS LINE!!! --- */
 
 

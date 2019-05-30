@@ -90,7 +90,11 @@ if ($use_client_tz == "yes") {
     if (! isset($_COOKIE['tzoffset'])) {
         include 'tzoffset.php';
         echo "
-      <meta http-equiv='refresh' content='0;URL=worktime.php'>";
+      <meta http-equiv='refresh' content='0;URL=worktime.php'>
+      $description
+      $keywords
+      $viewport
+      $author";
     }
 }
 

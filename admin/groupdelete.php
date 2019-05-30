@@ -86,17 +86,17 @@ if ($request == 'GET') {
       echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
       echo "              <tr>\n";
         if ($user_cnt == 1) {
-      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                <h4><i class="icon fa fa-info"></i>¡Cuidado!</h4>
                    El grupo contiene' . $user_cnt . ' usuario. El usuario debe de ser movido a otro grupo para
                    poder eliminar el grupo.
                 </div></div></tr>';
 
         } else {
-          echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+          echo ' <div id="float_window" class="col-md-10"><div class="alert alert-info alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                    <h4><i class="icon fa fa-info"></i>¡Cuidado!</h4>
                        El grupo contiene' . $user_cnt . ' usuarios. Los usuarios deben de ser movidos a otro grupo para
                        poder eliminar el grupo.
                     </div></div></tr>';
@@ -180,7 +180,7 @@ if ($request == 'GET') {
     echo "                  <input type='hidden' name='post_groupid' value=\"$groupid\">\n";
     echo "                  <tr>
                               <td width=30>
-                                <button id='formButtons' type='submit' name='submit' value='Delete Group' class='btn btn-info'>
+                                <button id='formButtons' type='submit' name='submit' value='Delete Group' class='btn btn-danger'>
 																  Eliminar grupo
 															  </button>
                               </td>
@@ -293,16 +293,14 @@ elseif ($request == 'POST') {
                </div>
                <div class="box-body">';
     echo "          <table class=table>\n";
-    echo "            <br />\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
 
     if (((isset($office_name)) && (empty($office_name))) || ((isset($group_name)) && (empty($group_name))) ||
     (($group_name == $post_groupname) && ($office_name == $post_officename))) {
     } else {
     echo '                <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <h4><i class="icon fa fa-warning"></i>¡Eliminado con éxito!</h4>
+                                        <h4><i class="icon fa fa-check-circle"></i>¡Eliminado con éxito!</h4>
                                           El grupo se ha eliminado correctamente.
                                       </div></div>';
     echo "            </tr>
@@ -317,7 +315,6 @@ elseif ($request == 'POST') {
                    El grupo contiene' . $user_cnt . ' usuario. El usuario debe de ser movito a otro grupo para
                    poder eliminar el grupo.
                 </div></div></tr>';
-      echo "    </table>\n";
     } elseif (($group_name == $post_groupname) && ($office_name == $post_officename)) {
       echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -400,7 +397,7 @@ elseif ($request == 'POST') {
         echo "              <input type='hidden' name='post_groupid' value=\"$post_groupid\">\n";
         echo "              <tr>
                               <td width=30>
-                                <button id='formButtons' type='submit' name='submit' value='Delete Group' class='btn btn-info'>
+                                <button id='formButtons' type='submit' name='submit' value='Delete Group' class='btn btn-danger'>
                                   Eliminar grupo
                                 </button>
                               </td>
@@ -476,7 +473,7 @@ elseif ($request == 'POST') {
     													  <a href='groupadmin.php' style='font-weight: bold;color: white;' >
     														 Aceptar
     													  </a>
-    												  </button>     
+    												  </button>
                             </td>
                           </tr>
                         </table>

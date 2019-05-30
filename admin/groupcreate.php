@@ -166,39 +166,42 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
 
 
     if (!empty($string)) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Apostrophes are not allowed when creating a Group Name.</td></tr>\n";
-    echo "            </table>\n";
+      echo '            <div id="float_window" class="col-md-10 alert alert-warning alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                        No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un grupo.
+                        </div>';
     }elseif (!empty($string2)) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Double Quotes are not allowed when creating a Group Name.</td></tr>\n";
-    echo "            </table>\n";
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      No se permiten comillas, barras o espacios para crear una contraseña.
+                  </div></div>';
     }elseif (empty($post_groupname)) {
-
-
-    echo '            <div class="col-md-10 alert alert-warning alert-dismissible">
+    echo '            <div id="float_window" class="col-md-10 alert alert-warning alert-dismissible">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                       <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                       Se requiere un nombre de grupo.
                       </div>';
     //}elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_groupname)) {
     }elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_groupname)) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Alphanumeric characters, hyphens, underscores, spaces, and periods are allowed when creating a Group Name.</td></tr>\n";
-    echo "            </table>\n";
+      echo '            <div id="float_window" class="col-md-10 alert alert-warning alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                        No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un grupo.
+                        </div>';
     }elseif ($select_office_name == '1') {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        A Parent Office must be chosen.</td></tr>\n";
-    echo "            </table>\n";
+      echo '            <div id="float_window" class="col-md-10 alert alert-warning alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                        Debe elegir una oficina a la que pertenezca el grupo.
+                        </div>';
     }elseif (@$tmp_groupname == $post_groupname) {
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Group already exists. Create another group.</td></tr>\n";
-    echo "            </table>\n";
+      echo '            <div id="float_window" class="col-md-10 alert alert-warning alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                        El grupo ya existe. Por favor introduzca otro nombre.
+                        </div>';
     }
     echo "            <br />\n";
 

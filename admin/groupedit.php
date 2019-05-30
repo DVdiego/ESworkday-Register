@@ -87,19 +87,21 @@ if ($request == 'GET') {
             <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-users"></i> Edit Group</h3>
+                     <h3 class="box-title"><i class="fa fa-users"></i> Edit Group ' . $get_group . ' </h3>
                 </div>
                 <div class="box-body">';
     echo "            <form name='form' action='$self' method='post'>\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr>\n";
-    echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_edit.png' />&nbsp;&nbsp;&nbsp;Group
-                    ->&nbsp;$get_group</th>\n";
-    echo "              </tr>\n";
     echo "              <tr><td height=15></td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Group Name:</td><td colspan=2 width=80%
-                          style='padding-left:20px;'><input type='text'
-                          size='25' maxlength='50' name='post_groupname' value=\"$get_group\">&nbsp;*</td></tr>\n";
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            &nbsp;*Nombre del grupo:
+                          </td>
+
+                          <td colspan=2 width=80% style='padding-left:20px;'>
+                            <input type='text' size='25' maxlength='50' name='post_groupname' placeholder=\"$get_group\">
+                          </td>
+                        </tr>\n";
 
     // query to populate dropdown with office names //
 
@@ -108,8 +110,12 @@ if ($request == 'GET') {
 
     $result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Parent Office:</td><td colspan=2 width=80%
-                          style='padding-left:20px;'><select name='post_officename'>\n";
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            Oficina a la que pertenece:
+                          </td>
+
+                          <td colspan=2 width=80% style='padding-left:20px;'><select name='post_officename'>\n";
 
     while ($row=mysqli_fetch_array($result3)) {
         if ("".$row['officename']."" == $get_office) {
@@ -119,10 +125,21 @@ if ($request == 'GET') {
         }
     }
     echo "                  </select></td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Count:</td><td align=left width=80%
-                          style='padding-left:20px;' class=table_rows><input type='hidden' name='user_cnt'
-                          value=\"$user_cnt\">$user_cnt</td></tr>\n";
-    echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            Número de usuarios:
+                          </td>
+
+                          <td align=left width=80% style='padding-left:20px;' class=table_rows>
+                            <input type='hidden' name='user_cnt' value=\"$user_cnt\">$user_cnt
+                          </td>
+                        </tr>\n";
+    echo "
+                        <tr>
+                          <td class=table_rows align=right colspan=3 style='font-weight: bold;font-family:Tahoma;font-size:10px;'>
+                            *&nbsp;Campos requeridos&nbsp;
+                          </td>
+                        </tr>\n";
     echo "            </table>\n";
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr><td height=40></td></tr>\n";
@@ -132,8 +149,20 @@ if ($request == 'GET') {
     echo "              <input type='hidden' name='post_groupid' value=\"$groupid\">\n";
     echo "              <input type='hidden' name='get_group' value=\"$get_group\">\n";
     echo "              <input type='hidden' name='get_office' value=\"$get_office\">\n";
-    echo "              <tr><td width=30><input type='image' name='submit' value='Edit Group' src='../images/buttons/next_button.png'></td>
-                          <td><a href='groupadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td>
+    echo "              <tr>
+                          <td width=30>
+                            <button id='formButtons' type='submit' name='submit' value='Edit Group' class='btn btn-info'>
+                              Editar grupo
+                              </button>
+                          </td>
+
+                          <td>
+                            <button id='formButtons' class='btn btn-default pull-right'>
+                              <a href='groupadmin.php'>
+                                Cancelar
+                              </a>
+                            </button>
+                          </td>
                         </tr>
                       </table>
                     </form>\n";
@@ -635,38 +664,63 @@ elseif ($request == 'POST') {
                    where groupname = ('".$get_group."') and officeid = ('".$orig_officeid."')";
         $result5 = mysqli_query($GLOBALS["___mysqli_ston"], $query5);
 
-        echo '<div class="row">
-                <div id="float_window" class="col-md-10">
+        echo '<div class="row">';
+        echo '                <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <h4><i class="icon fa fa-check-circle"></i>Edición con éxito!</h4>
+                                              El grupo se ha editado correctamente.
+                                          </div></div>';
+        echo '        <div id="float_window" class="col-md-10">
                   <div class="box box-info"> ';
         echo '      <div class="box-header with-border">
                          <h3 class="box-title"><i class="fa fa-users"></i> Edit Group</h3>
                     </div>
                     <div class="box-body">';
-
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td>
-                              <td class=table_rows_green>&nbsp;Group properties updated successfully.</td></tr>\n";
-        echo "            </table>\n";
-        echo "            <br />\n";
         echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-        echo "              <tr>\n";
-        echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_edit.png' />&nbsp;&nbsp;&nbsp;Group
-                        ->&nbsp;$get_group</th>\n";
-        echo "              </tr>\n";
         echo "              <tr><td height=15></td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Group Name:</td><td align=left class=table_rows
-                              colspan=2 width=80% style='padding-left:20px;'>$post_groupname</td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Parent Office:</td><td align=left class=table_rows
-                              colspan=2 width=80% style='padding-left:20px;'>$post_officename</td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Count:</td><td align=left class=table_rows
-                              colspan=2 width=80% style='padding-left:20px;'>$user_cnt</td></tr>\n";
+        echo "              <tr>
+                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                                Nuevo nombre del grupo:
+                              </td>
+
+                              <td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'>
+                                $post_groupname
+                              </td>
+                            </tr>\n";
+        echo "
+                            <tr>
+                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                                Oficina a la que pertenece:
+                              </td>
+
+                              <td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'>
+                                $post_officename
+                              </td>
+                            </tr>\n";
+        echo "
+                            <tr>
+                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                                Núumero de usuarios:
+                              </td>
+
+                              <td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'>
+                                $user_cnt
+                              </td>
+                            </tr>\n";
         echo "              <tr><td height=15></td></tr>\n";
         echo "            </table>\n";
         echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
         echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
-        echo "              <tr><td><a href='groupadmin.php'><img src='../images/buttons/done_button.png'
-                              border='0'></a></td></tr></table>\n";
+        echo "              <tr>
+                              <td>
+                                <button id='formButtons' class='btn btn-success'>
+    													    <a href='groupadmin.php' style='font-weight: bold;color: white;' >
+    														   Aceptar
+    													    </a>
+    												    </button>
+                              </td>
+                            </tr>
+                          </table>\n";
 
         $user_count = mysqli_query($GLOBALS["___mysqli_ston"], "select empfullname from ".$db_prefix."employees where groups = ('".$post_groupname."') and office = ('".$post_officename."')
                                    order by empfullname");
