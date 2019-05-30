@@ -85,14 +85,24 @@ if ($request == 'GET') {
     if ($user_cnt > 0) {
       echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
       echo "              <tr>\n";
-      echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td>";
         if ($user_cnt == 1) {
-      echo "<td class=table_rows_red>This group contains $user_cnt user. This user must be moved to another group before it can be deleted.</td></tr>\n";
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   El grupo contiene' . $user_cnt . ' usuario. El usuario debe de ser movido a otro grupo para
+                   poder eliminar el grupo.
+                </div></div></tr>';
+
         } else {
-      echo "<td class=table_rows_red>This group contains $user_cnt users. These users must be moved to another group before it can be deleted.</td></tr>\n";
+          echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                       El grupo contiene' . $user_cnt . ' usuarios. Los usuarios deben de ser movidos a otro grupo para
+                       poder eliminar el grupo.
+                    </div></div></tr>';
         }
       echo "            </table>\n";
-      echo "            <br />\n";
+
     }
     echo '<div class="row">
               <div id="float_window" class="col-md-10">
@@ -105,15 +115,38 @@ if ($request == 'GET') {
     echo "              <form name='form' action='$self' method='post'>\n";
     echo "                <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "                   <tr><td height=15></td></tr>\n";
-    echo "                   <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group Name:</td><td align=left width=80%
-                                style='padding-left:20px;' class=table_rows><input type='hidden' name='post_groupname'
-                                  value=\"$groupname\">$get_group</td></tr>\n";
-    echo "                   <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Parent Office:</td><td align=left width=80%
-                              style='padding-left:20px;' class=table_rows width=66%><input type='hidden' name='post_officename'
-                              value=\"$officename\">$get_office</td></tr>\n";
-    echo "                   <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Count:</td><td align=left width=80%
-                              style='padding-left:20px;' class=table_rows><input type='hidden' name='user_cnt'
-                              value=\"$user_cnt\">$user_cnt</td></tr>\n";
+    echo "                   <tr>
+                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                                Nombre del grupo:
+                              </td>
+
+                              <td align=left width=80% style='font-weight: bold;padding-left:20px;' class=table_rows>
+                                <input type='hidden' name='post_groupname' value=\"$groupname\">
+                                  $get_group
+                              </td>
+                            </tr>\n";
+    echo "
+                            <tr>
+                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                                Oficina:
+                              </td>
+
+                              <td align=left width=80% style='padding-left:20px;' class=table_rows width=66%>
+                                <input type='hidden' name='post_officename' value=\"$officename\">
+                                  $get_office
+                              </td>
+                            </tr>\n";
+    echo "
+                            <tr>
+                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                                Nombre del grupo:
+                              </td>
+
+                              <td align=left width=80% style='padding-left:20px;' class=table_rows>
+                                <input type='hidden' name='user_cnt' value=\"$user_cnt\">
+                                  $user_cnt
+                              </td>
+                            </tr>\n";
     echo "                   <tr><td height=15></td></tr>\n";
     echo "                </table>\n";
     echo "                <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
@@ -122,14 +155,19 @@ if ($request == 'GET') {
         echo "              <input type='hidden' name='group_name_no_users'>\n";
         echo "              <input type='hidden' name='office_name_no_users'>\n";
     } elseif ($user_cnt == 1) {
-    echo "                  <tr><td class=table_rows height=53>Move this user to which office?&nbsp;&nbsp;&nbsp;\n";
+    echo "                  <tr>
+                              <td class=table_rows height=53>
+                                ¿Oficina para el usuario?&nbsp;&nbsp;&nbsp;\n";
+
     } else {
-    echo "                  <tr><td class=table_rows height=53>Move these users to which office?&nbsp;&nbsp;&nbsp;\n";
+    echo "                  <tr>
+                              <td class=table_rows height=53>
+                                ¿Oficnia para los usuarios?&nbsp;&nbsp;&nbsp;\n";
     }
 
     if ($user_cnt > '0') {
     echo "                    <select name='office_name' onchange='group_names();'>\n";
-    echo "                    </select>&nbsp;&nbsp;&nbsp;Which Group?\n";
+    echo "                    </select>&nbsp;&nbsp;&nbsp;¿A qué grupo?\n";
     echo "                    <select name='group_name' onfocus='group_names();'>
                                 <option selected></option>\n";
     echo "                    </select></td>
@@ -140,8 +178,20 @@ if ($request == 'GET') {
     echo "                <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "                  <input type='hidden' name='post_officeid' value=\"$officeid\">\n";
     echo "                  <input type='hidden' name='post_groupid' value=\"$groupid\">\n";
-    echo "                  <tr><td width=30><input type='image' name='submit' value='Delete Group' src='../images/buttons/next_button.png'></td>
-                              <td><a href='groupadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td>
+    echo "                  <tr>
+                              <td width=30>
+                                <button id='formButtons' type='submit' name='submit' value='Delete Group' class='btn btn-info'>
+																  Eliminar grupo
+															  </button>
+                              </td>
+
+                              <td>
+                                <button id='formButtons' class='btn btn-default pull-right'>
+																 <a href='groupadmin.php'>
+																	Cancelar
+																 </a>
+															  </button>
+                              </td>
                             </tr>
                           </table>
                         </form>
@@ -249,23 +299,34 @@ elseif ($request == 'POST') {
 
     if (((isset($office_name)) && (empty($office_name))) || ((isset($group_name)) && (empty($group_name))) ||
     (($group_name == $post_groupname) && ($office_name == $post_officename))) {
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td>\n";
     } else {
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td><td class=table_rows_green>Group deleted successfully.</td>
-                        </tr>
+    echo '                <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-warning"></i>¡Eliminado con éxito!</h4>
+                                          El grupo se ha eliminado correctamente.
+                                      </div></div>';
+    echo "            </tr>
                       </table>\n";
     }
 
     if (((isset($office_name)) && (empty($office_name))) || ((isset($group_name)) && (empty($group_name)))) {
-    echo "                <td class=table_rows_red>To delete this group, you must choose to move its' current users to another
-                          office <b>AND/OR</b> group.</td>
-                        </tr>
-                      </table>\n";
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   Para eliminar el grupo debe elegir otro grupo para mover a los usuaros pertenecientes al grupo a eliminar.
+                   El grupo contiene' . $user_cnt . ' usuario. El usuario debe de ser movito a otro grupo para
+                   poder eliminar el grupo.
+                </div></div></tr>';
+      echo "    </table>\n";
     } elseif (($group_name == $post_groupname) && ($office_name == $post_officename)) {
-    echo "                <td class=table_rows_red>To delete this group, you must choose to move its' current users to <b>ANOTHER</b>
-                          group.</td>
-                        </tr>
-                      </table>\n";
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                   Para eliminar el grupo debe elegir otro grupo para mover a los usuaros pertenecientes al grupo a eliminar.
+                   El grupo contiene' . $user_cnt . ' usuario. El usuario debe de ser movito a otro grupo para
+                   poder eliminar el grupo.
+                </div></div></tr>';
+      echo "    </table>\n";
     }
 
     echo "            <br />\n";
@@ -276,30 +337,57 @@ elseif ($request == 'POST') {
     if (((isset($office_name)) && (empty($office_name))) || ((isset($group_name)) && (empty($group_name))) ||
     (($group_name == $post_groupname) && ($office_name == $post_officename))) {
 
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group Name:</td><td align=left width=80%
-                              style='padding-left:20px;' class=table_rows><input type='hidden' name='post_groupname'
-                              value=\"$post_groupname\">$post_groupname</td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Parent Office:</td><td align=left width=80%
-                              style='padding-left:20px;' class=table_rows><input type='hidden' name='post_officename'
-                              value=\"$post_officename\">$post_officename</td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Count:</td><td align=left width=80%
-                              style='padding-left:20px;' class=table_rows><input type='hidden' name='user_cnt'
-                              value=\"$user_cnt\">$user_cnt</td></tr>\n";
-        echo "              <tr><td height=15></td></tr>\n";
+        echo "              <tr>
+                              <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
+                                Nombre del grupo:
+                              </td>
+
+                              <td align=left width=80% style='font-weight: bold;padding-left:20px;' class=table_rows>
+                                <input type='hidden' name='post_groupname' value=\"$post_groupname\">$post_groupname
+                              </td>
+                            </tr>\n";
+        echo "
+                            <tr>
+                              <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
+                                Oficina:
+                              </td>
+
+                              <td align=left width=80% style='font-weight: bold;padding-left:20px;' class=table_rows>
+                                <input type='hidden' name='post_officename' value=\"$post_officename\">$post_officename
+                              </td>
+                            </tr>\n";
+        echo "
+                            <tr>
+                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                                Número de usuarios:
+                              </td>
+
+                              <td align=left width=80% style='padding-left:20px;' class=table_rows>
+                                <input type='hidden' name='user_cnt' value=\"$user_cnt\">$user_cnt
+                              </td>
+                            </tr>\n";
+        echo "
+                            <tr>
+                              <td height=15></td>
+                            </tr>\n";
         echo "            </table>\n";
         echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 
         if ($user_cnt == 0) {
             echo "            <tr><td height=40></td>\n";
           } elseif ($user_cnt == 1) {
-          echo "              <tr><td class=table_rows height=53>Move this user to which office?&nbsp;&nbsp;&nbsp;\n";
+          echo "              <tr>
+                                <td class=table_rows height=53>
+                                  ¿Oficina para el usuario?&nbsp;&nbsp;&nbsp;\n";
           } else {
-          echo "              <tr><td class=table_rows height=53>Move these users to which office?&nbsp;&nbsp;&nbsp;\n";
+          echo "              <tr>
+                                <td class=table_rows height=53>
+                                  ¿Oficina para los usuarios?&nbsp;&nbsp;&nbsp;\n";
         }
 
         if ($user_cnt > '0') {
           echo "                <select name='office_name' onchange='group_names();'>\n";
-          echo "                </select>&nbsp;&nbsp;&nbsp;Which Group?\n";
+          echo "                </select>&nbsp;&nbsp;&nbsp;¿A qué grupo?\n";
           echo "                <select name='group_name' onfocus='group_names();'>
                                   <option selected></option>\n";
           echo "                </select></td>
@@ -310,8 +398,20 @@ elseif ($request == 'POST') {
         echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
         echo "              <input type='hidden' name='post_officeid' value=\"$post_officeid\">\n";
         echo "              <input type='hidden' name='post_groupid' value=\"$post_groupid\">\n";
-        echo "              <tr><td width=30><input type='image' name='submit' value='Delete Group' src='../images/buttons/next_button.png'></td>
-                              <td><a href='groupadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td>
+        echo "              <tr>
+                              <td width=30>
+                                <button id='formButtons' type='submit' name='submit' value='Delete Group' class='btn btn-info'>
+                                  Eliminar grupo
+                                </button>
+                              </td>
+
+                              <td>
+                                <button id='formButtons' class='btn btn-default pull-right'>
+                                  <a href='groupadmin.php'>
+                                    Cancelar
+                                  </a>
+                                </button>
+                              </td>
                             </tr>
                           </table>
                       </form>
@@ -337,17 +437,48 @@ elseif ($request == 'POST') {
       $query5 = "delete from ".$db_prefix."groups where groupid = '".$post_groupid."'";
       $result5 = mysqli_query($GLOBALS["___mysqli_ston"], $query5);
 
-      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group Name:</td><td align=left width=80%
-                            style='padding-left:20px;' class=table_rows>$post_groupname</td></tr>\n";
-      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Parent Office:</td><td align=left width=80%
-                            style='padding-left:20px;' class=table_rows>$post_officename</td></tr>\n";
-      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Count:</td><td align=left width=80%
-                            style='padding-left:20px;' class=table_rows>$user_cnt</td></tr>\n";
+      echo "              <tr>
+                            <td class=table_rows height=25 width=20% style='padding-left:32px;font-weight: bold;' nowrap>
+                              Nombre del grupo:
+                            </td>
+
+                            <td align=left width=80% style='padding-left:20px;font-weight: bold;' class=table_rows>
+                              $post_groupname
+                            </td>
+                          </tr>\n";
+      echo "
+                          <tr>
+                            <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                              Oficina:
+                            </td>
+
+                            <td align=left width=80% style='font-weight: bold;padding-left:20px;' class=table_rows>
+                              $post_officename
+                            </td>
+                          </tr>\n";
+      echo "
+                          <tr>
+                            <td class=table_rows height=25 width=20% style='padding-left:32px;font-weight: bold;' nowrap>
+                              Número de usuarios:
+                            </td>
+
+                            <td align=left width=80% style='padding-left:20px;' class=table_rows>
+                              $user_cnt
+                            </td>
+                          </tr>\n";
       echo "              <tr><td height=15></td></tr>\n";
       echo "            </table>\n";
       echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
       echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
-      echo "              <tr><td><a href='groupadmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr>
+      echo "              <tr>
+                            <td>
+                              <button id='formButtons' class='btn btn-success'>
+    													  <a href='groupadmin.php' style='font-weight: bold;color: white;' >
+    														 Aceptar
+    													  </a>
+    												  </button>     
+                            </td>
+                          </tr>
                         </table>
                     </form>
                     </table>\n";
