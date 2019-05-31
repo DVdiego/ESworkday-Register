@@ -113,19 +113,15 @@ if ($request == 'GET') {
 		                    <input type='radio' name='disabled' value='0' checked>&nbsp;No</td></tr>\n";
 		echo "              <tr><td class=table_rows align=right colspan=3>*&nbsp;Campo obligatorio&nbsp;</td></tr>\n";
 		echo "            </table>\n";
+		echo "						<div class='box-footer'>
+												<button id='formButtons' class='btn btn-default pull-right' style='margin-left: 10px;'>Cancelar<a href='usercreate.php'></a></button>
+												<button id='formButtons' type='submit' name='submit' value='Create User' class='btn btn-success pull-right'>Crear usuario</button><a href='usercreate.php'></a>
+											</div>";
+	  echo "			</div></form>";
 
-						      echo '<div class="box-footer">
-						                  <button id="formButtons" type="submit" name="submit" value="Create User" class="btn btn-info">
-																Crear usuario
-															</button>
 
-															<button id="formButtons" class="btn btn-default pull-right">
-																<a href="useradmin.php">
-																	Cancelar
-																</a>
 
-															</button>
-						                </div></form>';
+
 						      echo '</div></div></div></div>';
 				      include '../theme/templates/endmaincontent.inc';
 				      include '../footer.php';

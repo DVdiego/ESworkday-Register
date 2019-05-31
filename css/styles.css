@@ -83,6 +83,18 @@ div.box.box-primary {
 
 
 
+/**/
+#float_window > div > div.box-body > form{
+
+  padding-left: 5%;
+}
+
+#float_window > div{
+
+  border-color: black;
+}
+
+
 /*separadores formularios*/
 hr {
 

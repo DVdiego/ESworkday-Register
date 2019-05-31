@@ -83,11 +83,12 @@ if (!isset($_COOKIE['tzoffset'])) {
 include '../tzoffset.php';
 echo "<meta http-equiv='refresh' content='0;URL=index.php'>\n";}}
 include '../theme/templates/adminheader.inc';
-echo "<link rel='stylesheet' type='text/css' href='../css/styles.css' />\n";
 echo "<link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />\n";
+echo "<link rel='stylesheet' type='text/css' href='../css/styles.css' />\n";
+echo "<script language=\"javascript\" src=\"../scripts/pnguin.js\"></script>\n";
 echo "<script type=\"text/javascript\" src=\"../scripts/CalendarPopup.js\"></script>\n";
 echo "<script language=\"javascript\">document.write(getCalendarStyles());</script>\n";
-echo "<script language=\"javascript\" src=\"../scripts/pnguin.js\"></script>\n";
+
 include '../scripts/dropdown_get_sysedit.php';
 echo "</head>\n";
 

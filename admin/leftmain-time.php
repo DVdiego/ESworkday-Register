@@ -128,7 +128,7 @@ echo '     <ul class="sidebar-menu">
         </li>
         <li class="treeview active">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Miscellaneous</span>
+            <i class="fa fa-spinner fa-spin"></i><span>Workday Times</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -138,11 +138,26 @@ echo '     <ul class="sidebar-menu">
 			<li><a href="timeadd.php?username='.$_SESSION['get_user'].'"><i class="fa fa-clock-o"></i> Add Time</a></li>
 			<li><a href="timeedit.php?username='.$_SESSION['get_user'].'"><i class="fa fa-clock-o"></i> Edit Time</a></li>
 			<li><a href="timedelete.php?username='.$_SESSION['get_user'].'"><i class="fa fa-clock-o"></i> Delete Time</a></li>
-            <li><a href="sysedit.php"><i class="fa fa-code"></i> Edit System Settings</a></li>
-	    <li><a href="database_management.php"><i class="fa fa-database"></i> Manage Database</a></li>
+      <li><a href="time_punch_employees.php"><i class="fa fa-exchange"></i> Multiple Time register</a></li>
+      <li><a href="time_punch_out.php"><i class="fa fa-long-arrow-left"></i>Punch out employees</a></li>
+
           </ul>
-        </li>
-      </ul>';
+        </li>';
+
+
+    echo "        <li class='treeview'>
+              <a href='#'>
+                <i class='fa fa-dashboard'></i> <span>Miscellaneous</span>
+                <span class='pull-right-container'>
+                  <i class='fa fa-angle-left pull-right'></i>
+                </span>
+              </a>
+              <ul class='treeview-menu'>
+                <li><a href='sysedit.php'><i class='fa fa-code'></i> Edit System Settings</a></li>
+                <li><a href='database_management.php'><i class='fa fa-database'></i> Manage Database</a></li>
+              </ul>
+            </li>
+          </ul>";
 
 include '../theme/templates/leftnavend.inc';
 include '../theme/templates/beginmaincontent.inc';
