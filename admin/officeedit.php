@@ -320,7 +320,7 @@ if ($request == 'GET') {
     echo "            <br />\n";
 
     if (empty($post_officename)) {
-      echo ' <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                      Se requiere un nombre de oficina.
@@ -328,14 +328,12 @@ if ($request == 'GET') {
     }
     // elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_officename)) {
     elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_officename)) {
-      echo ' <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                       <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                       No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un usuario.
                   </div></div>';
     }
-
-    echo "            <br />\n";
     echo '<div class="row">
             <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
@@ -500,7 +498,7 @@ if ($request == 'GET') {
     $query5 = "update ".$db_prefix."offices set officename = ('".$post_officename."') where officename = ('".$get_office."')";
     $result5 = mysqli_query($GLOBALS["___mysqli_ston"], $query5);
 
-    echo ' <div class="col-md-6"><div class="alert alert-info alert-dismissible">
+    echo ' <div id="float_window" class="col-md-10"><div class="alert alert-info alert-dismissible">
                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                               <h4><i class="icon fa fa-info-circle"></i>Información</h4>
                                 Los datos de la oficina ' . $post_officename . ' se ha modificado con éxito.
@@ -517,12 +515,32 @@ if ($request == 'GET') {
 
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "              <tr><td height=15></td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de la oficina:</td><td align=left class=table_rows
-                          colspan=2 width=80% style='padding-left:20px;'>$post_officename</td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Número de grupos:</td><td align=left class=table_rows
-                          colspan=2 width=80% style='padding-left:20px;'>$group_cnt</td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Número de usuarios:</td><td align=left class=table_rows
-                          colspan=2 width=80% style='padding-left:20px;'>$user_cnt</td></tr>\n";
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
+                            Nombre de la oficina:
+                          </td>
+
+                          <td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'>$post_officename
+                          </td>
+                        </tr>\n";
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
+                            Número de grupos:
+                          </td>
+
+                          <td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'>$group_cnt
+                          </td>
+                        </tr>\n";
+
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
+                            Número de usuarios:
+                          </td>
+
+                          <td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'>$user_cnt
+                          </td>
+                        </tr>\n";
+
     echo "              <tr><td height=15></td></tr>\n";
     echo "            </table>\n";
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
@@ -533,7 +551,7 @@ if ($request == 'GET') {
     echo "              <tr>
                           <td>
                             <button id='formButtons' class='btn btn-success pull-right' >
-                            <a href='officeadmin.php' style='color:white;'>
+                            <a href='officeadmin.php' style='color:white;font-weight: bold;'>
                               Aceptar
                             </a>
                             </button>

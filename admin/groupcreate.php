@@ -305,7 +305,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 
-    echo '       <div class="col-md-10"><div class="alert alert-success alert-dismissible">
+    echo '       <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
     			       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     			       <h4><i class="icon fa fa-check-circle"></i>¡Grupo creado!</h4>
     			          El grupo ha sido creado satisfactoriamente.

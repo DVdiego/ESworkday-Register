@@ -88,20 +88,19 @@ $result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 if ($user_cnt > 0) {
   echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
   if ($user_cnt == 1) {
-  echo ' <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
+  echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                     Esta oficina contiene ' . $user_cnt . ' usuario. El usuario debe de ser movido a otro grupo de otra oficina antes de poder eliminar la oficina.
                 </div></div>';
   } else {
-  echo ' <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
+  echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                       Esta oficina contiene ' . $user_cnt . ' usuarios. Los usuarioa deben de ser movidos a otro grupo de otra oficina antes de poder eliminar la oficina.
                   </div></div>';
   }
 echo "            </table>\n";
-echo "            <br />\n";
 echo '<div class="row">
           <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
@@ -152,7 +151,7 @@ echo "                 <tr>
 
                           <td>
                             <button id='formButtons' class='btn btn-default pull-right'>
-                              <a href='officeadmin.php'>
+                              <a href='officeadmin.php' style='font-weight bold;'>
                                 Cancelar
                               </a>
                             </button>
@@ -209,7 +208,7 @@ echo "                    <tr>
 
                             <td>
                               <button id='formButtons' class='btn btn-default pull-right'>
-                                <a href='officeadmin.php'>
+                                <a href='officeadmin.php' style='font-weight bold;'>
                                   Cancelar
                                 </a>
                               </button>
@@ -294,6 +293,31 @@ if ($group_cnt != $tmp_group_cnt) {echo "Posted group count does not equal actua
 
 
 include 'leftmain.php';
+if ((empty($office_name)) || (empty($group_name))) {
+  echo '            <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      Para eliminar esta oficina, debe elegir una oficina y un grupo dónde mover los usuarios
+                    </div></div>';
+
+} elseif ($office_name == $post_officename) {
+  echo '            <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      Para eliminar esta oficina, debe elegir una oficina y un grupo diferentes dónde mover los usuarios
+                    </div></div>';
+
+
+}else{
+  echo '       <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
+               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+               <h4><i class="icon fa fa-check-circle"></i>Oficina eliminada!</h4>
+                  La oficina ha sido eliminada satisfactoriamente.
+               </div></div>';
+}
+
+
+
 echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
@@ -303,33 +327,6 @@ echo '     <div class="box-header with-border">
            <div class="box-body">';
 echo "        <table class=table>\n";
 echo "            <form name='form' action='$self' method='post'>\n";
-
-if ((empty($office_name)) || (empty($group_name))) {
-                echo "<table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-                echo "  <tr>\n";
-                echo "  <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td>\n";
-                echo "  <td class=table_rows_red nowrap>To delete this office, you must choose to move its' current users to another
-                        office <b>AND</b> group.</td></tr>\n";
-                echo "</table>\n";
-                echo "  <br />\n";
-
-} elseif ($office_name == $post_officename) {
-                echo "<table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-                echo "  <tr>\n";
-                echo "  <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td>\n";
-                echo "  <td class=table_rows_red nowrap>To delete this office, you must choose to move its' current users to a <b>DIFFERENT</b>
-                        office and group.</td></tr>\n";
-                echo "</table>\n";
-                echo "<br />\n";
-
-} else {
-                echo "<table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-                echo "  <tr>\n";
-                echo "  <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td>
-                        <td class=table_rows_green>Office deleted successfully.</td></tr>\n";
-                echo "</table>\n";
-                echo "<br />\n";
-}
             echo "    <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
 
             echo "      <tr><td height=15></td>
@@ -337,38 +334,79 @@ if ((empty($office_name)) || (empty($group_name))) {
 
 if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_officename)) {
 
-              echo "    <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td align=left class=table_rows
-                          width=80% style='padding-left:20px;'><input type='hidden' name='post_officename'
-                          value=\"$post_officename\">$post_officename</td></tr>\n";
-              echo "    <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group Count:</td><td align=left
-                          class=table_rows width=80% style='padding-left:20px;'><input type='hidden' name='group_cnt'
-                          value=\"$group_cnt\">$group_cnt</td></tr>\n";
-              echo "    <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Count:</td><td align=left
-                          class=table_rows width=80% style='padding-left:20px;'><input type='hidden' name='user_cnt'
-                          value=\"$user_cnt\">$user_cnt</td></tr>\n";
-              echo "    <tr><td height=15></td></tr>\n";
+              echo "    <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
+                            Nombre de la oficina:
+                          </td>
+
+                          <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                            <input type='hidden' name='post_officename' value=\"$post_officename\">$post_officename
+                          </td>
+                        </tr>\n";
+
+              echo "    <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
+                            Número de grupos:
+                          </td>
+
+                          <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                            <input type='hidden' name='group_cnt' value=\"$group_cnt\">$group_cnt
+                          </td>
+                        </tr>\n";
+
+              echo "    <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
+                            Número de usuarios:
+                          </td>
+
+                          <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                            <input type='hidden' name='user_cnt' value=\"$user_cnt\">$user_cnt
+                          </td>
+                        </tr>\n";
+
+              echo "    <tr>
+                          <td height=15>
+                          </td>
+                        </tr>\n";
               echo "    <input type='hidden' name='post_officeid' value=\"$post_officeid\">\n";
               echo "  </table>\n";
               echo "  <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 
   if ($user_cnt == 1) {
-                echo "   <tr><td class=table_rows height=53>Move this user to which office?&nbsp;&nbsp;&nbsp;&nbsp;\n";
+                echo "   <tr>
+                            <td class=table_rows height=53>
+                              ¿A qué oficina desea mover al usuario?&nbsp;&nbsp;&nbsp;&nbsp;\n";
+
   } else {
-                echo "   <tr><td class=table_rows height=53>Move these users to which office?&nbsp;&nbsp;&nbsp;&nbsp;\n";
+                echo "   <tr>
+                            <td class=table_rows height=53>
+                              ¿A qué oficina desea mover a los usuarios?&nbsp;&nbsp;&nbsp;&nbsp;\n";
   }
 
-              echo "      select name='office_name' onchange='group_names();'>
-                           <option selected>Choose One</option>\n";
-              echo "      </select>&nbsp;&nbsp;&nbsp;Which Group?\n";
+              echo "      <select name='office_name' onchange='group_names();'>
+                           <option selected>Elija uno</option>\n";
+              echo "      </select>&nbsp;&nbsp;&nbsp;¿A qué grupo?\n";
               echo "      <select name='group_name' onfocus='group_names();'>\n";
               echo "      </select>
                          </td></tr>
                        </table>\n";
 
               echo "   <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-              echo "          <tr><td width=30><input type='image' name='submit' value='Delete Office'
-                                src='../images/buttons/next_button.png'></td><td><a href='officeadmin.php'>
-                                <img src='../images/buttons/cancel_button.png' border='0'></td></tr>
+              echo "          <tr>
+                                <td width=30>
+                                  <button id='formButtons' type='submit' name='submit' value='Delete Office' class='btn btn-danger'>
+                                    Eliminar oficina
+                                  </button>
+                                </td>
+
+                                <td>
+                                  <button id='formButtons' class='btn btn-default pull-right'>
+                                    <a href='officeadmin.php' style='font-weight bold;'>
+                                      Cancelar
+                                    </a>
+                                  </button>
+                                </td>
+                              </tr>
                         </table>
                     </form>\n";
   echo '          </table>
@@ -394,17 +432,49 @@ if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_offi
   $query6 = "delete from ".$db_prefix."groups where officeid = '".$post_officeid."'";
   $result6 = mysqli_query($GLOBALS["___mysqli_ston"], $query6);
 
-  echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td align=left class=table_rows
-                        width=80% style='padding-left:20px;'>$post_officename</td></tr>\n";
-  echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group Count:</td><td align=left
-                        class=table_rows width=80% style='padding-left:20px;'>$group_cnt</td></tr>\n";
-  echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Count:</td><td align=left
-                        class=table_rows width=80% style='padding-left:20px;'>$user_cnt</td></tr>\n";
+  echo "              <tr>
+                        <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                          Nombre de la oficina:
+                        </td>
+
+                        <td align=left class=table_rows width=80% style='padding-left:20px;'>$post_officename
+                        </td>
+                      </tr>\n";
+
+  echo "              <tr>
+                        <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                          Número de grupos:
+                        </td>
+
+                        <td align=left class=table_rows width=80% style='padding-left:20px;'>$group_cnt
+                        </td>
+                      </tr>\n";
+
+  echo "              <tr>
+                        <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                          Número de usuarios:
+                        </td>
+
+                        <td align=left class=table_rows width=80% style='padding-left:20px;'>$user_cnt
+                        </td>
+                      </tr>\n";
   echo "              <tr><td height=15></td></tr>\n";
   echo "            </table>\n";
   echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-  echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
-  echo "              <tr><td><a href='officeadmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr>
+  echo "              <tr>
+                        <td height=20 align=left>&nbsp;
+                      </td>
+                    </tr>\n";
+
+  echo "              <tr>
+                        <td>
+                          <button id='formButtons' class='btn btn-success'>
+                           <a href='officeadmin.php' style='font-weight: bold;color: white;' >
+                            Aceptar
+                           </a>
+                          </button>
+                        </td>
+                      </tr>
                     </table>
                   </form>\n";
 
