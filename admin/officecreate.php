@@ -72,18 +72,42 @@ if ($request == 'GET') {
 echo "          <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'>
-                      <input type='text' size='25' maxlength='50' name='post_officename'>&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Create Groups Within This Office?</td>\n";
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='create_groups' value='1'
-                      onFocus=\"javascript:form.how_many.disabled=false;form.how_many.style.background='#ffffff';\">Yes
-                      <input checked type='radio' name='create_groups' value='0'
-                      onFocus=\"javascript:form.how_many.disabled=true;form.how_many.style.background='#eeeeee';\">No</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>How Many?</td><td colspan=2 width=80%
-                      style='padding-left:20px;'>
-                      <input disabled type='text' size='2' maxlength='1' name='how_many' style='background:#eeeeee;'></td></tr>\n";
-echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+echo "              <tr>
+                      <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                        &nbsp;*Nombre de la oficina:
+                      </td>
+
+                      <td colspan=2 width=80% style='padding-left:20px;'>
+                        <input type='text' size='25' maxlength='50' name='post_officename'>
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                        ¿Desea crear grupos para la oficina?
+                      </td>\n";
+echo "
+                      <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                        <input type='radio' name='create_groups' value='1' onFocus=\"javascript:form.how_many.disabled=false;form.how_many.style.background='#ffffff';\">Si
+                        <input checked type='radio' name='create_groups' value='0' onFocus=\"javascript:form.how_many.disabled=true;form.how_many.style.background='#eeeeee';\">No
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                        ¿Cuántos?
+                      </td>
+
+                      <td colspan=2 width=80% style='padding-left:20px;'>
+                        <input disabled type='text' size='2' maxlength='1' name='how_many' style='background:#eeeeee;'>
+                      </td>
+                    </tr>\n";
+echo "
+                    <tr>
+                      <td class=table_rows align=right colspan=3 style='font-weight: bold;font-family:Tahoma;font-size:10px;'>
+                        *&nbsp;Campos requeridos&nbsp;
+                      </td>
+                    </tr>\n";
 echo "            </table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=40>&nbsp;</td></tr>\n";
@@ -148,77 +172,70 @@ elseif ($request == 'POST') {
 
   if ((@$tmp_officename == $post_officename) || (empty($post_officename)) || (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_officename)) || ((!preg_match('/' . "^([0-9])$" . '/i', $how_many)) && (isset($how_many))) || (@$how_many == '0') || (($create_groups != '1') && (!empty($create_groups))) || (!empty($string)) || (!empty($string2))) {
     if (empty($post_officename)) {
-      echo '        <div class="alert alert-warning alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-                   Se requiere un nombre de oficina.
-                </div>';
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                     Se requiere un nombre de oficina.
+                  </div></div>';
 
     }
     elseif (!empty($string)) {
-      echo '        <div class="alert alert-warning alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-                   No están permitidos los apóstrofes en el nombre.
-                </div>';
-    }
-    elseif (!empty($string2)) {
-      echo '        <div class="alert alert-warning alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-                   No se permiten dobles comillas para el nombre.
-                </div>';
-    }
-    elseif (@$tmp_officename == $post_officename) {
-      echo ' <div class="alert alert-warning alert-dismissible">
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-                      La oficina ya existe, por favor introduzca otro nombre.
-                  </div>';
+                     No están permitidos los apostrofes en el nombre.
+                  </div></div>';
+    }
+    elseif (!empty($string2)) {
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                     No se permiten las dobles comillas en el nombre.
+                  </div></div>';
+    }
+    elseif (@$tmp_officename == $post_officename) {
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                     La oficina ya existe, introduzca otro nombre.
+                  </div></div>';
     }
     // elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_officename)) {
     elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_officename)) {
-      echo '  <div class="alert alert-warning alert-dismissible">
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-                   No se permiten guiones, guiones bajos, espacios o caracteres alfanuméricos en el nombre.
-                </div>';
+                    No se permiten guiones, guines bajos, espacios o caracteres alfanuméricos en el nombre.
+                </div></div>';
     }
     elseif (($create_groups == '1') && (empty($how_many))) {
-      echo '    <div class="col-md-6"><div class="alert alert-warning alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-                   Por favor, introduzca el número de grupos que desea crear para esta oficina.
-                </div>';
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                     Por favor introduzca el número de grupos para la oficina ' . $post_officename .'.
+                  </div></div>';
     }
     elseif (($create_groups == '1') && ($how_many == '0')) {
-      echo '        <div class="alert alert-warning alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-                   Ha decidido crear grupos para esta oficina. Por favor introduzca un número diferente de 0.
-                </div>';
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                     Ha decidido crear grupos, por favor introduzc un número diferente de 0.
+                  </div></div>';
     }
     // elseif (!eregi ("^([0-9])$", $how_many)) {
     elseif (!preg_match('/' . "^([0-9])$" . '/i', $how_many)) {
-      echo '        <div class="alert alert-warning alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-                   Solo se permiten caracteres numéricos en el campo de grupos.
-                </div>';
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                     Solo se permiten caracteres numéricos en el campo de grupos.
+                  </div></div>';
     }elseif (($create_groups != '1') && (!empty($create_groups))) {
-      echo '        <div class="alert alert-warning alert-dismissible">
-                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
-                   Por favor, elija \'si\' o \'no\' para la pregunta <i>¿Cuántos grupos tiene la oficina?.
-                </div>';
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Choose \"yes\" or \"no\" to the <i>Create Groups Within This Office</i> question.</td></tr>\n";
-    echo "            </table>\n";
+      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                     Por favor, elija \'si\' o \'no\' para la pregunta <i>¿Cuántos grupos tiene la oficina?.
+                  </div></div>';
     }
-    echo "            <br />\n";
-
 
     if (!empty($string)) {$post_officename = stripslashes($post_officename);}
     if (!empty($string2)) {$post_officename = stripslashes($post_officename);}
@@ -232,34 +249,54 @@ elseif ($request == 'POST') {
                 </div>
                 <div class="box-body">';
 
+//Segundo formulario si salta un error.
     echo "         <form name='form' action='$self' method='post'>\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr><td height=15></td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td colspan=2 width=80%
-                          style='padding-left:20px;'>
-                          <input type='text' size='25' maxlength='50' name='post_officename' value=\"$post_officename\">&nbsp;*</td></tr>\n";
+    echo "              <tr>
+                          <td height=15>
+                          </td>
+                        </tr>\n";
+
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            &nbsp;*Nombre de la oficina:
+                          </td>
+
+                          <td colspan=2 width=80% style='padding-left:20px;'>
+                            <input type='text' size='25' maxlength='50' name='post_officename' value=\"$post_officename\">
+                          </td>
+                        </tr>\n";
 
     if (!empty($string)) {$post_officename = addslashes($post_officename);}
     if (!empty($string2)) {$post_officename = addslashes($post_officename);}
 
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Create Groups Within This Office?</td>\n";
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            ¿Desea crear grupos para la oficina?
+                          </td>\n";
 
     if ($create_groups == '1') {
 
-    echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='create_groups' value='1' checked
-                            onFocus=\"javascript:form.how_many.disabled=false;form.how_many.style.background='#ffffff';\">Yes
-                            <input type='radio' name='create_groups' value='0' onFocus=\"javascript:form.how_many.disabled=true;form.how_many.style.background='#eeeeee';\">No</td>
+    echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                              <input type='radio' name='create_groups' value='1' checked onFocus=\"javascript:form.how_many.disabled=false;form.how_many.style.background='#ffffff';\">Si
+                              <input type='radio' name='create_groups' value='0' onFocus=\"javascript:form.how_many.disabled=true;form.how_many.style.background='#eeeeee';\">No
+                            </td>
                         </tr>\n";
     } else {
 
-    echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='create_groups' value='1'
-                          onFocus=\"javascript:form.how_many.disabled=false;form.how_many.style.background='#ffffff';\">Yes
-                          <input checked type='radio' name='create_groups' value='0'
-                          onFocus=\"javascript:form.how_many.disabled=true;form.how_many.style.background='#eeeeee';\">No</td>
+    echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                              <input type='radio' name='create_groups' value='1' onFocus=\"javascript:form.how_many.disabled=false;form.how_many.style.background='#ffffff';\">Si
+                              <input checked type='radio' name='create_groups' value='0' onFocus=\"javascript:form.how_many.disabled=true;form.how_many.style.background='#eeeeee';\">No
+                            </td>
                         </tr>\n";
     }
 
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>How Many?</td><td colspan=2 width=80% style='padding-left:20px;'>\n";
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            ¿Cuántos?
+                          </td>
+
+                          <td colspan=2 width=80% style='padding-left:20px;'>\n";
 
     if ($create_groups == '1') {
     echo "                      <input type='text' size='2' maxlength='1' name='how_many' value='$how_many'></td></tr>\n";
@@ -267,7 +304,7 @@ elseif ($request == 'POST') {
     echo "                      <input disabled type='text' size='2' maxlength='1' name='how_many' style='background:#eeeeee;' value='$how_many'></td></tr>\n";
     }
 
-    echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+    echo "              <tr><td class=table_rows align=right colspan=3 style='font-weight: bold;font-family:Tahoma;font-size:10px;'>*&nbsp;Campos requeridos&nbsp;</td></tr>\n";
     echo "            </table>\n";
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>
@@ -349,15 +386,36 @@ elseif ($request == 'POST') {
       echo "         <form name='form' action='$self' method='post'>\n";
       echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
       echo "              <tr><td height=15></td></tr>\n";
-      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td class=table_rows colspan=2
-                            width=80% style='padding-left:20px;'>
-                            <input type='hidden' name='post_officename' value='$post_officename'>$post_officename</td></tr>\n";
-      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Create Groups Within This Office?</td><td
-                            class=table_rows colspan=2 width=80% style='padding-left:20px;'>
-                            <input type='hidden' name='create_groups' value='$create_groups'>$create_groups</td></tr>\n";
-      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>How Many?</td><td class=table_rows colspan=2
-                            width=80% style='padding-left:20px;'>
-                            <input type='hidden' name='how_many' value='$how_many'>$how_many</td></tr>\n";
+      echo "              <tr>
+                            <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                              Nombre de la oficina:
+                            </td>
+
+                            <td class=table_rows colspan=2 width=80% style='padding-left:20px;'>
+                              <input type='hidden' name='post_officename' value='$post_officename'>$post_officename
+                            </td>
+                          </tr>\n";
+
+      echo "              <tr>
+                            <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                              ¿Desea crear grupos para la oficina?
+                            </td>
+
+                            <td class=table_rows colspan=2 width=80% style='padding-left:20px;'>
+                              <input type='hidden' name='create_groups' value='$create_groups'>$create_groups
+                            </td>
+                          </tr>\n";
+
+      echo "              <tr>
+                            <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                              ¿Cuántos?
+                            </td>
+
+                            <td class=table_rows colspan=2 width=80% style='padding-left:20px;'>
+                              <input type='hidden' name='how_many' value='$how_many'>$how_many
+                            </td>
+                          </tr>\n";
+
       echo "              <tr><td height=15></td></tr>\n";
       echo "            </table>\n";
       echo "            <br/><br/>\n";
@@ -470,7 +528,7 @@ elseif ($request == 'POST') {
                             <td>
                               <button id='formButtons' class='btn btn-success pull-left'>
                                 Aceptar
-                                <a href='usercreate.php'>
+                                <a href='officeadmin.php'>
                               </button>
                             </td>
                           </tr>
@@ -489,7 +547,16 @@ elseif ($request == 'POST') {
 
   } else {
 
+      if (!isset($how_many)) {
+        $query = "insert into ".$db_prefix."offices (officename) values ('".$post_officename."')";
+        $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+        }
 
+    echo '       <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
+                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                 <h4><i class="icon fa fa-check-circle"></i>¡Grupo creado!</h4>
+                    La oficina ha sido creada satisfactoriamente.
+                 </div></div>';
     echo '<div class="row">
             <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
@@ -498,22 +565,25 @@ elseif ($request == 'POST') {
                 </div>
                 <div class="box-body">';
 
-    if (!isset($how_many)) {
-
-    $query = "insert into ".$db_prefix."offices (officename) values ('".$post_officename."')";
-    $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-
-    }
-
     echo "          <form name='form' action='$self' method='post'>\n";
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "              <tr><td height=15></td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office Name:</td><td class=table_rows colspan=2
-                          width=80% style='padding-left:20px;'>
-                          <input type='hidden' name='post_officename' value='$post_officename'>$post_officename</td>
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            Nombre de la oficina:
+                          </td>
+
+                          <td class=table_rows colspan=2 width=80% style='padding-left:20px;'>
+                            <input type='hidden' name='post_officename' value='$post_officename'>$post_officename
+                          </td>
                         </tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Create Groups Within This Office?</td><td
-                          class=table_rows colspan=2 width=80% style='padding-left:20px;'>\n";
+
+    echo "              <tr>
+                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            ¿Ha creado grupos para la oficina?
+                          </td>
+
+                          <td class=table_rows colspan=2 width=80% style='padding-left:20px;'>\n";
 
     if ($create_groups == "1") {$tmp_create_groups = "Yes";}
     else {$tmp_create_groups = "No";}
@@ -530,9 +600,10 @@ elseif ($request == 'POST') {
     //DIEGO cambie la referencia officeadmin.php
     echo "              <tr>
                           <td
-                            <button id='formButtons' class='btn btn-info'>
-                              Crear oficina
-                              <a href='officeadmin.php' />
+                            <button id='formButtons' class='btn btn-success pull-right'>
+                              <a href='officeadmin.php' style='color: white; font-weight: bold;'>
+                                Aceptar
+                              </a>
                             </button>
                           </td>
                         </tr>
