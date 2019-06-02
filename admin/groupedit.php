@@ -1,8 +1,8 @@
 <?php
 /***************************************************************************
  *   Copyright (C) 2006 by Ken Papizan                                     *
- *   Copyright (C) 2008 by phpTimeClock Team                               *
- *   http://sourceforge.net/projects/phptimeclock                          *
+ *   Copyright (C) 2008 by WorkTime Control Team                               *
+ *   http://sourceforge.net/projects/WorkTime Control                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -665,7 +665,7 @@ elseif ($request == 'POST') {
         $result5 = mysqli_query($GLOBALS["___mysqli_ston"], $query5);
 
         echo '<div class="row">';
-        echo '                <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
+        echo '                <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
                                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                             <h4><i class="icon fa fa-check-circle"></i>Edición con éxito!</h4>
                                               El grupo se ha editado correctamente.

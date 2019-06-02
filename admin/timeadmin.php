@@ -1,8 +1,8 @@
 <?php
 /***************************************************************************
  *   Copyright (C) 2006 by Ken Papizan                                     *
- *   Copyright (C) 2008 by phpTimeClock Team                               *
- *   http://sourceforge.net/projects/phptimeclock                          *
+ *   Copyright (C) 2008 by WorkTime Control Team                               *
+ *   http://sourceforge.net/projects/WorkTime Control                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -139,23 +139,26 @@ while ($row=mysqli_fetch_array($result)) {
     }
 }
 echo "
-</table>
-<table class='table table-hover'>
-   <tr>
-      <td>
-        <a title='Punch out employees' href='time_punch_out.php'>
-          <img border=0 src='../images/icons/clock.png' />
-          Punch out employee's with a current status of in
-        </a>
-     </td>
-     <td>
-       <a title='Punch multiple employees' href='time_punch_employees.php'>
-         <img border=0 src='../images/icons/clock.png' />
-         Punch out employee's
-       </a>
-    </td>
-  </tr>
-</table>
+</table>";
+
+// echo "<table class='table table-hover'>
+//    <tr>
+//       <td>
+//         <a title='Punch out employees' href='time_punch_out.php'>
+//           <img border=0 src='../images/icons/clock.png' />
+//           Punch out employee's with a current status of in
+//         </a>
+//      </td>
+//      <td>
+//        <a title='Punch multiple employees' href='time_punch_employees.php'>
+//          <img border=0 src='../images/icons/clock.png' />
+//          Punch out employee's
+//        </a>
+//     </td>
+//   </tr>
+// </table>";
+
+echo "
 </div>
 </div></div></div>";
 include '../footer.php';

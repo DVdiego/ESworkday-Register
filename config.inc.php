@@ -1,8 +1,8 @@
 <?php
 /***************************************************************************
  *   Copyright (C) 2006 by Ken Papizan                                     *
- *   Copyright (C) 2008 by phpTimeClock Team                               *
- *   http://sourceforge.net/projects/phptimeclock                          *
+ *   Copyright (C) 2008 by WorkTime Control Team                               *
+ *   http://sourceforge.net/projects/WorkTime Control                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -337,7 +337,7 @@ $display_links = array("Development Site");
 
 /* The message of the day to display to all employee's. Set to "none" to disable. */
 
-$message_of_the_day = "Using PhpTimeClock two times a day keeps the doctor away.";
+$message_of_the_day = "Using WorkTime Control two times a day keeps the doctor away.";
 
 
 /* --- REPORTING INFO --- */

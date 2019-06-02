@@ -1,8 +1,8 @@
 WorkTime Control
 Version 1.1
-http://sourceforge.net/projects/phptimeclock
-Copyright (C) 2008 phpTimeClock Team
-Based upon phptimeclock which is Copyright 2006 Ken Papizan
+http://sourceforge.net/projects/WorkTime Control
+Copyright (C) 2008 WorkTime Control Team
+Based upon WorkTime Control which is Copyright 2006 Ken Papizan
 Licensed under the GPL
 
 
@@ -35,8 +35,8 @@ Bugs:
 Enhancements:
 --- #22: Empty Work Hours
 Other things to note:
---- We set up the new website at www.phptimeclock.com .
---- Setup the project at www.sf.net/projects/phptimeclock .
+--- We set up the new website at www.WorkTime Control.com .
+--- Setup the project at www.sf.net/projects/WorkTime Control .
 --- Had posters designed that should be available for sale shortly .
 
 1.04  11/15/07

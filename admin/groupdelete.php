@@ -1,8 +1,8 @@
 <?php
 /***************************************************************************
  *   Copyright (C) 2006 by Ken Papizan                                     *
- *   Copyright (C) 2008 by phpTimeClock Team                               *
- *   http://sourceforge.net/projects/phptimeclock                          *
+ *   Copyright (C) 2008 by WorkTime Control Team                               *
+ *   http://sourceforge.net/projects/WorkTime Control                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -86,7 +86,7 @@ if ($request == 'GET') {
       echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
       echo "              <tr>\n";
         if ($user_cnt == 1) {
-      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-info alert-dismissible">
+      echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-info alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-info"></i>¡Cuidado!</h4>
                    El grupo contiene' . $user_cnt . ' usuario. El usuario debe de ser movido a otro grupo para
@@ -94,7 +94,7 @@ if ($request == 'GET') {
                 </div></div></tr>';
 
         } else {
-          echo ' <div id="float_window" class="col-md-10"><div class="alert alert-info alert-dismissible">
+          echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-info alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4><i class="icon fa fa-info"></i>¡Cuidado!</h4>
                        El grupo contiene' . $user_cnt . ' usuarios. Los usuarios deben de ser movidos a otro grupo para
@@ -298,7 +298,7 @@ elseif ($request == 'POST') {
     if (((isset($office_name)) && (empty($office_name))) || ((isset($group_name)) && (empty($group_name))) ||
     (($group_name == $post_groupname) && ($office_name == $post_officename))) {
     } else {
-    echo '                <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
+    echo '                <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                         <h4><i class="icon fa fa-check-circle"></i>¡Eliminado con éxito!</h4>
                                           El grupo se ha eliminado correctamente.
@@ -308,7 +308,7 @@ elseif ($request == 'POST') {
     }
 
     if (((isset($office_name)) && (empty($office_name))) || ((isset($group_name)) && (empty($group_name)))) {
-      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+      echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                    Para eliminar el grupo debe elegir otro grupo para mover a los usuaros pertenecientes al grupo a eliminar.
@@ -316,7 +316,7 @@ elseif ($request == 'POST') {
                    poder eliminar el grupo.
                 </div></div></tr>';
     } elseif (($group_name == $post_groupname) && ($office_name == $post_officename)) {
-      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+      echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                    Para eliminar el grupo debe elegir otro grupo para mover a los usuaros pertenecientes al grupo a eliminar.

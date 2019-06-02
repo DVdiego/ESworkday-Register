@@ -6,7 +6,7 @@ session_start();
 
 
 include '../config.inc.php';
-include 'header.php';
+include 'header_get_reports.php';
 include 'topmain.php';
 include 'leftmain.php';
 
@@ -16,9 +16,9 @@ $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 setlocale(LC_ALL,'es_ES.UTF-8');
 
-$current_page = "worker_reports.php";
+$current_page = "last_employees_status.php";
 
-if (!isset($_SESSION['valid_profile'])) {
+if (!isset($_SESSION['valid_reports_user'])) {
 
 echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
 echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Administration</td></tr>\n";
@@ -26,140 +26,163 @@ echo "  <tr class=right_main_text>\n";
 echo "    <td align=center valign=top scope=row>\n";
 echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
 echo "        <tr class=right_main_text><td align=center>1 You are not presently logged in, or do not have permission to view this page.</td></tr>\n";
-echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='../login.php?login_action=admin'><u>here</u></a> to login.</td></tr>\n";
+echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='../login.php?login_action=reports'><u>here</u></a> to login.</td></tr>\n";
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
 
 
-if($request == 'GET') {
+// if($request == 'GET') {
 
-$_SERVER['username'] = $_GET['username'];
+// $_SERVER['username'] = $_GET['username'];
+//
+//
+//   $get_user = $_SERVER['username'];
+//   if (get_magic_quotes_gpc()) {$get_user = stripslashes($get_user);}
+//   $get_user = addslashes($get_user);
+//
+//
+//
+//   if($login_with_fullname == "yes"){
+//     $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$get_user."'";
+//   }elseif ($login_with_displayname == "yes"){
+//     $query = "select empfullname from ".$db_prefix."employees where displayname = '".$get_user."'";
+//   }elseif ($login_with_dni == "yes"){
+//     $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$get_user."' ";
+//   }
+//
+//   $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+//   while ($row=mysqli_fetch_array($result)) {
+//   $username = stripslashes("".$row['empfullname']."");
+//   }
+//   ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
+//   if (!isset($username)) {echo "username is not defined for this user.\n"; exit;}
 
 
-  $get_user = $_SERVER['username'];
-  if (get_magic_quotes_gpc()) {$get_user = stripslashes($get_user);}
-  $get_user = addslashes($get_user);
+//     echo '<div class="row">
+//             <div id="float_window" class="col-md-10">
+//               <div class="box box-info"> ';
+//     echo '      <div class="box-header with-border">
+//                    <h3 class="box-title"><i class="fa fa-file-o"></i> Generar Informe</h3>
+//                  </div>
+//                 <div class="box-body">';
+//     echo "<form id='form_reports' class='form-horizontal' role='form' name='timeclock' action='$self' method='post'>";
+//
+//     echo "<div id='content'>";
+//     echo "    <div class='form-group'>
+//                 <label>Nombre:</label>
+//
+//                 <input type='hidden' name='post_username' maxlength='25' class='form-control' value=\"$username\">$username
+//
+//               </div>";
+//
+//     echo "    <div class='form-group'>
+//                 <label>Fecha inicio:</label>
+//                 <input type='date' size='10' maxlength='10' name='from_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
+//                 <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+//                 return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+//               </div>";
+//
+//    echo "    <div class='form-group'>
+//                <label>Fecha fin:</label>
+//                <input type='date' size='10' maxlength='10' name='to_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
+//                <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt');
+//                return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+//             </div>";
+//
+//     echo "    <div class='form-group'>
+//                 <button type='submit' class='btn btn-lg btn-primary'>Consultar</button>
+//               </div>";
+//     echo "</div>
+//           </form>";
+//     echo "</div>";
+//     echo "</div>";
+// echo "</div>";
+// echo "</div>";
+// //echo " <tr><td height=90%></td></tr>\n";
+// include '../theme/templates/endmaincontent.inc';
+// include '../footer.php';
+// include '../theme/templates/controlsidebar.inc';
+// include '../theme/templates/endmain.inc';
+// include '../theme/templates/adminfooterscripts.inc';
 
 
 
-  if($login_with_fullname == "yes"){
-    $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$get_user."'";
-  }elseif ($login_with_displayname == "yes"){
-    $query = "select empfullname from ".$db_prefix."employees where displayname = '".$get_user."'";
-  }elseif ($login_with_dni == "yes"){
-    $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$get_user."' ";
-  }
 
-  $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-  while ($row=mysqli_fetch_array($result)) {
-  $username = stripslashes("".$row['empfullname']."");
-  }
-  ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-  if (!isset($username)) {echo "username is not defined for this user.\n"; exit;}
-
-
-    echo '<div class="row">
-            <div id="float_window" class="col-md-10">
-              <div class="box box-info"> ';
-    echo '      <div class="box-header with-border">
-                   <h3 class="box-title"><i class="fa fa-file-o"></i> Generar Informe</h3>
-                 </div>
-                <div class="box-body">';
-    echo "<form id='form_reports' class='form-horizontal' role='form' name='timeclock' action='$self' method='post'>";
-
-    echo "<div id='content'>";
-    echo "    <div class='form-group'>
-                <label>Nombre:</label>
-
-                <input type='hidden' name='post_username' maxlength='25' class='form-control' value=\"$username\">$username
-
-              </div>";
-
-    echo "    <div class='form-group'>
-                <label>Fecha inicio:</label>
-                <input type='date' size='10' maxlength='10' name='from_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
-                <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
-                return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-              </div>";
-
-   echo "    <div class='form-group'>
-               <label>Fecha fin:</label>
-               <input type='date' size='10' maxlength='10' name='to_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
-               <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt');
-               return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-            </div>";
-
-    echo "    <div class='form-group'>
-                <button type='submit' class='btn btn-lg btn-primary'>Consultar</button>
-              </div>";
-    echo "</div>
-          </form>";
-    echo "</div>";
-    echo "</div>";
-echo "</div>";
-echo "</div>";
-//echo " <tr><td height=90%></td></tr>\n";
-include '../theme/templates/endmaincontent.inc';
-include '../footer.php';
-include '../theme/templates/controlsidebar.inc';
-include '../theme/templates/endmain.inc';
-include '../theme/templates/adminfooterscripts.inc';
 
 //echo "</div>"; # se supone que cierra "<div class='col-sm-12 col-md-10 col-lg-10'>";
-}
+// }
 
-if($request == 'POST') {
+ // if($request == 'POST') {
+
     //Begin post validation
-    $emp_fullname = $_POST['post_username'];
-    $from_date = $_POST['from_date'];
-    $to_date = $_POST['to_date'];
-
-    if(!isset($emp_fullname) || $emp_fullname == '') {
-
-        echo "      <table width=100% height=100% border=0 cellpadding=0 cellspacing=0>\n";
-        echo "        <div class='alert alert-danger'>
-                      <strong>¡Error!</strong> Se ha producido un error. Por favor, vuelva a intentarlo.
-                      </div>\n";
-        echo "      </table>\n";
-    }
-
-
+    // $emp_fullname = $_POST['post_username'];
+    // $from_date = $_POST['from_date'];
+    // $to_date = $_POST['to_date'];
+    //
+    // if(!isset($emp_fullname) || $emp_fullname == '') {
+    //
+    //     echo "      <table width=100% height=100% border=0 cellpadding=0 cellspacing=0>\n";
+    //     echo "        <div class='alert alert-danger'>
+    //                   <strong>¡Error!</strong> Se ha producido un error. Por favor, vuelva a intentarlo.
+    //                   </div>\n";
+    //     echo "      </table>\n";
+    // }
 
 
 
-                $query = "SELECT ".$db_prefix."info.*, ".$db_prefix."employees.*, ".$db_prefix."punchlist.*
-                FROM ".$db_prefix."info, ".$db_prefix."employees, ".$db_prefix."punchlist
-                where ".$db_prefix."info.timestamp = ".$db_prefix."employees.tstamp AND ".$db_prefix."info.fullname = ".$db_prefix."employees.empfullname
-                AND ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
-                AND ".$db_prefix."employees.disabled <> '1'
-                AND ".$db_prefix."employees.empfullname = '" . $emp_fullname . "'
-                ";
 
-                $result = mysqli_query($GLOBALS["___mysqli_ston"],$query);
+
+                // $query = "SELECT ".$db_prefix."info.*, ".$db_prefix."employees.*, ".$db_prefix."punchlist.*
+                // FROM ".$db_prefix."info, ".$db_prefix."employees, ".$db_prefix."punchlist
+                // where ".$db_prefix."info.timestamp = ".$db_prefix."employees.tstamp AND ".$db_prefix."info.fullname = ".$db_prefix."employees.empfullname
+                // AND ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
+                // AND ".$db_prefix."employees.disabled <> '1'
+                // AND ".$db_prefix."employees.empfullname = '" . $emp_fullname . "'
+                // ";
+                //
+                // $result = mysqli_query($GLOBALS["___mysqli_ston"],$query);
 
                 echo "<div class='container'>";
                 echo "<br>";
-                if($display_logo_report == "yes" && "premium" == strtolower($version_worktime)){
+                // if($display_logo_report == "yes" && "premium" == strtolower($version_worktime)){
+                //
+                //   echo "<div id='logo-report'>
+                //           <img src=$logo_report alt='' />
+                //         </div>";
+                // }
+                //
+                // echo "<div class='row'>
+                //             <div class='col-sm-12 col-md-4 col-lg-4'>
+                //                 Empresa: $enterprise_name
+                //             </div>
+                //             <div class='col-sm-12 col-md-4 col-lg-4'>
+                //                 N.I.F.: $enterprise_nif
+                //             </div>
+                //             <div class='col-sm-12 col-md-4 col-lg-4'>
+                //                 Fecha del informe: ".strftime("%D %r", time())."
+                //             </div>
+                //         </div>";
+                //hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix);
 
-                  echo "<div id='logo-report'>
-                          <img src=$logo_report alt='' />
-                        </div>";
+
+                $to_query = strtotime(date("m/d/y",time()));
+// echo "fecha: ".date("m/d/y",time());
+// echo "<br>";
+// echo $to_query;
+                //$query ="SELECT ".$db_prefix."employees.* FROM employees WHERE empfullname != 'admin' ";
+                $query_employees = "select empfullname from ".$db_prefix."employees";
+                $emp_result = mysqli_query($GLOBALS["___mysqli_ston"],$query_employees);
+// echo "filas: ".mysqli_num_rows($emp_result);
+                while ($row=mysqli_fetch_array($emp_result)) {
+                  $tmp_empfullname = stripslashes("".$row['empfullname']."");
+                  // echo "<br>";
+                  // echo $tmp_empfullname;
+                  hours_worked_report($tmp_empfullname,$to_query,$to_query,$db_prefix);
                 }
 
-                echo "<div class='row'>
-                            <div class='col-sm-12 col-md-4 col-lg-4'>
-                                Empresa: $enterprise_name
-                            </div>
-                            <div class='col-sm-12 col-md-4 col-lg-4'>
-                                N.I.F.: $enterprise_nif
-                            </div>
-                            <div class='col-sm-12 col-md-4 col-lg-4'>
-                                Fecha del informe: ".strftime("%D %r", time())."
-                            </div>
-                        </div>";
-                hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix);
 
-}
+
+// }
 
 
 
@@ -197,7 +220,6 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
       // le sumas 23h:59m -> 86340mills
       $to_timestamp = strtotime ($to_date) + 86340;
     }
-  
 
 
     $query = "select ".$db_prefix."info.fullname, ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes,
@@ -210,6 +232,8 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
     order by ".$db_prefix."info.timestamp asc";
     $result = mysqli_query($GLOBALS["___mysqli_ston"],$query);
 
+
+    echo "1filas: ".mysqli_num_rows($result);
     $count = 0;
     $last_date = "";
     $last_in_or_out = -1;

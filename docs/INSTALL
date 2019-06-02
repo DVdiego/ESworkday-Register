@@ -1,8 +1,8 @@
 WorkTime Control
 Version 1.1
-http://sourceforge.net/projects/phptimeclock
-Copyright (C) 2008 phpTimeClock Team
-Based upon phptimeclock which is Copyright 2006 Ken Papizan
+http://sourceforge.net/projects/WorkTime Control
+Copyright (C) 2008 WorkTime Control Team
+Based upon WorkTime Control which is Copyright 2006 Ken Papizan
 Licensed under the GPL
 
 
@@ -30,7 +30,7 @@ INSTALLATION:
 New Install
 -----------
 --- Unpack the distribution into your webserver's document root directory.
---- Create a database named "phptimeclock" or whatever you wish to name it.
+--- Create a database named "WorkTime Control" or whatever you wish to name it.
 --- Create a mysql user named "timeclock" (or whatever you wish to name it) with a password.
     Give this user at least SELECT, UPDATE, INSERT, DELETE, ALTER, and CREATE privileges to ONLY
     this database.

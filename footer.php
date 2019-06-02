@@ -1,8 +1,8 @@
 <?php
 /***************************************************************************
  *   Copyright (C) 2006 by Ken Papizan                                     *
- *   Copyright (C) 2008 by phpTimeClock Team                               *
- *   http://sourceforge.net/projects/phptimeclock                          *
+ *   Copyright (C) 2008 by WorkTime Control Team                               *
+ *   http://sourceforge.net/projects/WorkTime Control                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -21,7 +21,7 @@
  ***************************************************************************/
 
 /**
- * This module will display the technology information about PhpTimeClock.
+ * This module will display the technology information about WorkTime Control.
  * This module will also add the ending HTML tags to make it valid HTML.
  */
 

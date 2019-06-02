@@ -1,8 +1,8 @@
 <?php
 /***************************************************************************
  *   Copyright (C) 2006 by Ken Papizan                                     *
- *   Copyright (C) 2008 by phpTimeClock Team                               *
- *   http://sourceforge.net/projects/phptimeclock                          *
+ *   Copyright (C) 2008 by WorkTime Control Team                               *
+ *   http://sourceforge.net/projects/WorkTime Control                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -22,7 +22,7 @@
 
 
 /**
- * Displays the current PhpTimeClock configuration settings.
+ * Displays the current WorkTime Control configuration settings.
  */
 
 echo "              System Settings";
@@ -59,7 +59,7 @@ $row_count++; $row_color = ($row_count % 2) ? $color2 : $color1;
 echo "              <tr><td>dbversion:</td> <td>$dbversion</td> <td>This is the versioning number of the current database for WorkTime Control.</td></tr>\n";
 $row_count++; $row_color = ($row_count % 2) ? $color2: $color1;
 // Display database persistent connection usage
-echo "              <tr><td>use_persistent_connection:</td> <td>$use_persistent_connection</td> <td>This provides the option for PhpTimeClock to use persistent database connections. Using persistent connections improves server performances. Disable this option if you are limited by the number of connections you are allowed on your server. Default is \"<b>yes</b>\".</td></tr>\n";
+echo "              <tr><td>use_persistent_connection:</td> <td>$use_persistent_connection</td> <td>This provides the option for WorkTime Control to use persistent database connections. Using persistent connections improves server performances. Disable this option if you are limited by the number of connections you are allowed on your server. Default is \"<b>yes</b>\".</td></tr>\n";
 $row_count = '0'; $row_color = ($row_count % 2) ? $color2 : $color1;
 echo "              <tr><td nowrap style='border:solid #888888;border-width:0px 0px 1px 0px;' colspan=3>&nbsp;</td></tr>\n";
 echo "              <tr><th colspan=3 class=table_heading_no_color nowrap align=left>Passwords and Security</th></tr>\n";

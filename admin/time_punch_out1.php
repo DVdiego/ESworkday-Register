@@ -29,22 +29,22 @@ session_start();
 
 $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
-$current_page = "time_punch_out.php";
+
 include '../config.inc.php';
+include 'header.php';
+include 'topmain.php';
+include 'leftmain.php';
 
-
+include '../scripts/dropdown_get.php';
 echo "
-
+<body onload='office_names();'>
    <title>
       $title - Punch Out Employees
    </title>";
 
 
 // Ensure a valid log-in
-if (!isset($_SESSION['valid_user'])) {
-  include 'header.php';
-  include 'topmain.php';
-
+if ((!isset($_SESSION['valid_user'])) && (!isset($_SESSION['time_admin_valid_user']))) {
     echo "
       <table width=100% border=0 cellpadding=7 cellspacing=1>
         <tr class=right_main_text>
@@ -76,18 +76,20 @@ if (!isset($_SESSION['valid_user'])) {
     exit;
 }
 
-
-include 'header.php';
-include 'topmain.php';
-include 'leftmain.php';
-
-
+// Retrieve and setup time information
+if (($timefmt == "G:i") || ($timefmt == "H:i")) {
+  $timefmt_24hr = '1';
+  $timefmt_24hr_text = '24 hr format';
+  $timefmt_size = '5';
+} else {
+  $timefmt_24hr = '0';
+  $timefmt_24hr_text = '12 hr format';
+  $timefmt_size = '8';
+}
 
 
 
 if ($request == 'POST') { // Validate user input
-
-  include 'header_post_reports.php';
     $post_punch_out = $_POST['punch_out'];
     $post_office = $_POST['office_name'];
     $post_group = $_POST['group_name'];
@@ -265,6 +267,54 @@ if ($request == 'POST') { // Validate user input
         }
     }
 
+    //if (eregi ("^([0-9]{1,2})[-,/,.]([0-9]{1,2})[-,/,.](([0-9]{2})|([0-9]{4}))$", $post_date, $date_regs)) {
+    // if (preg_match("/^([0-9]{1,2})[-\,\/,.]([0-9]{1,2})[-\,\/,.](([0-9]{2})|([0-9]{4}))$/i", $post_date, $date_regs)) {
+    //
+    //     if ($calendar_style == "amer") {
+    //         if (isset($date_regs)) { // Format the date to American style
+    //             $month = $date_regs[1];
+    //             $day = $date_regs[2];
+    //             $year = $date_regs[3];
+    //         }
+    //
+    //         if ($month > 12 || $day > 31) { // Ensure valid date
+    //             $input_invalid = True;
+    //             if (!isset($evil_post)) {
+    //                 echo "
+    //            <td valign=top>
+    //               <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
+    //                  <tr>
+    //                     <td class=table_rows_red>
+    //                        A valid date is required.
+    //                     </td>
+    //                  </tr>
+    //            </td>
+    //            </tr>";
+    //             }
+    //         }
+    //     } elseif ($calendar_style == "euro") {
+    //         if (isset($date_regs)) { // Format the date to European style
+    //             $month = $date_regs[2];
+    //             $day = $date_regs[1];
+    //             $year = $date_regs[3];
+    //         }
+    //         if ($month > 12 || $day > 31) { // Ensure valid date
+    //             $input_invalid = True;
+    //             if (!isset($evil_post)) {
+    //                 echo "
+    //            <td valign=top>
+    //               <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
+    //                  <tr>
+    //                     <td class=table_rows_red>
+    //                        A valid date is required.
+    //                     </td>
+    //                  </tr>
+    //            </td>
+    //         </tr>";
+    //             }
+    //         }
+    //     }
+    // }
 
     // End Input Validation
     if (empty($input_invalid)) { // Create message to display for confirmation and successful punch
@@ -281,139 +331,134 @@ if ($request == 'POST') { // Validate user input
 }
 
 
-
+echo '<div class="row">
+        <div id="float_window" class="col-md-10">
+          <div class="box box-info"> ';
+echo '      <div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-suitcase"></i> Check out Employees</h3>
+            </div>
+            <div class="box-body">';
 if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch Selection Interface
-include 'header_get_reports.php';
-  echo '<div class="row">
-          <div id="float_window" class="col-md-10">
-            <div class="box box-info"> ';
-  echo '      <div class="box-header with-border">
-                   <h3 class="box-title"><i class="fa fa-suitcase"></i> Check out Employees</h3>
-              </div>
-              <div class="box-body">';
+
 
     echo "     <form name='form' action='$self' method='post' onsubmit='return isDate();'>\n";
-echo"
-                          <div class='row' style='display: inline-flex;'>
-                              <div class='form-group' style='margin-left: 17px;'>
-                                <label style='padding-top: 35px;'>Punch Out Employees From:</labe>
-                              </div>
-                              <div class='form-group' style=' margin-left: 40px;'>
-                                <div class='radio'>
-                                  <label><input type='radio' name='punch_out' value='office'>Selected Office</label>
-                                </div>
-                                <div class='radio'>
-                                  <label><input type='radio' name='punch_out' value='group'>Selected Group</label>
-                                </div>
-                                <div class='radio'>
-                                  <label><input type='radio' name='punch_out' value='everyone'>All Check In Employees</label>
-                                </div>
-                              </div>
-                          </div>";
+    echo "            <table align=center class=table width=100% border=0 cellpadding=3 cellspacing=0>\n";
+    echo "                <tr class=right_main_text>
+                           <td class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
+                              Punch Out Employees From:
+                              <span style='padding-left:20px;'>
+                                 *
+                              </span>
+                           </td>
 
-echo "                <div class='form-group'>
-                        <label style='margin-right:38px'>Choose Office: </label>
-                          <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'>
-                          </select>
-                      </div>";
-
-echo "                <div class='form-group'>
-                        <label style='margin-right:35px'>Choose Group: </label>
-                          <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'>
-
-                          </select>
-                      </div>\n";
-
-echo "                <div class='form-group'>
-                        <label style='margin-right:10px'>Choose Username: </label>
-                          <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'>
-
-                          </select>
-                      </div>\n";
-echo "               <div class='form-group' style='display: flex;'><label>Status:</label>";
-
-                      // query to populate dropdown with punchlist items //
-$query = "select punchitems from ".$db_prefix."punchlist where (in_or_out = 0) ORDER BY punchitems ASC";
-$punchlist_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-
-echo "                  <select class='form-control' name='post_statusname' style='margin-left: 7px;width: 149px;'>
-                            <option value =''>
-                              ...
-                            </option>";
-
-while ($row = mysqli_fetch_array($punchlist_result)) {
-echo "                      <option> ".$row['punchitems']."
-                            </option>";
-}
-
-echo "                 </select>
-                    </div>";
-((mysqli_free_result( $punchlist_result ) || (is_object( $punchlist_result ) && (get_class( $punchlist_result ) == "mysqli_result"))) ? true : false);
-
-
-echo "              <div class='form-group' style='display: -webkit-box;'>
-                      <label style='margin-right:10px'>Fecha:</label>
-                        <div class='input-group'>
-                          <input type='date' size='10' maxlength='10' name='post_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
-                          <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
-                          return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-                        </div>
-                    </div>\n";
-
-echo"               <div class='bootstrap-timepicker'>
-                      <div class='form-group' style='display: flex;'>
-                        <label style='margin-right:15px'>Time: </label>";
-echo"    	                <div class='input-group'>
-                            <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' required>";
-echo"   	                    <div class='input-group-addon'>
-                                <i class='fa fa-clock-o'></i>
-                              </div>
+                          <td>
+                          <div class='radio'>
+                            <label><input type='radio' name='punch_out' value='office'>Selected Office</label>
                           </div>
-                     </div>
-                   </div>";
+                          <div class='radio'>
+                            <label><input type='radio' name='punch_out' value='group'>Selected Group</label>
+                          </div>
+                          <div class='radio'>
+                            <label><input type='radio' name='punch_out' value='everyone'>All Check In Employees</label>
+                          </div>
+                          </td>
 
-echo "             <div class='form-group'>
-                    <label>Notes:</label>
-                      <input type='text' name='post_notes' maxlength='250' class='form-control' style=' width: 98%;' >
-                  </div>";
-echo "						<div class='box-footer'>
-										<button id='formButtons' class='btn btn-default pull-right' style='margin-left: 10px;margin-right: 10px;'><i class='fa fa-ban'></i> Cancelar<a href='timeadmin.php'></a></button>
-										<button id='formButtons' type='submit' name='submit'  class='btn btn-success pull-right'>Siguiente <i class='fa fa-arrow-right'></i></button><a href='usercreate.php'></a>
-									</div>";
+                        </tr>
+                        <tr class=right_main_text>
+                           <td align=right class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
+                              Choose Office:
+                           </td>
+                           <td class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
+                              <select name='office_name' onchange='group_names();'>
+                              </select>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td height=11> </td>
+                        </tr>
+                        <tr class=right_main_text>
+                           <td align=right class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
+                              Choose Group:
+                           </td>
+                           <td class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
+                              <select name='group_name' onchange='user_names();'>
+                              </select>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td height=11> </td>
+                        </tr>
+                        <tr>
+                           <td align=right class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
+                              Punch Out Status:
+                           </td>
+                           <td colspan=2 width=80% style='padding-left:20px;'>
+                              <select name='post_statusname'>
+                                 <option value ='1'>
+                                    Choose One
+                                 </option>";
+    // Retrieve Punch Status'
+    $query = "SELECT * FROM ".$db_prefix."punchlist WHERE (in_or_out = 0) ORDER BY punchitems ASC";
+    $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
+    while ($row = mysqli_fetch_array($result)) {
+        echo "                        <option>".$row['punchitems']."</option>";
+    }
+    ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
+    echo "
+                              </select>
+                              &nbsp; *
+                           </td>
+                        </tr>
+                        <tr>
+                           <td height=11> </td>
+                        </tr>
+                        <input type='hidden' name='date_format' value='$js_datefmt'>";
+echo "<tr>";
+echo "    <div class='form-group'>
+            <label>Fecha:</label>
+            <input type='date' size='10' maxlength='10' name='post_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
+            <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+            return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+             </div>";
 
-echo " </form>\n";
-echo"           <!-- /.box-body -->
-         </div>
-         <!-- /.box -->
-       </div>
-       <!-- /.col (right) -->
-     </div>
-     <!-- /.row -->";
+echo "</tr>";
+echo "<tr><td>";
+echo'               <div class="bootstrap-timepicker">
+ 	                    <div class="form-group">
+ 	                      <label>Time: ('.$timefmt_24hr_text.')</label>';
 
+echo'    	              <div class="input-group">
+ 	                         <input type="text" size="10" maxlength="10" class="form-control timepicker" name="post_time">';
+echo'   	                      <div class="input-group-addon">
+ 	                               <i class="fa fa-clock-o"></i>
+	                              </div>
+ 	                      </div>
+ 	                    </div>
+ 	                 </div>';
+echo "</tr></td>";
+echo "                  <input type='hidden' name='timefmt_24hr' value='$timefmt_24hr'>
+                        <input type='hidden' name='timefmt_24hr_text' value='$timefmt_24hr_text'>
+                        <input type='hidden' name='timefmt_size' value=\"$timefmt_size\">
+                        <tr>
+                           <td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>
+                              * &nbsp; required &nbsp;
+                           </td>
+                        </tr>
 
-
-
-include '../theme/templates/endmaincontent.inc';
-include '../footer.php';
-include '../theme/templates/controlsidebar.inc';
-include '../theme/templates/endmain.inc';
-include '../theme/templates/reportsfooterscripts.inc';
-exit;
-
-
+                        <tr>
+                           <td>
+                              <input type='image' name='submit' value='Edit Time' src='../images/buttons/next_button.png'>
+                              <a href='timeadmin.php'>
+                                 <img src='../images/buttons/cancel_button.png' border='0'>
+                              </a>
+                           </td>
+                        </tr>
+                      </table>
+                     </form>";
 
 
 } else if ($request == 'POST' && empty($post_confirmed_punch)) { // Output Confirmation Punch Interface
-
-
-    echo '<div class="row">
-            <div id="float_window" class="col-md-10">
-              <div class="box box-info"> ';
-    echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Check out Employees</h3>
-                </div>
-                <div class="box-body">';
 
     echo "<form name='form' action='$self' method='post' onsubmit=\"return isDate();\">\n";
     echo "   <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
@@ -446,24 +491,6 @@ exit;
 
             </table>
           </form> ";
-
-          echo"           <!-- /.box-body -->
-                   </div>
-                   <!-- /.box -->
-                 </div>
-                 <!-- /.col (right) -->
-               </div>
-               <!-- /.row -->";
-
-
-
-
-          include '../theme/templates/endmaincontent.inc';
-          include '../footer.php';
-          include '../theme/templates/controlsidebar.inc';
-          include '../theme/templates/endmain.inc';
-          include '../theme/templates/reportsfooterscripts.inc';
-          exit;
 
 } else { // Complete Punch Out Request
 
@@ -511,19 +538,18 @@ exit;
 
     // Punch out each employee selected
     $passes = 0;
-
-
-    if(empty($post_notes)){
-
-      //$admin_note = 'Time Admin Mass Employee Punch Out';
-      $admin_note = 'Registro multiple de estado: Salida';
-    }else {
-      $admin_note = $post_notes;
-    }
-
+    $admin_note = 'Time Admin Mass Employee Punch Out';
     while ($row = mysqli_fetch_array($result)) {
         $passes++;
-
+        // Configure the current time to insert for audit log
+        // $time = time();
+        // $time_hour = gmdate('H', $time);
+        // $time_min = gmdate('i', $time);
+        // $time_sec = gmdate('s', $time) + $passes; // Ensures audit time stamps vary
+        // $time_month = gmdate('m', $time);
+        // $time_day = gmdate('d', $time);
+        // $time_year = gmdate('Y', $time);
+        // $time_tz_stamp = time($time_hour, $time_min, $time_sec, $time_month, $time_day, $time_year);
         setlocale(LC_ALL, 'es_ES.UTF-8');
         $time_tz_stamp = time();
         $employee = "".$row['empfullname']."";
@@ -554,13 +580,6 @@ exit;
     ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
 
-      echo '<div class="row">
-              <div id="float_window" class="col-md-10">
-                <div class="box box-info"> ';
-      echo '      <div class="box-header with-border">
-                       <h3 class="box-title"><i class="fa fa-suitcase"></i> Check out Employees</h3>
-                  </div>
-                  <div class="box-body">';
     echo "<form name='form' action='$self' method='post'>\n";
     echo "   <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "
@@ -599,24 +618,14 @@ exit;
                </td>
             </tr>
         </table>";
-
-        echo"           <!-- /.box-body -->
-                 </div>
-                 <!-- /.box -->
-               </div>
-               <!-- /.col (right) -->
-             </div>
-             <!-- /.row -->";
-
-
-
-
-        include '../theme/templates/endmaincontent.inc';
-        include '../footer.php';
-        include '../theme/templates/controlsidebar.inc';
-        include '../theme/templates/endmain.inc';
-        include '../theme/templates/reportsfooterscripts.inc';
-        exit;
 }
-
+echo '      </div>
+          </div>
+        </div>
+      </div>';
+include '../theme/templates/endmaincontent.inc';
+include '../theme/templates/controlsidebar.inc';
+include '../theme/templates/endmain.inc';
+include '../theme/templates/adminfooterscripts.inc';
+include '../footer.php';exit;
 ?>

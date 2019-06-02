@@ -65,9 +65,11 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
 
 echo '<ul class="sidebar-menu"><li class="header">Run reports</li>';
 
-echo"<li><a href='timerpt.php'>Daily Time Report</a></li>\n";
+echo"<li><a href='last_employees_status.php'><i class='fa fa-sticky-note-o'></i> Today's report</a></li>\n";
 
-echo "   <li><a class=admin_headings href='total_hours.php'>Hours Worked Report</a></li>\n";
+echo"<li><a href='timerpt.php'><i class='fa fa-file-text-o'></i> Daily Time Report</a></li>\n";
+
+echo "   <li><a class=admin_headings href='total_hours.php'><i class='fa fa-file-text-o'></i> Hours Worked Report</a></li>\n";
 
 echo "    <li><a class=admin_headings href='audit.php'>Audit Log</a></li>\n";
 echo '</ul>';

@@ -1,8 +1,8 @@
 <?php
 /***************************************************************************
  *   Copyright (C) 2006 by Ken Papizan                                     *
- *   Copyright (C) 2008 by phpTimeClock Team                               *
- *   http://sourceforge.net/projects/phptimeclock                          *
+ *   Copyright (C) 2008 by WorkTime Control Team                               *
+ *   http://sourceforge.net/projects/WorkTime Control                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -186,7 +186,7 @@ elseif ($request == 'POST') {
 				}
 				elseif (empty($display_name)) {
 
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                 Se requiere un nombre de usuario.
@@ -194,7 +194,7 @@ elseif ($request == 'POST') {
 				}
 				elseif (empty($display_name)) {
 
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                 Se requiere un nombre de usuario.
@@ -202,7 +202,7 @@ elseif ($request == 'POST') {
 				}
 				elseif (!empty($string)) {
 
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                  El campo nombre completo no puede estar vacío
@@ -210,7 +210,7 @@ elseif ($request == 'POST') {
 				}
 				elseif (!empty($string2)) {
 
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                  El campo nombre de usuario no puede estar vacío
@@ -218,35 +218,35 @@ elseif ($request == 'POST') {
 				}
 				elseif (empty($email_addy)) {
 
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                  Se requiere introducir el email.
 				              </div></div>';
 				}
 				elseif (empty($type_contracts)) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                  Se requiere introducir el tipo de contrato.
 				              </div></div>';
 				}
 				elseif (empty($office_name)) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                  Se requiere introducir una oficina.
 				              </div></div>';
 				}
 				elseif (empty($group_name)) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                  Se requiere introducir un grupo de trabajo.
 				              </div></div>';
 				}
 				elseif (@$tmp_username == $post_username) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                  El usuario ya existe. Introduce otro nombre.
@@ -255,7 +255,7 @@ elseif ($request == 'POST') {
 
 
 				 } elseif (!preg_match('/' . "^([[:alnum:]]| |-|'|,)+$" . '/i', $post_username)) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 													No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un usuario.
@@ -270,44 +270,44 @@ elseif ($request == 'POST') {
 													No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un usuario.
 				              </div></div>';
 				} elseif (!preg_match('/' . "^([[:alnum:]]|~|\!|@|#|\$|%|\^|&|\*|\(|\)|-|\+|`|_|\=|[{]|[}]|\[|\]|\||\:|\<|\>|\.|,|\?)+$" . '/i', $password)) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                	<h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 													No se permiten comillas, barras o espacios para crear una contraseña.
 				              </div></div>';
 				} elseif ($password != $confirm_password) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                Las contraseñas no coinciden
 				              </div></div>';
 
 				} elseif (!preg_match('/' . "^([[:alnum:]]|_|\.|-)+@([[:alnum:]]|\.|-)+(\.)([a-z]{2,4})$" . '/i', $email_addy)) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 												No están permitidos caracteres alfanumnéricos, barrabajas o guines para crear un Email.
 				              </div></div>';
 				} elseif (($admin_perms != '1') && (!empty($admin_perms))) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                Elige \"si\" o \"no\" para otorgar permisos de administrador.
 				              </div></div>';
 				} elseif (($reports_perms != '1') && (!empty($reports_perms))) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                Elige \"si\" o \"no\" para otorgar permisos de reportador.
 				              </div></div>';
 				} elseif (($time_admin_perms != '1') && (!empty($time_admin_perms))) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                Elige \"si\" o \"no\" àra otorgar persimos para modificar los tiempos.
 				              </div></div>';
 				} elseif (($post_disabled != '1') && (!empty($post_disabled))) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                 Elige \"si\" o \"no\" para deshabilitar la cuenta.
@@ -320,7 +320,7 @@ elseif ($request == 'POST') {
 					}
 					((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 					if (!isset($tmp_type_contracts)) {
-						echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+						echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 					                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 					                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 					                 	Se requiere introducir el tipo de contrato del empleado.
@@ -344,7 +344,7 @@ elseif ($request == 'POST') {
 				}
 				((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 				if (!isset($tmp_officename)) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                 	Se requiere introducir el nombre de la oficina.
@@ -360,7 +360,7 @@ elseif ($request == 'POST') {
 				}
 				((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 				if (!isset($tmp_groupname)) {
-					echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
 				                 	Se requiere introducir el nombre del grupo.
@@ -497,8 +497,8 @@ elseif ($request == 'POST') {
 		$password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
 		$confirm_password = password_hash($confirm_password, PASSWORD_DEFAULT, ['cost' => 10]);
 
-		$query3 = "insert into ".$db_prefix."employees (empfullname, empDNI, displayname, employee_passwd, email, contract ,groups, office, admin, reports, time_admin, disabled)
-		           values ('".$post_username."', '".$user_dni."', '".$display_name."', '".$password."', '".$email_addy."', '".$type_contracts."','".$group_name."', '".$office_name."', '".$admin_perms."',
+		$query3 = "insert into ".$db_prefix."employees (empfullname, tstamp ,empDNI, displayname, employee_passwd, email, contract ,groups, office, admin, reports, time_admin, disabled)
+		           values ('".$post_username."', 0,'".$user_dni."', '".$display_name."', '".$password."', '".$email_addy."', '".$type_contracts."','".$group_name."', '".$office_name."', '".$admin_perms."',
 		           '".$reports_perms."', '".$time_admin_perms."', '".$post_disabled."')";
 		$result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 

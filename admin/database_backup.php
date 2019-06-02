@@ -1,7 +1,7 @@
 <?php
 /***************************************************************************
- *   Copyright (C) 2008 by phpTimeClock Team                               *
- *   http://sourceforge.net/projects/phptimeclock                          *
+ *   Copyright (C) 2008 by WorkTime Control Team                               *
+ *   http://sourceforge.net/projects/WorkTime Control                          *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -37,7 +37,7 @@ if (! isset($_SESSION['valid_user'])) {
     write_admin_interface();
     echo "
             <!-- Display User Is Not Logged In -->
-            
+
                <table width=100% border=0 cellpadding=7 cellspacing=1>
                   <tr>
                      <td height=10 align=center valign=top scope=row class=title_underline>
@@ -235,8 +235,8 @@ if ($request == 'GET') { // Output Backup Confirmation Interface
                </table>";
 	       echo '<div class="box-footer">
 	                   <button type="submit" name="submit" value="backup" class="btn btn-warning"><i class="glyphicon glyphicon-download-alt"></i> Backup</button>
-	                   <button class="btn btn-default pull-right"><a href="database_management.php">Done <i class="glyphicon glyphicon-ok-sign text-green"></i></a></button>   
-	                 </div></form>';	
+	                   <button class="btn btn-default pull-right"><a href="database_management.php">Done <i class="glyphicon glyphicon-ok-sign text-green"></i></a></button>
+	                 </div></form>';
 echo "          </div></div></div></div>\n";
 } else if ($request == 'POST') { // Begin the database backup
     $creating_backup_file = True; // Prevents the HTML from being added in the header file.
@@ -254,13 +254,13 @@ echo "          </div></div></div></div>\n";
     // Setup file name based on calendar preferences
     if ($calendar_style == "euro") {
         $date = "$day/$month/$year";
-        $filename = "phptimeclock_backup_".$day."_".$month."_".$year.".sql";
+        $filename = "WorkTime Control_backup_".$day."_".$month."_".$year.".sql";
     } elseif ($calendar_style == "amer") {
         $date = "$month/$day/$year";
-        $filename = "phptimeclock_backup_".$month."_".$day."_".$year.".sql";
+        $filename = "WorkTime Control_backup_".$month."_".$day."_".$year.".sql";
     } else {
         $date = "Calendar Style not set in config file.";
-        $filename = "phptimeclock_backup.sql";
+        $filename = "WorkTime Control_backup.sql";
     }
 
     // Begin backup file creation
@@ -271,7 +271,7 @@ echo "          </div></div></div></div>\n";
     ob_start();
     // Create backup file header
     $sql_data  = "# \n";
-    $sql_data .= "# PhpTimeClock Database Backup \n";
+    $sql_data .= "# WorkTime Control Database Backup \n";
     if (! empty($db_prefix)) { // If there are multiple databases, display which one we are backing up
         $sql_data .= "# Backup for $db_prefix \n";
     }
@@ -309,7 +309,7 @@ echo "          </div></div></div></div>\n";
 // Add footer information and clean up left over HTML
 include '../theme/templates/endmaincontent.inc';
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
 exit;

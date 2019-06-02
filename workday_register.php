@@ -1,8 +1,8 @@
 <?php
 /***************************************************************************
 *   Copyright (C) 2006 by Ken Papizan                                     *
-*   Copyright (C) 2008 by phpTimeClock Team                               *
-*   http://sourceforge.net/projects/phptimeclock                          *
+*   Copyright (C) 2008 by WorkTime Control Team                               *
+*   http://sourceforge.net/projects/WorkTime Control                          *
 *                                                                         *
 *   This program is free software; you can redistribute it and/or modify  *
 *   it under the terms of the GNU General Public License as published by  *
@@ -286,6 +286,8 @@ echo "        </select>
 echo "  </div>
       </div>";
 
+echo "<input type='hidden' name='latitude' class='form-control'>";
+echo "<input type='hidden' name='longitude' class='form-control'>";
 echo "<div class='row'>";
 echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
 echo "    <div class='form-group'>
@@ -720,4 +722,3 @@ echo '
       alert(err.message);
     }
 </script>
-<script language=\"javascript\" src=\"../scripts/reverse_geolocation.js\"></script>

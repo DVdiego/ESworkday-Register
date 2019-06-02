@@ -172,7 +172,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
                         No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un grupo.
                         </div>';
     }elseif (!empty($string2)) {
-      echo ' <div id="float_window" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+      echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                       <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                       No se permiten comillas, barras o espacios para crear una contraseña.

@@ -24,10 +24,7 @@ div.box.box-primary {
 
 
 
-#wrapper > div.content-wrapper > section > div > div > div{
-  border-top-color: #222d32 !important;
 
-}
 
 .btn-primary{
 
@@ -74,6 +71,13 @@ div.box.box-primary {
   float: initial !important;
 }
 
+/*alertas flotantes*/
+#float_alert{
+  margin: auto !important;
+  float: initial !important;
+
+}
+
 
 /**/
 #wrapper > div.content-wrapper{
@@ -89,7 +93,7 @@ div.box.box-primary {
   padding-left: 5%;
 }
 
-#float_window > div{
+#float_window > div.box.box-info{
 
   border-color: black;
 }
@@ -99,7 +103,7 @@ div.box.box-primary {
 hr {
 
 }
-
+#
 hr.separate-infos {
     border-top: 1px solid green;
 }
