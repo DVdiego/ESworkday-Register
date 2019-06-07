@@ -22,10 +22,6 @@ div.box.box-primary {
     border-top-color: #222d32 !important;
 }
 
-
-
-
-
 .btn-primary{
 
   background-color: #505d63 !important;
@@ -57,8 +53,6 @@ div.box.box-primary {
 }
 
 #button-primary:hover{
-
-
   background-color: #00a65a !important;
   border-color: #222d32 !important;
 }
@@ -87,7 +81,7 @@ div.box.box-primary {
 
 
 
-/**/
+/*Ventans flotantes*/
 #float_window > div > div.box-body > form{
 
   padding-left: 5%;
@@ -116,4 +110,26 @@ p.present-sum {
     padding: 20px;
     border-radius: 15px;
     background-color: green;
+}
+
+/* Botones de formularios */
+#formButtons{
+  font-weight: bold;
+}
+#formButtons > a{
+  color: #000000;
+}
+
+/* texto de formularios*/
+.table_rows{
+  font-family: Tahoma, Verdana, Trebuchet MS, sans-serif;
+	font-size: 14px;
+	padding : 2px;
+}
+
+.table_rows_output{
+  font-family: Tahoma, Verdana, Trebuchet MS, sans-serif;
+	font-size: 14px;
+  font-weight: bold !important;
+	padding : 2px;
 }
