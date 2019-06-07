@@ -344,7 +344,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     echo "
                         <tr><td height=15></td></tr>\n";
     echo "            </table>\n";
-    echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
+    echo "            <table align=center class=table>\n";
     echo "              <tr>
                           <td height=20 align=left>
                             &nbsp;

@@ -709,7 +709,7 @@ elseif ($request == 'POST') {
                          <h3 class="box-title"><i class="fa fa-users"></i> Editar Grupo</h3>
                     </div>
                     <div class="box-body">';
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+        echo "            <table align=center class=table>\n";
         echo "              <tr><td height=15></td></tr>\n";
         echo "              <tr>
                               <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
