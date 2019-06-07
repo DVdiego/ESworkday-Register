@@ -5,7 +5,7 @@ session_start();
 include '../config.inc.php';
 include 'header.php';
 include 'topmain.php';
-echo "<title>$title - Create Group</title>\n";
+echo "<title>$title - Crear Grupo</title>\n";
 
 $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
@@ -48,7 +48,7 @@ echo "            <table align=center class=table_border width=60% border=0 cell
 
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr>
-                      <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                         &nbsp;*Nombre del grupo:
                       </td>
 
@@ -64,7 +64,7 @@ $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 echo "              <br />
                     <tr>
-                      <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                         &nbsp;*Oficina:
                       </td>
 
@@ -80,7 +80,7 @@ echo "                </select></td>
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
 echo "              <tr>
-                      <td class=table_rows align=right colspan=3 style='font-weight: bold;font-family:Tahoma;font-size:10px;'>
+                      <td class=table_rows_output align=right colspan=3 style='font-family:Tahoma;font-size:10px;'>
                         *&nbsp;Campos requeridos&nbsp;
                       </td>
                     </tr>\n";
@@ -88,19 +88,20 @@ echo "            </table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td height=40>&nbsp;</td></tr>\n";
 echo "              <tr>
-                      <td width=30>
-                        <button id='formButtons' type='submit' name='submit' value='Create Group' class='btn btn-info'>
-                          Crear Grupo
-                        </button>
-
-                      </td>
-
                       <td>
-                        <button id='formButtons' class='btn btn-default pull-right'>
-                          <a href='groupadmin.php'>
-                            Cancelar
-                          </a>
-                        </button>
+                        <div class='box-footer'>
+                          <button id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                            <i class='fa fa-ban'></i>
+                            <a href='groupadmin.php'>
+                              Cancelar
+                            </a>
+                          </button>
+
+                          <button id='formButtons' type='submit' name='submit' value='Create Group' class='btn btn-info pull-right'>
+                            Crear Grupo
+                            <i class='fa fa-arrow-right'></i>
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   </table>
@@ -166,7 +167,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
 
 
     if (!empty($string)) {
-      echo '            <div id="float_window" class="col-md-10 alert alert-warning alert-dismissible">
+      echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                         No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un grupo.
@@ -178,26 +179,26 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
                       No se permiten comillas, barras o espacios para crear una contraseña.
                   </div></div>';
     }elseif (empty($post_groupname)) {
-    echo '            <div id="float_window" class="col-md-10 alert alert-warning alert-dismissible">
+    echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                       <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                       Se requiere un nombre de grupo.
                       </div>';
     //}elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_groupname)) {
     }elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_groupname)) {
-      echo '            <div id="float_window" class="col-md-10 alert alert-warning alert-dismissible">
+      echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                         No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un grupo.
                         </div>';
     }elseif ($select_office_name == '1') {
-      echo '            <div id="float_window" class="col-md-10 alert alert-warning alert-dismissible">
+      echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                         Debe elegir una oficina a la que pertenezca el grupo.
                         </div>';
     }elseif (@$tmp_groupname == $post_groupname) {
-      echo '            <div id="float_window" class="col-md-10 alert alert-warning alert-dismissible">
+      echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
                         El grupo ya existe. Por favor introduzca otro nombre.
@@ -214,7 +215,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
             <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-users"></i> Create Group</h3>
+                     <h3 class="box-title"><i class="fa fa-users"></i> Crear Grupo</h3>
                 </div>
                 <div class="box-body">';
     echo "         <form name='form' action='$self' method='post'>\n";
@@ -222,7 +223,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
 
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr>
-                          <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                             &nbsp;*Nombre del grupo:
                           </td>
 
@@ -240,7 +241,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     echo "              <tr>
-                          <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                             &nbsp;*Oficina:
                           </td>
 
@@ -259,7 +260,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
     echo "              <tr>
-                          <td class=table_rows align=right colspan=3 style='font-weight: bold;font-family:Tahoma;font-size:10px;'>
+                          <td class=table_rows_output align=right colspan=3 style='font-weight: bold;font-family:Tahoma;font-size:10px;'>
                             *&nbsp;Campos requeridos&nbsp;
                           </td>
                         </tr>\n";
@@ -272,18 +273,20 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
                         </tr>\n";
     echo "
                         <tr>
-                          <td width=30>
-                            <button id='formButtons' type='submit' name='submit' value='Create Group' class='btn btn-info'>
-                              Crear Grupo
-                            </button>
-                          </td>
-
                           <td>
-                            <button id='formButtons' class='btn btn-default pull-right'>
-                              <a href='groupadmin.php'>
-                                Cancelar
-                              </a>
-                            </button>
+                            <div class='box-footer'>
+                              <button id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                                <i class='fa fa-ban'></i>
+                                <a href='groupadmin.php'>
+                                  Cancelar
+                                </a>
+                              </button>
+
+                              <button id='formButtons' type='submit' name='submit' value='Create Group' class='btn btn-info pull-right'>
+                                Crear Grupo
+                                <i class='fa fa-arrow-right'></i>
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       </table>
@@ -305,7 +308,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 
-    echo '       <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
+    echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
     			       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     			       <h4><i class="icon fa fa-check-circle"></i>¡Grupo creado!</h4>
     			          El grupo ha sido creado satisfactoriamente.
@@ -316,7 +319,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
 
 
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-users"></i> Create Group</h3>
+                     <h3 class="box-title"><i class="fa fa-users"></i> Crear Grupo</h3>
                 </div>
                 <div class="box-body">';
     echo "            <br />\n";
@@ -324,7 +327,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
 
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr>
-                          <td class=table_rows width=20% height=25 style='padding-left:32px;' nowrap>
+                          <td class=table_rows_output width=20% height=25 style='padding-left:32px;' nowrap>
                             Nombre del grupo:
                           </td>
 
@@ -332,7 +335,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
                         </tr>\n";
     echo "
                         <tr>
-                          <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                             Oficina:
                           </td>
 
@@ -350,11 +353,14 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     echo "
                         <tr>
                           <td>
-                            <button id='formButtons' class='btn btn-info pull-right'>
-                              <a href='groupadmin.php' style='color: white; font-weight: bold;' >
-                                Aceptar
-                              </a>
-                            </button>
+                            <div class='box-footer'>
+                              <button id='formButtons' class='btn btn-info pull-right'>
+                                <a href='groupadmin.php' >
+                                  Aceptar
+                                </a>
+                                <i class='fa fa-check'></i>
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       </table>\n";

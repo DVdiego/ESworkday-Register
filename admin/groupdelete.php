@@ -27,7 +27,7 @@ $request = $_SERVER['REQUEST_METHOD'];
 
 include '../config.inc.php';
 if ($request !== 'POST') {include 'header_get.php';include 'topmain.php';include 'leftmain.php';}
-echo "<title>$title - Delete Group</title>\n";
+echo "<title>$title - Eliminar Grupo</title>\n";
 /*FLAG*/
 //se puede mejorar el mensaje de aviso inferior.
 if (!isset($_SESSION['valid_user'])) {
@@ -108,7 +108,7 @@ if ($request == 'GET') {
               <div id="float_window" class="col-md-10">
                   <div class="box box-info"> ';
     echo '           <div class="box-header with-border">
-                       <h3 class="box-title"><i class="fa fa-users"></i> Delete Groups</h3>
+                       <h3 class="box-title"><i class="fa fa-users"></i> Eliminar Grupo ' . $get_group .'</h3>
                      </div>
                      <div class="box-body">';
     echo "              <table class=table>\n";
@@ -116,18 +116,18 @@ if ($request == 'GET') {
     echo "                <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "                   <tr><td height=15></td></tr>\n";
     echo "                   <tr>
-                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                              <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                                 Nombre del grupo:
                               </td>
 
-                              <td align=left width=80% style='font-weight: bold;padding-left:20px;' class=table_rows>
-                                <input type='hidden' name='post_groupname' value=\"$groupname\">
+                              <td align=left width=80% style='padding-left:20px;' class=table_rows>
+                                <input type='hidden' name='post_groupname' placeholder=\"$groupname\">
                                   $get_group
                               </td>
                             </tr>\n";
     echo "
                             <tr>
-                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                              <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                                 Oficina:
                               </td>
 
@@ -138,7 +138,7 @@ if ($request == 'GET') {
                             </tr>\n";
     echo "
                             <tr>
-                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                              <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                                 Nombre del grupo:
                               </td>
 
@@ -156,12 +156,12 @@ if ($request == 'GET') {
         echo "              <input type='hidden' name='office_name_no_users'>\n";
     } elseif ($user_cnt == 1) {
     echo "                  <tr>
-                              <td class=table_rows height=53>
+                              <td class=table_rows_output height=53>
                                 ¿Oficina para el usuario?&nbsp;&nbsp;&nbsp;\n";
 
     } else {
     echo "                  <tr>
-                              <td class=table_rows height=53>
+                              <td class=table_rows_output height=53>
                                 ¿Oficnia para los usuarios?&nbsp;&nbsp;&nbsp;\n";
     }
 
@@ -179,18 +179,20 @@ if ($request == 'GET') {
     echo "                  <input type='hidden' name='post_officeid' value=\"$officeid\">\n";
     echo "                  <input type='hidden' name='post_groupid' value=\"$groupid\">\n";
     echo "                  <tr>
-                              <td width=30>
-                                <button id='formButtons' type='submit' name='submit' value='Delete Group' class='btn btn-danger'>
-																  Eliminar grupo
-															  </button>
-                              </td>
-
                               <td>
-                                <button id='formButtons' class='btn btn-default pull-right'>
-																 <a href='groupadmin.php'>
-																	Cancelar
-																 </a>
-															  </button>
+                                <div class='box-footer'>
+                                  <button id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                                    <i class='fa fa-ban'></i>
+                                    <a href='groupadmin.php'>
+                                      Cancelar
+                                    </a>
+                                  </button>
+
+                                  <button id='formButtons' type='submit' name='submit' value='Delete Group' class='btn btn-danger pull-right'>
+                                    Eliminar grupo
+                                    <i class='fa fa-times'></i>
+                                  </button>
+                                </div>
                               </td>
                             </tr>
                           </table>
@@ -289,7 +291,7 @@ elseif ($request == 'POST') {
             <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '     <div class="box-header with-border">
-                       <h3 class="box-title"><i class="fa fa-users"></i> Delete Groups</h3>
+                       <h3 class="box-title"><i class="fa fa-users"></i> Eliminar grupo ' . $group_name . '</h3>
                </div>
                <div class="box-body">';
     echo "          <table class=table>\n";
@@ -335,27 +337,27 @@ elseif ($request == 'POST') {
     (($group_name == $post_groupname) && ($office_name == $post_officename))) {
 
         echo "              <tr>
-                              <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
+                              <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                                 Nombre del grupo:
                               </td>
 
-                              <td align=left width=80% style='font-weight: bold;padding-left:20px;' class=table_rows>
+                              <td align=left width=80% style='padding-left:20px;' class=table_rows>
                                 <input type='hidden' name='post_groupname' value=\"$post_groupname\">$post_groupname
                               </td>
                             </tr>\n";
         echo "
                             <tr>
-                              <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
+                              <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                                 Oficina:
                               </td>
 
-                              <td align=left width=80% style='font-weight: bold;padding-left:20px;' class=table_rows>
+                              <td align=left width=80% style='padding-left:20px;' class=table_rows>
                                 <input type='hidden' name='post_officename' value=\"$post_officename\">$post_officename
                               </td>
                             </tr>\n";
         echo "
                             <tr>
-                              <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                              <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                                 Número de usuarios:
                               </td>
 
@@ -374,11 +376,11 @@ elseif ($request == 'POST') {
             echo "            <tr><td height=40></td>\n";
           } elseif ($user_cnt == 1) {
           echo "              <tr>
-                                <td class=table_rows height=53>
+                                <td class=table_rows_output height=53>
                                   ¿Oficina para el usuario?&nbsp;&nbsp;&nbsp;\n";
           } else {
           echo "              <tr>
-                                <td class=table_rows height=53>
+                                <td class=table_rows_output height=53>
                                   ¿Oficina para los usuarios?&nbsp;&nbsp;&nbsp;\n";
         }
 
@@ -396,18 +398,20 @@ elseif ($request == 'POST') {
         echo "              <input type='hidden' name='post_officeid' value=\"$post_officeid\">\n";
         echo "              <input type='hidden' name='post_groupid' value=\"$post_groupid\">\n";
         echo "              <tr>
-                              <td width=30>
-                                <button id='formButtons' type='submit' name='submit' value='Delete Group' class='btn btn-danger'>
-                                  Eliminar grupo
-                                </button>
-                              </td>
-
                               <td>
-                                <button id='formButtons' class='btn btn-default pull-right'>
-                                  <a href='groupadmin.php'>
-                                    Cancelar
-                                  </a>
-                                </button>
+                                <div class='box-footer'>
+                                  <button id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                                    <i class='fa fa-ban'></i>
+                                    <a href='groupadmin.php'>
+                                      Cancelar
+                                    </a>
+                                  </button>
+
+                                  <button id='formButtons' type='submit' name='submit' value='Delete Group' class='btn btn-danger pull-right'>
+                                    Eliminar grupo
+                                    <i class='fa fa-times'></i>
+                                  </button>
+                                </div>
                               </td>
                             </tr>
                           </table>
@@ -435,7 +439,7 @@ elseif ($request == 'POST') {
       $result5 = mysqli_query($GLOBALS["___mysqli_ston"], $query5);
 
       echo "              <tr>
-                            <td class=table_rows height=25 width=20% style='padding-left:32px;font-weight: bold;' nowrap>
+                            <td class=table_rows_output height=25 width=20% style='padding-left:32px;font-weight: bold;' nowrap>
                               Nombre del grupo:
                             </td>
 
@@ -445,7 +449,7 @@ elseif ($request == 'POST') {
                           </tr>\n";
       echo "
                           <tr>
-                            <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                               Oficina:
                             </td>
 
@@ -455,7 +459,7 @@ elseif ($request == 'POST') {
                           </tr>\n";
       echo "
                           <tr>
-                            <td class=table_rows height=25 width=20% style='padding-left:32px;font-weight: bold;' nowrap>
+                            <td class=table_rows_output height=25 width=20% style='padding-left:32px;font-weight: bold;' nowrap>
                               Número de usuarios:
                             </td>
 
@@ -469,11 +473,14 @@ elseif ($request == 'POST') {
       echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
       echo "              <tr>
                             <td>
-                              <button id='formButtons' class='btn btn-success'>
-    													  <a href='groupadmin.php' style='font-weight: bold;color: white;' >
-    														 Aceptar
-    													  </a>
-    												  </button>
+                              <div class='box-footer'>
+                                <button id='formButtons' class='btn btn-success pull-right'>
+    													    <a href='groupadmin.php'>
+    														    Aceptar
+    													    </a>
+                                  <i class='fa fa-check'></i>
+    												    </button>
+                              </div>
                             </td>
                           </tr>
                         </table>

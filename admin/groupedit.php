@@ -150,6 +150,7 @@ if ($request == 'GET') {
     echo "              <input type='hidden' name='get_group' value=\"$get_group\">\n";
     echo "              <input type='hidden' name='get_office' value=\"$get_office\">\n";
     echo "              <tr>
+                          <td>
                           <div class='box-footer'>
                             <button id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
                               <i class='fa fa-ban'></i>
@@ -163,6 +164,7 @@ if ($request == 'GET') {
                               <i class='fa fa-arrow-right'></i>
                             </button>
                           </div>
+                          </td>
                         </tr>
                       </table>
                     </form>\n";
@@ -544,6 +546,7 @@ elseif ($request == 'POST') {
                                   <i class='fa fa-arrow-right'></i>
                                 </button>
                               </div>
+                            </td>
                             </tr>
                           </table>
                         </form>\n";
@@ -742,13 +745,16 @@ elseif ($request == 'POST') {
         echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
         echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
         echo "              <tr>
+                              <td>
                               <div class='box-footer'>
                                 <button id='formButtons' class='btn btn-success pull-right'>
                                   <a href='groupadmin.php'>
                                    Aceptar
                                   </a>
                                   <i class='fa fa-check'></i>
+                                </button>
                               </div>
+                              </td>
                             </tr>
                           </table>\n";
 
