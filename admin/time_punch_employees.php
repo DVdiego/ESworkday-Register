@@ -45,7 +45,7 @@ if($request == 'GET'){
                 </div>
                 <div class='box-body'>";
 
-  echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\" style='margin-left: 5%;'>\n";
+  echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\" >\n";
 
   echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
   if ($username_dropdown_only == "yes") {

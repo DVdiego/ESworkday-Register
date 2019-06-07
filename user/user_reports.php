@@ -67,23 +67,23 @@ $_SERVER['username'] = $_GET['username'];
                 <div class="box-body">';
     echo "<form id='form_reports' class='form-horizontal' role='form' name='timeclock' action='$self' method='post'>";
 
-    echo "<div id='content'>";
+
     echo "    <div class='form-group'>
-                <label>Nombre:</label>
+                <label style='padding-right: 10px;'>Nombre:</label>
 
                 <input type='hidden' name='post_username' maxlength='25' class='form-control' value=\"$username\">$username
 
               </div>";
 
     echo "    <div class='form-group'>
-                <label>Fecha inicio:</label>
+                <label style='padding-right: 10px;'>Fecha inicio:</label>
                 <input type='date' size='10' maxlength='10' name='from_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
                 <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                 return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
               </div>";
 
    echo "    <div class='form-group'>
-               <label>Fecha fin:</label>
+               <label style='padding-right: 27px;'>Fecha fin:</label>
                <input type='date' size='10' maxlength='10' name='to_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
                <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt');
                return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'></a>
@@ -92,8 +92,7 @@ $_SERVER['username'] = $_GET['username'];
     echo "    <div class='form-group'>
                 <button type='submit' class='btn btn-lg btn-primary'>Consultar</button>
               </div>";
-    echo "</div>
-          </form>";
+    echo "</form>";
     echo "</div>";
     echo "</div>";
 echo "</div>";
@@ -197,7 +196,7 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
       // le sumas 23h:59m -> 86340mills
       $to_timestamp = strtotime ($to_date) + 86340;
     }
-  
+
 
 
     $query = "select ".$db_prefix."info.fullname, ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes,
