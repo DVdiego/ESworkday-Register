@@ -87,7 +87,7 @@ if ($request == 'GET') {
             <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-users"></i> Edit Group ' . $get_group . ' </h3>
+                     <h3 class="box-title"><i class="fa fa-users"></i> Editar Grupo ' . $get_group . ' </h3>
                 </div>
                 <div class="box-body">';
     echo "            <form name='form' action='$self' method='post'>\n";
@@ -150,19 +150,19 @@ if ($request == 'GET') {
     echo "              <input type='hidden' name='get_group' value=\"$get_group\">\n";
     echo "              <input type='hidden' name='get_office' value=\"$get_office\">\n";
     echo "              <tr>
-                          <td width=30>
-                            <button id='formButtons' type='submit' name='submit' value='Edit Group' class='btn btn-info'>
-                              Editar grupo
-                              </button>
-                          </td>
-
-                          <td>
-                            <button id='formButtons' class='btn btn-default pull-right'>
+                          <div class='box-footer'>
+                            <button id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                              <i class='fa fa-ban'></i>
                               <a href='groupadmin.php'>
                                 Cancelar
                               </a>
                             </button>
-                          </td>
+
+                            <button id='formButtons' type='submit' name='submit' value='Edit Group' class='btn btn-info pull-right'>
+                              Editar Grupo
+                              <i class='fa fa-arrow-right'></i>
+                            </button>
+                          </div>
                         </tr>
                       </table>
                     </form>\n";
@@ -426,57 +426,58 @@ elseif ($request == 'POST') {
     if ((isset($evil_group)) || (isset($dupe))) {
 
         if (empty($post_groupname)) {
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                            A Group Name is required.</td></tr>\n";
-        echo "            </table>\n";
+          echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                            Se requiere un nombre de grupo.
+                            </div>';
         }
         // elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_groupname)) {
         elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|\.)+$" . '/i', $post_groupname)) {
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                            Alphanumeric characters, hyphens, underscores, spaces, and periods are allowed when creating a Group Name.</td></tr>\n";
-        echo "            </table>\n";
+          echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                          <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                          No se permiten comillas, barras o espacios para el nombre del grupo.
+                      </div></div>';
         }
         elseif (!empty($string)) {
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                           Apostrohpes are not allowed when editing a Group Name.</td></tr>\n";
-        echo "            </table>\n";
+          echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                            No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para el nombre de un grupo.
+                            </div>';
         }
         elseif (isset($dupe)) {
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                            This combination of groupname and officename already exist. Please choose another groupname and/or officename.</td></tr>\n";
-        echo "            </table>\n";
+          echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                            El grupo ya existe. Por favor introduzca otro nombre.
+                            </div>';
         }
-
         if (!empty($string)) {$post_groupname = stripslashes($post_groupname);}
 
-        echo "            <br />\n";
-
+        echo "<br/>";
         echo '<div class="row">
                 <div id="float_window" class="col-md-10">
                   <div class="box box-info"> ';
         echo '      <div class="box-header with-border">
-                         <h3 class="box-title"><i class="fa fa-users"></i> Edit Group</h3>
+                         <h3 class="box-title"><i class="fa fa-users"></i> Editar Grupo ' . $get_group . '</h3>
                     </div>
                     <div class="box-body">';
 
         echo "         <form name='form' action='$self' method='post'>\n";
         echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-        echo "              <tr>\n";
-        echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/group_edit.png' />&nbsp;&nbsp;&nbsp;Group
-                            ->&nbsp;$get_group</th>\n";
-        echo "              </tr>\n";
         echo "              <tr><td height=15></td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Group Name:</td><td colspan=2 width=80%
-                              style='padding-left:20px;'><input type='text'
-                              size='25' maxlength='50' name='post_groupname' value=\"$post_groupname\">&nbsp;*</td></tr>\n";
+
+        echo "              <tr>
+                              <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                                &nbsp;*Nuevo nombre del grupo:
+                              </td>
+
+                              <td colspan=2 width=80% style='padding-left:20px;'>
+                                <input type='text' size='25' maxlength='50' name='post_groupname' placeholder=\"$get_group\">
+                              </td>
+                            </tr>\n";
 
         // query to populate dropdown with office names //
 
@@ -485,8 +486,12 @@ elseif ($request == 'POST') {
 
         $result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Parent Office:</td><td colspan=2 width=80%
-                              style='padding-left:20px;'><select name='post_officename'>\n";
+        echo "              <tr>
+                              <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                                Oficina a la que pertenece:
+                              </td>
+
+                              <td colspan=2 width=80% style='padding-left:20px;'><select name='post_officename'>\n";
 
         while ($row=mysqli_fetch_array($result3)) {
           if ("".$row['officename']."" == $post_officename) {
@@ -497,10 +502,21 @@ elseif ($request == 'POST') {
           }
         }
         echo "                  </select></td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Count:</td><td align=left width=80%
-                              class=table_rows style='padding-left:20px;'><input type='hidden' name='user_cnt'
-                              value=\"$user_cnt\">$user_cnt</td></tr>\n";
-        echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+        echo "              <tr>
+                              <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                                Número de usuarios:
+                              </td>
+
+                              <td align=left width=80% class=table_rows style='padding-left:20px;'>
+                                <input type='hidden' name='user_cnt' value=\"$user_cnt\">$user_cnt
+                              </td>
+                            </tr>\n";
+
+        echo "              <tr>
+                              <td class=table_rows align=right colspan=3 style='font-size:10px;'>
+                                *&nbsp;Campos requeridos&nbsp;
+                              </td>
+                            </tr>\n";
         echo "            </table>\n";
         echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
         echo "              <tr><td height=40></td></tr>\n";
@@ -512,8 +528,22 @@ elseif ($request == 'POST') {
         echo "              <input type='hidden' name='get_group' value=\"$get_group\">\n";
         echo "              <input type='hidden' name='get_office' value=\"$get_office\">\n";
         echo "              <input type='hidden' name='user_cnt' value=\"$user_cnt\">\n";
-        echo "              <tr><td width=30><input type='image' name='submit' value='Edit Group' src='../images/buttons/next_button.png'></td>
-                              <td><a href='groupadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td>
+        echo "
+                            <tr>
+                            <td>
+                              <div class='box-footer'>
+                                <button id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                                  <i class='fa fa-ban'></i>
+                                  <a href='groupadmin.php'>
+                                    Cancelar
+                                  </a>
+                                </button>
+
+                                <button id='formButtons' type='submit' name='submit' value='Edit Group' class='btn btn-info pull-right'>
+                                  Editar Grupo
+                                  <i class='fa fa-arrow-right'></i>
+                                </button>
+                              </div>
                             </tr>
                           </table>
                         </form>\n";
@@ -673,7 +703,7 @@ elseif ($request == 'POST') {
         echo '        <div id="float_window" class="col-md-10">
                   <div class="box box-info"> ';
         echo '      <div class="box-header with-border">
-                         <h3 class="box-title"><i class="fa fa-users"></i> Edit Group</h3>
+                         <h3 class="box-title"><i class="fa fa-users"></i> Editar Grupo</h3>
                     </div>
                     <div class="box-body">';
         echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
@@ -712,13 +742,13 @@ elseif ($request == 'POST') {
         echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
         echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
         echo "              <tr>
-                              <td>
-                                <button id='formButtons' class='btn btn-success'>
-    													    <a href='groupadmin.php' style='font-weight: bold;color: white;' >
-    														   Aceptar
-    													    </a>
-    												    </button>
-                              </td>
+                              <div class='box-footer'>
+                                <button id='formButtons' class='btn btn-success pull-right'>
+                                  <a href='groupadmin.php'>
+                                   Aceptar
+                                  </a>
+                                  <i class='fa fa-check'></i>
+                              </div>
                             </tr>
                           </table>\n";
 

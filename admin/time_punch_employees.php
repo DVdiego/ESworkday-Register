@@ -136,8 +136,16 @@ if($request == 'GET'){
                          <input type='text' name='post_notes' maxlength='250' class='form-control' style=' width: 98%;' >
                      </div>";
  echo "						<div class='box-footer'>
-											<button id='formButtons' class='btn btn-default pull-right' style='margin-left: 10px;margin-right: 10px;'><i class='fa fa-ban'></i> Cancelar<a href='index.php'></a></button>
-											<button id='formButtons' type='submit' name='submit'  class='btn btn-success pull-right'>Siguiente <i class='fa fa-arrow-right'></i></button><a href='usercreate.php'></a>
+											<button id='formButtons' class='btn btn-default pull-right' style='margin-left: 10px;margin-right: 10px;'>
+                        <i class='fa fa-ban'></i>
+                        Cancelar
+                        <a href='index.php'></a>
+                      </button>
+
+											<button id='formButtons' type='submit' name='submit'  class='btn btn-success pull-right'>
+                        Siguiente
+                        <i class='fa fa-arrow-right'></i>
+                        </button><a href='usercreate.php'></a>
 										</div>";
 
 

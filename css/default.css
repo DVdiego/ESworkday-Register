@@ -257,6 +257,7 @@
 .table_rows {
 	font-family: Tahoma, Verdana, Trebuchet MS, sans-serif;
 	font-size: 11px;
+  font-weight: bold !important;
 	padding : 2px;
 }
 
