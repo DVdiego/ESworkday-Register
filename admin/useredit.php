@@ -317,16 +317,14 @@ if (isset($evil)) {
 }
 echo "
                         <div class='box-footer'>
-                          <button id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                          <button type='button' onClick='location=\"useradmin.php\"' id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
                             <i class='fa fa-ban'></i>
-                            <a href='useradmin.php'>
-                              Cancelar
-                            </a>
+                            Cancelar
                           </button>
 
                           <button id='formButtons' type='submit' name='submit' value='Edit User' class='btn btn-info pull-right'>
-                            Editar Usuario
                             <i class='fa fa-arrow-right'></i>
+                            Editar Usuario
                           </button>
                         </div>
               </form>\n";
@@ -691,16 +689,14 @@ if (isset($evil)) {
   echo "<input type='hidden' name='evil' value='$evil'>\n";
 }
   echo "            <div class='box-footer'>
-                      <button id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                      <button type='button' onClick='location=\"useradmin.php\"' id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
                         <i class='fa fa-ban'></i>
-                        <a href='useradmin.php'>
-                          Cancelar
-                        </a>
+                        Cancelar
                       </button>
 
                       <button id='formButtons' type='submit' name='submit' value='Edit User' class='btn btn-info pull-right'>
-                        Editar Usuario
                         <i class='fa fa-arrow-right'></i>
+                        Editar Usuario
                       </button>
                     </div>
               </form>\n";
@@ -894,11 +890,9 @@ echo "              <tr>
                       </tr>\n";
 echo "            </table>\n";
 echo "               <div class='box-footer'>
-                          <button id='formButtons' class='btn btn-success pull-right'>
-                            <a href='useradmin.php'>
-                             Aceptar
-                            </a>
+                          <button type='button' onClick='location=\"useradmin.php\"' id='formButtons' class='btn btn-success pull-right'>
                             <i class='fa fa-check'></i>
+                            Aceptar
                           </button>
                         </div>
 

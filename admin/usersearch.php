@@ -157,16 +157,14 @@ echo "                      </select>
 echo "            </table>\n";
 
 		      echo '<div class="box-footer">
-											<button id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+											<button type="button" onclick="location=\'useradmin.php\'" id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
 												<i class="fa fa-ban"></i>
-												<a href="groupadmin.php">
-													Cancelar
-												</a>
+												Cancelar
 											</button>
 
 											<button id="formButtons" type="submit" name="submit" value="Search User" class="btn btn-info pull-right">
-												Buscar
 												<i class="fa fa-search"></i>
+												Buscar
 											</button>
 		                </div></form>';
 		      echo '</div></div></div></div>';
@@ -385,16 +383,14 @@ echo "                      </select>
 										</tr>\n";
 echo "            </table>\n";
 				      echo '<div class="box-footer">
-																<button id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+																<button type="button" onclick="location=\'useradmin.php\'" id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
 																	<i class="fa fa-ban"></i>
-																	<a href="groupadmin.php">
 																		Cancelar
-																	</a>
 																</button>
 
 																<button id="formButtons" type="submit" name="submit" value="Search User" class="btn btn-info pull-right">
-																	Buscar
 																	<i class="fa fa-search"></i>
+																	Buscar
 																</button>
 				                </div></form>';
 			echo '</div></div></div></div>';
@@ -664,16 +660,14 @@ if ($row_count == "0") {
 											</tr>\n";
 echo "            	</table>\n";
 	echo '<div class="box-footer">
-									<button id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+									<button type="button" onclick="location=\'useradmin.php\'" id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
 										<i class="fa fa-ban"></i>
-										<a href="groupadmin.php">
-											Cancelar
-										</a>
+										Cancelar
 									</button>
 
 									<button id="formButtons" type="submit" name="submit" value="Search User" class="btn btn-info pull-right">
-										Buscar
 										<i class="fa fa-search"></i>
+										Buscar
 									</button>
 	          </div></form>';
 	echo '</div></div></div></div>';

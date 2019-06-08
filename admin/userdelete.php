@@ -26,7 +26,7 @@ include '../config.inc.php';
 include 'header.php';
 include 'topmain.php';
 include 'leftmain.php';
-echo "<title>$title - Delete User</title>\n";
+echo "<title>$title - Eliminar Usuario</title>\n";
 
 $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
@@ -61,58 +61,6 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 $get_user = stripslashes($_GET['username']);
 @$get_office = $_GET['officename'];
 
-/*
-echo "<table width=100% height=89% border=0 cellpadding=0 cellspacing=1>\n";
-echo "  <tr valign=top>\n";
-echo "    <td class=left_main width=180 align=left scope=col>\n";
-echo "      <table class=hide width=100% border=0 cellpadding=1 cellspacing=0>\n";
-echo "        <tr><td class=left_rows height=11></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>Users</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/user.png' alt='User Summary' />&nbsp;&nbsp;
-                <a class=admin_headings href='useradmin.php'>User Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Edit User' />&nbsp;&nbsp;
-                <a class=admin_headings href=\"useredit.php?username=$get_user&officename=$get_office\">Edit User</a></td></tr>\n";
-echo "        <tr><td class=left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Change Password' />
-                &nbsp;&nbsp;<a class=admin_headings href=\"chngpasswd.php?username=$get_user&officename=$get_office\">Change Password</a></td></tr>\n";
-echo "        <tr><td class=current_left_rows_indent height=18 align=left valign=middle><img src='../images/icons/arrow_right.png' alt='Delete User' />
-                &nbsp;&nbsp;<a class=admin_headings href=\"userdelete.php?username=$get_user&officename=$get_office\">Delete User</a></td></tr>\n";
-echo "        <tr><td class=left_rows_border_top height=18 align=left valign=middle><img src='../images/icons/user_add.png' alt='Create New User' />
-                &nbsp;&nbsp;<a class=admin_headings href='usercreate.php'>Create New User</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/magnifier.png' alt='User Search' />&nbsp;&nbsp;
-                <a class=admin_headings href='usersearch.php'>User Search</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>Offices</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/brick.png' alt='Office Summary' />&nbsp;&nbsp;
-                <a class=admin_headings href='officeadmin.php'>Office Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/brick_add.png' alt='Create New Office' />&nbsp;&nbsp;
-                <a class=admin_headings href='officecreate.php'>Create New Office</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle>Groups</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/group.png' alt='Group Summary' />&nbsp;&nbsp;
-                <a class=admin_headings href='groupadmin.php'>Group Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/group_add.png' alt='Create New Group' />&nbsp;&nbsp;
-                <a class=admin_headings href='groupcreate.php'>Create New Group</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2>In/Out Status</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application.png' alt='Status Summary' />
-                &nbsp;&nbsp;<a class=admin_headings href='statusadmin.php'>Status Summary</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application_add.png' alt='Create Status' />&nbsp;&nbsp;
-                <a class=admin_headings href='statuscreate.php'>Create Status</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=33></td></tr>\n";
-echo "        <tr><td class=left_rows_headings height=18 valign=middle colspan=2>Miscellaneous</td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/clock.png' alt='Modify Time' />
-                &nbsp;&nbsp;<a class=admin_headings href='timeadmin.php'>Modify Time</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/application_edit.png' alt='Edit System Settings' />
-                &nbsp;&nbsp;<a class=admin_headings href='sysedit.php'>Edit System Settings</a></td></tr>\n";
-echo "        <tr><td class=left_rows height=18 align=left valign=middle><img src='../images/icons/database_go.png'
-                alt='Manage Database' />&nbsp;&nbsp;&nbsp;<a class=admin_headings href='database_management.php'>Manage Database</a></td></tr>\n";
-echo "      </table></td>\n";
-echo "    <td align=left class=right_main scope=col>\n";
-echo "      <table width=100% height=100% border=0 cellpadding=10 cellspacing=1>\n";
-echo "        <tr class=right_main_text>\n";
-echo "          <td valign=top>\n";
-*/
-
 $get_user = addslashes($get_user);
 
 $row_count = 0;
@@ -145,78 +93,145 @@ if (!empty($admin)) {
 }
 if (isset($evil)) {
 
-
-
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Cannot delete this user. This user is the last Sys Admin User in the system. Go back and give another user Sys Admin
-                    privileges before attempting to delete this user again.</td></tr>\n";
-echo "            </table>\n";
+echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                    No es posible eliminar este usuario ya que es el único usuario con privilegios de administrador del sistema.
+                    Para poder eliminarlo, debe otorgar los permisos de administrador a otro usuario.
+                    </div>';
 }
 
-echo '<div class="row">
+echo '<br /><div class="row">
     <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
-    <h3 class="box-title"><i class="fa fa-user-plus"></i> Delete User</h3>
+    <h3 class="box-title"><i class="fa fa-user-plus"></i> Eliminar Usuario '. $username .'</h3>
   </div><div class="box-body">';
 echo "            <table class=table>\n";
 echo "            <form name='form' action='$self' method='post'>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/user_delete.png' />&nbsp;&nbsp;&nbsp;Delete
-                    User</th></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$username\">$username</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='display_name' value=\"$displayname\">$displayname</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='email_addy' value=\"$user_email\">$user_email</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='office_name' value=\"$office\">$office</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='group_name' value=\"$groups\">$groups</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Sys Admin:</td>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Nombre de usuario:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='post_username' value=\"$username\">$username
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Nombre de acceso:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='display_name' value=\"$displayname\">$displayname
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Dirección de Email:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='email_addy' value=\"$user_email\">$user_email
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Oficina:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='office_name' value=\"$office\">$office
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Grupo de trabajo:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='group_name' value=\"$groups\">$groups
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        ¿Usuario administrador?:
+                      </td>\n";
 if ($admin == "1") {$admin_yes_no = "Yes";} else {$admin_yes_no = "No";}
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='hidden' name='admin_perms'
-                      value='$admin'>$admin_yes_no</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Time Admin:</td>\n";
+echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                          <input type='hidden' name='admin_perms' value='$admin'>$admin_yes_no
+                        </td>
+                      </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        ¿Administrador de tiempos?
+                      </td>\n";
 if ($time_admin == "1") {$time_admin_yes_no = "Yes";} else {$time_admin_yes_no = "No";}
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='hidden' name='time_admin_perms'
-                      value='$time_admin'>$time_admin_yes_no</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reports:</td>\n";
+echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                          <input type='hidden' name='time_admin_perms' value='$time_admin'>$time_admin_yes_no
+                        </td>
+                      </tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        ¿Reportador?
+                      </td>\n";
 if ($reports == "1") {$reports_yes_no = "Yes";} else {$reports_yes_no = "No";}
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='hidden' name='reports_perms'
-                      value='$reports'>$reports_yes_no</td></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
+echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                          <input type='hidden' name='reports_perms' value='$reports'>$reports_yes_no
+                        </td>
+                      </tr>\n";
 echo "            </table>\n";
 if (isset($evil)) {
 echo "            <table style='display:none;' align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 } else {
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 }
-echo "              <tr><td class=table_rows height=40 width=10><input type='checkbox' name='delete_all_user_data' value='1'></td>
-                  <td class=table_rows height=53>Delete all punch-in/out history for this user?</td></tr></table>\n";
+echo "              <tr>
+                      <td class=table_rows height=40 width=10>
+                        <input type='checkbox' name='delete_all_user_data' value='1'>
+                      </td>
+
+                      <td class=table_rows height=53>
+                        ¿Desea eliminar los registros de este usuario?
+                      </td>
+                    </tr>
+                  </table>\n";
 if (isset($evil)) {
 echo "              </table>\n";
 echo '<div class="box-footer">
-            <button class="btn btn-default pull-right"><a href="useradmin.php">Cancel</a></button>   
-          </div></form>';	
+            <button type="button" id="formButtons" onclick="location=\'useradmin.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+              <i class="fa fa-ban"></i>
+              Cancelar
+            </button>
+          </div></form>';
 } else {
 echo "              </table>\n";
 echo '<div class="box-footer">
-            <button type="submit" name="submit" value="Delete User" class="btn btn-danger">Delete User</button>
-            <button class="btn btn-default pull-right"><a href="useradmin.php">Cancel</a></button>   
-          </div></form>';	
+            <button type="button" id="formButtons" onclick="location=\'useradmin.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+              <i class="fa fa-ban"></i>
+              Cancelar
+            </button>
+
+            <button id="formButtons" type="submit" name="submit" value="Delete User" class="btn btn-danger pull-right">
+              <i class="fa fa-trash"></i>
+              Eliminar
+            </button>
+          </div></form>';
 }
 
-			     
-					
-echo '</div></div></div></div>';							
+
+
+echo '</div></div></div></div>';
 include '../theme/templates/endmaincontent.inc';
-include '../footer.php'; 
-include '../theme/templates/controlsidebar.inc'; 
+include '../footer.php';
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
  exit;
@@ -355,47 +370,109 @@ echo "          <td valign=top>\n";
 echo "            <br />\n";
 */
 
+echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <h4><i class="icon fa fa-check-circle"></i>¡Usuario eliminado!</h4>
+                El usuario '. $post_username .' ha sido eliminado del sistema satisfactoriamente.
+             </div></div>';
 
 echo '<div class="row">
     <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
-    <h3 class="box-title"><i class="fa fa-user-plus"></i> User deleted successfully.</h3>
-  </div><div class="box-body">';
+    </div><div class="box-body">';
 
 echo "            <table class=table>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='display_name' value=\"$display_name\">$display_name</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='email_addy' value=\"$email_addy\">$email_addy</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='office_name' value=\"$office_name\">$office_name</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='group_name' value=\"$group_name\">$group_name</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Sys Admin:</td>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Nombre de usuario:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='post_username' value=\"$post_username\">$post_username
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Nombre de acceso:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='display_name' value=\"$display_name\">$display_name
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Dirección de Email:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='email_addy' value=\"$email_addy\">$email_addy
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Oficina:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='office_name' value=\"$office_name\">$office_name
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Grupo de trabajo:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='group_name' value=\"$group_name\">$group_name
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        ¿Usuario administrador?</td>\n";
 if ($admin_perms == "1") {$admin_yes_no = "Yes";} else {$admin_yes_no = "No";}
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='hidden' name='admin_perms'
-                      value='$admin_perms'>$admin_yes_no</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reports:</td>\n";
+echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                          <input type='hidden' name='admin_perms' value='$admin_perms'>$admin_yes_no
+                        </td>
+                      </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        ¿Reportador?
+                      </td>\n";
 if ($time_admin_perms == "1") {$time_admin_yes_no = "Yes";} else {$time_admin_yes_no = "No";}
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='hidden' name='time_admin_perms'
-                      value='$time_admin_perms'>$time_admin_yes_no</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reports:</td>\n";
+echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                          <input type='hidden' name='time_admin_perms' value='$time_admin_perms'>$time_admin_yes_no
+                        </td>
+                      </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        ¿Reportador?
+                      </td>\n";
 if ($reports_perms == "1") {$reports_yes_no = "Yes";} else {$reports_yes_no = "No";}
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='hidden' name='reports_perms'
-                      value='$reports_perms'>$reports_yes_no</td></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
+echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                          <input type='hidden' name='reports_perms' value='$reports_perms'>$reports_yes_no
+                        </td>
+                      </tr>\n";
 echo "            </table>\n";
 echo '<div class="box-footer">
-            <a href="useradmin.php"><button class="btn btn-success">Done</button> 
-          </div>';	
+            <button id="formButtons" onclick="location=\'useradmin.php\'" class="btn btn-success pull-right">
+                Aceptar
+              <i class="fa fa-check"></i>
+            </button>
+          </div>';
 
-echo '</div></div></div></div>';							
+echo '</div></div></div></div>';
 include '../theme/templates/endmaincontent.inc';
-include '../footer.php'; 
-include '../theme/templates/controlsidebar.inc'; 
+include '../footer.php';
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
 
