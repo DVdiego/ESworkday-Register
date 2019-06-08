@@ -515,7 +515,7 @@ elseif ($request == 'POST') {
                             </tr>\n";
 
         echo "              <tr>
-                              <td class=table_rows align=right colspan=3 style='font-size:10px;'>
+                              <td class=table_rows_output align=right colspan=3 style='font-size:10px;'>
                                 *&nbsp;Campos requeridos&nbsp;
                               </td>
                             </tr>\n";

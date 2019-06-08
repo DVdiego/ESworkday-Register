@@ -138,27 +138,60 @@ $getoffice = "".$row['officename']."";
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 }
 if (!isset($getoffice)) {echo "Office is not defined for this user. Go back and associate this user with an office.\n"; exit;}
-
+echo '<div class="row">
+    <div id="float_window" class="col-md-10">
+      <div class="box box-info"> ';
+echo '<div class="box-header with-border">
+                 <h3 class="box-title"><i class="fa fa-lock"></i> Cambiar contraseña de '. $username .'</h3>
+               </div><div class="box-body">';
 echo "            <table class=table>\n";
 echo "            <form name='form' action='$self' method='post'>\n";
-echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/lock_edit.png' />&nbsp;&nbsp;&nbsp;Change
-                      Password</th></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td style='padding-left:20px;'
-                      align=left class=table_rows width=80%><input type='hidden' name='post_username' value=\"$username\">$username</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Password</td><td colspan=2
-                      style='padding-left:20px;'><input type='password' size='25' maxlength='25' name='new_password'></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirm Password:</td><td colspan=2
-                      style='padding-left:20px;'><input type='password' size='25' maxlength='25'name='confirm_password'>
-                      </td></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Nombre de usuario:
+                      </td>
+
+                      <td style='padding-left:20px;' align=left class=table_rows width=80%>
+                        <input type='hidden' name='post_username' value=\"$username\">$username
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Contraseña nueva
+                      </td>
+
+                      <td colspan=2 style='padding-left:20px;'>
+                        <input type='password' size='25' maxlength='25' name='new_password'>
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Confirmar contraseña:
+                      </td>
+
+                      <td colspan=2 style='padding-left:20px;'>
+                        <input type='password' size='25' maxlength='25'name='confirm_password'>
+                      </td>
+                    </tr>\n";
 echo "            </table>\n";
 echo "            <input type='hidden' name='get_office' value='$get_office'>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Change Password'
-                  src='../images/buttons/next_button.png'></td>
-                  <td><a href='useradmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
+echo '            <div class="box-footer">
+                    <button id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                      <i class="fa fa-ban"></i>
+                      <a href="useradmin.php">
+                        Cancelar
+                      </a>
+                    </button>
+
+                    <button id="formButtons" type="submit" name="submit" value="Change Password" class="btn btn-info pull-right">
+                      Cambiar contraseña
+                      <i classfa fa-save"></i>
+                    </button>
+                  </div></form>';
+echo '</div></div></div></div>';
+
 	      include '../theme/templates/endmaincontent.inc';
 	      include '../footer.php';
 	      include '../theme/templates/controlsidebar.inc';
@@ -263,49 +296,84 @@ if (preg_match("/^[\s\\/;'\"-]*$/i", $new_password)) {
 
 
 $evil_password = '1';
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Single and double quotes, backward and forward slashes, semicolons, and spaces are not allowed when creating a Password.</td></tr>\n";
-echo "            </table>\n";
+echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                  No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un grupo.
+                  </div>';
 }
 elseif ($new_password !== $confirm_password) {
 $evil_password = '1';
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Passwords do not match.</td></tr>\n";
-echo "            </table>\n";
+echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                    Las contraseñas no coinciden.
+                  </div>';
 }
 
 // end post validation //
 
-if (isset($evil_password)) {
+if (isset($evil_password)){
+  echo "<br />\n";
+  echo '<div class="row">
+      <div id="float_window" class="col-md-10">
+        <div class="box box-info"> ';
+  echo '<div class="box-header with-border">
+                   <h3 class="box-title"><i class="fa fa-lock"></i> Cambiar contraseña de '. $username .'</h3>
+                 </div><div class="box-body">';
+  echo "            <table class=table>\n";
+  echo "            <form name='form' action='$self' method='post'>\n";
+  echo "              <tr>
+                        <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                          Nombre de usuario:
+                        </td>
 
-echo "            <br />\n";
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "            <form name='form' action='$self' method='post'>\n";
-echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/lock_edit.png' />&nbsp;&nbsp;&nbsp;Change
-                    Password</th></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows width=20% height=25 style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows width=80%
-                      style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
-echo "              <tr><td class=table_rows width=20% height=25 style='padding-left:32px;' nowrap>New Password:</td><td colspan=2
-                      style='padding-left:20px;' width=80%><input type='password' size='25' maxlength='25' name='new_password'></td></tr>\n";
-echo "              <tr><td class=table_rows width=20% height=25 style='padding-left:32px;' nowrap>Confirm Password:</td><td colspan=2
-                      style='padding-left:20px;' width=80%><input type='password' size='25' maxlength='25'name='confirm_password'>
-                      </td></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "            </table>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-echo "              <input type='hidden' name='get_office' value=\"$get_office\">\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Change Password'
-                      src='../images/buttons/next_button.png'></td><td><a href='useradmin.php'>
-                      <img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
-		      include '../theme/templates/endmaincontent.inc';
-		      include '../footer.php';
-		      include '../theme/templates/controlsidebar.inc';
-		      include '../theme/templates/endmain.inc';
-		      include '../theme/templates/adminfooterscripts.inc';
+                        <td style='padding-left:20px;' align=left class=table_rows width=80%>
+                          <input type='hidden' name='post_username' value=\"$username\">$username
+                        </td>
+                      </tr>\n";
+
+  echo "              <tr>
+                        <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                          Contraseña nueva
+                        </td>
+
+                        <td colspan=2 style='padding-left:20px;'>
+                          <input type='password' size='25' maxlength='25' name='new_password'>
+                        </td>
+                      </tr>\n";
+
+  echo "              <tr>
+                        <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                          Confirmar contraseña:
+                        </td>
+
+                        <td colspan=2 style='padding-left:20px;'>
+                          <input type='password' size='25' maxlength='25'name='confirm_password'>
+                        </td>
+                      </tr>\n";
+  echo "            </table>\n";
+  echo "            <input type='hidden' name='get_office' value='$get_office'>\n";
+  echo '            <div class="box-footer">
+                      <button id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                        <i class="fa fa-ban"></i>
+                        <a href="useradmin.php">
+                          Cancelar
+                        </a>
+                      </button>
+
+                      <button id="formButtons" type="submit" name="submit" value="Change Password" class="btn btn-info pull-right">
+                        Cambiar contraseña
+                        <i classfa fa-save"></i>
+                      </button>
+                    </div></form>';
+  echo '</div></div></div></div>';
+
+  include '../theme/templates/endmaincontent.inc';
+ include '../footer.php';
+ include '../theme/templates/controlsidebar.inc';
+ include '../theme/templates/endmain.inc';
+ include '../theme/templates/adminfooterscripts.inc';
 exit;
 
 } else {
@@ -320,25 +388,47 @@ $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 $post_username = stripslashes($post_username);
 
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td>
-                <td class=table_rows_green>&nbsp;Password changed successfully.</td></tr>\n";
+echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <h4><i class="icon fa fa-check-circle"></i>¡Contraseña cambiada!</h4>
+                La contraseña de '. $post_username .' ha sido cambiada satisfactoriamente.
+             </div></div>';
+echo         '<div class="row">
+                <div id="float_window" class="col-md-10">
+                  <div class="box box-info"> ';
+echo '              <div class="box-header with-border">
+                      <h3 class="box-title"><i class="fa fa-lock"></i> Cambiar contraseña de '. $username .'</h3>
+                      </div><div class="box-body">';
+echo "                <table class=table>\n";
+echo "              <tr>
+                      <td class=table_rows_output width=20% height=25 style='padding-left:32px;' nowrap>
+                        Nombre de usuario:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='post_username' value=\"$post_username\">$post_username
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Contraseña nueva
+                      </td>
+
+                      <td align=left class=table_rows colspan=2 style='padding-left:20px;' width=80%>
+                        ***privado***
+                      </td>
+                    </tr>\n";
 echo "            </table>\n";
-echo "            <br />\n";
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/lock_edit.png' />&nbsp;&nbsp;&nbsp;Change
-                      Password</th></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows width=20% height=25 style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows width=80%
-                      style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Password</td><td align=left class=table_rows
-                      colspan=2 style='padding-left:20px;' width=80%>***hidden***</td></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "            </table>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-echo "              <tr><td><a href='useradmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr>
-            </table>\n";
+echo "            <div class='box-footer'>
+                    <button id='formButtons' class='btn btn-success pull-right'>
+                      <a href='useradmin.php' >
+                        Aceptar
+                      </a>
+                      <i class='fa fa-check'></i>
+                    </button>
+                  </div>\n";
+echo '</div></div></div></div>';
 include '../theme/templates/endmaincontent.inc';
 include '../footer.php';
 include '../theme/templates/controlsidebar.inc';

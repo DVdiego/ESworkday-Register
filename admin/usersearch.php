@@ -27,12 +27,12 @@ $request = $_SERVER['REQUEST_METHOD'];
 
 include '../config.inc.php';
 if ($request !== 'POST') {include 'header_get.php';include 'topmain.php'; include 'leftmain.php';}
-echo "<title>$title - User Search</title>\n";
+echo "<title>$title - Buscar Usuario</title>\n";
 
 if (!isset($_SESSION['valid_user'])) {
 
 
-	echo ' <div class="col-md-4"><div class="alert alert-danger alert-dismissible">
+	echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> WorkTime Control Administration</h4>
                 You are not presently logged in, or do not have permission to view this page. Click <a class=admin_headings href="../login.php?login_action=admin"><u>here</u></a> to login.
@@ -95,41 +95,79 @@ echo "            <br />\n";
         <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
     echo '<div class="box-header with-border">
-	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Search for User</h3>
+	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Buscar Usuario</h3>
 	               </div><div class="box-body">';
 
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text'
-                      size='25' maxlength='50' name='post_username'
-                      onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
-                      form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\" ></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text'
-                      size='25' maxlength='50' name='display_name'
-                      onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
-                      form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text'
-                      size='25' maxlength='75' name='email_addy'
-                      onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
-                      form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\"></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'>
-                      <select name='office_name' onchange='group_names();'>\n";
-echo "                      </select></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'>
-                      <select name='group_name'>\n";
-echo "                      </select></td></tr>\n";
+echo "              <tr>
+											<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+												Nombre de usuario:
+											</td>
 
-echo "              <tr><td class=table_rows align=right colspan=3>&nbsp;</td></tr>\n";
+											<td colspan=2 width=80% style='padding-left:20px;'>
+												<input type='text' size='25' maxlength='50' name='post_username' onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
+                      			form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\" >
+											</td>
+										</tr>\n";
+
+echo "              <tr>
+											<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+												Nombre de acceso:
+											</td>
+
+											<td colspan=2 width=80% style='padding-left:20px;'>
+												<input type='text' size='25' maxlength='50' name='display_name' onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
+                      			form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\">
+											</td>
+										</tr>\n";
+
+echo "              <tr>
+											<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+												Dirección de Email:
+											</td>
+
+											<td colspan=2 width=80% style='padding-left:20px;'>
+												<input type='text' size='25' maxlength='75' name='email_addy' onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
+                      			form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\">
+											</td>
+										</tr>\n";
+
+echo "              <tr>
+											<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+												Oficina:
+											</td>
+
+											<td colspan=2 width=80% style='padding-left:20px;'>
+                      	<select name='office_name' onchange='group_names();'>\n";
+echo "                      </select>
+											</td>
+										</tr>\n";
+
+echo "              <tr>
+											<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+												Grupo de trabajo:
+											</td>
+
+											<td colspan=2 width=80% style='padding-left:20px;'>
+                      	<select name='group_name'>\n";
+echo "                      </select>
+											</td>
+										</tr>\n";
 echo "            </table>\n";
 
 		      echo '<div class="box-footer">
-		                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Search</button>
-		                  <button class="btn btn-default pull-right"><a href="usersearch.php">Cancel</a></button>
+											<button id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+												<i class="fa fa-ban"></i>
+												<a href="groupadmin.php">
+													Cancelar
+												</a>
+											</button>
+
+											<button id="formButtons" type="submit" name="submit" value="Search User" class="btn btn-info pull-right">
+												Buscar
+												<i class="fa fa-search"></i>
+											</button>
 		                </div></form>';
 		      echo '</div></div></div></div>';
 		      include '../theme/templates/endmaincontent.inc';
@@ -214,10 +252,10 @@ echo "          <td valign=top>\n";
 if (!preg_match('/' . "^([[:alnum:]]| |-|'|,)+$" . '/i', $post_username)) {
 if ($post_username == "") {} else {
 
-	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+	echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Alphanumeric characters, hyphens, apostrophes, commas, and spaces are allowed when searching for a Username.
+								Se permiten caracteres alfanuméricos, guiones, apóstrofes, comas y espacios al buscar un nombre de usuario.
               </div></div>';
 
 $evil_input = "1";
@@ -226,10 +264,10 @@ $evil_input = "1";
 if (!preg_match('/^([[:alnum:]]|\s|\-|\'|\,)+$/i', $display_name)) {
 if ($display_name == "") {} else {
 
-	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+	echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Alphanumeric characters, hyphens, apostrophes, commas, and spaces are allowed when searching for a Display Name.
+                Se permiten caracteres alfanuméricos, guiones, apóstrofes, comas y espacios al buscar un nombre de acceso.
               </div></div>';
 
 $evil_input = "1";
@@ -238,19 +276,19 @@ $evil_input = "1";
 if (!preg_match('/^([[:alnum:]]|_|.|-|@)+$/', $email_addy)) {
 if ($email_addy == "") {} else {
 
-	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+	echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                Alphanumeric characters, underscores, periods, and hyphens are allowed when searching for an Email Address
+                Se permiten caracteres alfanuméricos, guiones, apóstrofes, comas y espacios al buscar una dirección de email.
               </div></div>';
 $evil_input = "1";
 }}
 if (($post_username == "") && ($display_name == "") && ($email_addy == "")) {
 
-	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+	echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-                A Username, Display Name, or Email Address is required.
+                Se requiere un nombre de usuario, un nombre acceso, una dirección de email, una oficina o un grupo.
               </div></div>';
 
 
@@ -285,41 +323,79 @@ if (isset($evil_input)) {
         <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
     echo '<div class="box-header with-border">
-	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Search for User</h3>
+	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Buscar Usuario</h3>
 	               </div><div class="box-body">';
 
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
-                      name='post_username' value='$post_username'
-                      onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
-                      form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
-                      name='display_name' value='$display_name'
-                      onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
-                      form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text style='color:red;' size='25' maxlength='75'
-                      name='email_addy' value='$email_addy'
-                      onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
-                      form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\"></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'>
-                      <select name='office_name' onchange='group_names();'>\n";
-echo "                      </select></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'>
-                      <select name='group_name' onfocus='group_names();'>
-                        <option selected>$group_name</option>\n";
-echo "                      </select></td></tr>\n";
-echo "              <tr><td class=table_rows align=right colspan=3 style='color:#27408b;font-family:Tahoma;'><a class=footer_links
-                      href=\"usersearch.php\" style='text-decoration:underline;'>reset form</a></td></tr>\n";
+echo "              <tr>
+											<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+												Nombre de usuario:
+											</td>
+
+											<td colspan=2 width=80% style='padding-left:20px;'>
+												<input type='text' size='25' maxlength='50' name='post_username' value='$post_username' onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
+                      			form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\">
+											</td>
+										</tr>\n";
+
+echo "              <tr>
+											<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+												Nombre de acceso:
+											</td>
+
+											<td colspan=2 width=80% style='padding-left:20px;'>
+												<input type='text' size='25' maxlength='50' name='display_name' value='$display_name' onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
+                      			form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\">
+											</td>
+										</tr>\n";
+
+echo "              <tr>
+											<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+												Dirección de Email:
+											</td>
+
+											<td colspan=2 width=80% style='padding-left:20px;'>
+												<input type='text size='25' maxlength='75' name='email_addy' value='$email_addy' onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
+                      			form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\">
+											</td>
+										</tr>\n";
+
+echo "              <tr>
+											<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+												Oficina:
+											</td>
+
+											<td colspan=2 width=80% style='padding-left:20px;'>
+                      	<select name='office_name' onchange='group_names();'>\n";
+echo "                      </select>
+											</td>
+										</tr>\n";
+
+echo "              <tr>
+											<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+												Grupo de trabajo:
+											</td>
+
+											<td colspan=2 width=80% style='padding-left:20px;'>
+                      	<select name='group_name' onfocus='group_names();'>
+                        	<option selected>$group_name</option>\n";
+echo "                      </select>
+											</td>
+										</tr>\n";
 echo "            </table>\n";
 				      echo '<div class="box-footer">
-				                  <button type="submit" name="submit" value="Create User" class="btn btn-info">Search</button>
-				                  <button class="btn btn-default pull-right"><a href="usersearch.php">Cancel</a></button>
+																<button id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+																	<i class="fa fa-ban"></i>
+																	<a href="groupadmin.php">
+																		Cancelar
+																	</a>
+																</button>
+
+																<button id="formButtons" type="submit" name="submit" value="Search User" class="btn btn-info pull-right">
+																	Buscar
+																	<i class="fa fa-search"></i>
+																</button>
 				                </div></form>';
 			echo '</div></div></div></div>';
 		      include '../theme/templates/endmaincontent.inc';
@@ -422,26 +498,39 @@ $row_count++;
 
 if ($row_count == "1") {
 
+	echo '<div class="row">
+				<div id="float_window" class="col-md-10">
+					<div class="box box-info"> ';
+		echo '<div class="box-header with-border">
+									 <h3 class="box-title"><i class="fa fa-search-plus"></i> Buscar Usuario</h3>
+								 </div><div class="box-body">';
+
 echo "            <table class='table'>\n";
 echo "              <tr><th>User Search Summary</th></tr>\n";
-echo "              <tr><td>Search Results for \"$tmp_var\" in $tmp_var2</td></tr>\n";
+echo "              <tr>
+											<td>
+												Resultados de la búsqueda de \"$tmp_var\" in $tmp_var2
+											</td>
+										</tr>\n";
 echo "            </table>\n";
+
 echo "            <table class=table>\n";
 echo "              <tr>\n";
 echo "                <th>&nbsp;</th>\n";
-echo "                <th>Username</th>\n";
-echo "                <th>Display Name</th>\n";
-// echo "                <th>Email Address</th>\n";
-echo "                <th>Office</th>\n";
-echo "                <th>Group</th>\n";
-echo "                <th>Disabled</th>\n";
-echo "                <th>Sys Admin</th>\n";
-echo "                <th>Time Admin</th>\n";
-echo "                <th>Reports</th>\n";
-echo "                <th>Edit</th>\n";
-echo "                <th>Chg Pwd</th>\n";
-echo "                <th>Delete</th>\n";
+echo "                <th>Usuario</th>\n";
+echo "                <th>Acceso</th>\n";
+// echo "                <th>Email</th>\n";
+echo "                <th>Oficina</th>\n";
+echo "                <th>Grupo</th>\n";
+echo "                <th>Deshabilitada</th>\n";
+echo "                <th>Admin</th>\n";
+echo "                <th>A.Tiempos</th>\n";
+echo "                <th>Reportador</th>\n";
+echo "                <th>Editar</th>\n";
+echo "                <th>Contraseña</th>\n";
+echo "                <th>Eliminar</th>\n";
 echo "              </tr>\n";
+
 }
 
 $row_color = ($row_count % 2) ? $color2 : $color1;
@@ -500,10 +589,10 @@ if ($row_count == "0") {
 
 	$post_username = stripslashes($post_username);
 
-	echo ' <div class="col-md-4"><div class="alert alert-warning alert-dismissible">
+	echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 	            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 	            <h4><i class="icon fa fa-warning"></i> Alert!</h4>
-	            A user was not found matching your criteria. Please try again.
+		            No se ha encontrado ningún usuario. Por fovor, intentelo de nuevo.
 	          </div></div>';
 
 
@@ -511,39 +600,81 @@ if ($row_count == "0") {
 	    <div id="float_window" class="col-md-10">
 	      <div class="box box-info"> ';
 	echo '<div class="box-header with-border">
-	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Search for User</h3>
+	                 <h3 class="box-title"><i class="fa fa-search-plus"></i> Buscar Usuario</h3>
 	               </div><div class="box-body">';
 	echo "            <form name='form' action='$self' method='post'>\n";
 	echo "            <table align=center class=table>\n";
-	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 width=80%
-	                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
-	                      name='post_username' value=\"$post_username\"
-	                      onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
-	                      form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
-	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
-	                      style='padding-left:20px;'><input type='text' style='color:red;' size='25' maxlength='50'
-	                      name='display_name' value=\"$display_name\"
-	                      onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
-	                      form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\"></td></tr>\n";
-	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
-	                      style='padding-left:20px;'><input type='text style='color:red;' size='25' maxlength='75'
-	                      name='email_addy' value=\"$email_addy\"
-	                      onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
-	                      form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\"></td></tr>\n";
-	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td colspan=2 width=80%
-	                      style='padding-left:20px;'>
-	                      <select name='office_name' onchange='group_names();'>\n";
-	echo "                      </select></td></tr>\n";
-	echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td colspan=2 width=80%
-	                      style='padding-left:20px;'>
-	                      <select name='group_name' onfocus='group_names();'>
-	                        <option selected>$group_name</option>\n";
-	echo "                      </select></td></tr>\n";
-	echo "              <tr><td class=table_rows align=right colspan=3> </td></tr>\n";
+	echo "              <tr>
+												<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+													Nombre de usuario:
+												</td>
+
+												<td colspan=2 width=80% style='padding-left:20px;'>
+													<input type='text' size='25' maxlength='50' name='post_username'
+	                      			onFocus=\"javascript:form.display_name.disabled=true;form.email_addy.disabled=true;
+	                      			form.display_name.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\">
+												</td>
+											</tr>\n";
+
+	echo "              <tr>
+												<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+													Nombre de acceso:
+												</td>
+
+												<td colspan=2 width=80% style='padding-left:20px;'>
+													<input type='text' size='25' maxlength='50' name='display_name'
+	                      			onFocus=\"javascript:form.post_username.disabled=true;form.email_addy.disabled=true;
+	                      			form.post_username.style.background='#eeeeee';form.email_addy.style.background='#eeeeee';\">
+												</td>
+											</tr>\n";
+
+	echo "              <tr>
+												<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+													Dirección de Email:
+												</td>
+
+												<td colspan=2 width=80% style='padding-left:20px;'>
+													<input type='text size='25' maxlength='75' name='email_addy'
+													 		onFocus=\"javascript:form.post_username.disabled=true;form.display_name.disabled=true;
+	                      			form.post_username.style.background='#eeeeee';form.display_name.style.background='#eeeeee';\">
+												</td>
+											</tr>\n";
+
+	echo "              <tr>
+												<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+													Oficina:
+												</td>
+
+												<td colspan=2 width=80% style='padding-left:20px;'>
+	                      	<select name='office_name' onchange='group_names();'>\n";
+	echo "                      </select>
+												</td>
+											</tr>\n";
+
+	echo "              <tr>
+												<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+													Grupo de trabajo:
+												</td>
+
+												<td colspan=2 width=80% style='padding-left:20px;'>
+	                      	<select name='group_name' onfocus='group_names();'>
+	                        	<option selected>$group_name</option>\n";
+	echo "                      </select>
+												</td>
+											</tr>\n";
 echo "            	</table>\n";
 	echo '<div class="box-footer">
-	            <button type="submit" name="submit" value="Create User" class="btn btn-info">Search</button>
-	            <button class="btn btn-default pull-right"><a href="usersearch.php">Cancel</a></button>
+									<button id="formButtons" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+										<i class="fa fa-ban"></i>
+										<a href="groupadmin.php">
+											Cancelar
+										</a>
+									</button>
+
+									<button id="formButtons" type="submit" name="submit" value="Search User" class="btn btn-info pull-right">
+										Buscar
+										<i class="fa fa-search"></i>
+									</button>
 	          </div></form>';
 	echo '</div></div></div></div>';
 
@@ -556,6 +687,7 @@ echo "            	</table>\n";
 } else {
 
 echo "            </table>\n";
+echo '</div></div></div></div>';
 include '../theme/templates/endmaincontent.inc';
 include '../footer.php';
 include '../theme/templates/controlsidebar.inc';
