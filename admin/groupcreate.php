@@ -354,7 +354,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
                         <tr>
                           <td>
                             <div class='box-footer'>
-                              <button id='formButtons' class='btn btn-info pull-right'>
+                              <button id='formButtons' class='btn btn-success pull-right'>
                                 <a href='groupadmin.php' >
                                   Aceptar
                                 </a>
