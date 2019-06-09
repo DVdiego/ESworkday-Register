@@ -109,16 +109,14 @@ echo '           <div class="box-header with-border">
                  </div>
                  <div class="box-body">';
 echo "              <table class=table>\n";
-echo "                <form name='form' action='$self' method='post'>\n";echo "                  </tr>\n";
-
-echo "                  <tr><td height=15></td></tr>\n";
-echo "                  <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de la oficina:</td>
+echo "                <form name='form' action='$self' method='post'>\n";
+echo "                  <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nombre de la oficina:</td>
                             <td align=left class=table_rows width=80% style='padding-left:20px;'><input type='hidden' name='post_officename' value=\"$officename\">$get_office</td>
                         </tr>\n";
-echo "                  <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Número de grupos:</td><td align=left width=80%
+echo "                  <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Número de grupos:</td><td align=left width=80%
                          style='padding-left:20px;' class=table_rows><input type='hidden' name='group_cnt' value=\"$group_cnt\">$group_cnt</td>
                        </tr>\n";
-echo "                  <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Número de usuaros:</td>
+echo "                  <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Número de usuaros:</td>
                           <td align=left class=table_rows width=80% style='padding-left:20px;'>
                             <input type='hidden' name='user_cnt' value=\"$user_cnt\">$user_cnt</td>
                         </tr>\n";
@@ -134,32 +132,23 @@ echo "                <table align=center width=60% border=0 cellpadding=0 cells
   }
 
 echo "                  <select name='office_name' onchange='group_names();'>
-                           <option selected>Choose One</option>\n";
+                           <option selected>Elige una</option>\n";
 echo "                  </select>&nbsp;&nbsp;&nbsp;¿a qué grupo?\n";
 echo "                  <select name='group_name'>\n";
 echo "                  </select>
                        </td></tr>
                      </table>\n";
+echo                 '<div class="box-footer">
+                       <button type="button" id="formButtons" onclick="location=\'officeadmin.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                         <i class="fa fa-ban"></i>
+                         Cancelar
+                       </button>
 
-echo "               <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "                 <tr>
-                          <td width=30>
-                            <button id='formButtons' type='submit' class='btn btn-danger' value='Delete Ofice'>
-                              Eliminar
-                            </button>
-                          </td>
-
-                          <td>
-                            <button id='formButtons' class='btn btn-default pull-right'>
-                              <a href='officeadmin.php' style='font-weight bold;'>
-                                Cancelar
-                              </a>
-                            </button>
-                          </td>
-                        </tr>
-                     </table>
-                   </form>
-                 </table>\n";
+                       <button id="formButtons" type="submit" name="submit" value="Delete Office" class="btn btn-success pull-right">
+                        <i class="fa fa-trash"></i>
+                        Eliminar
+                      </button>
+                    </div></form>';
 echo '         </div>
             </div>
           </div>
@@ -181,38 +170,33 @@ include '../footer.php';exit;
                    <div class="box-body">';
 echo "               <table class=table>\n";
 echo "                 <form name='form' action='$self' method='post'>\n";
-
-echo "                  <tr><td height=15></td></tr>\n";
-echo "                  <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de la oficina:</td><td align=left class=table_rows
+echo "                  <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nombre de la oficina:</td><td align=left class=table_rows
                         width=80% style='padding-left:20px;'><input type='hidden' name='post_officename' value=\"$officename\">$get_office</td>
                         </tr>\n";
-echo "                  <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Número de grupos:</td><td align=left width=80%
+echo "                  <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Número de grupos:</td><td align=left width=80%
                         style='padding-left:20px;'class=table_rows><input type='hidden' name='group_cnt' value=\"$group_cnt\">$group_cnt</td>
                         </tr>\n";
-echo "                  <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Número de usuarios:</td><td align=left width=80%
+echo "                  <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Número de usuarios:</td><td align=left width=80%
                         style='padding-left:20px;' class=table_rows><input type='hidden' name='user_cnt' value=\"$user_cnt\">$user_cnt</td>
                         </tr>\n";
 echo "                  <input type='hidden' name='post_officeid' value=\"$officeid\">\n";
-echo "                  <tr><td height=15></td></tr>\n";
 echo "                  <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "                    <tr><td height=40>&nbsp;</td></tr>\n";
 echo "                    <input type='hidden' name='group_name' value='no_group_users'>\n";
 echo "                    <input type='hidden' name='office_name' value='no_office_users'>\n";
 echo "                    <tr>
-                            <td width=30>
-                              <button id='formButtons' type='submit' class='btn btn-danger' value='Delete Office'>
-                                Eliminar
-                              </button
-                              <input type='image' name='submit' value='Delete Office' src='../images/buttons/next_button.png'>
-                            </td>
+                            <td width=30>\n";
+echo                 '<div class="box-footer">
+                         <button type="button" id="formButtons" onclick="location=\'officeadmin.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                           <i class="fa fa-ban"></i>
+                           Cancelar
+                         </button>
 
-                            <td>
-                              <button id='formButtons' class='btn btn-default pull-right'>
-                                <a href='officeadmin.php' style='font-weight bold;'>
-                                  Cancelar
-                                </a>
-                              </button>
-                            </td>
+                         <button id="formButtons" type="submit" name="submit" value="Delete Office" class="btn btn-danger pull-right">
+                          <i class="fa fa-trash"></i>
+                          Eliminar
+                        </button>
+                      </div></form>';
+echo "                     </td>
                           </tr>
                          </table>
                        </form>
@@ -335,7 +319,7 @@ echo "            <form name='form' action='$self' method='post'>\n";
 if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_officename)) {
 
               echo "    <tr>
-                          <td class=table_rows height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
                             Nombre de la oficina:
                           </td>
 
@@ -345,7 +329,7 @@ if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_offi
                         </tr>\n";
 
               echo "    <tr>
-                          <td class=table_rows height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
                             Número de grupos:
                           </td>
 
@@ -355,7 +339,7 @@ if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_offi
                         </tr>\n";
 
               echo "    <tr>
-                          <td class=table_rows height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='font-weight:bold;padding-left:32px;' nowrap>
                             Número de usuarios:
                           </td>
 
@@ -374,12 +358,12 @@ if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_offi
 
   if ($user_cnt == 1) {
                 echo "   <tr>
-                            <td class=table_rows height=53>
+                            <td class=table_rows_output height=53>
                               ¿A qué oficina desea mover al usuario?&nbsp;&nbsp;&nbsp;&nbsp;\n";
 
   } else {
                 echo "   <tr>
-                            <td class=table_rows height=53>
+                            <td class=table_rows_output height=53>
                               ¿A qué oficina desea mover a los usuarios?&nbsp;&nbsp;&nbsp;&nbsp;\n";
   }
 
@@ -433,7 +417,7 @@ if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_offi
   $result6 = mysqli_query($GLOBALS["___mysqli_ston"], $query6);
 
   echo "              <tr>
-                        <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                        <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                           Nombre de la oficina:
                         </td>
 
@@ -442,7 +426,7 @@ if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_offi
                       </tr>\n";
 
   echo "              <tr>
-                        <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                        <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                           Número de grupos:
                         </td>
 
@@ -451,7 +435,7 @@ if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_offi
                       </tr>\n";
 
   echo "              <tr>
-                        <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                        <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                           Número de usuarios:
                         </td>
 
@@ -468,11 +452,12 @@ if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_offi
 
   echo "              <tr>
                         <td>
-                          <button id='formButtons' class='btn btn-success'>
-                           <a href='officeadmin.php' style='font-weight: bold;color: white;' >
+                        <div class='box-footer'>
+                          <button id='formButtons' onclick='location=\"officeadmin.php\"' class='btn btn-success pull-right'>
                             Aceptar
-                           </a>
+                            <i class='fa fa-check'></i>
                           </button>
+                        </div>
                         </td>
                       </tr>
                     </table>

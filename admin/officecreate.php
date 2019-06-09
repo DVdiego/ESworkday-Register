@@ -502,10 +502,12 @@ elseif ($request == 'POST') {
       echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
       echo "              <tr>
                             <td>
-                              <button id='formButtons' class='btn btn-success pull-left'>
+                            <div class='box-footer'>
+                              <button id='formButtons' onclick='location=\"officeadmin.php\"' class='btn btn-success pull-right'>
                                 Aceptar
-                                <a href='officeadmin.php'>
+                                <i class='fa fa-check'></i>
                               </button>
+                            </div>
                             </td>
                           </tr>
                         </table>
@@ -575,11 +577,12 @@ elseif ($request == 'POST') {
     //DIEGO cambie la referencia officeadmin.php
     echo "              <tr>
                           <td
-                            <button id='formButtons' class='btn btn-success pull-right'>
-                              <a href='officeadmin.php' style='color: white; font-weight: bold;'>
-                                Aceptar
-                              </a>
+                          <div class='box-footer'>
+                            <button id='formButtons' onclick='location=\"officeadmin.php\"' class='btn btn-success pull-right'>
+                              Aceptar
+                              <i class='fa fa-check'></i>
                             </button>
+                          </div>
                           </td>
                         </tr>
                       </table>
