@@ -30,7 +30,7 @@
  */
 function office_names() {
     var select = document.form.office_name;
-    select.options[0] = new Option("Choose One");
+    select.options[0] = new Option("Elige uno");
     select.options[0].value = '';
 
     <?php
@@ -64,7 +64,7 @@ function office_names() {
 function group_names() {
     var offices_select = document.form.office_name;
     var groups_select = document.form.group_name;
-    groups_select.options[0] = new Option("Choose One");
+    groups_select.options[0] = new Option("Elige uno");
     groups_select.options[0].value = '';
 
     if (offices_select.options[offices_select.selectedIndex].value != '') {

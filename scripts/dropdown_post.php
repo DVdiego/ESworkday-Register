@@ -50,7 +50,7 @@ while ($row=mysqli_fetch_array($result)) {
 function group_names() {
 var offices_select = document.form.office_name;
 var groups_select = document.form.group_name;
-groups_select.options[0] = new Option("Choose One");
+groups_select.options[0] = new Option("Elige uno");
 groups_select.options[0].value = '';
 
 if (offices_select.options[offices_select.selectedIndex].value != '') {

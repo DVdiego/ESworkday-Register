@@ -61,61 +61,158 @@ if ($request == 'GET') {
 
 		echo "            <form name='form' action='$self' method='post'>\n";
 		echo "            <table align=center class=table>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>&nbsp;*Nombre completo:</td><td colspan=2 width=80%>
-		                      <input type='text' size='25' maxlength='50' name='post_username'></td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>DNI:</td><td colspan=2 width=80%>
-													 <input type='text' size='25' maxlength='10' name='user_dni'>&nbsp;*</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de usuario:</td><td colspan=2 width=80%>
-		                      <input type='text' size='25' maxlength='50' name='display_name'>&nbsp;*</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contraseña:</td><td colspan=2 width=80%
-		                      style='padding-left:20px;'><input type='password' size='25' maxlength='25' name='password'></td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirmar contraseña:</td><td colspan=2 width=80%
-		                      style='padding-left:20px;'>
-		                      <input type='password' size='25' maxlength='25' name='confirm_password'></td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de email:</td><td colspan=2 width=80%>
-		                      <input type='text' size='25' maxlength='75' name='email_addy'>&nbsp;*</td></tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														&nbsp;*Nombre completo:
+													</td>
 
+													<td class=table_rows width=80% style='padding-left:20px;'>
+														<input type='text' size='25' maxlength='50' name='post_username'>
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														&nbsp;*Usuario:
+													</td>
+
+													<td class=table_rows width=80% style='padding-left:20px;'>
+		                      	<input type='text' size='25' maxlength='50' name='display_name'>
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														&nbsp;*DNI:
+													</td>
+
+													<td class=table_rows width=80% style='padding-left:20px;'>
+												 		<input type='text' size='25' maxlength='10' name='user_dni'>
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														Contraseña:
+													</td>
+
+													<td class=table_rows width=80% style='padding-left:20px;'>
+														<input type='password' size='25' maxlength='25' name='password'>
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														Confirmar contraseña:
+													</td>
+
+													<td class=table_rows width=80% style='padding-left:20px;'>
+		                      	<input type='password' size='25' maxlength='25' name='confirm_password'>
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														&nbsp;*Dirección de email:
+													</td>
+
+													<td class=table_rows width=80% style='padding-left:20px;'>
+		                      	<input type='text' size='25' maxlength='75' name='email_addy'>
+													</td>
+												</tr>\n";
 
 		$query = "select * from ".$db_prefix."contracts order by type_contracts asc";
 		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Tipo de contrato::</td><td colspan=2 width=80%>
-		                      <select name='type_contracts'>\n";
-		echo "                        <option value ='1'>Choose One</option>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														&nbsp;*Tipo de contrato:
+													</td>
+
+													<td class=table_rows width=80% style='padding-left:20px;'>
+		                      	<select name='type_contracts'>\n";
+		echo "                        <option value ='1'>Elige uno</option>\n";
 
 		while ($row=mysqli_fetch_array($result)) {
 		  echo "                        <option>".$row['type_contracts']."</option>\n";
 		}
-		echo "                </select>&nbsp;*</td>
+		echo "                </select></td>
 		                    </tr>\n";
 		((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
 
 
 
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td colspan=2 width=80%>
-		                      <select name='office_name' onchange='group_names();'>\n";
-		echo "                      </select>&nbsp;*</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Grupo de trabajo:</td><td colspan=2 width=80%>
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														&nbsp;*Oficina:
+													</td>
+
+													<td class=table_rows width=80% style='padding-left:20px;'>
+		                      	<select name='office_name' onchange='group_names();'>\n";
+		echo "                      </select>
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														&nbsp;*Grupo de trabajo:
+													</td>
+
+													<td class=table_rows width=80% style='padding-left:20px;'>
 		                      <select name='group_name'>\n";
-		echo "                      </select>&nbsp;*</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Usuario administrador?</td>\n";
-		echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='admin_perms' value='1'>&nbsp;Si
-		                    <input type='radio' name='admin_perms' value='0' checked>&nbsp;No</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Administrador de tiempos?</td>\n";
-		echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='time_admin_perms' value='1'>&nbsp;Si
-		                    <input type='radio' name='time_admin_perms' value='0' checked>&nbsp;No</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Usuario reportador?</td>\n";
-		echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='reports_perms' value='1'>&nbsp;Si
-		                    <input type='radio' name='reports_perms' value='0' checked>&nbsp;No</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Cuenta deshabilitada?</td>\n";
-		echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='disabled' value='1'>&nbsp;Si
-		                    <input type='radio' name='disabled' value='0' checked>&nbsp;No</td></tr>\n";
-		echo "              <tr><td class=table_rows align=right colspan=3>*&nbsp;Campo obligatorio&nbsp;</td></tr>\n";
+		echo "                      </select>
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														¿Permisos de administrador?
+													</td>\n";
+
+		echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+														<input type='radio' name='admin_perms' value='1'>&nbsp;Si
+		                    		<input type='radio' name='admin_perms' value='0' checked>&nbsp;No
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														¿Administrador de tiempos?
+													</td>\n";
+
+		echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+														<input type='radio' name='time_admin_perms' value='1'>&nbsp;Si
+		                    		<input type='radio' name='time_admin_perms' value='0' checked>&nbsp;No
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														¿Permisos de reportador?
+													</td>\n";
+
+		echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+														<input type='radio' name='reports_perms' value='1'>&nbsp;Si
+		                    		<input type='radio' name='reports_perms' value='0' checked>&nbsp;No
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														¿Cuenta deshabilitada?
+													</td>\n";
+
+		echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+														<input type='radio' name='disabled' value='1'>&nbsp;Si
+		                    		<input type='radio' name='disabled' value='0' checked>&nbsp;No
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows align=right colspan=3>*&nbsp;Campos obligatorios&nbsp;
+													</td>
+												</tr>\n";
 		echo "            </table>\n";
 		echo "						<div class='box-footer'>
-												<button id='formButtons' class='btn btn-default pull-right' style='margin-left: 10px;'>Cancelar<a href='usercreate.php'></a></button>
-												<button id='formButtons' type='submit' name='submit' value='Create User' class='btn btn-success pull-right'>Crear usuario</button><a href='usercreate.php'></a>
+												<button type='button' id='formButtons' onclick='location=\"useradmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+													<i class='fa fa-ban'></i>
+													Cancelar
+												</button>
+
+												<button id='formButtons' type='submit' name='submit' value='Create User' class='btn btn-success pull-right'>
+													<i class='fa fa-plus'></i>
+													Crear usuario
+												</button>
 											</div>";
 	  echo "			</div></form>";
 
@@ -135,12 +232,12 @@ elseif ($request == 'POST') {
 		include 'header_post.php'; include 'topmain.php'; include 'leftmain.php';
 
 		$post_username = stripslashes($_POST['post_username']);
-		@$user_dni = $_POST['user_dni'];
+		@$user_dni = stripslashes($_POST['user_dni']);
 
 		$display_name = stripslashes($_POST['display_name']);
-		$password = $_POST['password'];
-		$confirm_password = $_POST['confirm_password'];
-		$email_addy = $_POST['email_addy'];
+		$password = stripslashes($_POST['password']);
+		$confirm_password = stripslashes($_POST['confirm_password']);
+		$email_addy = stripslashes($_POST['email_addy']);
 		$type_contracts = $_POST['type_contracts'];
 		$office_name = $_POST['office_name'];
 		@$group_name = $_POST['group_name'];
@@ -382,38 +479,81 @@ elseif ($request == 'POST') {
 				    <div id="float_window" class="col-md-10">
 				      <div class="box box-info"> ';
 				echo '<div class="box-header with-border">
-				                 <h3 class="box-title"><i class="fa fa-user-plus"></i>Crear usuario</h3>
+				                 <h3 class="box-title"><i class="fa fa-user-plus"></i> Crear usuario</h3>
 				               </div><div class="box-body">';
 				echo "            <form name='form' action='$self' method='post'>\n";
 				echo "            <table class=table>\n";
-				echo "              <tr><td class=table_rows  height=25 width=20% style='padding-left:32px;' nowrap>Nombre completo:</td><td colspan=2 width=80%
-				                      style='font-family:Tahoma;font-size:11px;padding-left:20px;'>
-				                      <input type='text' size='25' maxlength='50' name='post_username' value=\"$post_username\">&nbsp;*</td></tr>\n";
-				echo "              <tr><td class=table_rows  height=25 width=20% style='padding-left:32px;' nowrap>DNI:</td><td colspan=2 width=80%
-				                      style='font-family:Tahoma;font-size:11px;padding-left:20px;'>
-				                      <input type='text' size='25' maxlength='50' name='post_username' value=\"$user_dni\">&nbsp;*</td></tr>\n";
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de usuario:</td><td colspan=2 width=80%
-				                      style='font-family:Tahoma;font-size:11px;padding-left:20px;'>
-				                      <input type='text' size='25' maxlength='50' name='display_name' value=\"$display_name\">&nbsp;*</td></tr>\n";
+				echo "              <tr>
+															<td class=table_rows_output  height=25 width=20% style='padding-left:32px;' nowrap>
+																&nbsp;*Nombre completo:
+															</td>
+
+															<td class='table_rows' width=80% style='padding-left:20px;'>
+				                      	<input type='text' size='25' maxlength='50' name='post_username' value=\"$post_username\">
+															</td>
+														</tr>\n";
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																&nbsp;*Usuario:
+															</td>
+
+															<td class='table_rows' width=80% style='padding-left:20px;'>
+				                      	<input type='text' size='25' maxlength='50' name='display_name' value=\"$display_name\">
+															</td>
+														</tr>\n";
+				echo "              <tr>
+															<td class=table_rows_output  height=25 width=20% style='padding-left:32px;' nowrap>
+																&nbsp;*DNI:
+															</td>
+
+															<td class='table_rows' width=80% style='padding-left:20px;'>
+				                      	<input type='text' size='25' maxlength='50' name='post_username' value=\"$user_dni\">
+															</td>
+														</tr>\n";
+
 
 				if (!empty($string)) {$post_username = addslashes($post_username);}
 				if (!empty($string2)) {$displayname = addslashes($display_name);}
 
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contraseña:</td><td colspan=2 width=80%
-				                      style='padding-left:20px;'><input type='password' size='25' maxlength='25' name='password'></td></tr>\n";
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirmar contraseña:</td><td colspan=2 width=80%
-				                      style='padding-left:20px;'>
-				                      <input type='password' size='25' maxlength='25' name='confirm_password'></td></tr>\n";
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de email:</td><td colspan=2 width=80%
-				                      style='font-family:Tahoma;font-size:11px;padding-left:20px;'>
-				                      <input type='text' size='25' maxlength='75' name='email_addy' value=\"$email_addy\">&nbsp;*</td></tr>\n";
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																Contraseña:
+															</td>
+
+															<td class='table_rows' width=80% style='padding-left:20px;'>
+																<input type='password' size='25' maxlength='25' name='password'>
+															</td>
+														</tr>\n";
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																Confirmar contraseña:
+															</td>
+
+															<td class='table_rows' width=80% style='padding-left:20px;'>
+				                      	<input type='password' size='25' maxlength='25' name='confirm_password'>
+															</td>
+														</tr>\n";
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																&nbsp;*Dirección de email:
+															</td>
+
+															<td class='table_rows' width=80% style='padding-left:20px;'>
+				                      	<input type='text' size='25' maxlength='75' name='email_addy' value=\"$email_addy\">
+															</td>
+														</tr>\n";
 
 				$query = "select * from ".$db_prefix."contracts order by type_contracts asc";
 				$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Tipo de contrato:</td><td colspan=2 width=80%>
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																&nbsp;*Tipo de contrato:
+															</td>
+
+															<td class='table_rows' width=80% style='padding-left:20px;'>
 															<select name='type_contracts'>\n";
-				echo "                        <option value ='1'>Choose One</option>\n";
+				echo "                        <option value ='1'>Elige uno</option>\n";
 
 				while ($row=mysqli_fetch_array($result)) {
 
@@ -425,63 +565,119 @@ elseif ($request == 'POST') {
 
 
 				}
-				echo "                </select>&nbsp;*</td>
+				echo "                </select></td>
 														</tr>\n";
 				((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
 
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td colspan=2 width=80%>
-				                      <select name='office_name' onchange='group_names();'>\n";
-				echo "                </select>&nbsp;*</td></tr>\n";
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Grupo de trabajo:</td><td colspan=2 width=80%>
-				                      <select name='group_name' onfocus='group_names();'>
-				                        <option selected>$group_name</option>\n";
-				echo "                </select>&nbsp;*</td></tr>\n";
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																&nbsp;*Oficina:
+															</td>
 
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Usuario administrador?</td>\n";
+															<td class='table_rows' width=80% style='padding-left:20px;'>
+				                      	<select name='office_name' onchange='group_names();'>\n";
+				echo "                		</select>
+															</td>
+														</tr>\n";
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																&nbsp;*Grupo de trabajo:
+															</td>
+
+															<td class='table_rows' width=80% style='padding-left:20px;'>
+				                      	<select name='group_name' onfocus='group_names();'>
+				                        	<option selected>$group_name</option>\n";
+				echo "                	</select>
+															</td>
+														</tr>\n";
+
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																¿Permisos de administrador?
+															</td>\n";
 				if ($admin_perms == "1") {
-				echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='admin_perms' value='1'
-				                    checked>&nbsp;Yes<input type='radio' name='admin_perms' value='0'>&nbsp;No</td></tr>\n";
+				echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+																<input type='radio' name='admin_perms' value='1' checked>&nbsp;Si
+																<input type='radio' name='admin_perms' value='0'>&nbsp;No
+															</td>
+														</tr>\n";
 				} else {
-				echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='admin_perms' value='1'>&nbsp;Yes
-				                    <input type='radio' name='admin_perms' value='0' checked>&nbsp;No</td></tr>\n";
+				echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+																<input type='radio' name='admin_perms' value='1'>&nbsp;Si
+				                    		<input type='radio' name='admin_perms' value='0' checked>&nbsp;No
+															</td>
+														</tr>\n";
 				}
 
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Usuario modificador de tiempos?</td>\n";
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																¿Administrador de tiempos?
+															</td>\n";
 				if ($time_admin_perms == "1") {
-				echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='time_admin_perms' value='1'
-				                    checked>&nbsp;Yes<input type='radio' name='time_admin_perms' value='0'>&nbsp;No</td></tr>\n";
+				echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+																<input type='radio' name='time_admin_perms' value='1' checked>&nbsp;Si
+																<input type='radio' name='time_admin_perms' value='0'>&nbsp;No
+															</td>
+														</tr>\n";
 				} else {
-				echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='time_admin_perms' value='1'>&nbsp;Yes
-				                    <input type='radio' name='time_admin_perms' value='0' checked>&nbsp;No</td></tr>\n";
+				echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+																<input type='radio' name='time_admin_perms' value='1'>&nbsp;Si
+				                    		<input type='radio' name='time_admin_perms' value='0' checked>&nbsp;No
+															</td>
+														</tr>\n";
 				}
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Usuario reportador?</td>\n";
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																¿Permisos de reportador?
+															</td>\n";
 				if ($reports_perms == "1") {
-				echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='reports_perms' value='1'
-				                    checked>&nbsp;Yes<input type='radio' name='reports_perms' value='0'>&nbsp;No</td></tr>\n";
+				echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+																<input type='radio' name='reports_perms' value='1' checked>&nbsp;Si
+																<input type='radio' name='reports_perms' value='0'>&nbsp;No
+															</td>
+														</tr>\n";
 				} else {
-				echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='reports_perms' value='1'>&nbsp;Yes
-				                    <input type='radio' name='reports_perms' value='0' checked>&nbsp;No</td></tr>\n";
+				echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+																<input type='radio' name='reports_perms' value='1'>&nbsp;Si
+				                    		<input type='radio' name='reports_perms' value='0' checked>&nbsp;No
+															</td>
+														</tr>\n";
 				}
-				echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>¿Cuenta de usuario deshabilitada?</td>\n";
+				echo "              <tr>
+															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+																¿Cuenta deshabilitada?
+															</td>\n";
 				if ($post_disabled == "1") {
-				echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='disabled' value='1'
-				                    checked>&nbsp;Yes<input type='radio' name='disabled' value='0'>&nbsp;No</td></tr>\n";
+				echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+																<input type='radio' name='disabled' value='1' checked>&nbsp;Si
+																<input type='radio' name='disabled' value='0'>&nbsp;No
+															</td>
+														</tr>\n";
 				} else {
-				echo "                <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='disabled' value='1'>&nbsp;Yes
-				                    <input type='radio' name='disabled' value='0' checked>&nbsp;No</td></tr>\n";
+				echo "                <td class='table_rows' width=80% style='padding-left:20px;'>
+																<input type='radio' name='disabled' value='1'>&nbsp;Si
+				                    		<input type='radio' name='disabled' value='0' checked>&nbsp;No
+															</td>
+														</tr>\n";
 				}
-				echo "              <tr><td class=table_rows align=right colspan=3 >*&nbsp;required&nbsp;</td></tr>\n";
+				echo "              <tr>
+															<td class=table_rows_output align=right colspan=3
+																*&nbsp;Campos requeridos&nbsp;
+															</td>
+														</tr>\n";
 				echo "            </table>\n";
-				// echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-				// echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-				// echo "              <tr><td width=30><input type='image' name='submit' value='Create User' align='middle'
-				//                      src='../images/buttons/next_button.png'></td><td><a href='useradmin.php'><img src='../images/buttons/cancel_button.png'
-				//                      border='0'></td></tr></table></form>\n";
 								      echo '<div class="box-footer">
-								                  <button id="formButtons" type="submit" name="submit" value="Create User" class="btn btn-info">Crear usuario</button>
-								                  <button id="formButtons" class="btn btn-default pull-right">Cancelar<a href="usercreate.php" /></button>
-								                </div></form>';
+																<button type="button" id="formButtons" onclick="location=\'useradmin.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+																	<i class="fa fa-ban"></i>
+																	Cancelar
+																</button>
+
+																<button id="formButtons" type="submit" name="submit" value="Create User" class="btn btn-success pull-right">
+																	<i class="fa fa-plus"></i>
+																	Crear usuario
+																</button>
+								            </div></form>';
 								      echo '</div></div></div></div>';
 						      include '../theme/templates/endmaincontent.inc';
 						      include '../footer.php';
@@ -549,17 +745,19 @@ elseif ($request == 'POST') {
 		echo "            <br />\n";
 		*/
 
-
+		echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
+		             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		             <h4><i class="icon fa fa-check-circle"></i>¿Usuario creado!</h4>
+		                El usuario ha sido creado satisfactoriamente
+		             </div></div>';
 		echo '<div class="row">
 		    <div id="float_window" class="col-md-10">
 		      <div class="box box-info"> ';
 		echo '<div class="box-header with-border">
-		                 <h3 class="box-title"><i class="fa fa-user-plus"></i>Usuario creado con éxito.</h3>
+		                 <h3 class="box-title"><i class="fa fa-user-plus"></i> Crear Usuario.</h3>
 		               </div><div class="box-body">';
 
 		echo "            <table class=table>\n";
-		echo "              <tr><td height=15></td></tr>\n";
-
 		$query4 = "select empfullname, empDNI, displayname, email, contract ,groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
 			  where empfullname = '".$post_username."'
 		          order by empfullname";
@@ -581,47 +779,117 @@ elseif ($request == 'POST') {
 		}
 		((mysqli_free_result($result4) || (is_object($result4) && (get_class($result4) == "mysqli_result"))) ? true : false);
 
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$username</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>DNI:</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$user_dni</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$displayname</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Password:</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>***hidden***</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$user_email</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contract:</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$user_contract</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$office</td></tr>\n";
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$groups</td></tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														Nombre completo:
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$username
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														Usuario:
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$displayname
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														DNI:
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$user_dni
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														Contraseña:
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>***privado***
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														Dirección de Email:
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$user_email
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														Contrato:
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$user_contract
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														Oficina:
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$office
+													</td>
+												</tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														Grupo de trabajo:
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$groups
+													</td>
+												</tr>\n";
 
 		if ($admin == "1") {$admin = "Yes";}
 		else {$admin = "No";}
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Sys Admin User?</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$admin</td></tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														¿Permisos de administrador?
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$admin
+													</td>
+												</tr>\n";
 		if ($time_admin == "1") {$time_admin = "Yes";}
 		else {$time_admin = "No";}
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Time Admin User?</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$time_admin</td></tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														¿Administrador de tiempos?
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$time_admin
+													</td>
+												</tr>\n";
 		if ($reports == "1") {$reports = "Yes";}
 		else {$reports = "No";}
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Reports User?</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$reports</td></tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														¿Permisos de reportador?
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$reports
+													</td>
+												</tr>\n";
 		if ($disabled == "1") {$disabled = "Yes";}
 		else {$disabled = "No";}
-		echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>User Account Disabled?</td><td align=left class=table_rows
-		                      colspan=2 width=80% style='padding-left:20px;'>$disabled</td></tr>\n";
-		echo "              <tr><td height=15></td></tr>\n";
+		echo "              <tr>
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+														¿Cuenta deshabilitada?
+													</td>
+
+													<td class='table_rows' width=80% style='padding-left:20px;'>$disabled
+													</td>
+												</tr>\n";
 		echo "            </table>\n";
 		echo '						<div class="box-footer">
-												<button id="formButtons" class="btn btn-success">
-													<a href="usercreate.php" >
-														Aceptar
-													</a>
-												</button>
+													<button id="formButtons" onclick="location=\'useradmin.php\'" class="btn btn-success pull-right">
+															Aceptar
+														<i class="fa fa-check"></i>
+													</button>
 		          				</div>';
 		echo '				</div>
 							</div>
