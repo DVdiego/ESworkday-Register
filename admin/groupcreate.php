@@ -80,7 +80,7 @@ echo "                </select></td>
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
 echo "              <tr>
-                      <td class=table_rows_output align=right colspan=3 style='font-family:Tahoma;font-size:10px;'>
+                      <td class='required_fields' align=right colspan=3>
                         *&nbsp;Campos requeridos&nbsp;
                       </td>
                     </tr>\n";
@@ -260,7 +260,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
     echo "              <tr>
-                          <td class=table_rows_output align=right colspan=3 style='font-weight: bold;font-family:Tahoma;font-size:10px;'>
+                          <td class='required_fields' align=right colspan=3 >
                             *&nbsp;Campos requeridos&nbsp;
                           </td>
                         </tr>\n";
@@ -353,14 +353,12 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     echo "
                         <tr>
                           <td>
-                            <div class='box-footer'>
-                              <button id='formButtons' class='btn btn-success pull-right'>
-                                <a href='groupadmin.php' >
-                                  Aceptar
-                                </a>
-                                <i class='fa fa-check'></i>
-                              </button>
-                            </div>
+                          <div class='box-footer'>
+                            <button id='formButtons' onclick='location=\"groupadmin.php\"' class='btn btn-success pull-right'>
+                              Aceptar
+                              <i class='fa fa-check'></i>
+                            </button>
+                          </div>
                           </td>
                         </tr>
                       </table>\n";

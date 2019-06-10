@@ -133,3 +133,11 @@ p.present-sum {
   font-weight: bold !important;
 	padding : 2px;
 }
+
+.required_fields{
+  font-family: Tahoma, Verdana, Trebuchet MS, sans-serif;
+	font-size: 10px;
+  font-weight: bold !important;
+	padding : 2px;
+  align: right;
+}

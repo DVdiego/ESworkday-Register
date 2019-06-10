@@ -74,55 +74,72 @@ echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-clock-o "></i> Create Status</h3>
+                 <h3 class="box-title"><i class="fa fa-exchange "></i> Editar Estado</h3>
             </div>
             <div class="box-body">';
 echo "         <form name='form' action='$self' method='post'>\n";
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Status Name:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text'
-                      size='20' maxlength='50' name='post_statusname' value=\"$punchitem\">&nbsp;*</td></tr>\n";
-
-
-/*
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text'
-                      size='20' maxlength='7' name='post_color' value=\"$color\">&nbsp;*&nbsp;&nbsp;<a href=\"#\"
-                      onclick=\"cp.select(document.forms['form'].post_color,'pick');return false;\" name=\"pick\" id=\"pick\"
-                      style='font-size:11px;color:#27408b;'>Pick Color</a></td>
-                    </tr>\n";
-*/
+echo "            <table align=center class=table width=60% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr>
-                      <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color html:</td>
-                      <td colspan=2 width=80% style='padding-left:20px;'>
-                      <input type='color' name='post_color' value=\"$color\">&nbsp;*</td>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        &nbsp;*Nombre del estado:
+                      </td>
+
+                      <td class='table_rows' width=80% style='padding-left:20px;'>
+                        <input type='text' size='20' maxlength='50' name='post_statusname' placeholder=\"$punchitem\">
+                      </td>
                     </tr>\n";
 
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Is Status considered '<b>In</b>' or '<b>Out</b>'?</td>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        &nbsp;*Color:
+                      </td>
+
+                      <td class='table_rows' width=80% style='padding-left:20px;'>
+                        <input type='color' name='post_color' value=\"$color\">
+                      </td>
+                    </tr>\n";
+
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        ¿Se considera el estado de 'entrada' o 'salida'?</td>\n";
 
 if ($in_or_out == '1') {
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input checked type='radio' name='create_status' value='1'>In
-                      <input type='radio' name='create_status' value='0'>Out</td></tr>\n";
+echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                          <input checked type='radio' name='create_status' value='1'>Entrada
+                          <input type='radio' name='create_status' value='0'>Salida
+                        </td>
+                      </tr>\n";
 } elseif ($in_or_out == '0') {
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='create_status' value='1'>In
-                      <input checked type='radio' name='create_status' value='0'>Out</td></tr>\n";
+echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                          <input type='radio' name='create_status' value='1'>Entrada
+                          <input checked type='radio' name='create_status' value='0'>Salida
+                        </td>
+                      </tr>\n";
 } else {
 exit;
 }
 
-echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+echo "              <tr>
+                      <td class='required_fields' align=right colspan=3 >
+                        *&nbsp;Campos requeridos&nbsp;
+                      </td>
+                    </tr>\n";
 echo "            </table>\n";
 //echo "            <script language=\"javascript\">cp.writeDiv()</script>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td height=40></td></tr>\n";
-echo "            </table>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <input type='hidden' name='get_status' value='$get_status'>\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Edit Status' src='../images/buttons/next_button.png'></td>
-                  <td><a href='statusadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr>
-                  </table>
+echo '            <div class="box-footer">
+
+                    <button type="button" id="formButtons" onclick="location=\'statusadmin.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                      <i class="fa fa-ban"></i>
+                      Cancelar
+                    </button>
+
+                    <button id="formButtons" type="submit" name="submit" value="Edit Status" class="btn btn-success pull-right">
+                      <i class="fa fa-edit"></i>
+                      Editar estado
+                    </button>
+                  </div>';
+echo "
                   </form>\n";
 echo '      </div>
           </div>
@@ -169,44 +186,46 @@ if ((empty($post_statusname)) || (empty($post_color)) || (!preg_match('/' . "^([
 //
 
 if (empty($post_statusname)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red nowrap>
-                    &nbsp;A Status Name is required.</td></tr>\n";
-echo "            </table>\n";
+  echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      Se requiere un nombre para el estado.
+                    </div>';
 }
 elseif (empty($post_color)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red nowrap>
-                    &nbsp;A Color is required.</td></tr>\n";
-echo "            </table>\n";
+  echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      Se requiere deleccionar un color.
+                    </div>';
 }
 // elseif (!eregi ("^([[:alnum:]]| |-|_|\.)+$", $post_statusname)) {
 elseif (!preg_match('/' . "^([[:alnum:]]| |-|_|.)+$" . '/i', $post_statusname)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red nowrap>
-                    &nbsp;Alphanumeric characters, hyphens, underscores, spaces, and periods are allowed when editing a Status Name.</td></tr>\n";
-echo "            </table>\n";
+  echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un estado.
+                    </div>';
 }
 // elseif ((!eregi ("^(#[a-fA-F0-9]{6})+$", $post_color)) && (!eregi ("^([a-fA-F0-9]{6})+$", $post_color))) {
 elseif ((!preg_match('/' . "^(#[a-fA-F0-9]{6})+$" . '/i', $post_color)) && (!preg_match('/' . "^([a-fA-F0-9]{6})+$" . '/i', $post_color))) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red nowrap>
-                    &nbsp;The '#' symbol followed by letters A-F, or numbers 0-9 are allowed when editing a Color.</td></tr>\n";
-echo "            </table>\n";
+  echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      El símbolo # seguido de latras de la A a la F o numeros del 0 al 9 están permitidos para seleccionar un color.
+                    </div>';
 }elseif (!empty($string)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Apostrophes are not allowed.</td></tr>\n";
-echo "            </table>\n";
+  echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      Los apostrofes no están permitidos en el nombre de estado.
+                    </div>';
 }elseif (!empty($string2)) {
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Double Quotes are not allowed.</td></tr>\n";
-echo "            </table>\n";
+  echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      Las dobles comillas no están permitidas en el nombre de estado.
+                    </div>';
 }
 
 if (!empty($string)) {$post_statusname = stripslashes($post_statusname);}
@@ -218,35 +237,47 @@ echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-exchange"></i>  Create Status</h3>
+                 <h3 class="box-title"><i class="fa fa-exchange"></i>  Editar Estado </h3>
             </div>
             <div class="box-body">';
 
 
 echo "        <form name='form' action='$self' method='post'>\n";
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3>
-                    <img src='../images/icons/application_edit.png' />&nbsp;&nbsp;&nbsp;Edit Office</th>\n";
-echo "              </tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Status Name:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text'
-                      size='20' maxlength='50' name='post_statusname' value=\"$post_statusname\">&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color:</td><td colspan=2 width=80%
-                      style='padding-left:20px;'><input type='text'
-                      size='20' maxlength='7' name='post_color' value=\"$post_color\">&nbsp;*&nbsp;&nbsp;<a href=\"#\"
-                      onclick=\"cp.select(document.forms['form'].post_color,'pick');return false;\" name=\"pick\" id=\"pick\"
-                      style='font-size:11px;color:#27408b;'>Pick Color</a></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Is Status considered '<b>In</b>' or '<b>Out</b>'?</td>\n";
+echo "            <table align=center class=table width=60% border=0 cellpadding=3 cellspacing=0>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        &nbsp;*Nombre del estado:
+                      </td>
+
+                      <td class='table_rows' width=80% style='padding-left:20px;'>
+                        <input type='text' size='20' maxlength='50' name='post_statusname' placeholder=\"$post_statusname\">
+                      </td>
+                    </tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        &nbsp;*Color:
+                      </td>
+
+                      <td class='table_rows' width=80% style='padding-left:20px;'>
+                        <input type='color' size='20' maxlength='7' name='post_color' value=\"$post_color\">
+                      </td>
+                    </tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        ¿Se considera que el estado es de 'entrada' o 'salida'?
+                      </td>\n";
 
 if ($create_status == '1') {
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input checked type='radio' name='create_status' value='1'>In
-                      <input type='radio' name='create_status' value='0'>Out</td>
+echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                          <input checked type='radio' name='create_status' value='1'>Entrada
+                          <input type='radio' name='create_status' value='0'>Salida
+                        </td>
                       </tr>\n";
 } elseif ($create_status == '0') {
-echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'><input type='radio' name='create_status' value='1'>In
-                      <input checked type='radio' name='create_status' value='0'>Out</td>
+echo "                  <td class=table_rows align=left width=80% style='padding-left:20px;'>
+                          <input type='radio' name='create_status' value='1'>Entrada
+                          <input checked type='radio' name='create_status' value='0'>Salida
+                      </td>
                       </tr>\n";
 } else {
 exit;
@@ -255,18 +286,27 @@ exit;
 if (!empty($string)) {$post_statusname = stripslashes($post_statusname);}
 if (!empty($string2)) {$post_statusname = stripslashes($post_statusname);}
 
-echo "                <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+echo "                <tr>
+                        <td class='required_fields' align=right colspan=3 >
+                          *&nbsp;Campos requeridos&nbsp;
+                        </td>
+                      </tr>\n";
 echo "            </table>\n";
 echo "            <script language=\"javascript\">cp.writeDiv()</script>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td height=40></td></tr>\n";
-echo "            </table>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <input type='hidden' name='get_status' value='$get_status'>\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Edit Status' src='../images/buttons/next_button.png'></td>
-                    <td><a href='statusadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr>
-                  </table>
-              </form>\n";
+echo '            <div class="box-footer">
+
+                    <button type="button" id="formButtons" onclick="location=\'statusadmin.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                      <i class="fa fa-ban"></i>
+                      Cancelar
+                    </button>
+
+                    <button id="formButtons" type="submit" name="submit" value="Edit Status" class="btn btn-success pull-right">
+                      <i class="fa fa-edit"></i>
+                      Editar estado
+                    </button>
+                  </div>';
+echo "         </form>\n";
 echo '      </div>
           </div>
         </div>
@@ -285,27 +325,36 @@ $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 $query2 = "update ".$db_prefix."info set `inout` = ('".$post_statusname."') where `inout` = ('".$get_status."')";
 $result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query2);
 
+echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <h4><i class="icon fa fa-check-circle"></i>Estado editado!</h4>
+                El estado ha sido editado satisfactoriamente.
+             </div></div>';
+
 echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-exchange"></i> Create Status</h3>
+                 <h3 class="box-title"><i class="fa fa-exchange"></i> Editar Estado </h3>
             </div>
             <div class="box-body">';
+echo "            <table align=center class=table width=60% border=0 cellpadding=3 cellspacing=0>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Nombre del estado:
+                      </td>
 
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td>
-                <td class=table_rows_green>&nbsp;Status properties updated successfully.</td></tr>\n";
-echo "            </table>\n";
-echo "            <br />\n";
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+                      <td align=left class='table_rows' width=80% style='padding-left:20px;'>$post_statusname
+                      </td>
+                    </tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Color:
+                      </td>
 
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>New Status Name:</td><td align=left class=table_rows
-                      colspan=2 width=80% style='padding-left:20px;'>$post_statusname</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color:</td><td align=left class=table_rows
-                      colspan=2 width=80% style='padding-left:20px;'>$post_color</td></tr>\n";
+                      <td align=left class='table_rows' width=80% style='padding-left:20px;'>$post_color
+                      </td>
+                    </tr>\n";
 
 if ($create_status == '1') {
   $create_status_tmp = 'In';
@@ -313,15 +362,21 @@ if ($create_status == '1') {
   $create_status_tmp = 'Out';
 }
 
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Is Status considered '<b>In</b>' or
-                      '<b>Out</b>'?</td><td align=left class=table_rows colspan=2 width=80% style='padding-left:20px;'>$create_status_tmp</td></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Tipo de estado:
+                      </td>
+
+                      <td align=left class='table_rows' width=80% style='padding-left:20px;'>$create_status_tmp
+                      </td>
+                    </tr>\n";
 echo "            </table>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
-echo "              <tr><td><a href='statusadmin.php'><img src='../images/buttons/done_button.png'
-                      border='0'></a></td></tr>
-                  </table>\n";
+echo "            <div class='box-footer'>
+                    <button id='formButtons' onclick='location=\"statusadmin.php\"' class='btn btn-success pull-right'>
+                      Aceptar
+                      <i class='fa fa-check'></i>
+                    </button>
+                  </div>\n";
 }
 echo '      </div>
           </div>
