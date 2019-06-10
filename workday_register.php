@@ -286,8 +286,8 @@ echo "        </select>
 echo "  </div>
       </div>";
 
-echo "<input type='hidden' name='latitude' class='form-control'>";
-echo "<input type='hidden' name='longitude' class='form-control'>";
+echo "<input type='hidden' value='' name='latitude'/>";
+echo "<input type='hidden' value='' name='longitude'/>";
 echo "<div class='row'>";
 echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
 echo "    <div class='form-group'>
@@ -633,14 +633,9 @@ if ($request == 'POST') { // Process employee's punch information
         }
     }
 
-    if(empty($_POST['latitude']) || empty($_POST['longitude'])){
-
-      $lat = 0;
-      $lon = 0;
-    }else {
       $lat = $_POST['latitude'];
       $lon = $_POST['longitude'];
-    }
+
 
     if (strtolower($ip_logging) == "yes") {
         $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress, latitude, longitude) values ('".$fullname."', '".$inout."', '".$tz_stamp."', '".$notes."', '".$connecting_ip."','" . $lat . "','" . $lon . "')";
@@ -701,21 +696,21 @@ echo '
 	';
 ?>
 <script>
-  window.addEventListener('load',function() {
-      if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(funcExito, funcError, {});
-      } else {
-          alert('No geolocation supported');
-      }
-  },false);
 
-    function funcExito(result) {
+    //llama a la función  de geolocalización cuando carga la página
+    window.addEventListener('load',function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(insertPosition, funcError, {});
+        } else {
+            alert('No geolocation supported');
+        }
+    },false);
 
-      var latitude = document.querySelector('input[name="latitude"]');
-      var longitude = document.querySelector('input[name="longitude"]');
 
-      latitude.value = result.coords.latitude;
-      longitude.value = result.coords.longitude;
+    //inserta en el formulario
+    function insertPosition(position) {
+        $("input[name='latitude']").val(position.coords.latitude);
+        $("input[name='longitude']").val(position.coords.longitude);
     }
 
     function funcError(err) {

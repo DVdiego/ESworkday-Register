@@ -185,6 +185,8 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
     $punch_cnt = 0;
     $tmp_z = 0;
 
+    $from_date = str_replace("/", "-", $from_date);
+    $to_date = str_replace("/", "-", $to_date);
     /*EN CASO DE QUERER ESTABLECER FECHAS DE COMIENZO Y FIN EDITAR ESTAS VARIABLES*/
     if(empty($from_date) || empty($to_date) ){
       $from_timestamp = 0; //'0' desde todos los tiempos
@@ -196,7 +198,6 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
       // le sumas 23h:59m -> 86340mills
       $to_timestamp = strtotime ($to_date) + 86340;
     }
-
 
 
     $query = "select ".$db_prefix."info.fullname, ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes,

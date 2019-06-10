@@ -94,19 +94,37 @@ if ($request == 'GET') {
         ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
     } else {
 
-    echo "<div class='form-group'><label>Choose Office: </label> <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'></select></div>";
+    echo "<div class='form-group'><label style='padding-right: 40px;'>Choose Office: </label> <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'></select></div>";
 
-    echo "<div class='form-group'><label>Choose Group: </label> <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'></select></div>\n";
+    echo "<div class='form-group'><label style='padding-right: 39px;'>Choose Group: </label> <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'></select></div>\n";
 
-    echo "             <div class='form-group'><label>Choose Username: </label> <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'></select></div>\n";
+    echo "             <div class='form-group'><label style='padding-right: 15px;'>Choose Username: </label> <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'></select></div>\n";
 
     }
-    echo "              <div class='form-group'><label>From Date:" .($tmp_datefmt)."</label> <div class='input-group date'><i class='fa fa-calendar'></i><input type='text' maxlength='10' name='from_date' id='datepicker' class='form-control'> &nbsp;*&nbsp;&nbsp; </div></div>\n";
 
 
-    echo "              <div class='form-group'><label>To Date:" .($tmp_datefmt)."</label> <div class='input-group date'>
-                        <i class='fa fa-calendar'></i><input type='text' maxlength='10' name='to_date' id='datepicker1' class='form-control'> &nbsp;*&nbsp;&nbsp;
-                         </div></div>";
+    echo "              <div class='form-group' style='display: -webkit-box;'>
+                          <label style='padding-right: 10px;'>From Date:</label>
+                            <div class='input-group'>
+                              <input type='date' size='10' maxlength='10' name='from_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
+                              <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                              return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                            </div>
+                        </div>\n";
+    echo "              <div class='form-group' style='display: -webkit-box;'>
+                          <label style='padding-right: 27px;'>To Date:</label>
+                            <div class='input-group'>
+                              <input type='date' size='10' maxlength='10' name='to_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
+                              <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                              return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                            </div>
+                        </div>\n";
+    // echo "              <div class='form-group'><label>From Date:" .($tmp_datefmt)."</label> <div class='input-group date'><i class='fa fa-calendar'></i><input type='text' maxlength='10' name='from_date' id='datepicker' class='form-control'> &nbsp;*&nbsp;&nbsp; </div></div>\n";
+    //
+    //
+    // echo "              <div class='form-group'><label>To Date:" .($tmp_datefmt)."</label> <div class='input-group date'>
+    //                     <i class='fa fa-calendar'></i><input type='text' maxlength='10' name='to_date' id='datepicker1' class='form-control'> &nbsp;*&nbsp;&nbsp;
+    //                      </div></div>";
 
     		     /* debug */
 
@@ -167,6 +185,8 @@ if ($request == 'GET') {
     $to_date = $_POST['to_date'];
     @$tmp_display_ip = $_POST['tmp_display_ip'];
     @$tmp_csv = $_POST['csv'];
+
+
 
     $fullname = addslashes($fullname);
 
@@ -442,6 +462,7 @@ if ($request == 'GET') {
 
     if (isset($evil_post)) {
         echo "            <br />\n";
+
         echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
         echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
         echo "              <tr>\n";
@@ -527,17 +548,29 @@ if ($request == 'GET') {
     // end post error checking //
 
     if (!empty($from_date)) {
-        $from_date = "$from_month/$from_day/$from_year";
+        // $from_date = "$from_month/$from_day/$from_year";
+        $from_date = str_replace("/", "-", $from_date);
         $from_timestamp = strtotime($from_date) - @$tzo;
         $from_date = $_POST['from_date'];
     }
 
+
+
     if (!empty($to_date)) {
-        $to_date = "$to_month/$to_day/$to_year";
+        // $to_date = "$to_month/$to_day/$to_year";
+        $to_date = str_replace("/", "-", $to_date);
         $to_timestamp = strtotime($to_date) + 86400 - @$tzo;
         $to_date = $_POST['to_date'];
     }
 
+
+
+    echo "<br>";
+    echo "from: $from_timestamp";
+
+
+    echo "<br>";
+    echo "to: $to_timestamp";
     // $time = time();
     // $rpt_hour = gmdate('H',$time);
     // $rpt_min = gmdate('i',$time);
@@ -669,6 +702,10 @@ if ($request == 'GET') {
       $employees_displayname[] = stripslashes("".$row['displayname']."");
       $employees_cnt++;
     }
+    echo " seleccion num:".mysqli_num_rows($result);
+
+
+
     for ($x=0;$x<$employees_cnt;$x++) {
 
         $fullname = stripslashes($fullname);
@@ -682,12 +719,14 @@ if ($request == 'GET') {
             $query = "select ".$db_prefix."info.fullname, ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes,
                       ".$db_prefix."info.ipaddress, ".$db_prefix."punchlist.in_or_out, ".$db_prefix."punchlist.punchitems, ".$db_prefix."punchlist.color
                       from ".$db_prefix."info, ".$db_prefix."punchlist, ".$db_prefix."employees
-                      where ".$db_prefix."info.fullname like ('".$employees_empfullname[$x]."') and ".$db_prefix."info.timestamp >= '".$from_timestamp."'
+                      where ".$db_prefix."info.fullname = '".$employees_empfullname[$x]."' and ".$db_prefix."info.timestamp >= '".$from_timestamp."'
                       and ".$db_prefix."info.timestamp <= '".$to_timestamp."' and ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
                       and ".$db_prefix."employees.empfullname = '".$employees_empfullname[$x]."' and ".$db_prefix."employees.empfullname <> 'admin'
                       order by ".$db_prefix."info.timestamp asc";
             $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
+
+              echo " info empleado".mysqli_num_rows($result);
             while ($row=mysqli_fetch_array($result)) {
 
                 $display_stamp = "".$row["timestamp"]."";

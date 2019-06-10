@@ -135,6 +135,8 @@ if($request == 'GET'){
                        <label>Notes:</label>
                          <input type='text' name='post_notes' maxlength='250' class='form-control' style=' width: 98%;' >
                      </div>";
+ echo "<input type='hidden' value='' name='latitude'/>";
+ echo "<input type='hidden' value='' name='longitude'/>";
  echo "						<div class='box-footer'>
 											<button id='formButtons' class='btn btn-default pull-right' style='margin-left: 10px;margin-right: 10px;'>
                         <i class='fa fa-ban'></i>
@@ -424,16 +426,22 @@ if($request == 'GET'){
   }
 
   $timestamp = strtotime($post_date . " " . $post_time);
+  echo "date:".$post_date;
+  $lat = $_POST['latitude'];
+  $lon = $_POST['longitude'];
+
+
   for ($x=0;$x<$employees_cnt;$x++) {
 
     $fullname = stripslashes($fullname);
     $employees_empfullname[$x] = addslashes($employees_empfullname[$x]);
     $employees_displayname[$x] = addslashes($employees_displayname[$x]);
 
-    $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress) values ('".$employees_empfullname[$x]."', '".$post_statusname."', '".$timestamp."', '".$post_notes."', '".$connecting_ip."')";
+    $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress, latitude, longitude) values ('".$employees_empfullname[$x]."', '".$post_statusname."', '".$timestamp."', '".$post_notes."', '".$connecting_ip."','" . $lat . "','" . $lon . "')";
+
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-    $update_query = "update ".$db_prefix."employees set tstamp = '".$tz_stamp."' where empfullname = '".$employees_empfullname[$x]."'";
+    $update_query = "update ".$db_prefix."employees set tstamp = '".$timestamp."' where empfullname = '".$employees_empfullname[$x]."'";
     $other_result = mysqli_query($GLOBALS["___mysqli_ston"], $update_query);
 
   }
@@ -502,3 +510,25 @@ echo "<br>";
 
 
  ?>
+ <script>
+
+     //llama a la función  de geolocalización cuando carga la página
+     window.addEventListener('load',function() {
+         if (navigator.geolocation) {
+             navigator.geolocation.getCurrentPosition(insertPosition, funcError, {});
+         } else {
+             alert('No geolocation supported');
+         }
+     },false);
+
+
+     //inserta en el formulario
+     function insertPosition(position) {
+         $("input[name='latitude']").val(position.coords.latitude);
+         $("input[name='longitude']").val(position.coords.longitude);
+     }
+
+     function funcError(err) {
+       alert(err.message);
+     }
+ </script>
