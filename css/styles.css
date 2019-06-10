@@ -133,3 +133,14 @@ p.present-sum {
   font-weight: bold !important;
 	padding : 2px;
 }
+
+
+/*tajetas reportes del día*/
+.content_reports{
+
+    min-height: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
