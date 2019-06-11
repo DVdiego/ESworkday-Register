@@ -25,7 +25,7 @@ session_start();
 $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 $current_page = "timerpt.php";
-setlocale(LC_ALL,'es_ES.UTF-8');
+
 include '../config.inc.php';
 
 if ($use_reports_password == "yes") {
@@ -691,330 +691,158 @@ if ($request == 'GET') {
 
     while ($row=mysqli_fetch_array($result)) {
 
-      // $employees_empfullname[] = stripslashes("".$row['empfullname']."");
-      // $employees_displayname[] = stripslashes("".$row['displayname']."");
-      // $employees_cnt++;
-      $tmp_empfullname = "".$row['empfullname']."";
-      // $tmp_dni = "".$row['empDNI']."";
-      hours_worked_report($tmp_empfullname,$from_timestamp,$to_timestamp,$db_prefix);
+      $employees_empfullname[] = stripslashes("".$row['empfullname']."");
+      $employees_displayname[] = stripslashes("".$row['displayname']."");
+      $employees_cnt++;
     }
 
 
 
+    for ($x=0;$x<$employees_cnt;$x++) {
+
+        $fullname = stripslashes($fullname);
+        if (($employees_empfullname[$x] == $fullname) || ($fullname == "All")) {
+
+            $row_color = $color2; // Initial row color
+
+            $employees_empfullname[$x] = addslashes($employees_empfullname[$x]);
+            $employees_displayname[$x] = addslashes($employees_displayname[$x]);
+
+            $query = "select ".$db_prefix."info.fullname, ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes,
+                      ".$db_prefix."info.ipaddress, ".$db_prefix."punchlist.in_or_out, ".$db_prefix."punchlist.punchitems, ".$db_prefix."punchlist.color, ".$db_prefix."employees.empDNI
+                      from ".$db_prefix."info, ".$db_prefix."punchlist, ".$db_prefix."employees
+                      where ".$db_prefix."info.fullname = '".$employees_empfullname[$x]."' and ".$db_prefix."info.timestamp >= '".$from_timestamp."'
+                      and ".$db_prefix."info.timestamp <= '".$to_timestamp."' and ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
+                      and ".$db_prefix."employees.empfullname = '".$employees_empfullname[$x]."' and ".$db_prefix."employees.empfullname <> 'admin'
+                      order by ".$db_prefix."info.timestamp asc";
+            $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 
+            while ($row=mysqli_fetch_array($result)) {
+
+                $display_stamp = "".$row["timestamp"]."";
+                $time = date($timefmt, $display_stamp);
+                $date = date($datefmt, $display_stamp);
+
+                if ($row_count == 0) {
+                    if ($page_count == 0) {
+
+                        echo "            <table class=misc_items width=100% border=0 cellpadding=2 cellspacing=0>\n";
+                        echo "              <tr class=notprint>\n";
+                        echo "                <td nowrap width=30% align=left style='padding-left:10px;padding-right:10px;font-size:11px;color:#27408b;
+                        text-decoration:underline;'>Name</td>\n";
+                        echo "                <td nowrap width=10% align=left style='padding-left:10px;font-size:11px;color:#27408b;
+                        text-decoration:underline;'>DNI</td>\n";
+                        echo "                <td nowrap width=10% align=left style='padding-left:10px;font-size:11px;color:#27408b;
+                        text-decoration:underline;'>In/Out</td>\n";
+                        echo "                <td nowrap width=5% align=right style='padding-right:10px;font-size:11px;color:#27408b;
+                        text-decoration:underline;'>Time</td>\n";
+                        echo "                <td nowrap width=5% align=right style='padding-left:10px;font-size:11px;color:#27408b;
+                        text-decoration:underline;'>Date</td>\n";
+                        if ($tmp_display_ip == "1") {
+                            echo "                <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b;
+                            text-decoration:underline;'>Originating IP</td>\n";
+                        }
+                        echo "                <td style='padding-left:10px;'><a style='font-size:11px;color:#27408b;text-decoration:underline;'>Notes</td>\n";
+
+                    } else {
+
+                        // display report name and page number of printed report above the column headings of each printed page //
+
+                        $temp_page_count = $page_count + 1;
+                        echo "              <tr><td colspan=2 class=notdisplay style='font-size:9px;color:#000000;padding-left:10px;'>Run on: $rpt_time,
+                          $rpt_date (page $temp_page_count)</td><td class=notdisplay nowrap style='font-size:9px;color:#000000;'
+                          align=right colspan=4>$rpt_name</td></tr>\n";
+                        echo "              <tr><td class=notdisplay align=right colspan=6 nowrap style='font-size:9px;color:#000000;'>
+                          Date Range: $from_date - $to_date</td></tr>\n";
+                    }
+                    // echo "              <tr class=notdisplay>\n";
+                    // echo "                <td nowrap width=20% align=left style='padding-left:10px;padding-right:10px;font-size:11px;color:#27408b;
+                    //     text-decoration:underline;'>Name</td>\n";
+                    // echo "                <td nowrap width=7% align=left
+                    //     style='padding-left:10px;font-size:11px;color:#27408b;text-decoration:underline;'>In/Out</td>\n";
+                    // echo "                <td nowrap width=5% align=right
+                    //     style='padding-right:10px;font-size:11px;color:#27408b;text-decoration:underline;'>Time</td>\n";
+                    // echo "                <td nowrap width=5% align=right
+                    //     style='padding-left:10px;font-size:11px;color:#27408b;text-decoration:underline;'>Date</td>\n";
+                    // if ($tmp_display_ip == "1") {
+                    //     echo "                <td nowrap width=15% align=left
+                    //         style='padding-left:10px;font-size:11px;color:#27408b;text-decoration:underline;'>Originating IP</td>\n";
+                    // }
+                    // echo "                <td style='padding-left:10px;'><a style='font-size:11px;color:#27408b;text-decoration:underline;'>Notes</td>\n";
+                    // echo "              </tr>\n";
+                }
+
+                // begin alternating row colors //
+
+                $row_color = ($row_count % 2) ? $color1 : $color2;
+
+                // display the query results //
+
+                $display_stamp = $display_stamp + @$tzo;
+                $time = date($timefmt, $display_stamp);
+                $date = date($datefmt, $display_stamp);
+
+                if (strtolower($user_or_display) == "display") {
+                    echo stripslashes("              <tr class=display_row><td nowrap width=30% bgcolor='$row_color' style='padding-left:10px;
+                          padding-right:10px;'>$employees_displayname[$x]</td>\n");
+                } else {
+                    echo stripslashes("              <tr class=display_row><td nowrap width=30% bgcolor='$row_color' style='padding-left:10px;
+                          padding-right:10px;'>$employees_empfullname[$x]</td>\n");
+                }
+                echo "                <td nowrap align=left width=10% style='padding-left:10px;'>".$row["empDNI"]."</td>\n";
+                echo "                <td nowrap align=left width=10% style='background-color:$row_color;color:".$row["color"].";
+                      padding-left:10px;'>".$row["inout"]."</td>\n";
+                echo "                <td nowrap align=right width=5% bgcolor='$row_color' style='padding-right:10px;'>".$time."</td>\n";
+                echo "                <td nowrap align=right width=5% bgcolor='$row_color' style='padding-left:10px;'>".$date."</td>\n";
+                if ($tmp_display_ip == "1") {
+                    echo "                <td nowrap align=left width=15% style='background-color:$row_color;color:".$row["color"].";
+                          padding-left:10px;'>".$row["ipaddress"]."</td>\n";
+                }
+                echo stripslashes("                <td bgcolor='$row_color' style='padding-left:10px;'>".$row["notes"]."</td>\n");
+
+                if(!isset($tmp_dni)){
+
+                  $tmp_dni = "".$row["empDNI"]."";
+                }
 
 
+                if($tmp_dni != "".$row["empDNI"].""){
+                  echo "<hr class='separator-reports'>\n";
+
+                }
+                echo "              </tr>\n";
 
 
-}
+                if(!isset($tmp_dni)){
 
-function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_prefix) {
-
-
-  echo "<div class='container'>";
-
-
-    $info_cnt = 0;
-    $info_fullname = array();
-    $info_inout = array();
-    // $info_timestamp = array();
-    $info_timestamp = 0;
-    $info_notes = array();
-    $info_date = array();
-    $x_info_date = array();
-    $info_start_time = array();
-    $info_end_time = array();
-    $punchlist_in_or_out = array();
-    $punchlist_punchitems = array();
-    $secs = 0;
-    $total_hours = 0;
-    $row_count = 0;
-    $page_count = 0;
-    $punch_cnt = 0;
-    $tmp_z = 0;
+                  $tmp_dni = "".$row["empDNI"]."";
+                  echo " nuevo tem: $tmp_dni";
+                }
 
 
+                if($tmp_dni != "".$row["empDNI"].""){
+                  echo "<tr>";
+                  echo "<hr class='separator-reports'>\n";
+                  echo " tem $tmp_dni ---- ".$row["empDNI"];
+                  echo "<br>";
+                  echo "</tr>";
 
+                }
 
-    $query = "select ".$db_prefix."info.fullname, ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes,
-    ".$db_prefix."info.ipaddress, ".$db_prefix."punchlist.in_or_out, ".$db_prefix."punchlist.punchitems, ".$db_prefix."punchlist.color, ". $db_prefix . "employees.empDNI
-    , ". $db_prefix . "info.latitude, ". $db_prefix . "info.longitude
-    from ".$db_prefix."info, ".$db_prefix."punchlist, ".$db_prefix."employees
-    where ".$db_prefix."info.fullname = '".$emp_fullname."'
-    and ".$db_prefix."info.timestamp >= '".$from_timestamp."'
-    and ".$db_prefix."info.timestamp <= '".$to_timestamp."'
-    and ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
-    and ".$db_prefix."employees.empfullname = '".$emp_fullname."' and ".$db_prefix."employees.empfullname <> 'admin'
-    order by ".$db_prefix."info.timestamp asc";
+                $tmp_dni = "".$row["empDNI"]."";
+                $row_count++;
 
+                // output 40 rows per printed page //
 
-    $result = mysqli_query($GLOBALS["___mysqli_ston"],$query);
-
-    $count = 0;
-    $last_date = "";
-    $last_in_or_out = -1;
-    $last_timestamp = 0;
-    $suma_total = 0;
-
-    $sum_in = 0;
-    $sum_out = 0;
-
-    $total_sum = 0;
-    $aux_sum = 0;
-    $num_files = mysqli_num_rows($result);
-    //echo "número de filas: $num_files";
-    while ($row=mysqli_fetch_array($result)) {
-
-        $info_fullname = stripslashes("".$row['fullname']."");
-        $dni = "".$row['empDNI']."";
-        $info_inout = "".$row['inout']."";
-        $info_timestamp = "".$row['timestamp'].""; //+ $tzo;
-        $info_notes = "".$row['notes']."";
-        $info_ipaddress = "".$row['ipaddress']."";
-        $punchlist_in_or_out = "".$row['in_or_out']."";
-        $punchlist_punchitems[] = "".$row['punchitems']."";
-        $punchlist_color = "".$row['color']."";
-        $latitude = "".$row['latitude']."";
-        $longitude = "".$row['longitude']."";
-        $info_cnt++;
-
-
-
-
-        //echo "contador: $count\n";
-        //Se ejecuta únicamente con la primera fila de la consulta
-        if($count == 0) {
-
-          echo "<br>";
-          echo "<hr class='separator-reports'>\n";
-          echo "<div class='row'>
-                      <div class='col-sm-12 col-md-6 col-lg-6'>
-                          <strong>Nombre: $info_fullname</strong>
-                      </div>
-                      <div class='col-sm-12 col-md-6 col-lg-6'>
-                          <strong>DNI: $dni</strong>
-                      </div>
-                  </div>";
-
-        }
-
-
-
-        //Se ejecuta cuando detecta que hemos cambiado de día
-        //$date_info = date("r",$info_timestamp);
-        $date_info = strtotime(date("d-m-y",$info_timestamp));
-
-
-        $date_format = strftime("%A %d de %B del %Y", $info_timestamp);
-
-
-
-        //$total_sum = $total_sum + $aux_sum;
-        /*resetea las variables a 0 para cada día*/
-        if($last_date != $date_info) {
-
-
-          list($hours,$minutes,$seconds) = format_time($aux_sum);
-          $total_sum = $total_sum + $aux_sum;
-          //condición para que imprima solo cuando timestamp es positivo, es decir cada in --> out y no out--> in
-          //if($aux_sum>0 && $hours <= 12){
-            if($aux_sum>0){
-
-            echo "<div class='row'>
-                    <div class='col-sm-12 col-md-12 col-lg-12'>
-                        <strong>
-                            Tiempo trabajado en el día = ".$hours."h:".$minutes."m
-                        </strong>
-                    </div>
-                  </div>\n";
-            //echo " Suma del tiempo de trabajo del día: $time_aux";
-          }else {
-
-            //condición para que salte el mensaje solo cuando se ha realizado la suma de horas previamente
-            if($count>0){
-
-
-              echo "<div class='row'>
-                        <div class='col-sm-12 col-md-10 col-lg-10'>
-                          <div class='alert alert-warning'>
-                            <strong>
-                                ¡Aviso! No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
-                                <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
-                            </strong>
-                          </div>
-                      </div>
-                    </div>\n";
-
+                if ($row_count == 40) {
+                    echo "              <tr style=\"page-break-before:always;\"></tr>\n";
+                    $row_count = 0;
+                    $page_count++;
+                }
             }
-          }
-
-          $sum_in = 0;
-          $sum_out = 0;
-
-
-          echo "<hr class='separator-reports'>\n";
-          echo "<div class='row'>";
-          echo "  <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
-                    <strong><span style='color:'> Estado</span></strong>
-                  </div>";
-          echo "  <div class='col-xs-3 col-sm-3 col-md-4 col-lg-4'>
-                    <strong><span style='color:'> Fecha</span></strong>
-                  </div>";
-          echo "  <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
-                    <strong><span style='color:'> Dirección IP</span></strong>
-                  </div>";
-          echo "  <div class='col-xs-3 col-sm-3 col-md-2 col-lg-2'>
-                    <strong><span style='color:'> Comentarios</span></strong>
-                  </div>";
-          echo "  <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
-                    <strong><span style='color:'> Dirección</span></strong>
-                  </div>";
-          echo "</div>";
-
         }
-
-
-
-        /*suma todos los in o out para despues sacar la diferencia */
-        if($punchlist_in_or_out == 1){
-          $sum_in = $sum_in+$info_timestamp;
-          //echo "IN suma: $sum_in"; echo "  IN info: $info_timestamp";
-        }else {
-          $sum_out = $sum_out+$info_timestamp;
-          //echo "OUT suma: $sum_out"; echo "  OUT info: $info_timestamp";
-        }
-
-        /*variable que almacena las horas de trabajo de cada día*/
-        $aux_sum = $sum_out-$sum_in;
-
-        ?>
-
-
-
-        <div class="row">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <span style='color: <?php echo $punchlist_color?>'><?php echo "$info_inout"?></span>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-4 col-lg-4">
-                <?php $datetime = strftime("%d de %B de %Y, %H:%M", $info_timestamp);echo "$datetime";
-                ?>
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-              <span style='color: <?php echo $punchlist_color?>'><?php echo "$info_ipaddress"?></span>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-                <?php echo "$info_notes";?>
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-            <?php $url = 'https://www.google.com/maps/?q=' . $latitude . ',' . $longitude;?>
-                <a href=<?php echo $url?> target='_blank'>Ver en mapa</a>
-            </div>
-        </div>
-
-
-
-<?php
-
-    /*condición para operar cuando la fecha de inicio es igual a la fecha fin*/
-    if($count+1 == $num_files){
-
-
-      $total_sum = $total_sum + $aux_sum;
-      list($hours,$minutes,$seconds) = format_time($aux_sum);
-      list($thours,$tminutes,$tseconds) = format_time($total_sum);
-
-      //condición para que imprima solo cuando timestamp es positivo, es decir cada in --> out y no out--> in
-      if($aux_sum>0 && $hours <= 12){
-
-
-        echo "<div class='row'>
-                <div class='col-sm-12 col-md-10 col-lg-10'>
-                    <strong>
-                          Tiempo trabajado en el día = ".$hours."h:".$minutes."m
-                    </strong>
-                </div>
-              </div>\n";
-        //echo " Suma del tiempo de trabajo del día: $time_aux";
-        echo "<hr class='separator-reports'>\n";
-
-
-      } else {
-
-        //condición para que salte el mensaje solo cuando se ha realizado la suma de horas previamente
-        if($count>0){
-
-
-          echo "<div class='row'>
-                    <div class='col-sm-12 col-md-10 col-lg-10'>
-                      <div class='alert alert-warning'>
-                        <strong>
-                            ¡Aviso! No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
-                            <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
-                        </strong>
-                      </div>
-                  </div>
-                </div>\n";
-          echo "<hr class='separator-reports'>\n";
-        }
-
-      }
-
-      //7680 son las horas de trabajo realizadas en 4 años, si se trabaja 8h diarias,
-      //como la ley obliga a tener el historial de almenos 4 años
-      // pongo el valor 8000
-      // if($total_sum>0 && $thours<8000){
-      //
-      //   $from_date = strftime('%D', $from_timestamp);
-      //   $to_date = strftime('%D', $to_timestamp);
-      //   echo "<div class='row'>
-      //           <div class='col-sm-12 col-md-10 col-lg-10'>
-      //               <strong>
-      //                   Tiempo trabajado, $from_date hasta $to_date &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; TOTAL ".$thours."h:".$tminutes."m
-      //               </strong>
-      //
-      //           </div>
-      //         </div>\n";
-      //   echo "<hr class='separator-reports'>\n";
-      //
-      // }else{
-      //
-      //   echo "<div class='row'>
-      //             <div class='col-sm-12 col-md-10 col-lg-10'>
-      //               <div class='alert alert-warning'>
-      //                 <strong>
-      //                     ¡Aviso! No se puede realizar la suma total sino se corrigen los errores. ¡Contactar con el administrador!
-      //                     <a class='admin_headings' href=' '> contacto</a>
-      //                 </strong>
-      //               </div>
-      //             </div>
-      //         </div>\n";
-      //   echo "<hr class='separator-reports'>\n";
-      // }
-
-
     }
-
-    //$last_date = date("d",$info_timestamp);
-    $last_date = strtotime(date("d-m-y",$info_timestamp));
-    //$last_in_or_out = $punchlist_in_or_out;
-    $last_timestamp = $info_timestamp;
-    $count++;
-  }
-    echo "</div><!--Cierra el div container-->";
-
-
-
-
 }
-function format_time($time_in_seconds) {
-
-   $hours = floor($time_in_seconds / 3600);
-   $minutes = floor(($time_in_seconds - ($hours * 3600)) / 60);
-   $seconds = $time_in_seconds - ($hours * 3600) - ($minutes * 60);
-
-   //return $hours . ':' . $minutes . ":" . $seconds;
-   return array($hours,$minutes,$seconds);
-}
-//exit;
+exit;
 ?>
