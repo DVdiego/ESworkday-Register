@@ -30,7 +30,7 @@ include '../config.inc.php';
 include 'header.php';
 include 'topmain.php';
 
-echo "<title>$title - Status Summary</title>\n";
+echo "<title>$title - Estados Disponibles </title>\n";
 
 if (!isset($_SESSION['valid_user'])) {
 
@@ -47,21 +47,25 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 include 'leftmain.php';
 
 echo '<div class="row">
-        <div class="col-xs-12">
+        <div id="float_window" class="col-md-10">
           <div class="box">
 
           <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">';
 
 echo "            <table class='table table-hover' width=60% align=center border=0 cellpadding=0 cellspacing=0>\n";
-echo "              <tr><th>Status Summary</th></tr>\n";
+echo "              <tr>
+                      <th>
+                        <i class='fa fa-exchange'></i> Estados Disponibles
+                      </th>
+                    </tr>\n";
 echo "              <tr>
                       <th>&nbsp;</th>\n";
-echo "                <th>Status Name</th>\n";
+echo "                <th>Nombre del estado</th>\n";
 echo "                <th>Color</th>\n";
-echo "                <th>In/Out</th>\n";
-echo "                <th>Edit</th>\n";
-echo "                <th>Delete</th>
+echo "                <th>Entrada/Salida</th>\n";
+echo "                <th>Editar</th>\n";
+echo "                <th>Eliminar</th>
                     </tr>\n";
 
 $row_count = 0;
@@ -97,10 +101,18 @@ while ($row=mysqli_fetch_array($result)) {
   echo "                <td><a style='color:#27408b;text-decoration:underline;' title=\"Delete Status: $punchitem\"
                       href=\"statusdelete.php?statusname=$punchitem\">Delete</a></td></tr>\n";
   } else {
-  echo "                <td><a title=\"Edit Status: $punchitem\" href=\"statusedit.php?statusname=$punchitem\">
-                      <img border=0 src='../images/icons/application_edit.png' /></a></td>\n";
-  echo "                <td><a title=\"Delete Status: $punchitem\" href=\"statusdelete.php?statusname=$punchitem\">
-                      <img border=0 src='../images/icons/delete.png' /></a></td></tr>\n";
+  echo "                <td>
+                          <button type='button' id='formButtons' onclick='location=\"statusedit.php?statusname=$punchitem\"' class='btn btn-info'>
+                            <i class='fa fa-edit'></i>
+                          </button>
+                        </td>\n";
+
+  echo "                <td>
+                          <button type='button' id='formButtons' onclick='location=\"statusdelete.php?statusname=$punchitem\"' class='btn btn-danger'>
+                            <i class='fa fa-trash'></i>
+                          </button>
+                        </td>
+                      </tr>\n";
   }
 }
 echo "          </table>\n";

@@ -134,6 +134,13 @@ p.present-sum {
 	padding : 2px;
 }
 
+.required_fields{
+  font-family: Tahoma, Verdana, Trebuchet MS, sans-serif;
+	font-size: 10px;
+  font-weight: bold !important;
+	padding : 2px;
+  align: right;
+
 
 
 
@@ -158,6 +165,7 @@ hr.separator-reports{
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
+
 }
 .box-header .box-title {
     font-size: 14px !important;

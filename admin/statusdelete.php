@@ -28,7 +28,7 @@ $request = $_SERVER['REQUEST_METHOD'];
 include '../config.inc.php';
 include 'header.php';
 include 'topmain.php';
-echo "<title>$title - Delete Status</title>\n";
+echo "<title>$title - Eliminar Estado</title>\n";
 
 if (!isset($_SESSION['valid_user'])) {
 
@@ -82,35 +82,59 @@ echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-exchange"></i> Create Status</h3>
+                 <h3 class="box-title"><i class="fa fa-exchange"></i> Eliminar Estado</h3>
             </div>
             <div class="box-body">';
 
 echo "         <form name='form' action='$self' method='post'>\n";
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3>
-                    <img src='../images/icons/application_delete.png' />&nbsp;&nbsp;&nbsp;Delete Status</th>\n";
-echo "              </tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Status Name:</td><td align=left width=80%
-                      style='padding-left:20px;' class=table_rows><input type='hidden' name='post_statusname' value=\"$punchitem\">$punchitem</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='post_color' value=\"$color\">$color</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Is Status considered '<b>In</b>' or
-                      '<b>Out</b>'?</td><td align=left class=table_rows width=80% style='padding-left:20px;'>
-                      <input type='hidden' name='post_in_out' value=\"$in_or_out_tmp\">$in_or_out_tmp</td></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
+echo "            <table align=center class=table width=60% border=0 cellpadding=3 cellspacing=0>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Nombre del estado:
+                      </td>
+
+                      <td align=left width=80% style='padding-left:20px;' class=table_rows>
+                        <input type='hidden' name='post_statusname' value=\"$punchitem\">$punchitem
+                      </td>
+                    </tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Color:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='post_color' value=\"$color\">$color
+                      </td>
+                    </tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Tipo de estado:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='post_in_out' value=\"$in_or_out_tmp\">$in_or_out_tmp
+                      </td>
+                    </tr>\n";
 echo "            </table>\n";
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td class=table_rows height=53 align=left colspan=2 style='color:red;font-size:10px;'>
-                      Deleting this status does NOT delete it from the database history. It merely removes it from the list of status
-                      choices.</td></tr></table>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Delete Status' src='../images/buttons/next_button.png'></td>
-                  <td><a href='statusadmin.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr>
-                  </table>
-                </form>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=53 align=left colspan=2 >
+                        Eliminando este estado, no se elimina de la base de datos, simplemente se elimina de la lista de estados disponibles.
+                    </td>
+                  </tr>
+                  </table>\n";
+echo '            <div class="box-footer">
+                    <button type="button" id="formButtons" onclick="location=\'statusadmin.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                      <i class="fa fa-ban"></i>
+                      Cancelar
+                    </button>
+
+                    <button id="formButtons" type="submit" name="submit" value="Delete Status" class="btn btn-danger pull-right">
+                      <i class="fa fa-trash"></i>
+                      Eliminar estado
+                    </button>
+                  </div>
+                </form>';
 echo '      </div>
           </div>
         </div>
@@ -162,44 +186,56 @@ if ($post_in_out == '1') {
 }
 
 
-echo "            <br />\n";
+echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+             <h4><i class="icon fa fa-check-circle"></i>Estado eliminado!</h4>
+                El estado ha sido eliminado de la lista de estados satisfactoriamente.
+             </div></div>';
 
 echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-exchange"></i>  Create Status</h3>
+                 <h3 class="box-title"><i class="fa fa-exchange"></i>  Eliminar Estado</h3>
             </div>
             <div class="box-body">';
 
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td><td class=table_rows_green>&nbsp;Status
-                    deleted successfully.</td></tr>\n";
-echo "            </table>\n";
-echo "            <br />\n";
-echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+echo "            <table align=center class=table width=60% border=0 cellpadding=3 cellspacing=0>\n";
 echo "            <form name='form' action='$self' method='post'>\n";
-echo "              <tr>\n";
-echo "                <th class=rightside_heading nowrap halign=left colspan=3>
-                    <img src='../images/icons/application_delete.png' />&nbsp;&nbsp;&nbsp;Delete Status</th>\n";
-echo "              </tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Status Name:</td><td align=left width=80%
-                      style='padding-left:20px;' class=table_rows><input type='hidden' name='post_statusname'
-                      value=\"$post_statusname\">$post_statusname</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Color:</td><td align=left class=table_rows
-                      width=80% style='padding-left:20px;'><input type='hidden' name='post_color' value=\"$post_color\">$post_color</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Is Status considered '<b>In</b>' or
-                      '<b>Out</b>'?</td><td align=left class=table_rows width=80% style='padding-left:20px;'>
-                      <input type='hidden' name='post_in_out' value=\"$post_in_out\">$post_in_out</td></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "            </table>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
-echo "              <tr><td><a href='statusadmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr>
-                  </table>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Nombre del estado:
+                      </td>
 
+                      <td align=left width=80% style='padding-left:20px;' class=table_rows>
+                        <input type='hidden' name='post_statusname' value=\"$post_statusname\">$post_statusname
+                      </td>
+                    </tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Color:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='post_color' value=\"$post_color\">$post_color
+                      </td>
+                    </tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
+                        Tipo de estado:
+                      </td>
+
+                      <td align=left class=table_rows width=80% style='padding-left:20px;'>
+                        <input type='hidden' name='post_in_out' value=\"$post_in_out\">$post_in_out
+                      </td>
+                    </tr>\n";
+echo "            </table>\n";
+echo "            <div class='box-footer'>
+                    <button id='formButtons' onclick='location=\"statusadmin.php\"' class='btn btn-success pull-right'>
+                      Aceptar
+                      <i class='fa fa-check'></i>
+                    </button>
+                  </div>\n";
 echo '      </div>
           </div>
         </div>
