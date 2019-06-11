@@ -94,10 +94,7 @@ div.box.box-primary {
 
 
 /*separadores formularios*/
-hr {
 
-}
-#
 hr.separate-infos {
     border-top: 1px solid green;
 }
@@ -141,19 +138,21 @@ p.present-sum {
 	padding : 2px;
   align: right;
 
-
+}
 
 
 
 
 /*Tarjetas reportes del día*/
 /*separador reportes*/
+
 hr.separator-reports{
+
   border-top: 1px solid black;
   margin-top: 5px;
   margin-bottom: 5px;
-}
 
+}
 .box{
 
       border-top: 3px solid #00a65a82 !important;

@@ -163,6 +163,7 @@ if($request == 'POST') {
 
 
 function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
+  echo "<div class='container'>";
     $employees_cnt = 0;
     $employees_empfullname = array();
     $employees_displayname = array();
@@ -313,19 +314,19 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
 
           echo "<hr class='separator-reports'>\n";
           echo "<div class='row'>";
-          echo "  <div class='col-sm-12 col-md-2 col-lg-2'>
+          echo "  <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
                     <strong><span style='color:'> Estado</span></strong>
                   </div>";
-          echo "  <div class='col-sm-12 col-md-4 col-lg-4'>
+          echo "  <div class='col-xs-3 col-sm-3 col-md-4 col-lg-4'>
                     <strong><span style='color:'> Fecha</span></strong>
                   </div>";
-          echo "  <div class='col-sm-12 col-md-2 col-lg-2'>
+          echo "  <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
                     <strong><span style='color:'> Dirección IP</span></strong>
                   </div>";
-          echo "  <div class='col-sm-12 col-md-2 col-lg-2'>
+          echo "  <div class='col-xs-3 col-sm-3 col-md-2 col-lg-2'>
                     <strong><span style='color:'> Comentarios</span></strong>
                   </div>";
-          echo "  <div class='col-sm-12 col-md-2 col-lg-2'>
+          echo "  <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
                     <strong><span style='color:'> Dirección</span></strong>
                   </div>";
           echo "</div>";
@@ -352,20 +353,20 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
 
 
         <div class="row">
-            <div class="col-sm-12 col-md-2 col-lg-2">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                 <span style='color: <?php echo $punchlist_color?>'><?php echo "$info_inout"?></span>
             </div>
-            <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="col-xs-3 col-sm-3 col-md-4 col-lg-4">
                 <?php $datetime = strftime("%d de %B de %Y, %H:%M", $info_timestamp);echo "$datetime";
                 ?>
             </div>
-            <div class="col-sm-12 col-md-2 col-lg-2">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
               <span style='color: <?php echo $punchlist_color?>'><?php echo "$info_ipaddress"?></span>
             </div>
-            <div class="col-sm-12 col-md-2 col-lg-2">
+            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                 <?php echo "$info_notes";?>
             </div>
-            <div class="col-sm-12 col-md-2 col-lg-2">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <?php $url = 'https://www.google.com/maps/?q=' . $latitude . ',' . $longitude;?>
                 <a href=<?php echo $url?> target='_blank'>Ver en mapa</a>
             </div>
