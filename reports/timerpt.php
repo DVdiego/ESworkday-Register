@@ -66,7 +66,7 @@ if ($request == 'GET') {
 
 
     echo ' <div class="row">
-     <div id="float_window" class="col-md-10">
+            <div id="float_window" class="col-md-10">
               <div class="box box-info">
                 <div class="box-header with-border">
                   <h3 class="box-title"><i class="fa fa-book"></i> Daily Time Report</h3>
@@ -733,6 +733,7 @@ function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_pre
     $page_count = 0;
     $punch_cnt = 0;
     $tmp_z = 0;
+    @$tmp_display_ip = $_POST['tmp_display_ip'];
 
 
 
@@ -861,9 +862,11 @@ function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_pre
           echo "  <div class='col-xs-3 col-sm-3 col-md-4 col-lg-4'>
                     <strong><span style='color:'> Fecha</span></strong>
                   </div>";
+          if($tmp_display_ip == "1"){
           echo "  <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
                     <strong><span style='color:'> Dirección IP</span></strong>
                   </div>";
+            }
           echo "  <div class='col-xs-3 col-sm-3 col-md-2 col-lg-2'>
                     <strong><span style='color:'> Comentarios</span></strong>
                   </div>";
@@ -900,9 +903,11 @@ function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_pre
                 <?php $datetime = strftime("%d de %B de %Y, %H:%M", $info_timestamp);echo "$datetime";
                 ?>
             </div>
+            <?php if($tmp_display_ip == "1"){  ?>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
               <span style='color: <?php echo $punchlist_color?>'><?php echo "$info_ipaddress"?></span>
             </div>
+          <?php }?>
             <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
                 <?php echo "$info_notes";?>
             </div>

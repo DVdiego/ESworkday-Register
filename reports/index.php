@@ -43,11 +43,13 @@ include 'leftmain.php';
     </section>";
 
 
-    // $from_date = strtotime(date("m/d/y",time()))+60;
-    // $to_date = strtotime(date("m/d/y",time()))+86340;
+    $from_date = strtotime(date("m/d/y",time()));
+    $to_date = strtotime(date("m/d/y",time()));
 
-    $from_date = 1560124860;
-    $to_date = 1560211140;
+    //$from_date = 1560124860;
+    //$to_date = 1560211140;
+
+
 
     //$query ="SELECT ".$db_prefix."employees.* FROM employees WHERE empfullname != 'admin' ";
     $query_employees = "select ".$db_prefix."* FROM employees WHERE empfullname != 'admin'";
@@ -115,10 +117,14 @@ function hours_worked_report($emp_fullname,$tmp_dni,$from_date,$to_date,$db_pref
     $punch_cnt = 0;
     $tmp_z = 0;
 
-
-
-    $from_timestamp = $from_date;
-    $to_timestamp = $to_date;
+    $report_start_time = "00:00";
+    $report_end_time = "23:59";
+    $from_date = str_replace("/", "-", $from_date);
+    $from_timestamp = strtotime($from_date . " " . $report_start_time) - @$tzo;
+    $to_date = str_replace("/", "-", $to_date);
+    $to_timestamp = strtotime($to_date . " " . $report_end_time) - @$tzo;
+    // $from_timestamp = $from_date;
+    // $to_timestamp = $to_date;
 
 
     $query = "select ".$db_prefix."info.fullname, ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes,
@@ -312,35 +318,35 @@ function hours_worked_report($emp_fullname,$tmp_dni,$from_date,$to_date,$db_pref
       if($aux_sum>0 && $hours <= 12){
 
 
-        echo "<div class='row'>
-                <div class='col-sm-12 col-md-10 col-lg-10'>
-                    <strong>
-                          Tiempo trabajado en el día = ".$hours."h:".$minutes."m
-                    </strong>
-                </div>
-              </div>\n";
-        //echo " Suma del tiempo de trabajo del día: $time_aux";
-        echo "<hr class='separator-reports'>\n";
+        // echo "<div class='row'>
+        //         <div class='col-sm-12 col-md-10 col-lg-10'>
+        //             <strong>
+        //                   Tiempo trabajado en el día = ".$hours."h:".$minutes."m
+        //             </strong>
+        //         </div>
+        //       </div>\n";
+        // //echo " Suma del tiempo de trabajo del día: $time_aux";
+         echo "<hr class='separator-reports'>\n";
 
 
       } else {
 
         //condición para que salte el mensaje solo cuando se ha realizado la suma de horas previamente
-        if($count>0){
-
-
-          echo "<div class='row'>
-                    <div class='col-sm-12 col-md-10 col-lg-10'>
-                      <div class='alert alert-warning'>
-                        <strong>
-                            ¡Aviso! No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
-                            <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
-                        </strong>
-                      </div>
-                  </div>
-                </div>\n";
+        // if($count>0){
+        //
+        //
+        //   echo "<div class='row'>
+        //             <div class='col-sm-12 col-md-10 col-lg-10'>
+        //               <div class='alert alert-warning'>
+        //                 <strong>
+        //                     ¡Aviso! No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
+        //                     <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
+        //                 </strong>
+        //               </div>
+        //           </div>
+        //         </div>\n";
           echo "<hr class='separator-reports'>\n";
-        }
+        // }
 
       }
 

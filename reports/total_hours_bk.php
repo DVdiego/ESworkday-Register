@@ -70,56 +70,75 @@ echo '      <div class="box-header with-border">
             </div>
             <div class="box-body">';
 
-            echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
+echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
+echo "            <table class='table' align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+echo "              <tr>\n";
+echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/report.png' />&nbsp;&nbsp;&nbsp;
+                    Hours Worked Report</th></tr>\n";
+echo "              <tr><td height=15></td></tr>\n";
+echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
 
-            echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
-            if ($username_dropdown_only == "yes") {
+if ($username_dropdown_only == "yes") {
 
-                $query = "select * from ".$db_prefix."employees order by empfullname asc";
-                $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+$query = "select empfullname from ".$db_prefix."employees order by empfullname asc";
+$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-                echo "             <div class='form-group'><label> Username: </label>
-                                  <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'>\n";
-                echo "                    <option value ='All'>All</option>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td colspan=2 align=left width=80%
+                      style='padding-left:20px;'>
+                  <select name='user_name'>\n";
+echo "                    <option value ='All'>All</option>\n";
 
-                while ($row=mysqli_fetch_array($result)) {
-                  $tmp_empfullname = stripslashes("".$row['empfullname']."");
-                  echo "                    <option>$tmp_empfullname</option>\n";
-                }
+while ($row=mysqli_fetch_array($result)) {
+  $tmp_empfullname = stripslashes("".$row['empfullname']."");
+  echo "                    <option>$tmp_empfullname</option>\n";
+}
 
-                echo "                  </select></div> &nbsp;*\n";
-                ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-            } else {
+echo "                  </select>&nbsp;*</td></tr>\n";
+((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
+} else {
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Office:</td><td colspan=2 width=80%
+                      style='padding-left:20px;'>
+                      <select name='office_name' onchange='group_names();'>\n";
+echo "                      </select></td></tr>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Group:</td><td colspan=2 width=80%
+                      style='padding-left:20px;'>
+                      <select name='group_name' onchange='user_names();'>\n";
+echo "                      </select></td></tr>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Username:</td><td colspan=2 width=80%
+                      style='padding-left:20px;'>
+                      <select name='user_name'>\n";
+echo "                      </select></td></tr>\n";
+}
+// echo "              <tr><td class=table_rows style='padding-left:32px;' width=20% nowrap>From Date: ($tmp_datefmt)</td><td
+//                       style='padding-left:20px;' width=80% >
+//                       <input type='text' size='10' maxlength='10' name='from_date' id='datepicker'>&nbsp;*&nbsp;&nbsp;
+//                       </td><tr>\n";
+// echo "              <tr><td class=table_rows style='padding-left:32px;' width=20% nowrap>To Date: ($tmp_datefmt)</td><td
+//                       style='padding-left:20px;' width=80% >
+//                       <input type='text' size='10' maxlength='10' name='to_date' id='datepicker1'>&nbsp;*&nbsp;&nbsp;
+//                       </td><tr>\n";
+echo "<tr><td>";
+echo "    <div class='form-group'>
+            <label>Fecha inicio:</label>
+            <input type='date' size='10' maxlength='10' name='from_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
+            <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+            return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+             </div>";
 
-            echo "<div class='form-group'><label style='padding-right: 40px;'>Choose Office: </label> <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'></select></div>";
-
-            echo "<div class='form-group'><label style='padding-right: 39px;'>Choose Group: </label> <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'></select></div>\n";
-
-            echo "             <div class='form-group'><label style='padding-right: 15px;'>Choose Username: </label> <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'></select></div>\n";
-
-            }
-
-
-            echo "              <div class='form-group' style='display: -webkit-box;'>
-                                  <label style='padding-right: 10px;'>From Date:</label>
-                                    <div class='input-group'>
-                                      <input type='date' size='10' maxlength='10' name='from_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
-                                      <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
-                                      return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-                                    </div>
-                                </div>\n";
-            echo "              <div class='form-group' style='display: -webkit-box;'>
-                                  <label style='padding-right: 27px;'>To Date:</label>
-                                    <div class='input-group'>
-                                      <input type='date' size='10' maxlength='10' name='to_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
-                                      <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
-                                      return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-                                    </div>
-                                </div>\n";
+echo "    <div class='form-group'>
+           <label>Fecha fin:</label>
+           <input type='date' size='10' maxlength='10' name='to_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
+           <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt');
+           return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+            </div>";
+echo "</tr></td>";
+echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+echo "            </table>\n";
+// echo "            <div style=\"position:absolute;visibility:hidden;background-color:#ffffff;layer-background-color:#ffffff;\" id=\"mydiv\"
+//                  height=200>&nbsp;</div>\n";
 
 
-
-echo "            <table align=left width=60% border=0 cellpadding=0 cellspacing=3>\n";
+echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td class=table_rows height=25 valign=bottom>1.&nbsp;&nbsp;&nbsp;Export to CSV? (link to CSV file will be in the top right of
                       the next page)</td></tr>\n";
 if (strtolower($export_csv) == "yes") {
@@ -241,14 +260,11 @@ else {
 }
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='displayEmptyHours' checked value='1'> Yes</input> <input type='radio' name='displayEmptyHours' value='0'> No</input></td></tr>\n";
 echo "            </table>\n";
-echo "            <table align=center width=100% border=0 cellpadding=0 cellspacing=3>\n";
-echo "<tr><td>";
-echo "<div class='box-footer'>
-        <a href='index.php'><button type='submit' name='submit' value='Edit Time' class='btn btn-default pull-right'><i class='fa fa-ban'></i>  Cancel</button></a>
-        <button type='submit' class='btn btn-success'>Next <i class='fa fa-arrow-right'></i></button></div>
-      </div>";
-echo "</td></tr>";
-echo "</table></form>\n";
+
+echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
+echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle'
+                      src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png'
+                      border='0'></td></tr></table></form>\n";
 echo '      </div>
           </div>
         </div>
@@ -687,7 +703,7 @@ echo "              <tr><td class=table_rows align=right colspan=3 style='color:
 echo "            </table>\n";
 // echo "            <div style=\"position:absolute;visibility:hidden;background-color:#ffffff;layer-background-color:#ffffff;\" id=\"mydiv\"
 //                  height=200>&nbsp;</div>\n";
-echo "            <table align=center width=100% border=0 cellpadding=0 cellspacing=3>\n";
+echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td class=table_rows height=25 valign=bottom>1.&nbsp;&nbsp;&nbsp;Export to CSV? (link to CSV file will be in the top right of
                       the next page)</td></tr>\n";
 if ($tmp_csv == "1") {
@@ -818,17 +834,14 @@ include '../footer.php';exit;
 // end post validation //
 
 if (!empty($from_date)) {
-    //$from_date = "$from_month/$from_day/$from_year";
-
-    $from_date = str_replace("/", "-", $from_date);
+    $from_date = "$from_month/$from_day/$from_year";
     $from_timestamp = strtotime($from_date . " " . $report_start_time) - $tzo;
     $from_date = $_POST['from_date'];
 }
 
 if (!empty($to_date)) {
-    //$to_date = "$to_month/$to_day/$to_year";
-    $to_date = str_replace("/", "-", $to_date);
-    $to_timestamp = strtotime($to_date . " " . $report_end_time) - $tzo;
+    $to_date = "$to_month/$to_day/$to_year";
+    $to_timestamp = strtotime($to_date . " " . $report_end_time) - $tzo + 60;
     $to_date = $_POST['to_date'];
 }
 
