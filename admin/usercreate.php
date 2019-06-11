@@ -507,7 +507,7 @@ elseif ($request == 'POST') {
 															</td>
 
 															<td class='table_rows' width=80% style='padding-left:20px;'>
-				                      	<input type='text' size='25' maxlength='50' name='post_username' value=\"$user_dni\">
+				                      	<input type='text' size='25' maxlength='50' name='user_dni' value=\"$user_dni\">
 															</td>
 														</tr>\n";
 
