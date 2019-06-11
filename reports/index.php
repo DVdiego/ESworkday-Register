@@ -46,10 +46,9 @@ include 'leftmain.php';
     $from_date = strtotime(date("m/d/y",time()));
     $to_date = strtotime(date("m/d/y",time()));
 
-    //$from_date = 1560124860;
-    //$to_date = 1560211140;
-
-
+    // $from_date = 1560124860;
+    //
+    // $to_date = 1560211140;
 
     //$query ="SELECT ".$db_prefix."employees.* FROM employees WHERE empfullname != 'admin' ";
     $query_employees = "select ".$db_prefix."* FROM employees WHERE empfullname != 'admin'";
@@ -117,14 +116,10 @@ function hours_worked_report($emp_fullname,$tmp_dni,$from_date,$to_date,$db_pref
     $punch_cnt = 0;
     $tmp_z = 0;
 
-    $report_start_time = "00:00";
-    $report_end_time = "23:59";
-    $from_date = str_replace("/", "-", $from_date);
-    $from_timestamp = strtotime($from_date . " " . $report_start_time) - @$tzo;
-    $to_date = str_replace("/", "-", $to_date);
-    $to_timestamp = strtotime($to_date . " " . $report_end_time) - @$tzo;
-    // $from_timestamp = $from_date;
-    // $to_timestamp = $to_date;
+
+
+    $from_timestamp = $from_date + 60;
+    $to_timestamp = $to_date + 61080;
 
 
     $query = "select ".$db_prefix."info.fullname, ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes,
