@@ -564,13 +564,6 @@ if ($request == 'GET') {
     }
 
 
-
-    echo "<br>";
-    echo "from: $from_timestamp";
-
-
-    echo "<br>";
-    echo "to: $to_timestamp";
     // $time = time();
     // $rpt_hour = gmdate('H',$time);
     // $rpt_min = gmdate('i',$time);
@@ -702,7 +695,6 @@ if ($request == 'GET') {
       $employees_displayname[] = stripslashes("".$row['displayname']."");
       $employees_cnt++;
     }
-    echo " seleccion num:".mysqli_num_rows($result);
 
 
 
@@ -717,7 +709,7 @@ if ($request == 'GET') {
             $employees_displayname[$x] = addslashes($employees_displayname[$x]);
 
             $query = "select ".$db_prefix."info.fullname, ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes,
-                      ".$db_prefix."info.ipaddress, ".$db_prefix."punchlist.in_or_out, ".$db_prefix."punchlist.punchitems, ".$db_prefix."punchlist.color
+                      ".$db_prefix."info.ipaddress, ".$db_prefix."punchlist.in_or_out, ".$db_prefix."punchlist.punchitems, ".$db_prefix."punchlist.color, ".$db_prefix."employees.empDNI
                       from ".$db_prefix."info, ".$db_prefix."punchlist, ".$db_prefix."employees
                       where ".$db_prefix."info.fullname = '".$employees_empfullname[$x]."' and ".$db_prefix."info.timestamp >= '".$from_timestamp."'
                       and ".$db_prefix."info.timestamp <= '".$to_timestamp."' and ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
@@ -726,7 +718,6 @@ if ($request == 'GET') {
             $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 
-              echo " info empleado".mysqli_num_rows($result);
             while ($row=mysqli_fetch_array($result)) {
 
                 $display_stamp = "".$row["timestamp"]."";
@@ -738,9 +729,11 @@ if ($request == 'GET') {
 
                         echo "            <table class=misc_items width=100% border=0 cellpadding=2 cellspacing=0>\n";
                         echo "              <tr class=notprint>\n";
-                        echo "                <td nowrap width=20% align=left style='padding-left:10px;padding-right:10px;font-size:11px;color:#27408b;
+                        echo "                <td nowrap width=30% align=left style='padding-left:10px;padding-right:10px;font-size:11px;color:#27408b;
                         text-decoration:underline;'>Name</td>\n";
-                        echo "                <td nowrap width=7% align=left style='padding-left:10px;font-size:11px;color:#27408b;
+                        echo "                <td nowrap width=10% align=left style='padding-left:10px;font-size:11px;color:#27408b;
+                        text-decoration:underline;'>DNI</td>\n";
+                        echo "                <td nowrap width=10% align=left style='padding-left:10px;font-size:11px;color:#27408b;
                         text-decoration:underline;'>In/Out</td>\n";
                         echo "                <td nowrap width=5% align=right style='padding-right:10px;font-size:11px;color:#27408b;
                         text-decoration:underline;'>Time</td>\n";
@@ -763,21 +756,21 @@ if ($request == 'GET') {
                         echo "              <tr><td class=notdisplay align=right colspan=6 nowrap style='font-size:9px;color:#000000;'>
                           Date Range: $from_date - $to_date</td></tr>\n";
                     }
-                    echo "              <tr class=notdisplay>\n";
-                    echo "                <td nowrap width=20% align=left style='padding-left:10px;padding-right:10px;font-size:11px;color:#27408b;
-                        text-decoration:underline;'>Name</td>\n";
-                    echo "                <td nowrap width=7% align=left
-                        style='padding-left:10px;font-size:11px;color:#27408b;text-decoration:underline;'>In/Out</td>\n";
-                    echo "                <td nowrap width=5% align=right
-                        style='padding-right:10px;font-size:11px;color:#27408b;text-decoration:underline;'>Time</td>\n";
-                    echo "                <td nowrap width=5% align=right
-                        style='padding-left:10px;font-size:11px;color:#27408b;text-decoration:underline;'>Date</td>\n";
-                    if ($tmp_display_ip == "1") {
-                        echo "                <td nowrap width=15% align=left
-                            style='padding-left:10px;font-size:11px;color:#27408b;text-decoration:underline;'>Originating IP</td>\n";
-                    }
-                    echo "                <td style='padding-left:10px;'><a style='font-size:11px;color:#27408b;text-decoration:underline;'>Notes</td>\n";
-                    echo "              </tr>\n";
+                    // echo "              <tr class=notdisplay>\n";
+                    // echo "                <td nowrap width=20% align=left style='padding-left:10px;padding-right:10px;font-size:11px;color:#27408b;
+                    //     text-decoration:underline;'>Name</td>\n";
+                    // echo "                <td nowrap width=7% align=left
+                    //     style='padding-left:10px;font-size:11px;color:#27408b;text-decoration:underline;'>In/Out</td>\n";
+                    // echo "                <td nowrap width=5% align=right
+                    //     style='padding-right:10px;font-size:11px;color:#27408b;text-decoration:underline;'>Time</td>\n";
+                    // echo "                <td nowrap width=5% align=right
+                    //     style='padding-left:10px;font-size:11px;color:#27408b;text-decoration:underline;'>Date</td>\n";
+                    // if ($tmp_display_ip == "1") {
+                    //     echo "                <td nowrap width=15% align=left
+                    //         style='padding-left:10px;font-size:11px;color:#27408b;text-decoration:underline;'>Originating IP</td>\n";
+                    // }
+                    // echo "                <td style='padding-left:10px;'><a style='font-size:11px;color:#27408b;text-decoration:underline;'>Notes</td>\n";
+                    // echo "              </tr>\n";
                 }
 
                 // begin alternating row colors //
@@ -791,13 +784,14 @@ if ($request == 'GET') {
                 $date = date($datefmt, $display_stamp);
 
                 if (strtolower($user_or_display) == "display") {
-                    echo stripslashes("              <tr class=display_row><td nowrap width=20% bgcolor='$row_color' style='padding-left:10px;
+                    echo stripslashes("              <tr class=display_row><td nowrap width=30% bgcolor='$row_color' style='padding-left:10px;
                           padding-right:10px;'>$employees_displayname[$x]</td>\n");
                 } else {
-                    echo stripslashes("              <tr class=display_row><td nowrap width=20% bgcolor='$row_color' style='padding-left:10px;
+                    echo stripslashes("              <tr class=display_row><td nowrap width=30% bgcolor='$row_color' style='padding-left:10px;
                           padding-right:10px;'>$employees_empfullname[$x]</td>\n");
                 }
-                echo "                <td nowrap align=left width=7% style='background-color:$row_color;color:".$row["color"].";
+                echo "                <td nowrap align=left width=10% style='padding-left:10px;'>".$row["empDNI"]."</td>\n";
+                echo "                <td nowrap align=left width=10% style='background-color:$row_color;color:".$row["color"].";
                       padding-left:10px;'>".$row["inout"]."</td>\n";
                 echo "                <td nowrap align=right width=5% bgcolor='$row_color' style='padding-right:10px;'>".$time."</td>\n";
                 echo "                <td nowrap align=right width=5% bgcolor='$row_color' style='padding-left:10px;'>".$date."</td>\n";
@@ -806,8 +800,37 @@ if ($request == 'GET') {
                           padding-left:10px;'>".$row["ipaddress"]."</td>\n";
                 }
                 echo stripslashes("                <td bgcolor='$row_color' style='padding-left:10px;'>".$row["notes"]."</td>\n");
+
+                if(!isset($tmp_dni)){
+
+                  $tmp_dni = "".$row["empDNI"]."";
+                }
+
+
+                if($tmp_dni != "".$row["empDNI"].""){
+                  echo "<hr class='separator-reports'>\n";
+
+                }
                 echo "              </tr>\n";
 
+
+                if(!isset($tmp_dni)){
+
+                  $tmp_dni = "".$row["empDNI"]."";
+                  echo " nuevo tem: $tmp_dni";
+                }
+
+
+                if($tmp_dni != "".$row["empDNI"].""){
+                  echo "<tr>";
+                  echo "<hr class='separator-reports'>\n";
+                  echo " tem $tmp_dni ---- ".$row["empDNI"];
+                  echo "<br>";
+                  echo "</tr>";
+
+                }
+
+                $tmp_dni = "".$row["empDNI"]."";
                 $row_count++;
 
                 // output 40 rows per printed page //

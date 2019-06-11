@@ -311,7 +311,7 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
           $sum_out = 0;
 
 
-          echo "<hr class='separate-days'>\n";
+          echo "<hr class='separator-reports'>\n";
           echo "<div class='row'>";
           echo "  <div class='col-sm-12 col-md-2 col-lg-2'>
                     <strong><span style='color:'> Estado</span></strong>
@@ -395,7 +395,7 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
                 </div>
               </div>\n";
         //echo " Suma del tiempo de trabajo del día: $time_aux";
-        echo "<hr class='separate-days'>\n";
+        echo "<hr class='separator-reports'>\n";
 
 
       } else {
@@ -414,7 +414,7 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
                       </div>
                   </div>
                 </div>\n";
-          echo "<hr class='separate-days'>\n";
+          echo "<hr class='separator-reports'>\n";
         }
 
       }
@@ -434,7 +434,7 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
 
                 </div>
               </div>\n";
-        echo "<hr class='separate-days'>\n";
+        echo "<hr class='separator-reports'>\n";
 
       }else{
 
@@ -448,7 +448,7 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
                     </div>
                   </div>
               </div>\n";
-        echo "<hr class='separate-days'>\n";
+        echo "<hr class='separator-reports'>\n";
       }
 
 

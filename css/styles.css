@@ -135,7 +135,22 @@ p.present-sum {
 }
 
 
-/*tajetas reportes del día*/
+
+
+
+
+/*Tarjetas reportes del día*/
+/*separador reportes*/
+hr.separator-reports{
+  border-top: 1px solid black;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.box{
+
+      border-top: 3px solid #00a65a82 !important;
+}
 .content_reports{
 
     min-height: 0px;
@@ -143,4 +158,7 @@ p.present-sum {
     margin-left: auto;
     padding-left: 15px;
     padding-right: 15px;
+}
+.box-header .box-title {
+    font-size: 14px !important;
 }
