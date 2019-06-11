@@ -53,7 +53,7 @@ if (empty($company_name) || empty($app_version)) {
 echo '
 	</div>
 <!-- Default to the left -->
-Soporte <a class="footer_links" href="mailto:soporte@isoftsolutions.es" target="_blank">soporte@isoftsolutions.es</a>
+Soporte <a class="footer_links" href="mailto:contacto@isoftsolutions.es" target="_blank">contacto@isoftsolutions.es</a>
 
  </footer>
 ';
