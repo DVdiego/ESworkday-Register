@@ -94,8 +94,10 @@ if ($_REQUEST["login_action"] == "admin") {
         // Setup user permissions
         if (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($admin_auth == "1")) {
             $_SESSION['valid_user'] = $login_userid;
+            $_SESSION['valid_profile'] = $login_userid;
         } elseif (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($time_admin_auth == "1")) {
             $_SESSION['time_admin_valid_user'] = $login_userid;
+            $_SESSION['valid_profile'] = $login_userid;
         }
 
         // Determine if the user has report access rights.
@@ -110,6 +112,7 @@ if ($_REQUEST["login_action"] == "admin") {
 
         if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password)) && ($reports_auth == "1")) {
             $_SESSION['valid_reports_user'] = $login_userid;
+            $_SESSION['valid_profile'] = $login_userid;
         }
     }
 
@@ -117,7 +120,7 @@ if ($_REQUEST["login_action"] == "admin") {
     if (isset($_SESSION['valid_user'])) {
         echo "
       <script type='text/javascript' language='javascript'>
-         window.location.href = 'admin/index.php';
+         window.location.href = 'admin/timeadmin.php';
       </script>";
         exit;
     } elseif (isset($_SESSION['time_admin_valid_user'])) {
@@ -228,8 +231,10 @@ if ($_REQUEST["login_action"] == "admin") {
         // Determine if the user is authorised to view reports
         if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password)) && ($reports_auth == "1")) {
             $_SESSION['valid_reports_user'] = $login_userid;
+            $_SESSION['valid_profile'] = $login_userid;
         } else if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password))) { // User can view his own hours
             $_SESSION['valid_report_employee'] = $login_userid;
+            $_SESSION['valid_profile'] = $login_userid;
         }
 
         // Determine if the user has time or sys access rights.
@@ -245,8 +250,10 @@ if ($_REQUEST["login_action"] == "admin") {
 
         if (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($admin_auth == "1")) {
             $_SESSION['valid_user'] = $login_userid;
+            $_SESSION['valid_profile'] = $login_userid;
         } elseif (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($time_admin_auth == "1")) {
             $_SESSION['time_admin_valid_user'] = $login_userid;
+            $_SESSION['valid_profile'] = $login_userid;
         }
     }
 

@@ -29,10 +29,10 @@ session_start();
 $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 $current_page = "audit.php";
-
+setlocale(LC_ALL,'es_ES.UTF-8');
 include '../config.inc.php';
-include '../admin/header_date.php';
-include '../admin/topmain.php';
+include '../admin/header.php';
+include 'topmain.php';
 include 'leftmain.php';
 
 if ($use_reports_password == "yes") {
@@ -73,45 +73,63 @@ if ($request == 'GET') {
                      <h3 class="box-title"><i class="fa fa-suitcase"></i> Audit Log</h3>
                 </div>
                 <div class="box-body">';
-    echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/information.png' /></td><td class=table_rows style='color:#3366CC;'>This report will display all information pertaining to punch-in/out times that have been added, edited, or deleted from WorkTime Control.</td></tr>\n";
-    echo "            </table>\n";
-    echo "            <br />\n";
+                echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
 
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr>\n";
-    echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/report.png' />&nbsp;&nbsp;&nbsp;Audit Log</th> </tr>\n";
-    echo "              <tr><td height=15></td></tr>\n";
-    echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
-    echo "              <tr><td class=table_rows style='padding-left:32px;' width=20% nowrap>From Date: ($tmp_datefmt)</td><td style='padding-left:20px;' width=80% > <input type='text' size='10' maxlength='10' name='from_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp; <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt'); return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
-    echo "              <tr><td class=table_rows style='padding-left:32px;' width=20% nowrap>To Date: ($tmp_datefmt)</td><td style='padding-left:20px;' width=80% > <input type='text' size='10' maxlength='10' name='to_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp; <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt'); return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
-    echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
-    echo "            </table>\n";
-    echo "            <div style=\"position:absolute;visibility:hidden;background-color:#ffffff;layer-background-color:#ffffff;\" id=\"mydiv\" height=200>&nbsp;</div>\n";
-    echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows height=25 valign=bottom>1.&nbsp;&nbsp;&nbsp;Export to CSV? (link to CSV file will be in the top right of the next page)</td></tr>\n";
-    if (strtolower($export_csv) == "yes") {
-        echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='csv' value='1' checked>&nbsp;Yes <input type='radio' name='csv' value='0'>&nbsp;No</td></tr>\n";
-    } else {
-        echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='csv' value='1'>&nbsp;Yes <input type='radio' name='csv' value='0' checked>&nbsp;No</td></tr>\n";
-    }
-    echo "              <tr><td height=10></td></tr>\n";
-    echo "            </table>\n";
-    echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td width=30><input type='image' name='submit' value='Edit Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr>
-                      </table>
-                    </form>\n";
+                echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
 
-                    echo '      </div>
-                              </div>
-                            </div>
-                          </div>';
-                    include '../theme/templates/endmaincontent.inc';
-                    include '../theme/templates/controlsidebar.inc';
-                    include '../theme/templates/endmain.inc';
-                    include '../theme/templates/adminfooterscripts.inc';
-                    include '../footer.php';exit;
+
+
+                echo "              <div class='form-group' style='display: -webkit-box;'>
+                                      <label style='padding-right: 10px;'>From Date:</label>
+                                        <div class='input-group'>
+                                          <input type='date' size='10' maxlength='10' name='from_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
+                                          <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                                          return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                                        </div>
+                                    </div>\n";
+                echo "              <div class='form-group' style='display: -webkit-box;'>
+                                      <label style='padding-right: 27px;'>To Date:</label>
+                                        <div class='input-group'>
+                                          <input type='date' size='10' maxlength='10' name='to_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
+                                          <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                                          return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                                        </div>
+                                    </div>\n";
+
+
+                echo "              <div class='form-group'><div class='radio'>
+                                        <label>Export to CSV? (link to CSV file will be in the top right of the next page)</label></div> \n";
+                     if (strtolower($export_csv) == "yes") {
+                     echo "    <div class='radio'><label><input type='radio' name='csv' value='1' checked>&nbsp;Yes</label></div>\n";
+                     echo "    <div class='radio'><label><input type='radio' name='csv' value='0'> &nbsp;No </label></div></div>\n";
+                     } else {
+                     echo "    <div class='radio'><label><input type='radio' name='csv' value='1'> Yes</label></div>   <div class='radio'><label><input type='radio' name='csv' value='0' checked>No</label></div></div>\n";
+                     }
+
+
+                echo '    <div class="box-footer">
+                            <a href="index.php"><button type="submit" name="submit" value="Edit Time" class="btn btn-default pull-right"><i class="fa fa-ban"></i>  Cancel</button></a>
+                            <button type="submit" class="btn btn-success">Next <i class="fa fa-arrow-right"></i></button></div>
+                          </div>
+                      </form>
+                            <!-- /.box-body -->
+                          </div>
+                          <!-- /.box -->
+
+                        </div>
+                        <!-- /.col (right) -->
+                      </div>
+                      <!-- /.row -->';
+
+
+
+
+                include '../theme/templates/endmaincontent.inc';
+                include '../footer.php';
+                include '../theme/templates/controlsidebar.inc';
+                include '../theme/templates/endmain.inc';
+                include '../theme/templates/reportsfooterscripts.inc';
+                exit;
 } else {
     //include '../admin/header_date.php';
 
@@ -351,12 +369,17 @@ if ($request == 'GET') {
     // end post error checking //
 
     if (!empty($from_date)) {
-        $from_date = "$from_month/$from_day/$from_year";
+        // $from_date = "$from_month/$from_day/$from_year";
+        $from_date = str_replace("/", "-", $from_date);
         $from_timestamp = strtotime($from_date) - @$tzo;
         $from_date = $_POST['from_date'];
     }
+
+
+
     if (!empty($to_date)) {
-        $to_date = "$to_month/$to_day/$to_year";
+        // $to_date = "$to_month/$to_day/$to_year";
+        $to_date = str_replace("/", "-", $to_date);
         $to_timestamp = strtotime($to_date) + 86400 - @$tzo;
         $to_date = $_POST['to_date'];
     }

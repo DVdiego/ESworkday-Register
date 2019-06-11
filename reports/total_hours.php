@@ -119,7 +119,7 @@ echo '      <div class="box-header with-border">
 
 
 
-echo "            <table align=left width=60% border=0 cellpadding=0 cellspacing=3>\n";
+echo "            <table align=left width=100% border=0 cellpadding=0 cellspacing=3>\n";
 echo "              <tr><td class=table_rows height=25 valign=bottom>1.&nbsp;&nbsp;&nbsp;Export to CSV? (link to CSV file will be in the top right of
                       the next page)</td></tr>\n";
 if (strtolower($export_csv) == "yes") {

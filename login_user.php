@@ -37,7 +37,7 @@
 
           while ($row = mysqli_fetch_array($result)) {
               $login_userid = "".$row['empfullname']."";
-              echo "login name: $login_userid\n";
+
           }
 
         }elseif ($login_with_displayname == "yes"){
@@ -47,7 +47,7 @@
 
           while ($row = mysqli_fetch_array($result)) {
               $login_userid = "".$row['empfullname']."";
-              echo "login display: $login_userid\n";
+
           }
         }elseif ($login_with_dni == "yes"){
 
@@ -56,11 +56,11 @@
 
           while ($row = mysqli_fetch_array($result)) {
               $login_userid = "".$row['empfullname']."";
-              echo "login DNI: $login_userid\n";
+
           }
         }
          // Determine if the user has report access rights.
-         echo "login id: $login\n";
+
          $query = "select empfullname, employee_passwd, reports, `profile` from ".$db_prefix."employees where empfullname = '".$login_userid."'";
          $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
@@ -100,14 +100,14 @@
      // If the user supplied the proper credentials, send them to the proper location
      if (isset($_SESSION['valid_profile'])) {
 
-        echo "mensaje: valid_profile";
+
          echo "
                <script type='text/javascript' language='javascript'>
                   window.location.href = './user/index.php';
                </script>";
          exit;
      } else if (isset($_SESSION['valid_report_employee'])) {
-       echo "mensaje: valid_report_employee";
+    
          echo "
                <script type='text/javascript' language='javascript'>
                   window.location.href = 'worktime.php';
