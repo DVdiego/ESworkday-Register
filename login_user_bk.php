@@ -25,51 +25,47 @@
      // Determine if the user has entered his authentication credentials
      if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
 
-         $login = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
+         $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
          $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
 
 
-
+         echo "login id: $login_userid\n";
         if($login_with_fullname == "yes"){
 
-          $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login."'";
+          $query = "select empfullname, employee_passwd, reports, `profile` from ".$db_prefix."employees where empfullname = '".$login_userid."'";
           $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
           while ($row = mysqli_fetch_array($result)) {
-              $login_userid = "".$row['empfullname']."";
-              echo "login name: $login_userid\n";
+              $reports_username = "".$row['empfullname']."";
+              $reports_password = "".$row['employee_passwd']."";
+              $reports_auth = "".$row['reports']."";
+              $profile_auth = "".$row['profile']."";
           }
 
         }elseif ($login_with_displayname == "yes"){
 
-          $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login."'";
+          $query = "select displayname, employee_passwd, reports, `profile` from ".$db_prefix."employees where displayname = '".$login_userid."'";
           $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
           while ($row = mysqli_fetch_array($result)) {
-              $login_userid = "".$row['empfullname']."";
-              echo "login display: $login_userid\n";
+              $reports_username = "".$row['displayname']."";
+              $reports_password = "".$row['employee_passwd']."";
+              $reports_auth = "".$row['reports']."";
+              $profile_auth = "".$row['profile']."";
           }
         }elseif ($login_with_dni == "yes"){
 
-          $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login."'";
+          $query = "select empDNI, employee_passwd, reports, `profile` from ".$db_prefix."employees where empDNI = '".$login_userid."'";
           $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
           while ($row = mysqli_fetch_array($result)) {
-              $login_userid = "".$row['empfullname']."";
-              echo "login DNI: $login_userid\n";
+              $reports_username = "".$row['empDNI']."";
+              $reports_password = "".$row['employee_passwd']."";
+              $reports_auth = "".$row['reports']."";
+              $profile_auth = "".$row['profile']."";
           }
         }
          // Determine if the user has report access rights.
-         echo "login id: $login\n";
-         $query = "select empfullname, employee_passwd, reports, `profile` from ".$db_prefix."employees where empfullname = '".$login_userid."'";
-         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
-
-         while ($row = mysqli_fetch_array($result)) {
-             $reports_username = "".$row['empfullname']."";
-             $reports_password = "".$row['employee_passwd']."";
-             $reports_auth = "".$row['reports']."";
-             $profile_auth = "".$row['profile']."";
-         }
 
 
          // Determine if the user is authorised to view profile

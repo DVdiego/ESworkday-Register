@@ -163,6 +163,8 @@ echo '               <div class="box box-primary">
                        <!-- /.box-header -->';
 echo "                  <div class='box-body'>
                           <div class='row'>";
+
+
 /*FLAG*/ //muestra una opción u otra, login o seleccionar id
 if($show_select_login == "yes"){
 
@@ -236,6 +238,7 @@ if($show_select_login == "yes"){
 
 
   echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
+
   if ($show_display_name == "yes") {
 
     echo "<div class='form-group'>
@@ -397,7 +400,7 @@ if ($request == 'POST') { // Process employee's punch information
                 echo '<div id="float_window" class="col-md-10">
                         <div class="callout callout-danger">
                           <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                          <p>Username is not in the database.</p>
+                          <p>Displayname is not in the database.</p>
                         </div>
                       </div>';
                 exit;
@@ -636,7 +639,7 @@ if ($request == 'POST') { // Process employee's punch information
       $lat = $_POST['latitude'];
       $lon = $_POST['longitude'];
 
-
+  
     if (strtolower($ip_logging) == "yes") {
         $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress, latitude, longitude) values ('".$fullname."', '".$inout."', '".$tz_stamp."', '".$notes."', '".$connecting_ip."','" . $lat . "','" . $lon . "')";
     } else {

@@ -70,11 +70,11 @@ if($login_with_fullname == "yes"){
 }elseif ($login_with_displayname == "yes"){
 
 	$query4 = "select empfullname, empDNI, displayname, email, contract ,groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
-			where displayname = '".$_SESSION['valid_profile']."' order by empfullname";
+			where empfullname = '".$_SESSION['valid_profile']."' order by empfullname";
 }elseif ($login_with_dni == "yes"){
 
 	$query4 = "select empfullname, empDNI, displayname, email, contract ,groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
-			where empDNI = '".$_SESSION['valid_profile']."' order by empfullname";
+			where empfullname = '".$_SESSION['valid_profile']."' order by empfullname";
 }
 
 $result4 = mysqli_query($GLOBALS["___mysqli_ston"], $query4);

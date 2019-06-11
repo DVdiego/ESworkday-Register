@@ -183,7 +183,7 @@ echo "
               </td>
 
               <td colspan=2 width=80% style='padding-left:20px;'>
-                <input type='text' size='25' maxlength='50' name='display_name' placeholder=\"$displayname\">
+                <input type='text' size='25' maxlength='50' name='display_name' value=\"$displayname\" placeholder=\"$displayname\">
               </td>
             </tr>\n";
 echo "
@@ -193,7 +193,7 @@ echo "
               </td>
 
               <td colspan=2 width=80% style='padding-left:20px;'>
-                <input type='text' size='25' maxlength='75' name='email_addy' placeholder='$user_email'>
+                <input type='text' size='25' maxlength='75' name='email_addy' value=\"$user_email\" placeholder='$user_email'>
               </td>
             </tr>\n";
 echo "

@@ -48,14 +48,14 @@ if ($_REQUEST["login_action"] == "admin") {
 
     // Determine if the user has entered his authentication credentials
     if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
-        $login = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
+        $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
         $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
 
 
 
         if($login_with_fullname == "yes"){
 
-          $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login."'";
+          $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login_userid."'";
           $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
           while ($row = mysqli_fetch_array($result)) {
@@ -64,7 +64,7 @@ if ($_REQUEST["login_action"] == "admin") {
 
         }elseif ($login_with_displayname == "yes"){
 
-          $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login."'";
+          $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login_userid."'";
           $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
           while ($row = mysqli_fetch_array($result)) {
@@ -72,7 +72,7 @@ if ($_REQUEST["login_action"] == "admin") {
           }
 
         }elseif ($login_with_dni == "yes"){
-          $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login."'";
+          $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login_userid."'";
           $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
           while ($row = mysqli_fetch_array($result)) {
@@ -183,14 +183,14 @@ if ($_REQUEST["login_action"] == "admin") {
 
     // Determine if the user has entered his authentication credentials
     if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
-      $login = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
+      $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
       $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
 
 
 
       if($login_with_fullname == "yes"){
 
-        $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login."'";
+        $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login_userid."'";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
         while ($row = mysqli_fetch_array($result)) {
@@ -199,7 +199,7 @@ if ($_REQUEST["login_action"] == "admin") {
 
       }elseif ($login_with_displayname == "yes"){
 
-        $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login."'";
+        $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login_userid."'";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
         while ($row = mysqli_fetch_array($result)) {
@@ -207,7 +207,7 @@ if ($_REQUEST["login_action"] == "admin") {
         }
 
       }elseif ($login_with_dni == "yes"){
-        $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login."'";
+        $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login_userid."'";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
         while ($row = mysqli_fetch_array($result)) {

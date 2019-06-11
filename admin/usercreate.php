@@ -693,9 +693,9 @@ elseif ($request == 'POST') {
 		$password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
 		$confirm_password = password_hash($confirm_password, PASSWORD_DEFAULT, ['cost' => 10]);
 
-		$query3 = "insert into ".$db_prefix."employees (empfullname, tstamp ,empDNI, displayname, employee_passwd, email, contract ,groups, office, admin, reports, time_admin, disabled)
+		$query3 = "insert into ".$db_prefix."employees (empfullname, tstamp ,empDNI, displayname, employee_passwd, email, contract ,groups, office, admin, reports, time_admin, profile, disabled)
 		           values ('".$post_username."', 0,'".$user_dni."', '".$display_name."', '".$password."', '".$email_addy."', '".$type_contracts."','".$group_name."', '".$office_name."', '".$admin_perms."',
-		           '".$reports_perms."', '".$time_admin_perms."', '".$post_disabled."')";
+		           '".$reports_perms."', '".$time_admin_perms."', 1, '".$post_disabled."')";
 		$result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 
 		/*

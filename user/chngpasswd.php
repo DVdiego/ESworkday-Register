@@ -83,9 +83,9 @@ $get_user = addslashes($get_user);
 if($login_with_fullname == "yes"){
   $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$get_user."'";
 }elseif ($login_with_displayname == "yes"){
-  $query = "select empfullname from ".$db_prefix."employees where displayname = '".$get_user."'";
+  $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$get_user."'";
 }elseif ($login_with_dni == "yes"){
-  $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$get_user."'";
+  $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$get_user."'";
 }
 
 

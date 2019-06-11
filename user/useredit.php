@@ -80,9 +80,9 @@ $row_count = 0;
 if($login_with_fullname == "yes"){
   $query = "select * from ".$db_prefix."employees where empfullname = '".$get_user."' order by empfullname";
 }elseif ($login_with_displayname == "yes"){
-  $query = "select * from ".$db_prefix."employees where displayname = '".$get_user."' order by empfullname";
+  $query = "select * from ".$db_prefix."employees where empfullname = '".$get_user."' order by empfullname";
 }elseif ($login_with_dni == "yes"){
-  $query = "select * from ".$db_prefix."employees where empDNI = '".$get_user."' order by empfullname";
+  $query = "select * from ".$db_prefix."employees where empfullname = '".$get_user."' order by empfullname";
 }
 
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);

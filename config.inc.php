@@ -55,7 +55,7 @@ $version_worktime = "premium";
 $enterprise_name = "DEMO";
 $enterprise_nif = "123A";
 
-/*seleccionar un atributo para hacer login*/
+/*seleccionar solo UN atributo para hacer login*/
 $login_with_fullname = "yes";
 $login_with_displayname = "none";
 $login_with_dni = "none";
