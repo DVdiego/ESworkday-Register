@@ -73,7 +73,7 @@ $db_name = "timeclock";
 
 /* --- RECOMMENDED CHANGES --- */
 
-
+$root = "admin";
 /* This adds a prefix to the tablenames in the database. This can be helpful if you
 have an existing mysql database that you would like to use with WorkTime Control.
 If you are unaware of what is meant by "table prefix", then please leave this

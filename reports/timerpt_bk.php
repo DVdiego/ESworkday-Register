@@ -713,7 +713,7 @@ if ($request == 'GET') {
                       from ".$db_prefix."info, ".$db_prefix."punchlist, ".$db_prefix."employees
                       where ".$db_prefix."info.fullname = '".$employees_empfullname[$x]."' and ".$db_prefix."info.timestamp >= '".$from_timestamp."'
                       and ".$db_prefix."info.timestamp <= '".$to_timestamp."' and ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
-                      and ".$db_prefix."employees.empfullname = '".$employees_empfullname[$x]."' and ".$db_prefix."employees.empfullname <> 'admin'
+                      and ".$db_prefix."employees.empfullname = '".$employees_empfullname[$x]."' and ".$db_prefix."employees.empfullname <> '".$root."'
                       order by ".$db_prefix."info.timestamp asc";
             $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 

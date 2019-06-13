@@ -1,3 +1,25 @@
+<script>
+
+    //llama a la función  de geolocalización cuando carga la página
+    window.addEventListener('load',function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(insertPosition, funcError, {});
+        } else {
+            alert('No geolocation supported');
+        }
+    },false);
+
+
+    //inserta en el formulario
+    function insertPosition(position) {
+        $("input[name='latitude']").val(position.coords.latitude);
+        $("input[name='longitude']").val(position.coords.longitude);
+    }
+
+    function funcError(err) {
+      alert(err.message);
+    }
+</script>
 <?php
 session_start();
 
@@ -113,6 +135,9 @@ if($request == 'GET'){
   echo "              <div class='form-group' style='display: -webkit-box;'>
                         <label style='margin-right:10px'>Fecha:</label>
                           <div class='input-group'>
+                          <div class='input-group-addon'>
+                            <i class='fa fa-calendar'></i>
+                          </div>
                             <input type='date' size='10' maxlength='10' name='post_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
                             <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                             return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
@@ -123,25 +148,24 @@ if($request == 'GET'){
                         <div class='form-group' style='display: flex;'>
                           <label style='margin-right:15px'>Time: </label>";
   echo"    	                <div class='input-group'>
-                              <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' required>";
-  echo"   	                    <div class='input-group-addon'>
+                                <div class='input-group-addon'>
                                   <i class='fa fa-clock-o'></i>
                                 </div>
+                              <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' style='width: 150px;' required>";
+  echo"
                             </div>
                        </div>
                      </div>";
-
+ echo "<input type='hidden' value='' name='latitude'/>";
+ echo "<input type='hidden' value='' name='longitude'/>";
   echo "             <div class='form-group'>
                        <label>Notes:</label>
                          <input type='text' name='post_notes' maxlength='250' class='form-control' style=' width: 98%;' >
                      </div>";
- echo "<input type='hidden' value='' name='latitude'/>";
- echo "<input type='hidden' value='' name='longitude'/>";
+
  echo "						<div class='box-footer'>
-											<button id='formButtons' class='btn btn-default pull-right' style='margin-left: 10px;margin-right: 10px;'>
-                        <i class='fa fa-ban'></i>
-                        Cancelar
-                        <a href='index.php'></a>
+                      <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                        <i class='fa fa-ban'></i>Cancelar
                       </button>
 
 											<button id='formButtons' type='submit' name='submit'  class='btn btn-success pull-right'>
@@ -185,7 +209,10 @@ if($request == 'GET'){
   @$post_notes = $_POST['post_notes'];
 
 
+  $lat = $_POST['latitude'];
+  $lon = $_POST['longitude'];
 
+  echo "lat: $lat - lon: $lon\n";
   $fullname = addslashes($fullname);
 
 
@@ -289,6 +316,9 @@ if($request == 'GET'){
     echo "              <div class='form-group' style='display: -webkit-box;'>
                           <label style='margin-right:10px'>Fecha:</label>
                             <div class='input-group'>
+                            <div class='input-group-addon'>
+                              <i class='fa fa-calendar'></i>
+                            </div>
                               <input type='date' size='10' maxlength='10' name='post_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
                               <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                               return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
@@ -299,10 +329,11 @@ if($request == 'GET'){
                           <div class='form-group' style='display: flex;'>
                             <label style='margin-right:15px'>Time: </label>";
     echo"    	                <div class='input-group'>
-                                <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' required>";
-    echo"   	                    <div class='input-group-addon'>
+                                  <div class='input-group-addon'>
                                     <i class='fa fa-clock-o'></i>
                                   </div>
+                                <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' style='width: 150px;' required>";
+    echo"
                               </div>
                          </div>
                        </div>";
@@ -312,7 +343,9 @@ if($request == 'GET'){
                            <input type='text' name='post_notes' maxlength='250' class='form-control' style=' width: 98%;' >
                        </div>";
    echo "						<div class='box-footer'>
-                        <button id='formButtons' class='btn btn-default pull-right' style='margin-left: 10px;margin-right: 10px;'><i class='fa fa-ban'></i> Cancelar<a href='index.php'></a></button>
+                         <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                           <i class='fa fa-ban'></i>Cancelar
+                         </button>
                         <button id='formButtons' type='submit' name='submit'  class='btn btn-success pull-right'>Siguiente <i class='fa fa-arrow-right'></i></button><a href='usercreate.php'></a>
                       </div>";
 
@@ -426,9 +459,6 @@ if($request == 'GET'){
   }
 
   $timestamp = strtotime($post_date . " " . $post_time);
-  echo "date:".$post_date;
-  $lat = $_POST['latitude'];
-  $lon = $_POST['longitude'];
 
 
   for ($x=0;$x<$employees_cnt;$x++) {
@@ -486,11 +516,17 @@ echo "<h3><span>Se ha registrado el estado: $post_statusname con Fecha: $post_da
 
  echo "               <input type='hidden' name='date_format' value='$js_datefmt'>\n";
 echo "<br>";
- echo "               <div class='box-footer'>
-                        <a href='timeadmin.php'><button type='submit' name='submit' value='Edit Time' class='btn btn-default pull-right'><i class='fa fa-ban'></i>  Salir</button></a>
-                        <a href='time_punch_employees.php'><button type='submit' class='btn btn-success'>Volver <i class='fa fa-arrow-left'></i></button></div></a>
+echo "						<div class='box-footer'>
+                    <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                      <i class='fa fa-sign-out'></i>Salir
+                    </button>
 
-                      </div>
+                    <button type='button' id='formButtons' onclick='location=\"time_punch_employees.php\"' class='btn btn-success pull-right'>
+                      <i class='fa fa-plus-square-o'></i>Continuar
+                    </button>
+                  </div>";
+
+ echo "
                   </form>
                 </div>
            </div>
@@ -507,28 +543,4 @@ echo "<br>";
 
 }
 
-
-
  ?>
- <script>
-
-     //llama a la función  de geolocalización cuando carga la página
-     window.addEventListener('load',function() {
-         if (navigator.geolocation) {
-             navigator.geolocation.getCurrentPosition(insertPosition, funcError, {});
-         } else {
-             alert('No geolocation supported');
-         }
-     },false);
-
-
-     //inserta en el formulario
-     function insertPosition(position) {
-         $("input[name='latitude']").val(position.coords.latitude);
-         $("input[name='longitude']").val(position.coords.longitude);
-     }
-
-     function funcError(err) {
-       alert(err.message);
-     }
- </script>

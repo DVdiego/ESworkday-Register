@@ -115,12 +115,15 @@ if (!empty($admin)) {
 }
 if (isset($evil)) {
 
-echo "            <table  class=table>\n";
-echo "              <tr>\n";
-echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                    Cannot edit the Sys Admin properties of this user as this user is the last Sys Admin User in the system. Go back and give another user
-                    Sys Admin privileges before attempting to edit the Sys Admin properties of this user.</td></tr>\n";
-echo "            </table>\n";
+  echo "<table  class=table>\n";
+  echo '  <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+            No se pueden editar las propiedades del administrador del sistema ya que es el último usuario con estos privilegios.
+            Regrese y otorgue a otro usuario privilegios de administrador del sistema antes de intentar editar las propiedades de
+            administrador del sistema de este usuario.
+          </div></div>';
+  echo "</table>\n";
 }
 
 echo '<div class="row">
@@ -130,30 +133,40 @@ echo '      <div class="box-header with-border">
                  <h3 class="box-title"><i class="fa fa-user"></i> Edit User</h3>
             </div>
             <div class="box-body">';
-echo "            <br />\n";
+
 echo "            <form name='form' action='$self' method='post'>\n";
-echo "            <table class=table>\n";
-echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
+ echo "            <table align=center class=table>\n";
+
+// echo "              <tr><td height=15></td></tr>\n";
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre del usuario:</td><td align=left class=table_rows
                       colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$username\">$username</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de acceso:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='50' name='display_name' value=\"$displayname\">&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de Email:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='75' name='email_addy' value='$user_email'>&nbsp;*</td></tr>\n";
 
-echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp;required&nbsp;</td></tr>\n";
+echo "              <tr>
+                      <td class=table_rows_output align=right colspan=3 style='font-family:Tahoma;font-size:10px;'>
+                        *&nbsp;Campos requeridos&nbsp;
+                      </td>
+                    </tr>\n";
 echo "            </table>\n";
 if (isset($evil)) {
   echo "<input type='hidden' name='evil' value='$evil'>\n";
 }
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-echo "                  <input type='hidden' name='get_office' value='$get_office'>\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Edit User' align='middle'
-                      src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png'
-                      border='0'></td></tr></table></form>\n";
+echo "
+                        <div class='box-footer'>
+                          <button type='button' onClick='location=\"index.php\"' id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                            <i class='fa fa-ban'></i>Cancelar
+                          </button>
+
+                          <button id='formButtons' type='submit' name='submit' value='Edit User' class='btn btn-info pull-right'>
+                            <i class='fa fa-arrow-right'></i>Editar Usuario
+                          </button>
+                        </div>
+              </form>\n";
 echo '      </div>
           </div>
         </div>
@@ -211,42 +224,42 @@ elseif ($request == 'POST') {
         // begin post validation //
 
         if (empty($display_name)) {
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                            A Display Name is required.</td></tr>\n";
-        echo "            </table>\n";
+          echo '  <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                       Se requiere un alias de usuario.
+                  </div></div>';
         }
         elseif (empty($email_addy)) {
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                            An Email Address is required.</td></tr>\n";
-        echo "            </table>\n";
+          echo '  <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                       Se requiere una dirección de email.
+                  </div></div>';
         }
         elseif (!empty($string)) {
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                            Double Quotes are not allowed when creating an Username.</td></tr>\n";
-        echo "            </table>\n";
+          echo '  <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                       Double Quotes are not allowed when creating an Username.
+                  </div></div>';
         }
         // elseif (!eregi ("^([[:alnum:]]| |-|'|,)+$", $display_name)) {
         //elseif (!preg_match('/' . "^([[:alnum:]]| |-|'|,)+$" . '/i', $display_name)) {
           elseif (!preg_match('/' . "^([[:alnum:]]|Å|Ä|Ö| |-|'|,)+$" . '/i', $display_name)) {
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                            Alphanumeric characters, hyphens, apostrophes, commas, and spaces are allowed when creating a Display Name.</td></tr>\n";
-        echo "            </table>\n";
+            echo '  <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                      Alphanumeric characters, hyphens, apostrophes, commas, and spaces are allowed when creating a Display Name.
+                    </div></div>';
         }
         // elseif (!eregi ("^([[:alnum:]]|_|\.|-)+@([[:alnum:]]|\.|-)+(\.)([a-z]{2,4})$", $email_addy)) {
         elseif (!preg_match('/' . "^([[:alnum:]]|_|\.|-)+@([[:alnum:]]|\.|-)+(\.)([a-z]{2,4})$" . '/i', $email_addy)) {
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr>\n";
-        echo "                <td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                            Alphanumeric characters, underscores, periods, and hyphens are allowed when creating an Email Address.</td></tr>\n";
-        echo "            </table>\n";
+          echo '  <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                    Alphanumeric characters, underscores, periods, and hyphens are allowed when creating an Email Address.
+                  </div></div>';
         }
 
 
@@ -263,39 +276,48 @@ elseif ($request == 'POST') {
                     <div class="box-body">';
         echo "            <br />\n";
         echo "            <form name='form' action='$self' method='post'>\n";
-        echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-        echo "              <tr><td height=15></td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
+         echo "            <table align=center class=table >\n";
+        // echo "              <tr><td height=15></td></tr>\n";
+        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre del usuario:</td><td align=left class=table_rows
                               colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username'
                               value=\"$post_username\">$tmp_post_username</td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td colspan=2 width=80%
+        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de acceso:</td><td colspan=2 width=80%
                               style='padding-left:20px;'>
                               <input type='text' size='25' maxlength='50' name='display_name' value=\"$display_name\">&nbsp;*</td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td colspan=2 width=80%
+        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de Email:</td><td colspan=2 width=80%
                               style='padding-left:20px;'>
                               <input type='text' size='25' maxlength='75' name='email_addy' value='$email_addy'>&nbsp;*</td></tr>\n";
 
 
-        echo "              <tr><td class=table_rows align=right colspan=3 style='color:red;font-family:Tahoma;font-size:10px;'>*&nbsp&nbsp;;required</td></tr>\n";
+        echo "              <tr>
+                              <td class=table_rows_output align=right colspan=3 style='font-family:Tahoma;font-size:10px;'>
+                                *&nbsp;Campos requeridos&nbsp;
+                              </td>
+                            </tr>\n";
         echo "            </table>\n";
         if (isset($evil)) {
           echo "<input type='hidden' name='evil' value='$evil'>\n";
         }
-        echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-        echo "                  <input type='hidden' name='get_office' value='$get_office'>\n";
-        echo "              <tr><td width=30><input type='image' name='submit' value='Edit User' align='middle'
-                              src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png'
-                              border='0'></td></tr></table></form>\n";
-                              echo '      </div>
-                                        </div>
-                                      </div>
-                                    </div>';
-                              include '../theme/templates/endmaincontent.inc';
-                              include '../theme/templates/controlsidebar.inc';
-                              include '../theme/templates/endmain.inc';
-                              include '../theme/templates/adminfooterscripts.inc';
-                              include '../footer.php';exit;
+        echo "
+                                <div class='box-footer'>
+                                  <button type='button' onClick='location=\"index.php\"' id='formButtons' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                                    <i class='fa fa-ban'></i>Cancelar
+                                  </button>
+
+                                  <button id='formButtons' type='submit' name='submit' value='Edit User' class='btn btn-info pull-right'>
+                                    <i class='fa fa-arrow-right'></i>Editar Usuario
+                                  </button>
+                                </div>
+                      </form>\n";
+        echo '      </div>
+                  </div>
+                </div>
+              </div>';
+        include '../theme/templates/endmaincontent.inc';
+        include '../theme/templates/controlsidebar.inc';
+        include '../theme/templates/endmain.inc';
+        include '../theme/templates/adminfooterscripts.inc';
+        include '../footer.php';
         $post_username = stripslashes($post_username);
         $display_name = stripslashes($display_name);
         exit;
@@ -311,12 +333,17 @@ elseif ($request == 'POST') {
     $result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 
 
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr>\n";
-    echo "                <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td>
-                    <td class=table_rows_green>&nbsp;User properties updated successfully.</td></tr>\n";
+    // echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
+    // echo "              <tr>\n";
+    // echo "                <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td>
+    //                 <td class=table_rows_green>&nbsp;User properties updated successfully.</td></tr>\n";
+    //
+    // echo "            </table>\n";
 
-    echo "            </table>\n";
+    echo '          <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-check-circle"></i>Edición con éxito!</h4>El usuario se ha editado correctamente.
+                    </div></div>';
     echo '<div class="row">
             <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
@@ -324,9 +351,10 @@ elseif ($request == 'POST') {
                      <h3 class="box-title"><i class="fa fa-user"></i> Edit User</h3>
                 </div>
                 <div class="box-body">';
-    echo "            <br />\n";
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr><td height=15></td></tr>\n";
+    // echo "            <br />\n";
+    // echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+     echo "            <table align=center class=table >\n";
+    // echo "              <tr><td height=15></td></tr>\n";
 
     $query4 = "select empfullname, displayname, email, groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
     	  where empfullname = '".$post_username."'
@@ -347,26 +375,32 @@ elseif ($request == 'POST') {
     }
     ((mysqli_free_result($result4) || (is_object($result4) && (get_class($result4) == "mysqli_result"))) ? true : false);
 
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Username:</td><td align=left class=table_rows
+    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre del usuario:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$username</td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Display Name:</td><td align=left class=table_rows
+    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de acceso:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$displayname</td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email Address:</td><td align=left class=table_rows
+    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de Email:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$user_email</td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Office:</td><td align=left class=table_rows
+    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$office</td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Group:</td><td align=left class=table_rows
+    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Grupo:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$groups</td></tr>\n";
 
-    echo "              <tr><td height=15></td></tr>\n";
+    // echo "              <tr><td height=15></td></tr>\n";
     echo "            </table>\n";
-    echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
-    echo "              <tr><td><a href='index.php'><img src='../images/buttons/done_button.png' border='0'></a></td></tr>
-                      </table>\n";
-    echo '      </div>
+    // echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
+    // echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
+    // echo "              <tr><td><a href='index.php'><img src='../images/buttons/done_button.png' border='0'></a></td></tr>
+    //                   </table>\n";
+    echo "            <div class='box-footer'>
+                        <button type='button' onClick='location=\"index.php\"' id='formButtons' class='btn btn-success pull-right'>
+                          <i class='fa fa-check'></i>Aceptar
+                        </button>
+                      </div>";
+    echo '
               </div>
             </div>
+          </div>
           </div>';
     include '../theme/templates/endmaincontent.inc';
     include '../theme/templates/controlsidebar.inc';

@@ -787,7 +787,7 @@ echo '                <div id="float_alert" class="col-md-10"><div class="alert 
 echo '        <div id="float_window" class="col-md-10">
                 <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-               <h3 class="box-title"><i class="fa fa-users"></i> Editar Grupo</h3>
+               <h3 class="box-title"><i class="fa fa-users"></i> Editar Usuario</h3>
                                               </div>
                                               <div class="box-body">';
 echo "            <table align=center class=table>\n";

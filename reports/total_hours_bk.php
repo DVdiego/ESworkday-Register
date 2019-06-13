@@ -920,38 +920,38 @@ if (strtolower($user_or_display) == "display") {
 
     if (($office_name == "All") && ($group_name == "All") && ($fullname == "All")) {
 
-        $query = "select empfullname, displayname from ".$db_prefix."employees WHERE tstamp IS NOT NULL and empfullname <> 'admin'
+        $query = "select empfullname, displayname from ".$db_prefix."employees WHERE tstamp IS NOT NULL and empfullname <> '".$root."'
                   order by displayname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     } elseif ((empty($office_name)) && (empty($group_name)) && ($fullname == 'All')) {
 
-        $query = "select empfullname, displayname from ".$db_prefix."employees WHERE tstamp IS NOT NULL and empfullname <> 'admin'
+        $query = "select empfullname, displayname from ".$db_prefix."employees WHERE tstamp IS NOT NULL and empfullname <> '".$root."'
                   order by displayname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     } elseif ((empty($office_name)) && (empty($group_name)) && ($fullname != 'All')) {
 
         $query = "select empfullname, displayname from ".$db_prefix."employees WHERE tstamp IS NOT NULL and empfullname = '".$fullname."'
-                  and empfullname <> 'admin' order by displayname asc";
+                  and empfullname <> '".$root."' order by displayname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     } elseif (($office_name != "All") && ($group_name == "All") && ($fullname == "All")) {
 
         $query = "select empfullname, displayname from ".$db_prefix."employees where office = '".$office_name."' and tstamp IS NOT NULL
-                  and empfullname <> 'admin' order by displayname asc";
+                  and empfullname <> '".$root."' order by displayname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     } elseif (($office_name != "All") && ($group_name != "All") && ($fullname == "All")) {
 
         $query = "select empfullname, displayname from ".$db_prefix."employees where office = '".$office_name."' and groups = '".$group_name."'
-                  and tstamp IS NOT NULL and empfullname <> 'admin' order by displayname asc";
+                  and tstamp IS NOT NULL and empfullname <> '".$root."' order by displayname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     } elseif (($office_name != "All") && ($group_name != "All") && ($fullname != "All")) {
 
         $query = "select empfullname, displayname from ".$db_prefix."employees where office = '".$office_name."' and groups = '".$group_name."'
-                  and empfullname = '".$fullname."' and empfullname <> 'admin' and tstamp IS NOT NULL order by displayname asc";
+                  and empfullname = '".$fullname."' and empfullname <> '".$root."' and tstamp IS NOT NULL order by displayname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     }
@@ -960,38 +960,38 @@ if (strtolower($user_or_display) == "display") {
 
     if (($office_name == "All") && ($group_name == "All") && ($fullname == "All")) {
 
-        $query = "select empfullname, displayname from ".$db_prefix."employees WHERE tstamp IS NOT NULL and empfullname <> 'admin'
+        $query = "select empfullname, displayname from ".$db_prefix."employees WHERE tstamp IS NOT NULL and empfullname <> '".$root."'
                   order by empfullname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     } elseif ((empty($office_name)) && (empty($group_name)) && ($fullname == 'All')) {
 
-        $query = "select empfullname, displayname from ".$db_prefix."employees WHERE tstamp IS NOT NULL and empfullname <> 'admin'
+        $query = "select empfullname, displayname from ".$db_prefix."employees WHERE tstamp IS NOT NULL and empfullname <> '".$root."'
                   order by empfullname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     } elseif ((empty($office_name)) && (empty($group_name)) && ($fullname != 'All')) {
 
         $query = "select empfullname, displayname from ".$db_prefix."employees WHERE tstamp IS NOT NULL and empfullname = '".$fullname."'
-                  and empfullname <> 'admin' order by empfullname asc";
+                  and empfullname <> '".$root."' order by empfullname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     } elseif (($office_name != "All") && ($group_name == "All") && ($fullname == "All")) {
 
         $query = "select empfullname, displayname from ".$db_prefix."employees where office = '".$office_name."' and tstamp IS NOT NULL
-                  and empfullname <> 'admin' order by empfullname asc";
+                  and empfullname <> '".$root."' order by empfullname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     } elseif (($office_name != "All") && ($group_name != "All") && ($fullname == "All")) {
 
         $query = "select empfullname, displayname from ".$db_prefix."employees where office = '".$office_name."' and groups = '".$group_name."'
-                  and tstamp IS NOT NULL and empfullname <> 'admin' order by empfullname asc";
+                  and tstamp IS NOT NULL and empfullname <> '".$root."' order by empfullname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     } elseif (($office_name != "All") && ($group_name != "All") && ($fullname != "All")) {
 
         $query = "select empfullname, displayname from ".$db_prefix."employees where office = '".$office_name."' and groups = '".$group_name."'
-                  and empfullname = '".$fullname."' and empfullname <> 'admin' and tstamp IS NOT NULL order by empfullname asc";
+                  and empfullname = '".$fullname."' and empfullname <> '".$root."' and tstamp IS NOT NULL order by empfullname asc";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     }
@@ -1014,7 +1014,7 @@ for ($x=0;$x<$employees_cnt;$x++) {
               from ".$db_prefix."info, ".$db_prefix."punchlist, ".$db_prefix."employees
               where ".$db_prefix."info.fullname like ('".$employees_empfullname[$x]."') and ".$db_prefix."info.timestamp >= '".$from_timestamp."'
               and ".$db_prefix."info.timestamp < '".$to_timestamp."' and ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
-              and ".$db_prefix."employees.empfullname = '".$employees_empfullname[$x]."' and ".$db_prefix."employees.empfullname <> 'admin'
+              and ".$db_prefix."employees.empfullname = '".$employees_empfullname[$x]."' and ".$db_prefix."employees.empfullname <> '".$root."'
               order by ".$db_prefix."info.timestamp asc";
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 

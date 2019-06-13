@@ -174,7 +174,7 @@ if($show_select_login == "yes"){
 
   // query to populate dropdown with employee names //
   if ($show_display_name == "yes") {
-      $query = "select displayname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> 'admin' order by displayname";
+      $query = "select displayname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> '".$root."' order by displayname";
       $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
       echo "          <select multiple class='form-control' name='left_displayname' size='6' tabindex=1>
                                 <option value =''>
@@ -202,7 +202,7 @@ if($show_select_login == "yes"){
              </div>";
       ((mysqli_free_result($emp_name_result) || (is_object($emp_name_result) && (get_class($emp_name_result) == "mysqli_result"))) ? true : false);
   } else { // Display full employee names
-      $query = "select empfullname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> 'admin' order by empfullname";
+      $query = "select empfullname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> '".$root."' order by empfullname";
       $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
       echo "
                              <select multiple class='form-control' name='left_fullname'>
@@ -639,7 +639,7 @@ if ($request == 'POST') { // Process employee's punch information
       $lat = $_POST['latitude'];
       $lon = $_POST['longitude'];
 
-  
+
     if (strtolower($ip_logging) == "yes") {
         $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress, latitude, longitude) values ('".$fullname."', '".$inout."', '".$tz_stamp."', '".$notes."', '".$connecting_ip."','" . $lat . "','" . $lon . "')";
     } else {

@@ -1,3 +1,25 @@
+<script>
+
+    //llama a la función  de geolocalización cuando carga la página
+    window.addEventListener('load',function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(insertPosition, funcError, {});
+        } else {
+            alert('No geolocation supported');
+        }
+    },false);
+
+
+    //inserta en el formulario
+    function insertPosition(position) {
+        $("input[name='latitude']").val(position.coords.latitude);
+        $("input[name='longitude']").val(position.coords.longitude);
+    }
+
+    function funcError(err) {
+      alert(err.message);
+    }
+</script>
 <?php
 /***************************************************************************
  *   Copyright (C) 2006 by Ken Papizan                                     *
@@ -148,10 +170,11 @@ if ($request == 'GET') { // Display employee add time interface
                               &nbsp;*Hora:
                             </label>";
     echo"    	                <div class='input-group'>
-                                <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' required>";
-    echo"   	                    <div class='input-group-addon'>
+                                  <div class='input-group-addon'>
                                     <i class='fa fa-clock-o'></i>
                                   </div>
+                                <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' style='width: 150px;' required>";
+    echo"
     	                         </div>
     	                    </div>
     	                 </div>";
@@ -195,6 +218,9 @@ if ($request == 'GET') { // Display employee add time interface
     }
 
 ((mysqli_free_result( $punchlist_result ) || (is_object( $punchlist_result ) && (get_class( $punchlist_result ) == "mysqli_result"))) ? true : false);
+
+echo "<input type='hidden' value='' name='latitude'/>";
+echo "<input type='hidden' value='' name='longitude'/>";
     echo '<div class="form-group">
             <label class="table_rows_output">
               Notas:
@@ -548,10 +574,11 @@ if (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4})
                                       &nbsp;*Hora:
                                     </label>";
             echo"    	                <div class='input-group'>
-                                        <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' required>";
-            echo"   	                    <div class='input-group-addon'>
-                                            <i class='fa fa-clock-o'></i>
-                                          </div>
+                                        <div class='input-group-addon'>
+                                          <i class='fa fa-clock-o'></i>
+                                        </div>
+                                        <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' style='width: 150px;' required>";
+            echo"
             	                         </div>
               	                    </div>
               	                 </div>";
@@ -693,10 +720,11 @@ if (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4})
                                           &nbsp;*Hora:
                                          </label>";
                   echo"    	                <div class='input-group'>
-                                             <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' required>";
-                  echo"                          <div class='input-group-addon'>
-                                                   <i class='fa fa-clock-o'></i>
-                                                 </div>
+                                                <div class='input-group-addon'>
+                                                  <i class='fa fa-clock-o'></i>
+                                                </div>
+                                             <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' style='width: 150px;' required>";
+                  echo"
                      	                      </div>
                                	           </div>
                                	          </div>";
@@ -815,15 +843,16 @@ if (preg_match("/^([0-9]{1,2})[\-\/\.]([0-9]{1,2})[\-\/\.](([0-9]{2})|([0-9]{4})
 
         $time_tz_stamp = time();
 
-
+        $lat = $_POST['latitude'];
+        $lon = $_POST['longitude'];
         // add the time to the info table for $post_username and audit log
         if (strtolower($ip_logging) == "yes") {
-            $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress) values ('".$post_username."', '".$post_statusname."', '".$timestamp."', '".$post_notes."', '".$connecting_ip."')";
+            $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress, latitude, longitude) values ('".$post_username."', '".$post_statusname."', '".$timestamp."', '".$post_notes."', '".$connecting_ip."','" . $lat . "','" . $lon . "')";
             $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
             $query2 = "insert into ".$db_prefix."audit (modified_by_ip, modified_by_user, modified_when, modified_from, modified_to, modified_why, user_modified) values ('".$connecting_ip."', '".$user."', '".$time_tz_stamp."', '0', '".$timestamp."', '".$post_why."', '".$post_username."')";
             $result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query2);
         } else {
-            $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes) values ('".$post_username."', '".$post_statusname."', '".$timestamp."', '".$post_notes."')";
+            $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, latitude, longitude) values ('".$post_username."', '".$post_statusname."', '".$timestamp."', '".$post_notes."','" . $lat . "','" . $lon . "')";
             $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
             $query2 = "insert into ".$db_prefix."audit (modified_by_user, modified_when, modified_from, modified_to, modified_why, user_modified) values ('".$user."', '".$time_tz_stamp."', '0', '".$timestamp."', '".$post_why."', '".$post_username."')";
             $result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query2);

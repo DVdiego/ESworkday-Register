@@ -205,8 +205,7 @@ if ($request == 'GET') {
 		echo "            </table>\n";
 		echo "						<div class='box-footer'>
 												<button type='button' id='formButtons' onclick='location=\"useradmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
-													<i class='fa fa-ban'></i>
-													Cancelar
+													<i class='fa fa-ban'></i>Cancelar
 												</button>
 
 												<button id='formButtons' type='submit' name='submit' value='Create User' class='btn btn-success pull-right'>

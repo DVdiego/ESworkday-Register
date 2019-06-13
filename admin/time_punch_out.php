@@ -354,6 +354,9 @@ echo "                 </select>
 echo "              <div class='form-group' style='display: -webkit-box;'>
                       <label style='margin-right:10px'>Fecha:</label>
                         <div class='input-group'>
+                            <div class='input-group-addon'>
+                              <i class='fa fa-calendar'></i>
+                            </div>
                           <input type='date' size='10' maxlength='10' name='post_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
                           <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                           return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
@@ -364,10 +367,11 @@ echo"               <div class='bootstrap-timepicker'>
                       <div class='form-group' style='display: flex;'>
                         <label style='margin-right:15px'>Time: </label>";
 echo"    	                <div class='input-group'>
-                            <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' required>";
-echo"   	                    <div class='input-group-addon'>
-                                <i class='fa fa-clock-o'></i>
-                              </div>
+                            <div class='input-group-addon'>
+                              <i class='fa fa-clock-o'></i>
+                            </div>
+                            <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' style='width: 150px;' required>";
+echo"
                           </div>
                      </div>
                    </div>";

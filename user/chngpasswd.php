@@ -107,28 +107,30 @@ echo '      <div class="box-header with-border">
 
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table class=table>\n";
-echo "              <tr><td height=15></td></tr>\n";
+// echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td style='padding-left:20px;'
                       align=left class=table_rows width=80%><input type='hidden' name='post_username' value=\"$username\">$username</td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td colspan=2
-                      style='padding-left:20px;'><input type='password' size='25' maxlength='25' name='new_password'></td></tr>\n";
+                      style='padding-left:20px;'><input type='password' size='25' maxlength='25' name='new_password' required></td></tr>\n";
 echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirmar Contraseña:</td><td colspan=2
-                      style='padding-left:20px;'><input type='password' size='25' maxlength='25'name='confirm_password'>
+                      style='padding-left:20px;'><input type='password' size='25' maxlength='25'name='confirm_password' required>
                       </td></tr>\n";
-echo "              <tr><td height=15></td></tr>\n";
+// echo "              <tr><td height=15></td></tr>\n";
 echo "            </table>\n";
 // echo "            <input type='hidden' name='get_office' value='$get_office'>\n";
-echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-echo "              <tr><td width=30><input type='image' name='submit' value='Change Password'
-                  src='../images/buttons/next_button.png'></td>
-                  <td><a href='index.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
+echo '            <div class="box-footer">
+                    <button type="button" id="formButtons"  onclick="location=\'index.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                      <i class="fa fa-ban"></i>
+                      Cancelar
+                    </button>
 
+                    <button id="formButtons" type="submit" name="submit" value="Change Password" class="btn btn-info pull-right">
+                      <i class="fa fa-save"></i>
+                      Cambiar contraseña
+                    </button>
+                  </div></form>';
+echo '</div></div></div></div>';
 
-echo '      </div>
-          </div>
-        </div>
-      </div>';
 	      include '../theme/templates/endmaincontent.inc';
 	      include '../footer.php';
 	      include '../theme/templates/controlsidebar.inc';
@@ -167,17 +169,19 @@ elseif ($request == 'POST') {
 
 
   $evil_password = '1';
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Single and double quotes, backward and forward slashes, semicolons, and spaces are not allowed when creating a Password.</td></tr>\n";
-    echo "            </table>\n";
+  echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                    No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un grupo.
+                    </div>';
   }
   elseif ($new_password !== $confirm_password) {
     $evil_password = '1';
-    echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/cancel.png' /></td><td class=table_rows_red>
-                        Passwords do not match.</td></tr>\n";
-    echo "            </table>\n";
+    echo '            <div id="float_alert" class="col-md-10 alert alert-warning alert-dismissible">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                        Las contraseñas no coinciden.
+                      </div>';
   }
 
   // end post validation //
@@ -192,35 +196,39 @@ elseif ($request == 'POST') {
                        <h3 class="box-title"><i class="fa fa-lock"></i> Cambiar Contraseña</h3>
                   </div>
                   <div class="box-body">';
-      echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+
       echo "            <form name='form' action='$self' method='post'>\n";
-      echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/lock_edit.png' />&nbsp;&nbsp;&nbsp;Change
-                          Password</th></tr>\n";
-      echo "              <tr><td height=15></td></tr>\n";
-      echo "              <tr><td class=table_rows width=20% height=25 style='padding-left:32px;' nowrap>Usuario:</td><td align=left class=table_rows width=80%
-                            style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
-      echo "              <tr><td class=table_rows width=20% height=25 style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td colspan=2
-                            style='padding-left:20px;' width=80%><input type='password' size='25' maxlength='25' name='new_password'></td></tr>\n";
-      echo "              <tr><td class=table_rows width=20% height=25 style='padding-left:32px;' nowrap>Confirmar Contraseña:</td><td colspan=2
-                            style='padding-left:20px;' width=80%><input type='password' size='25' maxlength='25'name='confirm_password'>
+      echo "            <table class=table>\n";
+      // echo "              <tr><td height=15></td></tr>\n";
+      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td style='padding-left:20px;'
+                            align=left class=table_rows width=80%><input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
+      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td colspan=2
+                            style='padding-left:20px;'><input type='password' size='25' maxlength='25' name='new_password' required></td></tr>\n";
+      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirmar Contraseña:</td><td colspan=2
+                            style='padding-left:20px;'><input type='password' size='25' maxlength='25'name='confirm_password' required>
                             </td></tr>\n";
-      echo "              <tr><td height=15></td></tr>\n";
+      // echo "              <tr><td height=15></td></tr>\n";
       echo "            </table>\n";
-      echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-      echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-      echo "              <input type='hidden' name='get_office' value=\"$get_office\">\n";
-      echo "              <tr><td width=30><input type='image' name='submit' value='Change Password'
-                            src='../images/buttons/next_button.png'></td><td><a href='index.php'>
-                            <img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
-                            echo '      </div>
-                                      </div>
-                                    </div>
-                                  </div>';
-                            include '../theme/templates/endmaincontent.inc';
-                            include '../theme/templates/controlsidebar.inc';
-                            include '../theme/templates/endmain.inc';
-                            include '../theme/templates/adminfooterscripts.inc';
-                            include '../footer.php';exit;
+      // echo "            <input type='hidden' name='get_office' value='$get_office'>\n";
+      echo '            <div class="box-footer">
+                          <button type="button" id="formButtons"  onclick="location=\'index.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                            <i class="fa fa-ban"></i>
+                            Cancelar
+                          </button>
+
+                          <button id="formButtons" type="submit" name="submit" value="Change Password" class="btn btn-info pull-right">
+                            <i class="fa fa-save"></i>
+                            Cambiar contraseña
+                          </button>
+                        </div></form>';
+      echo '</div></div></div></div>';
+
+      	      include '../theme/templates/endmaincontent.inc';
+      	      include '../footer.php';
+      	      include '../theme/templates/controlsidebar.inc';
+      	      include '../theme/templates/endmain.inc';
+      	      include '../theme/templates/adminfooterscripts.inc';
+      exit;
 
   } else {
 
@@ -249,26 +257,27 @@ elseif ($request == 'POST') {
             echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
             echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/lock_edit.png' />&nbsp;&nbsp;&nbsp;Change
                                   Password</th></tr>\n";
-            echo "              <tr><td height=15></td></tr>\n";
+            // echo "              <tr><td height=15></td></tr>\n";
             echo "              <tr><td class=table_rows width=20% height=25 style='padding-left:32px;' nowrap>Usuario:</td><td align=left class=table_rows width=80%
                                   style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
             echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td align=left class=table_rows
                                   colspan=2 style='padding-left:20px;' width=80%>***hidden***</td></tr>\n";
-            echo "              <tr><td height=15></td></tr>\n";
+            // echo "              <tr><td height=15></td></tr>\n";
             echo "            </table>\n";
-            echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-            echo "              <tr><td height=40>&nbsp;</td></tr>\n";
-            echo "              <tr><td><a href='index.php'><img src='../images/buttons/done_button.png' border='0'></td></tr>
-                        </table>\n";
-            echo '      </div>
-                      </div>
-                    </div>
-                  </div>';
+            echo "            <div class='box-footer'>
+                                <button id='formButtons' onclick='location=\"useradmin.php\"' class='btn btn-success pull-right'>
+                                    Aceptar
+                                  <i class='fa fa-check'></i>
+                                </button>
+                              </div>\n";
+            echo '</div></div></div></div>';
             include '../theme/templates/endmaincontent.inc';
+            include '../footer.php';
             include '../theme/templates/controlsidebar.inc';
             include '../theme/templates/endmain.inc';
             include '../theme/templates/adminfooterscripts.inc';
-            include '../footer.php';exit;
+
+            exit;
         }
 }
 ?>

@@ -60,7 +60,7 @@ include 'leftmain.php';
     while ($row=mysqli_fetch_array($emp_result)) {
       $tmp_empfullname = "".$row['empfullname']."";
       $tmp_dni = "".$row['empDNI']."";
-      hours_worked_report($tmp_empfullname,$tmp_dni,$from_date,$to_date,$db_prefix);
+      hours_worked_report($tmp_empfullname,$tmp_dni,$from_date,$to_date,$db_prefix,$root);
     }
 
 
@@ -69,7 +69,7 @@ include 'leftmain.php';
 
 
 
-function hours_worked_report($emp_fullname,$tmp_dni,$from_date,$to_date,$db_prefix) {
+function hours_worked_report($emp_fullname,$tmp_dni,$from_date,$to_date,$db_prefix,$root) {
 
 
 
@@ -130,7 +130,7 @@ function hours_worked_report($emp_fullname,$tmp_dni,$from_date,$to_date,$db_pref
     and ".$db_prefix."info.timestamp >= '".$from_timestamp."'
     and ".$db_prefix."info.timestamp <= '".$to_timestamp."'
     and ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
-    and ".$db_prefix."employees.empfullname = '".$emp_fullname."' and ".$db_prefix."employees.empfullname <> 'admin'
+    and ".$db_prefix."employees.empfullname = '".$emp_fullname."' and ".$db_prefix."employees.empfullname <> '".$root."'
     order by ".$db_prefix."info.timestamp asc";
 
 

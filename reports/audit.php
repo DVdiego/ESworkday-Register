@@ -433,7 +433,7 @@ if ($request == 'GET') {
         $user_modified[] = "".$row["user_modified"]."";
         $cnt++;
     }
-
+      echo '<div class="table-responsive">';
     for ($x=0;$x<$cnt;$x++) {
         if (!empty($modified_when[$x])) {
             $modified_when[$x] = $modified_when[$x] + @$tzo;
@@ -468,6 +468,7 @@ if ($request == 'GET') {
             $modified_status = "Added";
             $modified_color = "#009900";
         }
+
         if ($row_count == 0) {
             if ($page_count == 0) {
                 echo "<table class=misc_items width=100% border=0 cellpadding=2 cellspacing=0>\n";
@@ -487,15 +488,15 @@ if ($request == 'GET') {
                 echo "  <tr><td colspan=2 class=notdisplay style='font-size:9px;color:#000000;padding-left:10px;'>Run on: $rpt_time, $rpt_date (page $temp_page_count)</td><td class=notdisplay nowrap style='font-size:9px;color:#000000;' align=right colspan=4>$rpt_name</td></tr>\n";
                 echo "  <tr><td class=notdisplay align=right colspan=6 nowrap style='font-size:9px;color:#000000;'> Date Range: $from_date - $to_date</td></tr>\n";
             }
-            echo "  <tr class=notdisplay>\n";
-            echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified User</td>\n";
-            echo "    <td nowrap width=10% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Action Taken</td>\n";
-            echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified When</td>\n";
-            echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified By</td>\n";
-            echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified By IP</td>\n";
-            echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified From</td>\n";
-            echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified To</td>\n";
-            echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modification Reason</td></tr>\n";
+            // echo "  <tr class=notdisplay>\n";
+            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified User</td>\n";
+            // echo "    <td nowrap width=10% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Action Taken</td>\n";
+            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified When</td>\n";
+            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified By</td>\n";
+            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified By IP</td>\n";
+            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified From</td>\n";
+            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified To</td>\n";
+            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modification Reason</td></tr>\n";
         }
 
         // begin alternating row colors //
@@ -532,6 +533,7 @@ if ($request == 'GET') {
         }
     }
     echo "</table>\n";
+    echo "</div>";
 }
 exit;
 ?>

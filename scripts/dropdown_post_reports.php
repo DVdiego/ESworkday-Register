@@ -147,7 +147,7 @@ $groups = "".$row2['groupname']."";
 
 if (groups_select.options[groups_select.selectedIndex].text == "<?php echo $groups; ?>") {
 <?php
-$query3 = "select * from ".$db_prefix."employees where office = '".$office_row."' and groups = '".$groups."' and empfullname <> 'admin'
+$query3 = "select * from ".$db_prefix."employees where office = '".$office_row."' and groups = '".$groups."' and empfullname <> '".$root."'
            order by empfullname asc";
 $result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 

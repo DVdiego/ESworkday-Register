@@ -908,37 +908,31 @@ echo '<div class="box-header with-border">
 //                echo "              <tr class=display_row>\n";
 //                echo "                <td nowrap width=1% style='padding-right:5px;padding-left:10px;' class=table_rows><input type='text' size='7' maxlength='$timefmt_size' name='edit_time_textbox[$x]'></td>\n";
 
-echo "              <tr class=display_row>\n";
-echo "                <td nowrap width=1% style='padding-right:5px;padding-left:10px;' class=table_rows>";
-echo'    <div class="bootstrap-timepicker">
-    	                   <div class="form-group">';
+            echo "              <tr class=display_row>\n";
+            echo "                <td nowrap width=1% style='padding-right:5px;padding-left:10px;' class=table_rows>";
+            echo'                   <div class="bootstrap-timepicker">
+                	                     <div class="form-group">';
+            echo'                         <div class="input-group">';
+            echo "                          <input type='text' size='10' class='form-control timepicker' value=\"$time[$x]\" maxlength='$timefmt_size' name='edit_time_textbox[$x]'>";
+            echo'    	                      <div class="input-group-addon">
+                	                             <i class="fa fa-clock-o"></i>
+                	                          </div>
+                	                       </div>
+                	                     <!-- /.input group -->
+                	                   </div>
+                	                   <!-- /.form group -->
+                	                 </div>';
 
-
-		      echo'    	                     <div class="input-group">';
-		      echo "                      <input type='text' size='10' class='form-control timepicker' maxlength='$timefmt_size' name='edit_time_textbox[$x]'>";
-echo'    	                       <div class="input-group-addon">
-    	                         <i class="fa fa-clock-o"></i>
-    	                       </div>
-    	                     </div>
-    	                     <!-- /.input group -->
-    	                   </div>
-    	                   <!-- /.form group -->
-    	                 </div>
-    	               ';
-
-
-
-
-                echo "                <td nowrap align=left style='width:7%;padding-left:15px;background-color:$row_color;color:".$row["color"]."'>$inout[$x]</td>\n";
-                echo "                <td nowrap align=left style='padding-left:20px;' width=4% bgcolor='$row_color'>$time[$x]</td>\n";
-                echo "                <td style='padding-left:25px;' bgcolor='$row_color'>$notes[$x]</td>\n";
-                echo "              </tr>\n";
-                echo "              <input type='hidden' name='final_username[$x]' value=\"$username[$x]\">\n";
-                echo "              <input type='hidden' name='final_inout[$x]' value=\"$inout[$x]\">\n";
-                echo "              <input type='hidden' name='final_notes[$x]' value=\"$notes[$x]\">\n";
-                echo "              <input type='hidden' name='final_mysql_timestamp[$x]' value=\"$mysql_timestamp[$x]\">\n";
-                echo "              <input type='hidden' name='final_time[$x]' value=\"$time[$x]\">\n";
-                $row_count++;
+            echo "                <td nowrap align=left style='width:7%;padding-left:15px;background-color:$row_color;color:".$row["color"]."'>$inout[$x]</td>\n";
+            echo "                <td nowrap align=left style='padding-left:20px;' width=4% bgcolor='$row_color'>$time[$x]</td>\n";
+            echo "                <td style='padding-left:25px;' bgcolor='$row_color'>$notes[$x]</td>\n";
+            echo "              </tr>\n";
+            echo "              <input type='hidden' name='final_username[$x]' value=\"$username[$x]\">\n";
+            echo "              <input type='hidden' name='final_inout[$x]' value=\"$inout[$x]\">\n";
+            echo "              <input type='hidden' name='final_notes[$x]' value=\"$notes[$x]\">\n";
+            echo "              <input type='hidden' name='final_mysql_timestamp[$x]' value=\"$mysql_timestamp[$x]\">\n";
+            echo "              <input type='hidden' name='final_time[$x]' value=\"$time[$x]\">\n";
+            $row_count++;
             }
             if ($require_time_admin_edit_reason == "yes") {
                 echo "              <tr>
@@ -947,7 +941,7 @@ echo'    	                       <div class="input-group-addon">
                                       </td>
 
                                       <td colspan=2 width=80% style='padding-left:20px;'>
-                                        <input type='text' size='25' required='true' maxlength='250' name='post_why' placeholder='$post_why'>
+                                        <input type='text' size='25' required='true' maxlength='250' name='post_why' value=\"$post_why\" placeholder='$post_why'>
                                       </td>
 
                                       <td>";
@@ -981,13 +975,11 @@ echo'    	                       <div class="input-group-addon">
             echo "              <tr>
                                   <td width=30>
                                   <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
-                                    <i class='fa fa-ban'></i>
-                                    Cancelar
+                                    <i class='fa fa-ban'></i>Cancelar
                                   </button>
 
                                   <button id='formButtons' type='submit' name='submit' value='Edit Time' class='btn btn-success pull-right'>
-                                    <i class='fa fa-plus'></i>
-                                    Añadir tiempo
+                                    <i class='fa fa-plus'></i>Añadir tiempo
                                   </button>
                                   </td>
                                 </tr>
