@@ -63,9 +63,51 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
 // end user moved here from topmain
 
 
-echo '     <ul class="sidebar-menu">
-        <li class="header">ADMIN NAVIGATION</li>
-        <li class="treeview">
+echo '<ul class="sidebar-menu">
+        <li class="header">ADMIN NAVIGATION</li>';
+
+
+echo'   <li class="treeview">
+          <a href="#">
+            <i class="fa fa-spinner fa-pulse fa-1x fa-fw"></i><span>  Workday Times</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="timeadmin.php"><i class="fa fa-clock-o"></i> Modify Time</a></li>
+            <li><a href="time_punch_employees.php"><i class="fa fa-exchange"></i> Multiple Time register</a></li>
+            <li><a href="time_punch_out.php"><i class="fa fa-long-arrow-left"></i>Punch out employees</a></li>
+          </ul>
+        </li>';
+
+echo'   <li class="treeview">
+          <a href="#">
+            <i class="fa fa-building"></i> <span>Offices</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="officeadmin.php"><i class="fa fa-circle-o"></i> Office Summary</a></li>
+            <li><a href="officecreate.php"><i class="fa fa-circle-o"></i> Create New Office</a></li>
+          </ul>
+        </li>';
+
+echo '  <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i> <span>Groups</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="groupadmin.php"><i class="fa fa-circle-o"></i> Group Summary</a></li>
+	          <li><a href="groupcreate.php"><i class="fa fa-circle-o"></i> Create New Group</a></li>
+          </ul>
+        </li>';
+
+echo'   <li class="treeview">
           <a href="#">
             <i class="fa fa-user"></i> <span>Users</span>
             <span class="pull-right-container">
@@ -77,33 +119,9 @@ echo '     <ul class="sidebar-menu">
             <li><a href="usercreate.php"><i class="fa fa-user-plus"></i> Create New User</a></li>
 	          <li><a href="usersearch.php"><i class="fa fa-search"></i> User Search</a></li>
           </ul>
-       </li>
+       </li>';
 
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-building"></i> <span>Offices</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="officeadmin.php"><i class="fa fa-circle-o"></i> Office Summary</a></li>
-	    <li><a href="officecreate.php"><i class="fa fa-circle-o"></i> Create New Office</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i> <span>Groups</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="groupadmin.php"><i class="fa fa-circle-o"></i> Group Summary</a></li>
-	    <li><a href="groupcreate.php"><i class="fa fa-circle-o"></i> Create New Group</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
+echo'   <li class="treeview">
           <a href="#">
             <i class="fa fa-sign-out"></i> <span>In/Out Status</span>
             <span class="pull-right-container">
@@ -112,53 +130,37 @@ echo '     <ul class="sidebar-menu">
           </a>
           <ul class="treeview-menu">
             <li><a href="statusadmin.php"><i class="fa fa-circle-o"></i> Status Summary</a></li>
-	    <li><a href="statuscreate.php"><i class="fa fa-circle-o"></i> Create Status</a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-file-text"></i> <span>Contracts</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="contractadmin.php"><i class="fa fa-circle-o"></i> Status Summary</a></li>
-	    <li><a href="contractcreate.php"><i class="fa fa-circle-o"></i> Create Contract</a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-spinner fa-spin"></i> <span>Workday Times</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="timeadmin.php"><i class="fa fa-clock-o"></i> Modify Time</a></li>
-            <li><a href="time_punch_employees.php"><i class="fa fa-exchange"></i> Multiple Time register</a></li>
-            <li><a href="time_punch_out.php"><i class="fa fa-long-arrow-left"></i>Punch out employees</a></li>
-
+	          <li><a href="statuscreate.php"><i class="fa fa-circle-o"></i> Create Status</a></li>
           </ul>
         </li>';
 
+// echo '  <li class="treeview">
+//           <a href="#">
+//             <i class="fa fa-file-text"></i> <span>Contracts</span>
+//             <span class="pull-right-container">
+//               <i class="fa fa-angle-left pull-right"></i>
+//             </span>
+//           </a>
+//           <ul class="treeview-menu">
+//             <li><a href="contractadmin.php"><i class="fa fa-circle-o"></i> Status Summary</a></li>
+// 	          <li><a href="contractcreate.php"><i class="fa fa-circle-o"></i> Create Contract</a></li>
+//           </ul>
+//         </li>';
 
+echo "  <li class='treeview'>
+          <a href='#'>
+            <i class='fa fa-dashboard'></i> <span>Miscellaneous</span>
+            <span class='pull-right-container'>
+              <i class='fa fa-angle-left pull-right'></i>
+            </span>
+          </a>
+          <ul class='treeview-menu'>
+            <li><a href='sysedit.php'><i class='fa fa-code'></i> Edit System Settings</a></li>
+	          <li><a href='database_management.php'><i class='fa fa-database'></i> Manage Database</a></li>
+          </ul>
+        </li>";
 
-      echo "        <li class='treeview'>
-                <a href='#'>
-                  <i class='fa fa-dashboard'></i> <span>Miscellaneous</span>
-                  <span class='pull-right-container'>
-                    <i class='fa fa-angle-left pull-right'></i>
-                  </span>
-                </a>
-                <ul class='treeview-menu'>
-                  <li><a href='sysedit.php'><i class='fa fa-code'></i> Edit System Settings</a></li>
-      	          <li><a href='database_management.php'><i class='fa fa-database'></i> Manage Database</a></li>
-                </ul>
-              </li>
-            </ul>";
+echo "</ul>";
 
 
 

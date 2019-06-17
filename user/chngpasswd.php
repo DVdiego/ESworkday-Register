@@ -108,11 +108,11 @@ echo '      <div class="box-header with-border">
 echo "            <form name='form' action='$self' method='post'>\n";
 echo "            <table class=table>\n";
 // echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td style='padding-left:20px;'
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td style='padding-left:20px;'
                       align=left class=table_rows width=80%><input type='hidden' name='post_username' value=\"$username\">$username</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td colspan=2
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td colspan=2
                       style='padding-left:20px;'><input type='password' size='25' maxlength='25' name='new_password' required></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirmar Contraseña:</td><td colspan=2
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Confirmar Contraseña:</td><td colspan=2
                       style='padding-left:20px;'><input type='password' size='25' maxlength='25'name='confirm_password' required>
                       </td></tr>\n";
 // echo "              <tr><td height=15></td></tr>\n";
@@ -200,11 +200,11 @@ elseif ($request == 'POST') {
       echo "            <form name='form' action='$self' method='post'>\n";
       echo "            <table class=table>\n";
       // echo "              <tr><td height=15></td></tr>\n";
-      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td style='padding-left:20px;'
+      echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td style='padding-left:20px;'
                             align=left class=table_rows width=80%><input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
-      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td colspan=2
+      echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td colspan=2
                             style='padding-left:20px;'><input type='password' size='25' maxlength='25' name='new_password' required></td></tr>\n";
-      echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Confirmar Contraseña:</td><td colspan=2
+      echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Confirmar Contraseña:</td><td colspan=2
                             style='padding-left:20px;'><input type='password' size='25' maxlength='25'name='confirm_password' required>
                             </td></tr>\n";
       // echo "              <tr><td height=15></td></tr>\n";
@@ -258,9 +258,9 @@ elseif ($request == 'POST') {
             echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/lock_edit.png' />&nbsp;&nbsp;&nbsp;Change
                                   Password</th></tr>\n";
             // echo "              <tr><td height=15></td></tr>\n";
-            echo "              <tr><td class=table_rows width=20% height=25 style='padding-left:32px;' nowrap>Usuario:</td><td align=left class=table_rows width=80%
+            echo "              <tr><td class=table_rows_output width=20% height=25 style='padding-left:32px;' nowrap>Usuario:</td><td align=left class=table_rows width=80%
                                   style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
-            echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td align=left class=table_rows
+            echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td align=left class=table_rows
                                   colspan=2 style='padding-left:20px;' width=80%>***hidden***</td></tr>\n";
             // echo "              <tr><td height=15></td></tr>\n";
             echo "            </table>\n";

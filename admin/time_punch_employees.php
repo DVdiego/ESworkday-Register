@@ -146,13 +146,12 @@ if($request == 'GET'){
 
   echo"               <div class='bootstrap-timepicker'>
                         <div class='form-group' style='display: flex;'>
-                          <label style='margin-right:15px'>Time: </label>";
-  echo"    	                <div class='input-group'>
+                          <label style='margin-right:15px'>Time: </label>
+      	                <div class='input-group'>
                                 <div class='input-group-addon'>
                                   <i class='fa fa-clock-o'></i>
                                 </div>
-                              <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' style='width: 150px;' required>";
-  echo"
+                              <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' style='width: 150px;' required>
                             </div>
                        </div>
                      </div>";

@@ -84,10 +84,9 @@ echo "                <td class=table_rows align=left width=80% style='padding-l
                     </tr>\n";
 
 echo "              <tr>
-                      <td class='required_fields' align='right' colspan=3 >
-                        *&nbsp;Campos requeridos&nbsp;
-                      </td>
-                    </tr>\n";
+											<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+											</td>
+										</tr>\n";
 echo "            </table>\n";
 //echo "            <script language=\"javascript\">cp.writeDiv()</script>\n";
 echo '            <div class="box-footer">
@@ -248,10 +247,9 @@ elseif ($request == 'POST') {
     if (!empty($string2)) {$post_statusname = stripslashes($post_statusname);}
 
     echo "              <tr>
-                          <td class='required_fields' align=right colspan=3 >
-                            *&nbsp;Campos requeridos&nbsp;
-                          </td>
-                        </tr>\n";
+													<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+													</td>
+												</tr>\n";
     echo "            </table>\n";
     echo "            <script language=\"javascript\">cp.writeDiv()</script>\n";
     echo '            <div class="box-footer">

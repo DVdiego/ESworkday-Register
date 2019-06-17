@@ -152,14 +152,17 @@ echo '<div class="box-header with-border">
     // echo "                <input type='hidden' name='timefmt_24hr_text' value=\"$timefmt_24hr_text\">\n";
     // echo "                <input type='hidden' name='timefmt_size' value=\"$timefmt_size\">\n";
     // echo "                 *&nbsp;required&nbsp;\n";
-    echo "    <div class='form-group'>
-                <label class='table_rows_output'>
-                  Fecha:
-                </label>
-                <input type='date' size='10' maxlength='10' name='post_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
-                <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
-                return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-                 </div>";
+    echo "              <div class='form-group' style='display: -webkit-box;'>
+                          <label style='margin-right:2.4rem;'>Fecha:&nbsp;*</label>
+                            <div class='input-group'>
+                            <div class='input-group-addon'>
+                              <i class='fa fa-calendar'></i>
+                            </div>
+                              <input type='date' size='10' maxlength='10' name='post_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
+                              <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                              return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                            </div>
+                        </div>\n";
     echo "        <div class='required_fields' align='right'>
                      *&nbsp;Campos requeridos&nbsp
                  </div>\n";

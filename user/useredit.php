@@ -138,20 +138,19 @@ echo "            <form name='form' action='$self' method='post'>\n";
  echo "            <table align=center class=table>\n";
 
 // echo "              <tr><td height=15></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre del usuario:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nombre del usuario:</td><td align=left class=table_rows
                       colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$username\">$username</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de acceso:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nombre de acceso:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='50' name='display_name' value=\"$displayname\">&nbsp;*</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de Email:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Dirección de Email:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <input type='text' size='25' maxlength='75' name='email_addy' value='$user_email'>&nbsp;*</td></tr>\n";
 
 echo "              <tr>
-                      <td class=table_rows_output align=right colspan=3 style='font-family:Tahoma;font-size:10px;'>
-                        *&nbsp;Campos requeridos&nbsp;
-                      </td>
-                    </tr>\n";
+											<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+											</td>
+										</tr>\n";
 echo "            </table>\n";
 if (isset($evil)) {
   echo "<input type='hidden' name='evil' value='$evil'>\n";
@@ -278,22 +277,21 @@ elseif ($request == 'POST') {
         echo "            <form name='form' action='$self' method='post'>\n";
          echo "            <table align=center class=table >\n";
         // echo "              <tr><td height=15></td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre del usuario:</td><td align=left class=table_rows
+        echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nombre del usuario:</td><td align=left class=table_rows
                               colspan=2 width=80% style='padding-left:20px;'><input type='hidden' name='post_username'
                               value=\"$post_username\">$tmp_post_username</td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de acceso:</td><td colspan=2 width=80%
+        echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nombre de acceso:</td><td colspan=2 width=80%
                               style='padding-left:20px;'>
                               <input type='text' size='25' maxlength='50' name='display_name' value=\"$display_name\">&nbsp;*</td></tr>\n";
-        echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de Email:</td><td colspan=2 width=80%
+        echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Dirección de Email:</td><td colspan=2 width=80%
                               style='padding-left:20px;'>
                               <input type='text' size='25' maxlength='75' name='email_addy' value='$email_addy'>&nbsp;*</td></tr>\n";
 
 
         echo "              <tr>
-                              <td class=table_rows_output align=right colspan=3 style='font-family:Tahoma;font-size:10px;'>
-                                *&nbsp;Campos requeridos&nbsp;
-                              </td>
-                            </tr>\n";
+    													<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+    													</td>
+    												</tr>\n";
         echo "            </table>\n";
         if (isset($evil)) {
           echo "<input type='hidden' name='evil' value='$evil'>\n";
@@ -375,15 +373,15 @@ elseif ($request == 'POST') {
     }
     ((mysqli_free_result($result4) || (is_object($result4) && (get_class($result4) == "mysqli_result"))) ? true : false);
 
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre del usuario:</td><td align=left class=table_rows
+    echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nombre del usuario:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$username</td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre de acceso:</td><td align=left class=table_rows
+    echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nombre de acceso:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$displayname</td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Dirección de Email:</td><td align=left class=table_rows
+    echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Dirección de Email:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$user_email</td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td align=left class=table_rows
+    echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$office</td></tr>\n";
-    echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Grupo:</td><td align=left class=table_rows
+    echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Grupo:</td><td align=left class=table_rows
                           colspan=2 width=80% style='padding-left:20px;'>$groups</td></tr>\n";
 
     // echo "              <tr><td height=15></td></tr>\n";

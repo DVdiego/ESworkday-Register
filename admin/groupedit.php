@@ -134,12 +134,10 @@ if ($request == 'GET') {
                             <input type='hidden' name='user_cnt' value=\"$user_cnt\">$user_cnt
                           </td>
                         </tr>\n";
-    echo "
-                        <tr>
-                          <td class=table_rows align=right colspan=3 style='font-weight: bold;font-family:Tahoma;font-size:10px;'>
-                            *&nbsp;Campos requeridos&nbsp;
-                          </td>
-                        </tr>\n";
+  echo "              <tr>
+												<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+												</td>
+											</tr>\n";
     echo "            </table>\n";
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr><td height=40></td></tr>\n";
@@ -515,10 +513,9 @@ elseif ($request == 'POST') {
                             </tr>\n";
 
         echo "              <tr>
-                              <td class=table_rows_output align=right colspan=3 style='font-size:10px;'>
-                                *&nbsp;Campos requeridos&nbsp;
-                              </td>
-                            </tr>\n";
+    													<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+    													</td>
+    												</tr>\n";
         echo "            </table>\n";
         echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
         echo "              <tr><td height=40></td></tr>\n";

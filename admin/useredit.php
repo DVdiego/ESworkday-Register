@@ -307,8 +307,7 @@ echo "                  <td class=table_rows align=left width=80% style='padding
                       </tr>\n";
 }
 echo "              <tr>
-                      <td class=table_rows_output align=right colspan=3 style='font-family:Tahoma;font-size:10px;'>
-                        *&nbsp;Campos requeridos&nbsp;
+                      <td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
                       </td>
                     </tr>\n";
 echo "            </table>\n";

@@ -112,17 +112,28 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
     echo "               <div class='form-group'><label>Username: $username</label><input type='hidden' name='post_username' value=\"$username\"></div>\n";
     echo "              <div class='form-group'><label>Display Name: $displayname</label><input type='hidden' name='post_displayname' value=\"$displayname\"></div>\n";
 
-    echo "    <div class='form-group'>
-                <label>Fecha:</label>
-                <input type='date' size='10' maxlength='10' name='post_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
-                <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
-                return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-                 </div>";
+    echo "              <div class='form-group' style='display: -webkit-box;'>
+                          <label style='margin-right:2.4rem;'>Fecha:&nbsp;*</label>
+                            <div class='input-group'>
+                            <div class='input-group-addon'>
+                              <i class='fa fa-calendar'></i>
+                            </div>
+                              <input type='date' size='10' maxlength='10' name='post_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
+                              <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                              return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                            </div>
+                        </div>\n";
     echo '<div class="box-footer">
-                <button type="submit" name="submit" value="Delete Time" class="btn btn-danger">Delete Time</button>
-                <button type="submit" name="cancel" class="btn btn-default pull-right"><a href="timeadmin.php">Cancel</a></button>
-              </div></form>';
+                <button type="button" id="formButtons" onclick="location=\'timeadmin.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                  <i class="fa fa-ban"></i>
+                  Cancelar
+                </button>
 
+                <button id="formButtons" type="submit" name="submit" value="Delete Time" class="btn btn-danger pull-right">
+                  <i class="fa fa-remove"></i>
+                  Eliminar tiempo
+                </button>
+              </div></form>';
     echo '</div></div></div></div>';
         include '../theme/templates/endmaincontent.inc';
     include '../footer.php';
