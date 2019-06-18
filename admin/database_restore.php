@@ -77,10 +77,10 @@ if (! isset($_SESSION['valid_user'])) {
  */
 function write_admin_interface($title) {
 	echo '<div class="row">
-	    <div class="col-md-10">
+	    <div id="float_window" class="col-md-10">
 	      <div class="box box-info"> ';
 	echo '<div class="box-header with-border">
-	    <h3 class="box-title"><i class="fa fa-clock-o"></i> '.$title.' - Restore Database</h3>
+	    <h3 class="box-title"><i class="fa fa-cloud-upload"></i> '.$title.' - Restore Database</h3>
 	  </div><div class="box-body">';
 }
 
@@ -94,7 +94,7 @@ function validInput($backup_file) {
     if (! is_uploaded_file($backup_file['tmp_name'])) { // Ensure a backup file name was given
         echo "
             <!-- Backup Filename Missing Message -->
-            
+
                <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
                   <tr>
                      <td class=table_rows_red>
@@ -122,7 +122,8 @@ function clear_table($table) {
         echo "
                         Cleared table: $table. <br>";
     }
-    ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
+    //((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
+    ((is_object($result) && (get_class($result) == "mysqli_result")) ? true : false);
 }
 
 /**
@@ -144,7 +145,7 @@ function restore_table($data, $table)
                         Successfully restored data. <br>
                         <br>";
     }
-    ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
+    ((is_object($result) && (get_class($result) == "mysqli_result")) ? true : false);
 }
 
 write_admin_interface($title);
@@ -153,7 +154,7 @@ write_admin_interface($title);
 if ($request == 'POST') {
     // Begin creating post data
     $post_backup_file = $_FILES['backup_file'];
-    $restore_confirmed = $_POST['restore_confirmed'];
+    @$restore_confirmed = $_POST['restore_confirmed'];
 
     $is_valid_input = validInput($post_backup_file);
 } else {
@@ -193,9 +194,10 @@ if (($request == 'GET') || (! $is_valid_input)) { // Output Restore Backup Inter
                </table>";
 	       echo '<div class="box-footer">
 	                   <button type="submit" name="submit" value="restore" class="btn btn-warning">Next <i class="glyphicon glyphicon-arrow-right"></i></button>
-	                   <button class="btn btn-default pull-right"><a href="database_management.php"><i class="glyphicon glyphicon-remove-circle text-red"></i> Cancel</a></button>   
+	                   <button class="btn btn-default pull-right" onclick="location=\'database_management.php\'"><i class="glyphicon glyphicon-remove-circle text-red"></i> Cancel</button>
 	                 </div></form>';
-			 
+
+
 echo "          </div></div></div></div>\n";
 } else if ($request == 'POST') { // Restore the database with the backup file
     echo "
@@ -251,19 +253,17 @@ echo "          </div></div></div></div>\n";
                   <div style='position:absolute; visibility:hidden; background-color:#ffffff; layer-background-color:#ffffff;' id='mydiv' height=200>
                      &nbsp;
                   </div>
-                  <tr>
-                     <td>
-                        <a href='database_management.php'>
-                           <img src='../images/buttons/done_button.png' border='0'>
-                        </a>
-                     </td>
-                  </tr>
                </table>";
+
+   echo '<div class="box-footer">
+
+              <button class="btn btn-default pull-right" onclick="location=\'database_management.php\'">Done <i class="glyphicon glyphicon-ok-sign text-green"></i></button>
+            </div>';
 }
 // Add footer information and clean up left over HTML
 include '../theme/templates/endmaincontent.inc';
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
 exit;

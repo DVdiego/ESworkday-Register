@@ -80,10 +80,10 @@ function write_admin_interface($title) {
 	    <div id="float_window" class="col-md-10">
 	      <div class="box box-info"> ';
 	echo '<div class="box-header with-border">
-	    <h3 class="box-title"><i class="fa fa-user-plus"></i> '.$title.' - Manage Database</h3>
+	    <h3 class="box-title"><i class="fa fa-database"></i> '.$title.' - Manage Database</h3>
 	  </div><div class="box-body table-responsive">';
-	          
-	
+
+
 
 }
 
@@ -128,7 +128,7 @@ echo "          </div></div></div></div>\n";
 // Add HTML clean up and footer
 include '../theme/templates/endmaincontent.inc';
 include '../footer.php';
-include '../theme/templates/controlsidebar.inc'; 
+include '../theme/templates/controlsidebar.inc';
 include '../theme/templates/endmain.inc';
 include '../theme/templates/adminfooterscripts.inc';
 exit;

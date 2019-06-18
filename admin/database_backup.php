@@ -81,10 +81,10 @@ function write_admin_interface() {
 
 
 echo '<div class="row">
-    <div class="col-md-10">
+    <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
-    <h3 class="box-title"><i class="fa fa-clock-o"></i> '.$title.' - Backup Database</h3>
+    <h3 class="box-title"><i class="fa fa-cloud-download"></i> '.$title.' - Backup Database</h3>
   </div><div class="box-body">';
 
 }
@@ -141,16 +141,18 @@ function write_flush($data) {
  * Writes and flushes all data found on a table in the connected database.
  * @param $table is the database table to extract the data from and write to the ob buffer.
  */
-function write_table($table) {
-    $sql_data .= "# \n";
+function write_table($table,$db_prefix) {
+    @$sql_data .= "# \n";
     $sql_data .= "# Data from table: $table \n";
     $sql_data .= "# \n";
 
+    $salto = "";
     $query = "SELECT * FROM $db_prefix$table";
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
     if ($result != false) {
         // Get field information
         $field_list = mysqli_query($GLOBALS["___mysqli_ston"], "SHOW COLUMNS FROM $db_prefix$table");
+        $fields = "";
         while ($field = mysqli_fetch_row($field_list)) {
             if ($field[0] == "inout") { // Needs to be escaped
                 $fields .='`inout`, ';
@@ -161,7 +163,7 @@ function write_table($table) {
         $fields = rtrim($fields, ', ');
         $fields_cnt = (($___mysqli_tmp = mysqli_num_fields($result)) ? $___mysqli_tmp : false);
 
-        $sql_data       .= 'INSERT INTO '.$table.' ('.$fields.') VALUES ';
+        $sql_data       .= 'INSERT INTO '.$table.' ('.$fields.') VALUES '.$salto.'';
         $first_set      = true;
         $query_len      = 0;
         $max_len        = get_usable_memory();
@@ -172,16 +174,17 @@ function write_table($table) {
             if ($first_set) {
                 $query = $sql_data . '(';
             } else {
-                $query  .= ',(';
+                $query  .= ','.$salto.'(';
             }
 
             for ($j = 0; $j < $fields_cnt; $j++) {
                 if (!isset($row[$j]) || is_null($row[$j])) {
                     $values[$j] = 'NULL';
-                } else if (($field->flags & 32768) && ! ($field->flags & 1024)) {
+                } else if ((@$field->flags & 32768) && ! (@$field->flags & 1024)) {
+                  echo "field:".$field->flags;
                     $values[$j] = $row[$j];
                 } else {
-                    $values[$j] = "'" . str_replace($search, $replace, $row[$j]) . "'";
+                    $values[$j] = "'" . str_replace(@$search, @$replace, $row[$j]) . "'";
                 }
             }
             $query .= implode(', ', $values) . ')';
@@ -235,7 +238,7 @@ if ($request == 'GET') { // Output Backup Confirmation Interface
                </table>";
 	       echo '<div class="box-footer">
 	                   <button type="submit" name="submit" value="backup" class="btn btn-warning"><i class="glyphicon glyphicon-download-alt"></i> Backup</button>
-	                   <button class="btn btn-default pull-right"><a href="database_management.php">Done <i class="glyphicon glyphicon-ok-sign text-green"></i></a></button>
+	                   <button class="btn btn-default pull-right" onclick="location=\'database_management.php\'">Done <i class="glyphicon glyphicon-ok-sign text-green"></i></button>
 	                 </div></form>';
 echo "          </div></div></div></div>\n";
 } else if ($request == 'POST') { // Begin the database backup
@@ -254,13 +257,13 @@ echo "          </div></div></div></div>\n";
     // Setup file name based on calendar preferences
     if ($calendar_style == "euro") {
         $date = "$day/$month/$year";
-        $filename = "WorkTime Control_backup_".$day."_".$month."_".$year.".sql";
+        $filename = "WorkTime_".$enterprise_name."_backup_".$day."_".$month."_".$year.".sql";
     } elseif ($calendar_style == "amer") {
         $date = "$month/$day/$year";
-        $filename = "WorkTime Control_backup_".$month."_".$day."_".$year.".sql";
+        $filename = "WorkTime_".$enterprise_name."_backup_".$month."_".$day."_".$year.".sql";
     } else {
         $date = "Calendar Style not set in config file.";
-        $filename = "WorkTime Control_backup.sql";
+        $filename = "WorkTime_".$enterprise_name."_backup.sql";
     }
 
     // Begin backup file creation
@@ -280,28 +283,31 @@ echo "          </div></div></div></div>\n";
     write_flush($sql_data);
     $sql_data = "";
     // Begin the backup of each table in the database
-    write_table("audit");
+    write_table("audit",$db_prefix);
     write_flush($sql_data);
     $sql_data = "";
-    write_table("dbversion");
+    write_table("contracts",$db_prefix);
     write_flush($sql_data);
     $sql_data = "";
-    write_table("employees");
+    write_table("dbversion",$db_prefix);
     write_flush($sql_data);
     $sql_data = "";
-    write_table("groups");
+    write_table("employees",$db_prefix);
     write_flush($sql_data);
     $sql_data = "";
-    write_table("info");
+    write_table("groups",$db_prefix);
     write_flush($sql_data);
     $sql_data = "";
-    write_table("metars");
+    write_table("info",$db_prefix);
     write_flush($sql_data);
     $sql_data = "";
-    write_table("offices");
+    write_table("metars",$db_prefix);
     write_flush($sql_data);
     $sql_data = "";
-    write_table("punchlist");
+    write_table("offices",$db_prefix);
+    write_flush($sql_data);
+    $sql_data = "";
+    write_table("punchlist",$db_prefix);
     write_flush($sql_data);
     ob_end_flush();
     exit;

@@ -182,3 +182,17 @@ hr.separator-reports{
 .box-header .box-title {
     font-size: 18px !important;
 }
+
+
+
+@media (max-width: 460px) {
+    /* Los estilos aquí contenidos solo se aplicarán a partir
+    del tamaño de pantalla indicado */
+    #wrapper > div > section{
+      padding-top: 120px;
+    }
+
+    #wrapper > header > nav > div > ul{
+      font-size: 16px;
+    }
+}

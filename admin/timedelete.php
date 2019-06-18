@@ -109,8 +109,8 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
     echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
     echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
     echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
-    echo "               <div class='form-group'><label>Username: $username</label><input type='hidden' name='post_username' value=\"$username\"></div>\n";
-    echo "              <div class='form-group'><label>Display Name: $displayname</label><input type='hidden' name='post_displayname' value=\"$displayname\"></div>\n";
+    echo "               <div class='form-group'><label>Nombre de usuario: $username</label><input type='hidden' name='post_username' value=\"$username\"></div>\n";
+    echo "              <div class='form-group'><label>Nombre de acceso: $displayname</label><input type='hidden' name='post_displayname' value=\"$displayname\"></div>\n";
 
     echo "              <div class='form-group' style='display: -webkit-box;'>
                           <label style='margin-right:2.4rem;'>Fecha:&nbsp;*</label>
@@ -241,8 +241,8 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
           echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
           echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
           echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
-          echo "               <div class='form-group'><label>Username: $post_username</label><input type='hidden' name='post_username' value=\"$post_username\"></div>\n";
-          echo "              <div class='form-group'><label>Display Name: $post_displayname</label><input type='hidden' name='post_displayname' value=\"$post_displayname\"></div>\n";
+          echo "               <div class='form-group'><label>Nombre de usuario: $post_username</label><input type='hidden' name='post_username' value=\"$post_username\"></div>\n";
+          echo "              <div class='form-group'><label>Nombre de acceso: $post_displayname</label><input type='hidden' name='post_displayname' value=\"$post_displayname\"></div>\n";
 
           echo "    <div class='form-group'>
                       <label>Fecha:</label>
@@ -438,6 +438,8 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
             echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
             echo "              <tr><td><a href='timeadmin.php'><img src='../images/buttons/done_button.png' border='0'></td></tr></table>\n";
+
+
             echo '</div></div></div></div>';
             include '../theme/templates/endmaincontent.inc';
             include '../footer.php';
@@ -616,8 +618,8 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
               echo "            <form name='form' action='$self' method='post' onsubmit=\"return isDate()\">\n";
               echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
               echo "                <input type='hidden' name='get_user' value=\"$get_user\">\n";
-              echo "               <div class='form-group'><label>Username: $post_username</label><input type='hidden' name='post_username' value=\"$post_username\"></div>\n";
-              echo "              <div class='form-group'><label>Display Name: $post_displayname</label><input type='hidden' name='post_displayname' value=\"$post_displayname\"></div>\n";
+              echo "               <div class='form-group'><label>Nombre de usuario: $post_username</label><input type='hidden' name='post_username' value=\"$post_username\"></div>\n";
+              echo "              <div class='form-group'><label>Nombre de acceso: $post_displayname</label><input type='hidden' name='post_displayname' value=\"$post_displayname\"></div>\n";
 
               echo "    <div class='form-group'>
                           <label>Fecha:</label>
