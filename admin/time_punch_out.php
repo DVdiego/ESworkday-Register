@@ -351,7 +351,7 @@ echo "                 </select>
 ((mysqli_free_result( $punchlist_result ) || (is_object( $punchlist_result ) && (get_class( $punchlist_result ) == "mysqli_result"))) ? true : false);
 
 
-echo "              <div class='form-group' style='display: -webkit-box;'>
+echo "              <div lass='form-group' style='display: -webkit-box;'>
                       <label style='margin-right:10px'>Fecha:</label>
                         <div class='input-group'>
                             <div class='input-group-addon'>
@@ -381,7 +381,9 @@ echo "             <div class='form-group'>
                       <input type='text' name='post_notes' maxlength='250' class='form-control' style=' width: 98%;' >
                   </div>";
 echo "						<div class='box-footer'>
-										<button id='formButtons' class='btn btn-default pull-right' style='margin-left: 10px;margin-right: 10px;'><i class='fa fa-ban'></i> Cancelar<a href='timeadmin.php'></a></button>
+                    <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                      <i class='fa fa-ban'></i> Cancelar
+                    </button>
 										<button id='formButtons' type='submit' name='submit'  class='btn btn-success pull-right'>Siguiente <i class='fa fa-arrow-right'></i></button><a href='usercreate.php'></a>
 									</div>";
 
