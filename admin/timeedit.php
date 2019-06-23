@@ -916,16 +916,16 @@ echo '<div class="box-header with-border">
 
         if (isset($time_set)) {
             echo "                <tr>
-                                    <td nowrap width=1% class='table_rows_output' style='padding-right:5px;padding-left:10px;'>
+                                    <td nowrap width=1% class='table_rows' style='padding-right:5px;padding-left:10px;'>
                                       Hora actual
                                     </td>\n";
-            echo "                  <td nowrap width=7% align=left style='padding-left:15px;' class='table_rows_output'>
+            echo "                  <td nowrap width=7% align=left style='padding-left:15px;' class='table_rows'>
                                       Entrada/Salida
                                     </td>\n";
-            echo "                  <td nowrap style='padding-left:20px;' width=4% align=left class='table_rows_output'>
+            echo "                  <td nowrap style='padding-left:20px;' width=4% align=left class='table_rows'>
                                       Hora registrada
                                     </td>\n";
-            echo "                  <td style='padding-left:25px;' class='table_rows_output'>
+            echo "                  <td style='padding-left:25px;' class='table_rows'>
                                       Notas
                                     </td>
                                   </tr>\n";
@@ -973,7 +973,6 @@ echo '<div class="box-header with-border">
                                       <td colspan=2 width=80% style='padding-left:20px;'>
                                         <input type='text' size='25' required='true' maxlength='250' name='post_why' value=\"$post_why\" placeholder='$post_why'>
                                       </td>
-
                                       <td>";
                                       echo "        <div class='required_fields' align='right'>
                                                       *&nbsp;Campos requeridos&nbsp
@@ -1003,13 +1002,14 @@ echo '<div class="box-header with-border">
             echo "            <input type='hidden' name='final_num_rows' value=\"$num_rows\">\n";
             echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
             echo "              <tr>
-                                  <td width=30>
                                   <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
-                                    <i class='fa fa-ban'></i>Cancelar
+                                    <i class='fa fa-ban'></i>
+                                    Cancelar
                                   </button>
 
                                   <button id='formButtons' type='submit' name='submit' value='Edit Time' class='btn btn-success pull-right'>
-                                    <i class='fa fa-plus'></i>Añadir tiempo
+                                    <i class='fa fa-plus'></i>
+                                    Añadir tiempo
                                   </button>
                                   </td>
                                 </tr>
@@ -1017,7 +1017,7 @@ echo '<div class="box-header with-border">
                             </form>\n";
 	    echo'</div></div></div></div>';
 	    include '../theme/templates/endmaincontent.inc';
-            include '../footer.php';
+      include '../footer.php';
 			include '../theme/templates/controlsidebar.inc';
 			include '../theme/templates/endmain.inc';
 			include '../theme/templates/adminfooterscripts.inc';

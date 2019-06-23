@@ -154,6 +154,12 @@ p.present-sum {
 
 }
 
+/*
+  textarea
+*/
+#comment{
+  width: 50% !important;
+}
 
 /*Tarjetas reportes del día*/
 /*separador reportes*/
