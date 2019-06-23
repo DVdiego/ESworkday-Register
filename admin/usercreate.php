@@ -62,57 +62,51 @@ if ($request == 'GET') {
 		echo "            <form name='form' action='$self' method='post'>\n";
 		echo "            <table align=center class=table>\n";
 		echo "              <tr>
-													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-														&nbsp;*Nombre completo:
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nombre completo:&nbsp;*
 													</td>
 
 													<td class=table_rows width=80% style='padding-left:20px;'>
-														<input type='text' size='25' maxlength='50' name='post_username'>
+														<input type='text' size='25' maxlength='50' name='post_username' required>
 													</td>
 												</tr>\n";
 		echo "              <tr>
-													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-														&nbsp;*Usuario:
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Usuario:&nbsp;*
 													</td>
 
 													<td class=table_rows width=80% style='padding-left:20px;'>
-		                      	<input type='text' size='25' maxlength='50' name='display_name'>
+		                      	<input type='text' size='25' maxlength='50' name='display_name' required>
 													</td>
 												</tr>\n";
 		echo "              <tr>
-													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-														&nbsp;*DNI:
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>DNI:&nbsp;*
 													</td>
 
 													<td class=table_rows width=80% style='padding-left:20px;'>
-												 		<input type='text' size='25' maxlength='10' name='user_dni'>
+												 		<input type='text' size='25' maxlength='10' name='user_dni' required>
 													</td>
 												</tr>\n";
 		echo "              <tr>
-													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-														Contraseña:
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Contraseña:
 													</td>
 
 													<td class=table_rows width=80% style='padding-left:20px;'>
-														<input type='password' size='25' maxlength='25' name='password'>
+														<input type='password' size='25' maxlength='25' name='password' required>
 													</td>
 												</tr>\n";
 		echo "              <tr>
-													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-														Confirmar contraseña:
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Confirmar contraseña:
 													</td>
 
 													<td class=table_rows width=80% style='padding-left:20px;'>
-		                      	<input type='password' size='25' maxlength='25' name='confirm_password'>
+		                      	<input type='password' size='25' maxlength='25' name='confirm_password' required>
 													</td>
 												</tr>\n";
 		echo "              <tr>
-													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-														&nbsp;*Dirección de email:
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Dirección de email:&nbsp;*
 													</td>
 
 													<td class=table_rows width=80% style='padding-left:20px;'>
-		                      	<input type='text' size='25' maxlength='75' name='email_addy'>
+		                      	<input type='text' size='25' maxlength='75' name='email_addy' required>
 													</td>
 												</tr>\n";
 
@@ -120,8 +114,7 @@ if ($request == 'GET') {
 		$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 		echo "              <tr>
-													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-														&nbsp;*Tipo de contrato:
+													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Tipo de contrato:&nbsp;*
 													</td>
 
 													<td class=table_rows width=80% style='padding-left:20px;'>
@@ -140,7 +133,7 @@ if ($request == 'GET') {
 
 		echo "              <tr>
 													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-														&nbsp;*Oficina:
+														Oficina:&nbsp;*
 													</td>
 
 													<td class=table_rows width=80% style='padding-left:20px;'>
@@ -150,7 +143,7 @@ if ($request == 'GET') {
 												</tr>\n";
 		echo "              <tr>
 													<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-														&nbsp;*Grupo de trabajo:
+														Grupo de trabajo:&nbsp;*
 													</td>
 
 													<td class=table_rows width=80% style='padding-left:20px;'>
@@ -199,14 +192,13 @@ if ($request == 'GET') {
 													</td>
 												</tr>\n";
 		echo "              <tr>
-													<td class=table_rows align=right colspan=3>*&nbsp;Campos obligatorios&nbsp;
+													<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
 													</td>
 												</tr>\n";
 		echo "            </table>\n";
 		echo "						<div class='box-footer'>
 												<button type='button' id='formButtons' onclick='location=\"useradmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
-													<i class='fa fa-ban'></i>
-													Cancelar
+													<i class='fa fa-ban'></i>Cancelar
 												</button>
 
 												<button id='formButtons' type='submit' name='submit' value='Create User' class='btn btn-success pull-right'>
@@ -485,7 +477,7 @@ elseif ($request == 'POST') {
 				echo "            <table class=table>\n";
 				echo "              <tr>
 															<td class=table_rows_output  height=25 width=20% style='padding-left:32px;' nowrap>
-																&nbsp;*Nombre completo:
+																Nombre completo:&nbsp;*
 															</td>
 
 															<td class='table_rows' width=80% style='padding-left:20px;'>
@@ -494,7 +486,7 @@ elseif ($request == 'POST') {
 														</tr>\n";
 				echo "              <tr>
 															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-																&nbsp;*Usuario:
+																Usuario:&nbsp;*
 															</td>
 
 															<td class='table_rows' width=80% style='padding-left:20px;'>
@@ -503,7 +495,7 @@ elseif ($request == 'POST') {
 														</tr>\n";
 				echo "              <tr>
 															<td class=table_rows_output  height=25 width=20% style='padding-left:32px;' nowrap>
-																&nbsp;*DNI:
+																DNI:&nbsp;*
 															</td>
 
 															<td class='table_rows' width=80% style='padding-left:20px;'>
@@ -535,7 +527,7 @@ elseif ($request == 'POST') {
 														</tr>\n";
 				echo "              <tr>
 															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-																&nbsp;*Dirección de email:
+																Dirección de email:&nbsp;*
 															</td>
 
 															<td class='table_rows' width=80% style='padding-left:20px;'>
@@ -548,7 +540,7 @@ elseif ($request == 'POST') {
 
 				echo "              <tr>
 															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-																&nbsp;*Tipo de contrato:
+																Tipo de contrato:&nbsp;*
 															</td>
 
 															<td class='table_rows' width=80% style='padding-left:20px;'>
@@ -572,7 +564,7 @@ elseif ($request == 'POST') {
 
 				echo "              <tr>
 															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-																&nbsp;*Oficina:
+																Oficina:&nbsp;*
 															</td>
 
 															<td class='table_rows' width=80% style='padding-left:20px;'>
@@ -582,7 +574,7 @@ elseif ($request == 'POST') {
 														</tr>\n";
 				echo "              <tr>
 															<td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-																&nbsp;*Grupo de trabajo:
+																Grupo de trabajo:&nbsp;*
 															</td>
 
 															<td class='table_rows' width=80% style='padding-left:20px;'>
@@ -662,8 +654,7 @@ elseif ($request == 'POST') {
 														</tr>\n";
 				}
 				echo "              <tr>
-															<td class=table_rows_output align=right colspan=3
-																*&nbsp;Campos requeridos&nbsp;
+															<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
 															</td>
 														</tr>\n";
 				echo "            </table>\n";
@@ -693,9 +684,9 @@ elseif ($request == 'POST') {
 		$password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
 		$confirm_password = password_hash($confirm_password, PASSWORD_DEFAULT, ['cost' => 10]);
 
-		$query3 = "insert into ".$db_prefix."employees (empfullname, tstamp ,empDNI, displayname, employee_passwd, email, contract ,groups, office, admin, reports, time_admin, disabled)
+		$query3 = "insert into ".$db_prefix."employees (empfullname, tstamp ,empDNI, displayname, employee_passwd, email, contract ,groups, office, admin, reports, time_admin, profile, disabled)
 		           values ('".$post_username."', 0,'".$user_dni."', '".$display_name."', '".$password."', '".$email_addy."', '".$type_contracts."','".$group_name."', '".$office_name."', '".$admin_perms."',
-		           '".$reports_perms."', '".$time_admin_perms."', '".$post_disabled."')";
+		           '".$reports_perms."', '".$time_admin_perms."', 1, '".$post_disabled."')";
 		$result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 
 		/*

@@ -70,11 +70,11 @@ if($login_with_fullname == "yes"){
 }elseif ($login_with_displayname == "yes"){
 
 	$query4 = "select empfullname, empDNI, displayname, email, contract ,groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
-			where displayname = '".$_SESSION['valid_profile']."' order by empfullname";
+			where empfullname = '".$_SESSION['valid_profile']."' order by empfullname";
 }elseif ($login_with_dni == "yes"){
 
 	$query4 = "select empfullname, empDNI, displayname, email, contract ,groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
-			where empDNI = '".$_SESSION['valid_profile']."' order by empfullname";
+			where empfullname = '".$_SESSION['valid_profile']."' order by empfullname";
 }
 
 $result4 = mysqli_query($GLOBALS["___mysqli_ston"], $query4);
@@ -95,21 +95,21 @@ while ($row=mysqli_fetch_array($result4)) {
 }
 ((mysqli_free_result($result4) || (is_object($result4) && (get_class($result4) == "mysqli_result"))) ? true : false);
 
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Usuario:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$username</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Nombre Empleado:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nombre Empleado:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$displayname</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>DNI:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>DNI:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$user_dni</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Email:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Email:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$user_email</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contrato:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Contrato:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$user_contract</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Oficina:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$office</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Grupo:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Grupo:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$groups</td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Contraseña:</td><td align=left class=table_rows
+echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Contraseña:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>***hidden***</td></tr>\n";
 
 

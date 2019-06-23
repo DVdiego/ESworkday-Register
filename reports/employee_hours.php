@@ -677,7 +677,7 @@ if ($request == 'GET' || (! $is_valid_input)) { // Get the employee's report sel
     $rpt_time = date($timefmt, $rpt_stamp);
     $rpt_date = date($datefmt, $rpt_stamp);
 
-    $query = "SELECT empfullname, displayname FROM ".$db_prefix."employees WHERE tstamp IS NOT NULL AND empfullname <> 'admin' ORDER BY displayname ASC";
+    $query = "SELECT empfullname, displayname FROM ".$db_prefix."employees WHERE tstamp IS NOT NULL AND empfullname <> '".$root."' ORDER BY displayname ASC";
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     while ($row = mysqli_fetch_array($result)) {
@@ -738,7 +738,7 @@ if ($request == 'GET' || (! $is_valid_input)) { // Get the employee's report sel
          </tr>";
     $row_color = $color1; // Initial row color
 
-    $query = "SELECT ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes, ".$db_prefix."info.ipaddress, ".$db_prefix."punchlist.in_or_out, ".$db_prefix."punchlist.punchitems, ".$db_prefix."punchlist.color from ".$db_prefix."info, ".$db_prefix."punchlist, ".$db_prefix."employees WHERE ".$db_prefix."info.fullname LIKE ('".$empfullname."') AND ".$db_prefix."info.timestamp >= '".$from_timestamp."' AND ".$db_prefix."info.timestamp < '".$to_timestamp."' AND ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems AND ".$db_prefix."employees.empfullname = '".$empfullname."' AND ".$db_prefix."employees.empfullname <> 'admin' ORDER BY ".$db_prefix."info.timestamp ASC";
+    $query = "SELECT ".$db_prefix."info.`inout`, ".$db_prefix."info.timestamp, ".$db_prefix."info.notes, ".$db_prefix."info.ipaddress, ".$db_prefix."punchlist.in_or_out, ".$db_prefix."punchlist.punchitems, ".$db_prefix."punchlist.color from ".$db_prefix."info, ".$db_prefix."punchlist, ".$db_prefix."employees WHERE ".$db_prefix."info.fullname LIKE ('".$empfullname."') AND ".$db_prefix."info.timestamp >= '".$from_timestamp."' AND ".$db_prefix."info.timestamp < '".$to_timestamp."' AND ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems AND ".$db_prefix."employees.empfullname = '".$empfullname."' AND ".$db_prefix."employees.empfullname <> '".$root."' ORDER BY ".$db_prefix."info.timestamp ASC";
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
     $current_date = date($datefmt, "0000"); // Tracks what date we're currently displaying

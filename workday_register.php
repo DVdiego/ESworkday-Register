@@ -163,6 +163,8 @@ echo '               <div class="box box-primary">
                        <!-- /.box-header -->';
 echo "                  <div class='box-body'>
                           <div class='row'>";
+
+
 /*FLAG*/ //muestra una opción u otra, login o seleccionar id
 if($show_select_login == "yes"){
 
@@ -172,7 +174,7 @@ if($show_select_login == "yes"){
 
   // query to populate dropdown with employee names //
   if ($show_display_name == "yes") {
-      $query = "select displayname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> 'admin' order by displayname";
+      $query = "select displayname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> '".$root."' order by displayname";
       $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
       echo "          <select multiple class='form-control' name='left_displayname' size='6' tabindex=1>
                                 <option value =''>
@@ -200,7 +202,7 @@ if($show_select_login == "yes"){
              </div>";
       ((mysqli_free_result($emp_name_result) || (is_object($emp_name_result) && (get_class($emp_name_result) == "mysqli_result"))) ? true : false);
   } else { // Display full employee names
-      $query = "select empfullname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> 'admin' order by empfullname";
+      $query = "select empfullname from ".$db_prefix."employees where disabled <> '1'  and empfullname <> '".$root."' order by empfullname";
       $emp_name_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
       echo "
                              <select multiple class='form-control' name='left_fullname'>
@@ -236,6 +238,7 @@ if($show_select_login == "yes"){
 
 
   echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
+
   if ($show_display_name == "yes") {
 
     echo "<div class='form-group'>
@@ -397,7 +400,7 @@ if ($request == 'POST') { // Process employee's punch information
                 echo '<div id="float_window" class="col-md-10">
                         <div class="callout callout-danger">
                           <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                          <p>Username is not in the database.</p>
+                          <p>Displayname is not in the database.</p>
                         </div>
                       </div>';
                 exit;

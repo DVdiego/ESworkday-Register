@@ -49,7 +49,7 @@ echo "            <table align=center class=table_border width=60% border=0 cell
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <tr>
                       <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-                        &nbsp;*Nombre del grupo:
+                        Nombre del grupo:&nbsp;*
                       </td>
 
                       <td colspan=2 align=left width=80% style='padding-left:20px;'>
@@ -65,7 +65,7 @@ $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 echo "              <br />
                     <tr>
                       <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-                        &nbsp;*Oficina:
+                        Oficina:&nbsp;*
                       </td>
 
                       <td colspan=2 align=left width=80% style='padding-left:20px;'>
@@ -80,8 +80,7 @@ echo "                </select></td>
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
 echo "              <tr>
-                      <td class='required_fields' align=right colspan=3>
-                        *&nbsp;Campos requeridos&nbsp;
+                      <td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
                       </td>
                     </tr>\n";
 echo "            </table>\n";
@@ -224,7 +223,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr>
                           <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-                            &nbsp;*Nombre del grupo:
+                            Nombre del grupo:&nbsp;*
                           </td>
 
                           <td colspan=2 align=left width=80% style='padding-left:20px;'>
@@ -242,7 +241,7 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
 
     echo "              <tr>
                           <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
-                            &nbsp;*Oficina:
+                            Oficina:&nbsp;*
                           </td>
 
                           <td colspan=2 align=left width=80% style='padding-left:20px;'>
@@ -260,10 +259,9 @@ if ((!empty($string)) || (empty($post_groupname)) || (!preg_match('/' . "^([[:al
     ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 
     echo "              <tr>
-                          <td class='required_fields' align=right colspan=3 >
-                            *&nbsp;Campos requeridos&nbsp;
-                          </td>
-                        </tr>\n";
+													<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+													</td>
+												</tr>\n";
     echo "            </table>\n";
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
     echo "              <tr>

@@ -46,6 +46,15 @@ if (isset($_SESSION['time_admin_valid_user'])) {
     unset($_SESSION['time_admin_valid_user']);
 }
 
+
+// Logout user profile login
+if (isset($_SESSION['valid_profile'])) {
+    unset($_SESSION['valid_profile']);
+}
+
+
+
+
 session_destroy();
 
 // Redirect back to the main page.

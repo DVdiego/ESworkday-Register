@@ -55,7 +55,7 @@ $version_worktime = "premium";
 $enterprise_name = "DEMO";
 $enterprise_nif = "123A";
 
-/*seleccionar un atributo para hacer login*/
+/*seleccionar solo UN atributo para hacer login*/
 $login_with_fullname = "yes";
 $login_with_displayname = "none";
 $login_with_dni = "none";
@@ -73,7 +73,7 @@ $db_name = "timeclock";
 
 /* --- RECOMMENDED CHANGES --- */
 
-
+$root = "admin";
 /* This adds a prefix to the tablenames in the database. This can be helpful if you
 have an existing mysql database that you would like to use with WorkTime Control.
 If you are unaware of what is meant by "table prefix", then please leave this

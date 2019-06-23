@@ -62,36 +62,43 @@ $_SERVER['username'] = $_GET['username'];
             <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                   <h3 class="box-title"><i class="fa fa-file-o"></i> Generar Informe</h3>
+                   <h3 class="box-title"><i class="fa fa-file-o"></i> Consultar Registros</h3>
                  </div>
-                <div class="box-body">';
+                <div class="box-body" style="padding-left: 60px;padding-top: 20px;">';
     echo "<form id='form_reports' class='form-horizontal' role='form' name='timeclock' action='$self' method='post'>";
 
 
     echo "    <div class='form-group'>
-                <label style='padding-right: 10px;'>Nombre:</label>
+                <label style='padding-right: 11rem;'>Nombre:</label>
 
                 <input type='hidden' name='post_username' maxlength='25' class='form-control' value=\"$username\">$username
 
               </div>";
 
     echo "    <div class='form-group'>
-                <label style='padding-right: 10px;'>Fecha inicio:</label>
-                <input type='date' size='10' maxlength='10' name='from_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
+                <label style='padding-right: 8.3rem;'>Fecha inicio:</label>
+                <input type='date' size='10' maxlength='10' name='from_date' style='color:#27408b' required>&nbsp;*&nbsp;&nbsp;
                 <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                 return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
               </div>";
 
    echo "    <div class='form-group'>
-               <label style='padding-right: 27px;'>Fecha fin:</label>
-               <input type='date' size='10' maxlength='10' name='to_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp;
+               <label style='padding-right: 10rem;'>Fecha fin:</label>
+               <input type='date' size='10' maxlength='10' name='to_date' style='color:#27408b' required>&nbsp;*&nbsp;&nbsp;
                <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt');
                return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'></a>
             </div>";
 
-    echo "    <div class='form-group'>
-                <button type='submit' class='btn btn-lg btn-primary'>Consultar</button>
-              </div>";
+  echo "						<div class='box-footer'>
+                      <button type='button' id='formButtons' onclick='location=\"index.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                        <i class='fa fa-ban'></i>Cancelar
+                      </button>
+
+                      <button id='formButtons' type='submit' name='submit'  class='btn btn-success pull-right'>
+                        Siguiente
+                        <i class='fa fa-arrow-right'></i>
+                      </button><a href='usercreate.php'></a>
+ 										</div>";
     echo "</form>";
     echo "</div>";
     echo "</div>";
@@ -156,13 +163,13 @@ if($request == 'POST') {
                                 Fecha del informe: ".strftime("%D %r", time())."
                             </div>
                         </div>";
-                hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix);
+                hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix,$root);
 
 }
 
 
 
-function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
+function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix,$root) {
   echo "<div class='container'>";
     $employees_cnt = 0;
     $employees_empfullname = array();
@@ -207,7 +214,7 @@ function hours_worked_report($emp_fullname,$from_date,$to_date,$db_prefix) {
     from ".$db_prefix."info, ".$db_prefix."punchlist, ".$db_prefix."employees
     where ".$db_prefix."info.fullname = '".$emp_fullname."' and ".$db_prefix."info.timestamp >= '".$from_timestamp."'
     and ".$db_prefix."info.timestamp < '".$to_timestamp."' and ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
-    and ".$db_prefix."employees.empfullname = '".$emp_fullname."' and ".$db_prefix."employees.empfullname <> 'admin'
+    and ".$db_prefix."employees.empfullname = '".$emp_fullname."' and ".$db_prefix."employees.empfullname <> '".$root."'
     order by ".$db_prefix."info.timestamp asc";
     $result = mysqli_query($GLOBALS["___mysqli_ston"],$query);
 

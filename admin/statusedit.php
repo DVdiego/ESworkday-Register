@@ -120,8 +120,7 @@ exit;
 }
 
 echo "              <tr>
-                      <td class='required_fields' align=right colspan=3 >
-                        *&nbsp;Campos requeridos&nbsp;
+                      <td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
                       </td>
                     </tr>\n";
 echo "            </table>\n";
@@ -286,11 +285,10 @@ exit;
 if (!empty($string)) {$post_statusname = stripslashes($post_statusname);}
 if (!empty($string2)) {$post_statusname = stripslashes($post_statusname);}
 
-echo "                <tr>
-                        <td class='required_fields' align=right colspan=3 >
-                          *&nbsp;Campos requeridos&nbsp;
-                        </td>
-                      </tr>\n";
+echo "              <tr>
+                      <td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+                      </td>
+                    </tr>\n";
 echo "            </table>\n";
 echo "            <script language=\"javascript\">cp.writeDiv()</script>\n";
 echo "              <input type='hidden' name='get_status' value='$get_status'>\n";

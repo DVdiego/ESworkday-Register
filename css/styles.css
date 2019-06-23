@@ -124,12 +124,12 @@ p.present-sum {
 	padding : 2px;
 }
 
-.table_rows_output{
+/* .table_rows_output{
   font-family: Tahoma, Verdana, Trebuchet MS, sans-serif;
 	font-size: 14px;
   font-weight: bold !important;
 	padding : 2px;
-}
+} */
 
 .required_fields{
   font-family: Tahoma, Verdana, Trebuchet MS, sans-serif;
@@ -140,6 +140,21 @@ p.present-sum {
 
 }
 
+
+
+/*estilo de los td que contienen texto, para que sea igual a los label de todo el código*/
+.table_rows_output{
+
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 14px;
+
+}
+
+
 /*Tarjetas reportes del día*/
 /*separador reportes*/
 
@@ -148,6 +163,7 @@ hr.separator-reports{
   border-top: 1px solid black;
   margin-top: 5px;
   margin-bottom: 5px;
+
 
 }
 .box{
@@ -164,5 +180,19 @@ hr.separator-reports{
 
 }
 .box-header .box-title {
-    font-size: 22px !important;
+    font-size: 18px !important;
+}
+
+
+
+@media (max-width: 460px) {
+    /* Los estilos aquí contenidos solo se aplicarán a partir
+    del tamaño de pantalla indicado */
+    #wrapper > div > section{
+      padding-top: 120px;
+    }
+
+    #wrapper > header > nav > div > ul{
+      font-size: 16px;
+    }
 }

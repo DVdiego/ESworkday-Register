@@ -152,14 +152,17 @@ echo '<div class="box-header with-border">
     // echo "                <input type='hidden' name='timefmt_24hr_text' value=\"$timefmt_24hr_text\">\n";
     // echo "                <input type='hidden' name='timefmt_size' value=\"$timefmt_size\">\n";
     // echo "                 *&nbsp;required&nbsp;\n";
-    echo "    <div class='form-group'>
-                <label class='table_rows_output'>
-                  &nbsp;*Fecha:
-                </label>
-                <input type='date' size='10' required='true' maxlength='10' name='post_date' style='color:#27408b'>
-                <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
-                return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-                 </div>";
+    echo "              <div class='form-group' style='display: -webkit-box;'>
+                          <label style='margin-right:2.4rem;'>&nbsp;*Fecha:</label>
+                            <div class='input-group'>
+                            <div class='input-group-addon'>
+                              <i class='fa fa-calendar'></i>
+                            </div>
+                              <input type='date' size='10' maxlength='10' name='post_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
+                              <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                              return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                            </div>
+                        </div>\n";
     echo "        <div class='required_fields' align='right'>
                      *&nbsp;Campos requeridos&nbsp
                  </div>\n";
@@ -935,37 +938,31 @@ echo '<div class="box-header with-border">
 //                echo "              <tr class=display_row>\n";
 //                echo "                <td nowrap width=1% style='padding-right:5px;padding-left:10px;' class=table_rows><input type='text' size='7' maxlength='$timefmt_size' name='edit_time_textbox[$x]'></td>\n";
 
-echo "              <tr class=display_row>\n";
-echo "                <td nowrap width=1% style='padding-right:5px;padding-left:10px;' class=table_rows>";
-echo'    <div class="bootstrap-timepicker">
-    	                   <div class="form-group">';
+            echo "              <tr class=display_row>\n";
+            echo "                <td nowrap width=1% style='padding-right:5px;padding-left:10px;' class=table_rows>";
+            echo'                   <div class="bootstrap-timepicker">
+                	                     <div class="form-group">';
+            echo'                         <div class="input-group">';
+            echo "                          <input type='text' size='10' class='form-control timepicker' value=\"$time[$x]\" maxlength='$timefmt_size' name='edit_time_textbox[$x]'>";
+            echo'    	                      <div class="input-group-addon">
+                	                             <i class="fa fa-clock-o"></i>
+                	                          </div>
+                	                       </div>
+                	                     <!-- /.input group -->
+                	                   </div>
+                	                   <!-- /.form group -->
+                	                 </div>';
 
-
-		      echo'    	                     <div class="input-group">';
-		      echo "                      <input type='text' size='10' required='true' class='form-control timepicker' maxlength='$timefmt_size' name='edit_time_textbox[$x]'>";
-echo'    	                       <div class="input-group-addon">
-    	                         <i class="fa fa-clock-o"></i>
-    	                       </div>
-    	                     </div>
-    	                     <!-- /.input group -->
-    	                   </div>
-    	                   <!-- /.form group -->
-    	                 </div>
-    	               ';
-
-
-
-
-                echo "                <td nowrap align=left style='width:7%;padding-left:15px;background-color:$row_color;color:".$row["color"]."'>$inout[$x]</td>\n";
-                echo "                <td nowrap align=left style='padding-left:20px;' width=4% bgcolor='$row_color'>$time[$x]</td>\n";
-                echo "                <td style='padding-left:25px;' bgcolor='$row_color'>$notes[$x]</td>\n";
-                echo "              </tr>\n";
-                echo "              <input type='hidden' name='final_username[$x]' value=\"$username[$x]\">\n";
-                echo "              <input type='hidden' name='final_inout[$x]' value=\"$inout[$x]\">\n";
-                echo "              <input type='hidden' name='final_notes[$x]' value=\"$notes[$x]\">\n";
-                echo "              <input type='hidden' name='final_mysql_timestamp[$x]' value=\"$mysql_timestamp[$x]\">\n";
-                echo "              <input type='hidden' name='final_time[$x]' value=\"$time[$x]\">\n";
-                $row_count++;
+            echo "                <td nowrap align=left style='width:7%;padding-left:15px;background-color:$row_color;color:".$row["color"]."'>$inout[$x]</td>\n";
+            echo "                <td nowrap align=left style='padding-left:20px;' width=4% bgcolor='$row_color'>$time[$x]</td>\n";
+            echo "                <td style='padding-left:25px;' bgcolor='$row_color'>$notes[$x]</td>\n";
+            echo "              </tr>\n";
+            echo "              <input type='hidden' name='final_username[$x]' value=\"$username[$x]\">\n";
+            echo "              <input type='hidden' name='final_inout[$x]' value=\"$inout[$x]\">\n";
+            echo "              <input type='hidden' name='final_notes[$x]' value=\"$notes[$x]\">\n";
+            echo "              <input type='hidden' name='final_mysql_timestamp[$x]' value=\"$mysql_timestamp[$x]\">\n";
+            echo "              <input type='hidden' name='final_time[$x]' value=\"$time[$x]\">\n";
+            $row_count++;
             }
             if ($require_time_admin_edit_reason == "yes") {
                 echo "              <tr>
@@ -974,7 +971,7 @@ echo'    	                       <div class="input-group-addon">
                                       </td>
 
                                       <td colspan=2 width=80% style='padding-left:20px;'>
-                                        <input type='text' size='25' required='true' maxlength='250' name='post_why' placeholder='$post_why'>
+                                        <input type='text' size='25' required='true' maxlength='250' name='post_why' value=\"$post_why\" placeholder='$post_why'>
                                       </td>
 
                                       <td>";
@@ -1008,13 +1005,11 @@ echo'    	                       <div class="input-group-addon">
             echo "              <tr>
                                   <td width=30>
                                   <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
-                                    <i class='fa fa-ban'></i>
-                                    Cancelar
+                                    <i class='fa fa-ban'></i>Cancelar
                                   </button>
 
                                   <button id='formButtons' type='submit' name='submit' value='Edit Time' class='btn btn-success pull-right'>
-                                    <i class='fa fa-plus'></i>
-                                    Añadir tiempo
+                                    <i class='fa fa-plus'></i>Añadir tiempo
                                   </button>
                                   </td>
                                 </tr>

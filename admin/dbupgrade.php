@@ -32,7 +32,7 @@ include 'topmain.php';
 include 'leftmain.php';
 
 	echo '<div class="row">
-	    <div class="col-md-10">
+	    <div id="float_window" class="col-md-10">
 	      <div class="box box-info"> ';
 	echo '<div class="box-header with-border">
 	    <h3 class="box-title"><i class="fa fa-clock-o"></i> '.$title.' - Upgrade Database</h3>
@@ -161,16 +161,16 @@ if (! empty($count)) {
                      </tr>";
         }
 
-        echo " 
+        echo "
                   </table>";
 	       echo '<div class="box-footer">
 	                   <button type="submit" name="submit" value="Upgrade DB" class="btn btn-warning">Next <i class="fa fa-long-arrow-right"></i></button>
-	                   <button class="btn btn-default pull-right"><a href="database_management.php">Cancel</a></button>   
+	                   <button class="btn btn-default pull-right" onclick="location=\'database_management.php\'"><i class="glyphicon glyphicon-remove-circle text-red"></i> Cancel</button>
 	                 </div></form>';
 	       echo "          </div></div></div></div>\n";
 	       include '../theme/templates/endmaincontent.inc';
 	       include '../footer.php';
-	       include '../theme/templates/controlsidebar.inc'; 
+	       include '../theme/templates/controlsidebar.inc';
 	       include '../theme/templates/endmain.inc';
 	       include '../theme/templates/adminfooterscripts.inc';
         exit;
@@ -712,7 +712,7 @@ if (! empty($count)) {
          </table>";
        include '../theme/templates/endmaincontent.inc';
        include '../footer.php';
-       include '../theme/templates/controlsidebar.inc'; 
+       include '../theme/templates/controlsidebar.inc';
        include '../theme/templates/endmain.inc';
        include '../theme/templates/adminfooterscripts.inc';
         exit;
@@ -747,7 +747,7 @@ if (! empty($count)) {
    </table>";
    include '../theme/templates/endmaincontent.inc';
    include '../footer.php';
-   include '../theme/templates/controlsidebar.inc'; 
+   include '../theme/templates/controlsidebar.inc';
    include '../theme/templates/endmain.inc';
    include '../theme/templates/adminfooterscripts.inc';
     exit;

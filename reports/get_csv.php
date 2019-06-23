@@ -203,7 +203,7 @@ for ($x=0;$x<$employees_cnt;$x++) {
     }
 }
 header("Content-type: application/x-msdownload");
-header("Content-Disposition: attachment; filename=total_hours.csv");
+header("Content-Disposition: attachment; filename=timerpt.csv");
 header("Pragma: no-cache");
 header("Expires: 0");
 echo "$headings$string";
@@ -986,7 +986,7 @@ for ($x=0;$x<$cnt;$x++) {
     $string .= "$modified_status, $modified_when_date $modified_when_time, $modified_from_date $modified_from_time, $modified_to_date $modified_to_time, $modified_by_user[$x], $modified_by_ip[$x],\n";
 }
 header("Content-type: application/x-msdownload");
-header("Content-Disposition: attachment; filename=total_hours.csv");
+header("Content-Disposition: attachment; filename=auditlog.csv");
 header("Pragma: no-cache");
 header("Expires: 0");
 echo "$headings$string";

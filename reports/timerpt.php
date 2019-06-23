@@ -696,7 +696,7 @@ if ($request == 'GET') {
       // $employees_cnt++;
       $tmp_empfullname = "".$row['empfullname']."";
       // $tmp_dni = "".$row['empDNI']."";
-      hours_worked_report($tmp_empfullname,$from_timestamp,$to_timestamp,$db_prefix);
+      hours_worked_report($tmp_empfullname,$from_timestamp,$to_timestamp,$db_prefix,$root);
     }
 
 
@@ -709,8 +709,7 @@ if ($request == 'GET') {
 
 }
 
-function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_prefix) {
-
+function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_prefix,$root) {
 
   echo "<div class='container'>";
 
@@ -746,7 +745,7 @@ function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_pre
     and ".$db_prefix."info.timestamp >= '".$from_timestamp."'
     and ".$db_prefix."info.timestamp <= '".$to_timestamp."'
     and ".$db_prefix."info.`inout` = ".$db_prefix."punchlist.punchitems
-    and ".$db_prefix."employees.empfullname = '".$emp_fullname."' and ".$db_prefix."employees.empfullname <> 'admin'
+    and ".$db_prefix."employees.empfullname = '".$emp_fullname."' and ".$db_prefix."employees.empfullname <> '".$root."'
     order by ".$db_prefix."info.timestamp asc";
 
 

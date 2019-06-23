@@ -183,7 +183,7 @@ echo "
               </td>
 
               <td colspan=2 width=80% style='padding-left:20px;'>
-                <input type='text' size='25' maxlength='50' name='display_name' placeholder=\"$displayname\">
+                <input type='text' size='25' maxlength='50' name='display_name' value=\"$displayname\" placeholder=\"$displayname\">
               </td>
             </tr>\n";
 echo "
@@ -193,7 +193,7 @@ echo "
               </td>
 
               <td colspan=2 width=80% style='padding-left:20px;'>
-                <input type='text' size='25' maxlength='75' name='email_addy' placeholder='$user_email'>
+                <input type='text' size='25' maxlength='75' name='email_addy' value=\"$user_email\" placeholder='$user_email'>
               </td>
             </tr>\n";
 echo "
@@ -307,8 +307,7 @@ echo "                  <td class=table_rows align=left width=80% style='padding
                       </tr>\n";
 }
 echo "              <tr>
-                      <td class=table_rows_output align=right colspan=3 style='font-family:Tahoma;font-size:10px;'>
-                        *&nbsp;Campos requeridos&nbsp;
+                      <td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
                       </td>
                     </tr>\n";
 echo "            </table>\n";
@@ -787,7 +786,7 @@ echo '                <div id="float_alert" class="col-md-10"><div class="alert 
 echo '        <div id="float_window" class="col-md-10">
                 <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-               <h3 class="box-title"><i class="fa fa-users"></i> Editar Grupo</h3>
+               <h3 class="box-title"><i class="fa fa-users"></i> Editar Usuario</h3>
                                               </div>
                                               <div class="box-body">';
 echo "            <table align=center class=table>\n";

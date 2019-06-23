@@ -72,17 +72,17 @@ if ($request == 'GET') {
 echo "          <form name='form' action='$self' method='post'>\n";
 echo "            <table align=center class=table>\n";
 echo "              <tr>
-                      <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
-                        &nbsp;*Nombre de la oficina:
+                      <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                        Nombre de la oficina:&nbsp;*
                       </td>
 
                       <td class=table_rows width=80% style='padding-left:20px;'>
-                        <input type='text' size='25' maxlength='50' name='post_officename'>
+                        <input type='text' size='25' maxlength='50' name='post_officename' required>
                       </td>
                     </tr>\n";
 
 echo "              <tr>
-                      <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                      <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                         ¿Desea crear grupos para la oficina?
                       </td>\n";
 echo "
@@ -93,7 +93,7 @@ echo "
                     </tr>\n";
 
 echo "              <tr>
-                      <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                      <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                         ¿Cuántos?
                       </td>
 
@@ -101,12 +101,10 @@ echo "              <tr>
                         <input disabled type='text' size='2' maxlength='1' name='how_many' style='background:#eeeeee;'>
                       </td>
                     </tr>\n";
-echo "
-                    <tr>
-                      <td class=table_rows_output align=right colspan=3>
-                        *&nbsp;Campos requeridos&nbsp;
-                      </td>
-                    </tr>\n";
+echo "              <tr>
+											<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+											</td>
+										</tr>\n";
 echo "            </table>\n";
 echo "            <div class='box-footer'>
                     <button type='button' id='formButtons' onclick='location=\"officeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
@@ -246,7 +244,7 @@ elseif ($request == 'POST') {
     echo "         <form name='form' action='$self' method='post'>\n";
     echo "            <table align=center class=table width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "              <tr>
-                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                             &nbsp;*Nombre de la oficina:
                           </td>
 
@@ -259,7 +257,7 @@ elseif ($request == 'POST') {
     if (!empty($string2)) {$post_officename = addslashes($post_officename);}
 
     echo "              <tr>
-                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                             ¿Desea crear grupos para la oficina?
                           </td>\n";
 
@@ -280,7 +278,7 @@ elseif ($request == 'POST') {
     }
 
     echo "              <tr>
-                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                             ¿Cuántos?
                           </td>
 
@@ -293,10 +291,9 @@ elseif ($request == 'POST') {
     }
 
     echo "              <tr>
-                          <td class=table_rows_output align=right colspan=3>
-                            *&nbsp;Campos requeridos&nbsp;
-                          </td>
-                        </tr>\n";
+													<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+													</td>
+												</tr>\n";
     echo "            </table>\n";
     echo "            <div class='box-footer'>
                         <button type='button' id='formButtons' onclick='location=\"officeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
@@ -372,8 +369,8 @@ elseif ($request == 'POST') {
       echo "         <form name='form' action='$self' method='post'>\n";
       echo "            <table align='center' class='table'>\n";
       echo "              <tr>
-                            <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
-                              Nombre de la oficina:
+                            <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                              Nombre de la oficina:&nbsp;*
                             </td>
 
                             <td class=table_rows colspan=2 width=80% style='padding-left:20px;'>
@@ -382,7 +379,7 @@ elseif ($request == 'POST') {
                           </tr>\n";
 
       echo "              <tr>
-                            <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                               ¿Desea crear grupos para la oficina?
                             </td>
 
@@ -392,7 +389,7 @@ elseif ($request == 'POST') {
                           </tr>\n";
 
       echo "              <tr>
-                            <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                            <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                               ¿Cuántos?
                             </td>
 
@@ -410,8 +407,8 @@ elseif ($request == 'POST') {
                               <img src='../images/icons/cancel.png' />
                             </td>
 
-                            <td class=table_rows_red>
-                              Se requiere introcuri el nombre del grupo.
+                            <td class=table_rows_output_red>
+                              Se requiere introducir el nombre del grupo.
                             </td>
                           </tr>\n";
       echo "            </table>\n";
@@ -547,7 +544,7 @@ elseif ($request == 'POST') {
     echo "            <table align=center class=table>\n";
     echo "              <tr><td height=15></td></tr>\n";
     echo "              <tr>
-                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                             Nombre de la oficina:
                           </td>
 
@@ -557,7 +554,7 @@ elseif ($request == 'POST') {
                         </tr>\n";
 
     echo "              <tr>
-                          <td class=table_rows height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
+                          <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                             ¿Ha creado grupos para la oficina?
                           </td>
 

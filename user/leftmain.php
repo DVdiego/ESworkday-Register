@@ -88,7 +88,7 @@ echo "<li class='treeview'>
 echo "<li class='treeview'>
       <a class=admin_headings href=\"chngpasswd.php?username=".$_SESSION['valid_profile']."\"><i class='fa fa-lock'></i><span>Cambiar Contraseña</span></a></li>\n";
 
-echo "<li class='treeview'><a href=\"user_reports.php?username=".$_SESSION['valid_profile']."\"><i class='fa fa-file-o'></i><span>Generar Reporte</span></a></li>\n";
+echo "<li class='treeview'><a href=\"user_reports.php?username=".$_SESSION['valid_profile']."\"><i class='fa fa-file-o'></i><span>Consultar Registros</span></a></li>\n";
 
 echo '</ul>';
 

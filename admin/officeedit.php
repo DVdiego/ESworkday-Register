@@ -123,11 +123,9 @@ if ($request == 'GET') {
                         </td>
                       </tr>\n";
   echo "              <tr>
-                        <br />
-                        <td class=table_rows_output align=right colspan=3>
-                          *&nbsp;Campos requeridos&nbsp;
-                        </td>
-                      </tr>\n";
+												<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+												</td>
+											</tr>\n";
   echo "            </table>\n";
   echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
   echo "              <tr><td height=40></td></tr>\n";
@@ -338,12 +336,10 @@ if ($request == 'GET') {
                             <input type='hidden' name='user_cnt' value=\"$user_cnt\">$user_cnt
                           </td>
                         </tr>\n";
-    echo "
-                        <tr>
-                          <td class=table_rows_output align=right colspan=3>
-                            *&nbsp;Campos requeridos&nbsp;
-                          </td>
-                        </tr>\n";
+    echo "              <tr>
+													<td class=table_rows align=right colspan=3 style='font-size: 11px;'>*&nbsp;Campos requeridos&nbsp;
+													</td>
+												</tr>\n";
     echo "            </table>\n";
 
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";

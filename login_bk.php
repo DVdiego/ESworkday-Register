@@ -48,14 +48,14 @@ if ($_REQUEST["login_action"] == "admin") {
 
     // Determine if the user has entered his authentication credentials
     if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
-        $login = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
+        $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
         $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
 
 
 
         if($login_with_fullname == "yes"){
 
-          $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login."'";
+          $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login_userid."'";
           $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
           while ($row = mysqli_fetch_array($result)) {
@@ -64,7 +64,7 @@ if ($_REQUEST["login_action"] == "admin") {
 
         }elseif ($login_with_displayname == "yes"){
 
-          $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login."'";
+          $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login_userid."'";
           $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
           while ($row = mysqli_fetch_array($result)) {
@@ -72,7 +72,7 @@ if ($_REQUEST["login_action"] == "admin") {
           }
 
         }elseif ($login_with_dni == "yes"){
-          $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login."'";
+          $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login_userid."'";
           $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
           while ($row = mysqli_fetch_array($result)) {
@@ -94,10 +94,8 @@ if ($_REQUEST["login_action"] == "admin") {
         // Setup user permissions
         if (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($admin_auth == "1")) {
             $_SESSION['valid_user'] = $login_userid;
-            $_SESSION['valid_profile'] = $login_userid;
         } elseif (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($time_admin_auth == "1")) {
             $_SESSION['time_admin_valid_user'] = $login_userid;
-            $_SESSION['valid_profile'] = $login_userid;
         }
 
         // Determine if the user has report access rights.
@@ -112,7 +110,6 @@ if ($_REQUEST["login_action"] == "admin") {
 
         if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password)) && ($reports_auth == "1")) {
             $_SESSION['valid_reports_user'] = $login_userid;
-            $_SESSION['valid_profile'] = $login_userid;
         }
     }
 
@@ -120,7 +117,7 @@ if ($_REQUEST["login_action"] == "admin") {
     if (isset($_SESSION['valid_user'])) {
         echo "
       <script type='text/javascript' language='javascript'>
-         window.location.href = 'admin/timeadmin.php';
+         window.location.href = 'admin/index.php';
       </script>";
         exit;
     } elseif (isset($_SESSION['time_admin_valid_user'])) {
@@ -186,14 +183,14 @@ if ($_REQUEST["login_action"] == "admin") {
 
     // Determine if the user has entered his authentication credentials
     if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
-      $login = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
+      $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
       $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
 
 
 
       if($login_with_fullname == "yes"){
 
-        $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login."'";
+        $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login_userid."'";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
         while ($row = mysqli_fetch_array($result)) {
@@ -202,7 +199,7 @@ if ($_REQUEST["login_action"] == "admin") {
 
       }elseif ($login_with_displayname == "yes"){
 
-        $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login."'";
+        $query = "select empfullname from ".$db_prefix."employees where displayname = '".$login_userid."'";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
         while ($row = mysqli_fetch_array($result)) {
@@ -210,7 +207,7 @@ if ($_REQUEST["login_action"] == "admin") {
         }
 
       }elseif ($login_with_dni == "yes"){
-        $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login."'";
+        $query = "select empfullname from ".$db_prefix."employees where empDNI = '".$login_userid."'";
         $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
         while ($row = mysqli_fetch_array($result)) {
@@ -231,10 +228,8 @@ if ($_REQUEST["login_action"] == "admin") {
         // Determine if the user is authorised to view reports
         if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password)) && ($reports_auth == "1")) {
             $_SESSION['valid_reports_user'] = $login_userid;
-            $_SESSION['valid_profile'] = $login_userid;
         } else if (($login_userid == @$reports_username) && (password_verify($login_password, @$reports_password))) { // User can view his own hours
             $_SESSION['valid_report_employee'] = $login_userid;
-            $_SESSION['valid_profile'] = $login_userid;
         }
 
         // Determine if the user has time or sys access rights.
@@ -250,10 +245,8 @@ if ($_REQUEST["login_action"] == "admin") {
 
         if (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($admin_auth == "1")) {
             $_SESSION['valid_user'] = $login_userid;
-            $_SESSION['valid_profile'] = $login_userid;
         } elseif (($login_userid == @$admin_username) && (password_verify($login_password, @$admin_password)) && ($time_admin_auth == "1")) {
             $_SESSION['time_admin_valid_user'] = $login_userid;
-            $_SESSION['valid_profile'] = $login_userid;
         }
     }
 
