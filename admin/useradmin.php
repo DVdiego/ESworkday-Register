@@ -44,43 +44,11 @@ echo "        <tr class=right_main_text><td align=center>Click <a class=admin_he
 echo "      </table><br /></td></tr></table>\n"; exit;
 }
 
-
-$user_count = mysqli_query($GLOBALS["___mysqli_ston"], "select empfullname from ".$db_prefix."employees
-                           order by empfullname");
-@$user_count_rows = mysqli_num_rows($user_count);
-
-$admin_count = mysqli_query($GLOBALS["___mysqli_ston"], "select empfullname from ".$db_prefix."employees where admin = '1'");
-@$admin_count_rows = mysqli_num_rows($admin_count);
-
-$time_admin_count = mysqli_query($GLOBALS["___mysqli_ston"], "select empfullname from ".$db_prefix."employees where time_admin = '1'");
-@$time_admin_count_rows = mysqli_num_rows($time_admin_count);
-
-$reports_count = mysqli_query($GLOBALS["___mysqli_ston"], "select empfullname from ".$db_prefix."employees where reports = '1'");
-@$reports_count_rows = mysqli_num_rows($reports_count);
-
-
-echo '<div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-
-          <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">';
-echo "        <table class='table table-hover'>\n";
-echo "          <tr><th>User Summary</th></tr>\n";
-echo "          <tr><td><i class='fa fa-users text-green'></i> Total
-                  Users: $user_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user-secret text-orange'></i>&nbsp;&nbsp;
-                  Sys Admin Users: $admin_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user text-red'></i>&nbsp;&nbsp;
-                  Time Admin Users: $time_admin_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user text-blue'></i>&nbsp;
-                  &nbsp;Reports Users: $reports_count_rows</td></tr>\n";
-echo "        </table>
-            </div>
-
-          </div>
-        </div>
-      </div>\n";
+//Plantilla superior de los usuarios.
+include 'usersummary.php';
 
 echo '     <div class="row">
-              <div class="col-xs-12">
+              <div id="float_window" class="col-md-10">
                 <div class="box">
 
           <!-- /.box-header -->
@@ -88,18 +56,18 @@ echo '     <div class="row">
 echo "             <table class='table table-hover'>\n";
 echo "              <tr>\n";
 echo "                <th>&nbsp;</th>\n";
-echo "                <th>Username</th>\n";
-echo "                <th>Display Name</th>\n";
+echo "                <th>Nombre de usuario</th>\n";
+echo "                <th>Nombre de acceso</th>\n";
 // echo "                <th>Email Address</th>\n";
-echo "                <th>Office</th>\n";
-echo "                <th>Group</th>\n";
-echo "                <th>Disabled</th>\n";
-echo "                <th>Sys Admin</th>\n";
-echo "                <th>Time Admin</th>\n";
-echo "                <th>Reports</th>\n";
-echo "                <th>Edit</th>\n";
-echo "                <th>Chg Pwd</th>\n";
-echo "                <th>Delete</th>\n";
+echo "                <th>Oficina</th>\n";
+echo "                <th>Grupo</th>\n";
+echo "                <th>Deshabilitada</th>\n";
+echo "                <th>Administador</th>\n";
+echo "                <th>A. Tiempos</th>\n";
+echo "                <th>Reportador</th>\n";
+echo "                <th>Editar</th>\n";
+echo "                <th>Cambiar contraseña</th>\n";
+echo "                <th>Eliminar</th>\n";
 echo "              </tr>\n";
 
 $row_count = 0;
@@ -116,7 +84,7 @@ $displayname = stripslashes("".$row['displayname']."");
 $row_count++;
 $row_color = ($row_count % 2) ? $color2 : $color1;
 
-echo "              <tr><td>&nbsp;$row_count</td>\n";
+echo "              <tr class=table_border bgcolor='$row_color'><td>&nbsp;$row_count</td>\n";
 echo "                <td>&nbsp;<a title=\"Edit User: $empfullname\" class=footer_links
                     href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">$empfullname</a></td>\n";
 echo "                <td>&nbsp;$displayname</td>\n";
@@ -152,23 +120,23 @@ if ("".$row["reports"]."" == 1) {
 if ((strpos($user_agent, "MSIE 6")) || (strpos($user_agent, "MSIE 5")) || (strpos($user_agent, "MSIE 4")) || (strpos($user_agent, "MSIE 3"))) {
 
 echo "                <td><a
-                    title=\"Edit User: $empfullname\"
+                    title=\"Editar usuario: $empfullname\"
                     href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">Edit</a></td>\n";
 echo "                <td><a
-                    title=\"Change Password: $empfullname\"
+                    title=\"Cambiar contraseña: $empfullname\"
                     href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\">Chg Pwd</a></td>\n";
 echo "                <td><a
-                    title=\"Delete User: $empfullname\"
+                    title=\"Eliminar usuario: $empfullname\"
                     href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">Delete</a></td></tr>\n";
 
 } else {
 
-echo "                <td align='center'><a title=\"Edit User: $empfullname\"
+echo "                <td align='center'><a title=\"Editar usuario: $empfullname\"
                     href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">
                     <i class='glyphicon glyphicon-pencil'></i></a></td>\n";
-echo "                <td align='center'><a title=\"Change Password: $empfullname\"
+echo "                <td align='center'><a title=\"Cambiar contraseña: $empfullname\"
                     href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\"><i class='fa fa-lock text-yellow'></i></a></td>\n";
-echo "                <td align='center'><a title=\"Delete User: $empfullname\"
+echo "                <td align='center'><a title=\"Eliminar usuario: $empfullname\"
                     href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">
                     <i class='glyphicon glyphicon-minus-sign text-red'></i></a></td></tr>\n";
 }

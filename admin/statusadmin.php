@@ -46,6 +46,9 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 
 include 'leftmain.php';
 
+//Plantilla superior de los usuarios.
+include 'usersummary.php';
+
 echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box">

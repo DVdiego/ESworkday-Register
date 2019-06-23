@@ -50,13 +50,15 @@ if ((!isset($_SESSION['valid_user'])) && (!isset($_SESSION['time_admin_valid_use
     exit;
 }
 
+//Plantilla superior de los usuarios.
+include 'usersummary.php';
+
 echo '<div class="row">
-        <div class="col-xs-12">
-          <div class="box">';
-echo ' <div class="box-body table-responsive no-padding">';
-echo "      <table class='table table-hover'>\n";
-echo "              <tr><th>Modificar tiempos de empleados</th></tr>\n";
-echo "            </table>\n";
+        <div id="float_window" class="col-md-10">
+          <div class="box box-inf">';
+echo '      <div class="box-header with-border">';
+echo '        <h3 class="box-title"><i class="fa fa-archive"></i> Modificar tiempos de empleados</h3>
+            </div>';
 echo "            <table class='table table-hover'>\n";
 echo "              <tr>\n";
 echo "                <th>&nbsp;</th>\n";
@@ -84,7 +86,7 @@ while ($row=mysqli_fetch_array($result)) {
     $row_color = ($row_count % 2) ? $color2 : $color1;
 
 //    echo "              <tr>&nbsp;$row_count</td>\n";
-    echo "              <tr><td> </td>\n";
+    echo "              <tr class=table_border bgcolor='$row_color'><td> </td>\n";
     echo "                <td>&nbsp;<a title=\"Edit Time For: $empfullname\" href=\"timeedit.php?username=$empfullname\">$empfullname</a></td>\n";
     echo "                <td>&nbsp;$displayname</td>\n";
     echo "                <td>&nbsp;".$row['office']."</td>\n";
@@ -150,7 +152,6 @@ echo "
 // </table>";
 
 echo "
-</div>
 </div></div></div>";
 include '../footer.php';
 include '../theme/templates/controlsidebar.inc';
