@@ -77,16 +77,26 @@ $_SERVER['username'] = $_GET['username'];
 
     echo "    <div class='form-group'>
                 <label style='padding-right: 8.3rem;'>Fecha inicio:</label>
+                <div class='input-group'>
+                <div class='input-group-addon'>
+                  <i class='fa fa-calendar'></i>
+                </div>
                 <input type='date' size='10' maxlength='10' name='from_date' style='color:#27408b' required>&nbsp;*&nbsp;&nbsp;
                 <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                 return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                </div>
               </div>";
 
    echo "    <div class='form-group'>
                <label style='padding-right: 10rem;'>Fecha fin:</label>
+               <div class='input-group'>
+               <div class='input-group-addon'>
+                 <i class='fa fa-calendar'></i>
+               </div>
                <input type='date' size='10' maxlength='10' name='to_date' style='color:#27408b' required>&nbsp;*&nbsp;&nbsp;
                <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt');
                return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+              </div>
             </div>";
 
   echo "						<div class='box-footer'>

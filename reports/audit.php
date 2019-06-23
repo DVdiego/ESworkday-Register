@@ -80,16 +80,23 @@ if ($request == 'GET') {
 
 
                 echo "              <div class='form-group' style='display: -webkit-box;'>
-                                      <label style='padding-right: 10px;'>From Date:</label>
+                                      <label style='padding-right: 10px;'>Fecha Inicio:</label>
                                         <div class='input-group'>
+
+                                        <div class='input-group-addon'>
+                                          <i class='fa fa-calendar'></i>
+                                        </div>
                                           <input type='date' size='10' maxlength='10' name='from_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
                                           <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                                           return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
                                         </div>
                                     </div>\n";
                 echo "              <div class='form-group' style='display: -webkit-box;'>
-                                      <label style='padding-right: 27px;'>To Date:</label>
+                                      <label style='padding-right: 27px;'>Fecha Fin:</label>
                                         <div class='input-group'>
+                                        <div class='input-group-addon'>
+                                          <i class='fa fa-calendar'></i>
+                                        </div>
                                           <input type='date' size='10' maxlength='10' name='to_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
                                           <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                                           return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>

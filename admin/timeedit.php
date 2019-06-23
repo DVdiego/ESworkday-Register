@@ -134,13 +134,13 @@ echo '<div class="box-header with-border">
     echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
     echo "                <input type='hidden' name='get_user' value='$get_user'>\n";
     echo "              <div class='form-group'>
-                          <label class='table_rows_output'>
+                          <label class='table_rows'>
                             Nombre de usuario:
                           </label>
                           <input class='table_rows' type='hidden' name='post_username' value=\"$username\">$username\n";
     echo '</div>';
     echo "              <div class='form-group'>
-                          <label class='table_rows_output'>
+                          <label class='table_rows'>
                             Nombre de acceso:
                           </label>
                           <input class='table_rows' type='hidden' name='post_displayname' value=\"$displayname\">$displayname\n";
@@ -686,10 +686,10 @@ echo '<div class="box-header with-border">
 
                 // Escape admin reason for SQL
                 if (empty($post_why)) {
-                    $post_why = '';
+                    @$post_why = "";
                 } else {
                 //    $post_why = ereg_replace("[^[:alnum:] \,\.\?-]", "", $post_why);
-		                  $post_why = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/', "", $post_why);
+		                  @$post_why = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/', "", $post_why);
                 }
 
                 for ($x=0;$x<$final_num_rows;$x++) {

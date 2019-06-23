@@ -172,7 +172,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             $tmp_get_user = "".$row['empfullname']."";
         }
         if (!isset($tmp_get_user)) {
-            echo "Something is fishy here.\n";
+            echo "Something is fishy here. 1\n";
             exit;
         }
     }
@@ -184,7 +184,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             $tmp_username = "".$row['empfullname']."";
         }
         if (!isset($tmp_username)) {
-            echo "Something is fishy here.\n";
+            echo "Something is fishy here. 2\n";
             exit;
         }
     }
@@ -196,7 +196,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             $tmp_post_displayname = "".$row['displayname']."";
         }
         if (!isset($tmp_post_displayname)) {
-            echo "Something is fishy here.\n";
+            echo "Something is fishy here. 3\n";
             exit;
         }
     }
@@ -352,7 +352,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
 
                 $final_username[$x] = stripslashes($final_username[$x]);
                 if ($final_username[$x] != $tmp_username) {
-                    echo "Something is fishy here.\n";
+                    echo "Something is fishy here. 4\n";
                     exit;
                 }
                 /* Why is this section commented out, we should look into it at some point
@@ -370,7 +370,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
                 }
                 ((mysqli_free_result($result_sel) || (is_object($result_sel) && (get_class($result_sel) == "mysqli_result"))) ? true : false);
                 if (!isset($punchitems)) {
-                    echo "Something is fishy here.\n";
+                    echo "Something is fishy here. 5\n";
                     exit;
                 }
 
@@ -383,7 +383,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
                 @$tmp_num_rows = mysqli_num_rows($result5);
 
                 if ((isset($tmp_num_rows)) && (@$tmp_num_rows != '1')) {
-                    echo "Something is fishy here.\n";
+                    echo "Something is fishy here. 6\n";
                     exit;
                 }
                 // end post validation //
@@ -394,7 +394,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
                     // begin post validation //
                     $tmp_time[$x] = date("$timefmt", $final_mysql_timestamp[$x] + $tzo);
                     if ($tmp_time[$x] != $final_time[$x]) {
-                        echo "Something is fishy here.\n";
+                        echo "Something is fishy here. 7\n";
                         exit;
                     }
                     // end post validation //
@@ -468,7 +468,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             // begin post validation //
 
             if ($_POST['tmp_var'] != '1') {
-                echo "Something is fishy here.\n";
+                echo "Something is fishy here. 8\n";
                 exit;
             }
             $tmp_calc = intval($calc);
@@ -478,7 +478,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
                 exit;
             }
             if ((strlen($tmp_timestamp) != "10") || (!is_integer($tmp_timestamp))) {
-                echo "Something is fishy here.\n";
+                echo "Something is fishy here. 9\n";
                 exit;
             }
             // end post validation //

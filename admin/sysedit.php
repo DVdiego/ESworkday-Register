@@ -35,7 +35,7 @@ if ($request == 'GET') {
     include 'header_get_sysedit.php';
     include 'topmain.php';
     include 'leftmain.php';
-    
+
 }
 echo "<title>$title - Edit System Settings</title>\n";
 
@@ -64,7 +64,7 @@ if (!file_exists($filename)) {
     echo "                <td height=25 class=table_rows_red>It has either been deleted, renamed, moved, or was never installed.</td></tr>\n";
     echo "            </table></td></tr>\n";
     include '../footer.php';
-    include '../theme/templates/controlsidebar.inc'; 
+    include '../theme/templates/controlsidebar.inc';
     include '../theme/templates/endmain.inc';
     include '../theme/templates/adminfooterscripts.inc';
     exit;
@@ -90,7 +90,7 @@ if (!is_readable($filename)) {
     }
     echo "            </table>\n";
     include '../footer.php';
-    include '../theme/templates/controlsidebar.inc'; 
+    include '../theme/templates/controlsidebar.inc';
     include '../theme/templates/endmain.inc';
     include '../theme/templates/adminfooterscripts.inc';
 
@@ -99,7 +99,7 @@ if (!is_readable($filename)) {
 // Determine if we are displaying the information, or committing changes
 if ($request == 'GET') {
 
-	/* moved 
+	/* moved
     echo "<table width=100% height=89% border=0 cellpadding=0 cellspacing=1>\n";
     echo "  <tr valign=top>\n";
     echo "    <td class=left_main width=180 align=left scope=col>\n";
@@ -141,7 +141,7 @@ end moved */
         echo "              <tr><td height=25 class=table_rows_red>This page has been <b>disabled</b> within config.inc.php.</td></tr>";
         echo "            </table>\n";
         include '../footer.php';
-	include '../theme/templates/controlsidebar.inc'; 
+	include '../theme/templates/controlsidebar.inc';
 	include '../theme/templates/endmain.inc';
 	include '../theme/templates/adminfooterscripts.inc';
         exit;
@@ -170,7 +170,7 @@ end moved */
             echo "</b>&nbsp;&nbsp;(user.group).</td></tr>\n";
             echo "            </table>\n";
             include '../footer.php';
-	    include '../theme/templates/controlsidebar.inc'; 
+	    include '../theme/templates/controlsidebar.inc';
 	    include '../theme/templates/endmain.inc';
 	    include '../theme/templates/adminfooterscripts.inc';
             exit;
@@ -180,7 +180,7 @@ end moved */
             echo "              <tr><td height=25 class=table_rows_red>To edit the System Settings within WorkTime Control, either change the permissions on config.inc.php for this user, or assign this file to another owner, preferably your webserver user.</td></tr>\n";
             echo "            </table>\n";
             include '../footer.php';
-	    include '../theme/templates/controlsidebar.inc'; 
+	    include '../theme/templates/controlsidebar.inc';
 	    include '../theme/templates/endmain.inc';
 	    include '../theme/templates/adminfooterscripts.inc';
             exit;
@@ -329,7 +329,7 @@ end moved */
             echo "            </table>\n";
             echo "            <br />\n";
 //        } elseif ((!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$", $report_start_time, $start_time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$", $report_start_time, $start_time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])$", $report_start_time, $start_time_regs))) {
-		
+
         } elseif ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $report_start_time, $start_time_regs)) &&
                   (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$" . '/i', $report_start_time, $start_time_regs)) &&
                   (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])$" . '/i', $report_start_time, $start_time_regs))) {
@@ -338,7 +338,7 @@ end moved */
             echo "            </table>\n";
             echo "            <br />\n";
 //        } elseif ((!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$", $report_end_time, $end_time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$", $report_end_time, $end_time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])$", $report_end_time, $end_time_regs))) {
-		
+
         } elseif ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $report_end_time, $end_time_regs)) &&
                   (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$" . '/i', $report_end_time, $end_time_regs)) &&
                   (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])$" . '/i', $report_end_time, $end_time_regs))) {
@@ -368,7 +368,7 @@ end moved */
 
 
 
-    echo "            <table class='table table-hover'>\n";
+    echo "            <table class='table table-hover' style='background-color: white;'>\n";
     echo "              <tr><th colspan=3 class=table_heading_no_color nowrap align=left>Edit System Settings</th></tr>\n";
     echo "              <tr><td colspan=3 class=table_rows width=10% align=left style='padding-left:4px;'>Listed below are the settings that have been chosen within config.inc.php, the config file for WorkTime Control. Edit as you see fit. Then click the \"Next\" button near the bottom of the page to continue.</td></tr>\n";
     echo "              <tr><td height=40 class=table_rows width=10% align=left style='padding-left:4px;color:#27408b;'><b><u>VARIABLE</u></b></td> <td class=table_rows width=10% align=left style='color:#27408b;'><b><u>VALUE</u></b></td> <td class=table_rows width=80% align=left style='padding-left:10px;color:#27408b;'><b><u>DESCRIPTION</u></b></td></tr>\n";
@@ -1115,7 +1115,7 @@ end moved */
     echo "              <tr><td height=40>&nbsp;</td></tr>\n";
     echo "              <tr><td width=62 valign=middle><input type='image' name='submit' value='Add Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
     include '../footer.php';
-    include '../theme/templates/controlsidebar.inc'; 
+    include '../theme/templates/controlsidebar.inc';
     include '../theme/templates/endmain.inc';
     include '../theme/templates/adminfooterscripts.inc';
     exit;
@@ -1474,13 +1474,13 @@ end moved */
             if ((strlen($post_allowed_networks[$x]) > 21)) {
                 $evil_allowed_networks_length = "1";
                 $evil_post = "1";
- //           } elseif ((!eregi("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$", $post_allowed_networks[$x], $net_regs)) && (!eregi("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/([0-9]?[0-9]?[0-9])$", $post_allowed_networks[$x], $net_regs)) && (!eregi("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.\[([0-9]?[0-9]?[0-9])\-([0-9]?[0-9]?[0-9])\]$", $post_allowed_networks[$x], $net_regs)) && (!empty($post_allowed_networks[$x]))) {	    
+ //           } elseif ((!eregi("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$", $post_allowed_networks[$x], $net_regs)) && (!eregi("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/([0-9]?[0-9]?[0-9])$", $post_allowed_networks[$x], $net_regs)) && (!eregi("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.\[([0-9]?[0-9]?[0-9])\-([0-9]?[0-9]?[0-9])\]$", $post_allowed_networks[$x], $net_regs)) && (!empty($post_allowed_networks[$x]))) {
             } elseif ((!preg_match('/' . "^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$" . '/i', $post_allowed_networks[$x], $net_regs)) && (!preg_match('/' . "^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\/([0-9]?[0-9]?[0-9])$" . '/i', $post_allowed_networks[$x], $net_regs)) && (!preg_match('/' . "^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.\[([0-9]?[0-9]?[0-9])\-([0-9]?[0-9]?[0-9])\]$" . '/i', $post_allowed_networks[$x], $net_regs)) && (!empty($post_allowed_networks[$x]))) {
                 $evil_allowed_networks = "1";
                 $evil_post = "1";
 //           } elseif ((eregi("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$", $post_allowed_networks[$x], $net_regs)) || (eregi("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/([0-9]?[0-9]?[0-9])$", $post_allowed_networks[$x], $net_regs)) || (eregi("^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.\[([0-9]?[0-9]?[0-9])\-([0-9]?[0-9]?[0-9])\]$", $post_allowed_networks[$x], $net_regs)) || (!empty($post_allowed_networks[$x]))) {
             } elseif ((preg_match('/' . "^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$" . '/i', $post_allowed_networks[$x], $net_regs)) || (preg_match('/' . "^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\/([0-9]?[0-9]?[0-9])$" . '/i', $post_allowed_networks[$x], $net_regs)) || (preg_match('/' . "^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.\[([0-9]?[0-9]?[0-9])\-([0-9]?[0-9]?[0-9])\]$" . '/i', $post_allowed_networks[$x], $net_regs)) || (!empty($post_allowed_networks[$x]))) {
-		    
+
                 if (strstr($post_allowed_networks[$x], '/')) {
                     if ((($net_regs[1] < '0') || ($net_regs[1] > '255')) || (($net_regs[2] < '0') || ($net_regs[2] > '255')) || (($net_regs[3] < '0') || ($net_regs[3] > '255')) || (($net_regs[4] < '0') || ($net_regs[4] > '255')) || ((isset($net_regs[5])) && (($net_regs[5] < '0') || ($net_regs[5] > '32')))) {
                         $evil_allowed_networks = "1";
@@ -1512,7 +1512,7 @@ end moved */
             echo "            </table>\n";
 //        } elseif ((!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$", $post_report_start_time, $start_time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$", $post_report_start_time, $start_time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])$", $post_report_start_time, $start_time_regs))) {
         } elseif ((!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$" . '/i', $post_report_start_time, $start_time_regs)) && (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$" . '/i', $post_report_start_time, $start_time_regs)) && (!preg_match('/' . "^([0-9]?[0-9])+:+([0-9]+[0-9])$" . '/i', $post_report_start_time, $start_time_regs))) {
-		
+
             echo "            <table align=center class=table_border width=100% border=0 cellpadding=0 cellspacing=3>\n";
             echo "              <tr><td width=20 align=center height=25 class=table_rows><img src='../images/icons/cancel.png' /></td> <td class=table_rows_red height=25><b>report_start_time</b> is not a valid time.</td></tr>\n";
             echo "            </table>\n";
@@ -2242,7 +2242,7 @@ end moved */
         echo "              <tr><td height=40>&nbsp;</td></tr>\n";
         echo "              <tr><td width=62 valign=middle><input type='image' name='submit' value='Add Time' align='middle' src='../images/buttons/next_button.png'></td><td><a href='index.php'><img src='../images/buttons/cancel_button.png' border='0'></td></tr></table></form>\n";
         include '../footer.php';
-	include '../theme/templates/controlsidebar.inc'; 
+	include '../theme/templates/controlsidebar.inc';
 	include '../theme/templates/endmain.inc';
 	include '../theme/templates/adminfooterscripts.inc';
         exit;
@@ -3004,7 +3004,7 @@ $app_version = "'. $post_app_version .'";
         echo "            \n";
         include '../templates/admin_index_tpl.php';
         include '../footer.php';
-	include '../theme/templates/controlsidebar.inc'; 
+	include '../theme/templates/controlsidebar.inc';
 	include '../theme/templates/endmain.inc';
 	include '../theme/templates/adminfooterscripts.inc';
         exit;
