@@ -453,7 +453,7 @@ if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_offi
   echo "              <tr>
                         <td>
                         <div class='box-footer'>
-                          <button id='formButtons' onclick='location=\"officeadmin.php\"' class='btn btn-success pull-right'>
+                          <button type='button' id='formButtons' onclick='location=\"officeadmin.php\"' class='btn btn-success pull-right'>
                             Aceptar
                             <i class='fa fa-check'></i>
                           </button>
