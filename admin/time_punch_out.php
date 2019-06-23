@@ -300,7 +300,7 @@ echo"
                               </div>
                               <div class='form-group' style=' margin-left: 40px;'>
                                 <div class='radio'>
-                                  <label><input type='radio' name='punch_out' value='office'>Selected Office</label>
+                                  <label><input type='radio' name='punch_out' required='true' value='office'>Selected Office</label>
                                 </div>
                                 <div class='radio'>
                                   <label><input type='radio' name='punch_out' value='group'>Selected Group</label>
@@ -336,7 +336,7 @@ echo "               <div class='form-group' style='display: flex;'><label>Statu
 $query = "select punchitems from ".$db_prefix."punchlist where (in_or_out = 0) ORDER BY punchitems ASC";
 $punchlist_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-echo "                  <select class='form-control' name='post_statusname' style='margin-left: 7px;width: 149px;'>
+echo "                  <select class='form-control' required='true' name='post_statusname' style='margin-left: 7px;width: 149px;'>
                             <option value =''>
                               ...
                             </option>";
@@ -365,7 +365,7 @@ echo "              <div lass='form-group' style='display: -webkit-box;'>
 
 echo"               <div class='bootstrap-timepicker'>
                       <div class='form-group' style='display: flex;'>
-                        <label style='margin-right:15px'>Time: </label>";
+                        <label style='margin-right:15px'>Hora: </label>";
 echo"    	                <div class='input-group'>
                             <div class='input-group-addon'>
                               <i class='fa fa-clock-o'></i>
