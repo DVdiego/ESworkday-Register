@@ -339,10 +339,10 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             // Escape admin reason for SQL
             $post_why = $_POST['post_why'];
             if (empty($post_why)) {
-                $post_why = '';
+                @$post_why = "";
             } else {
               //  $post_why = ereg_replace("[^[:alnum:] \,\.\?-]", "", $post_why);
-		              $post_why = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/', "", $post_why);
+		            @$post_why = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/', "", $post_why);
             }
 
             for ($x=0;$x<$final_num_rows;$x++) {

@@ -275,10 +275,10 @@ if ($_REQUEST["login_action"] == "admin") {
       <br>You do not have report access permission.";
         exit;
     } else { // The user is either not valid or has not entered in his credentials.
-      unset($_SESSION["valid_user"]);
-      unset($_SESSION["time_admin_valid_user"]);
-      unset($_SESSION["valid_reports_user"]);
-      unset($_SESSION["valid_report_employee"]);
+      // unset($_SESSION["valid_user"]);
+      // unset($_SESSION["time_admin_valid_user"]);
+      // unset($_SESSION["valid_reports_user"]);
+      // unset($_SESSION["valid_report_employee"]);
 	    echo '<div class="col-md-12"><div class="login-box">
               <div class="login-logo">
                 <a href="index.php"><b>WorkTime <i class="fa fa-clock-o"></i></b>Reports Login</a>
