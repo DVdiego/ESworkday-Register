@@ -136,7 +136,7 @@ if ($request == 'GET') { // Display employee add time interface
                 <label class='table_rows_output'>
                   &nbsp;*Fecha:
                 </label>
-                <input type='date' size='10' maxlength='10' name='post_date' style='color:#000000'>&nbsp;&nbsp;
+                <input type='date' size='10' maxlength='10' required='true' name='post_date' style='color:#000000'>&nbsp;&nbsp;
                 <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
                 return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
               </div>";
@@ -148,7 +148,7 @@ if ($request == 'GET') { // Display employee add time interface
                               &nbsp;*Hora:
                             </label>";
     echo"    	                <div class='input-group'>
-                                <input type='text' size='10' maxlength='10' class='form-control timepicker' name='post_time' required>";
+                                <input type='text' required='true' size='10' maxlength='10' class='form-control timepicker' name='post_time' required>";
     echo"   	                    <div class='input-group-addon'>
                                     <i class='fa fa-clock-o'></i>
                                   </div>
@@ -165,7 +165,7 @@ if ($request == 'GET') { // Display employee add time interface
     $query = "select punchitems from ".$db_prefix."punchlist";
     $punchlist_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-    echo "                  <select class='form-control' name='post_statusname' style='margin-left: 7px;width: 149px;'>
+    echo "                  <select class='form-control' required='true' name='post_statusname' style='margin-left: 7px;width: 149px;'>
                                 <option value =''>
                                   ...
                                 </option>";
@@ -183,7 +183,7 @@ if ($request == 'GET') { // Display employee add time interface
               <label class="table_rows_output">
                 &nbsp;*Razón por la que se añade:
               </label>';
-      echo "  <input type='text' size='25' maxlength='75' name='post_why'>\n";
+      echo "  <input type='text' size='25' maxlength='75' required='true' name='post_why'>\n";
 	echo '</div>';
     } else if ($require_time_admin_edit_reason == "no") {
       echo '<div class="form-group">

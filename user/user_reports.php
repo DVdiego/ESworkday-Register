@@ -101,7 +101,8 @@ $_SERVER['username'] = $_GET['username'];
 
   echo "						<div class='box-footer'>
                       <button type='button' id='formButtons' onclick='location=\"index.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
-                        <i class='fa fa-ban'></i>Cancelar
+                        <i class='fa fa-ban'></i>
+                        Cancelar
                       </button>
 
                       <button id='formButtons' type='submit' name='submit'  class='btn btn-success pull-right'>

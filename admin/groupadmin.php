@@ -46,22 +46,25 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 
 include 'leftmain.php';
 
+//Plantilla superior de los usuarios.
+include 'usersummary.php';
+
 echo '<div class="row">
-        <div class="col-xs-12">
-          <div class="box">
+        <div id="float_window" class="col-md-10">
+          <div class="box box-info">
+            <div class="box-header">
+              <h3 class="box-title"><i class="fa fa-users"></i> Grupos</h3>
+            </div>
+            <div class="box-body">';
 
-          <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">';
-
-echo "            <table class='table table-hover' width=60% align=center border=0 cellpadding=0 cellspacing=0>\n";
-echo "              <tr><th>Group Summary</th></tr>\n";
+echo "          <table class='table table-hover'>\n";
 echo "              <tr>
                       <th>&nbsp;</th>\n";
-echo "                <th>Group Name</th>\n";
-echo "                <th>Parent Office</th>\n";
-echo "                <th>Users</th>\n";
-echo "                <th>Edit</th>\n";
-echo "                <th>Delete</th>
+echo "                <th>Nombre del grupo</th>\n";
+echo "                <th>Forma parte de la oficina</th>\n";
+echo "                <th>Usuarios</th>\n";
+echo "                <th>Editar</th>\n";
+echo "                <th>Eliminar</th>
                   </tr>\n";
 
 $row_count = 0;
@@ -82,26 +85,36 @@ while ($row=mysqli_fetch_array($result)) {
     $row_color = ($row_count % 2) ? $color2 : $color1;
 
     echo "              <tr class=table_border bgcolor='$row_color'><td>&nbsp;$row_count</td>\n";
-    echo "                <td>&nbsp;<a class=footer_links title='Edit Group: ".$row["groupname"]."'
+    echo "                <td>&nbsp;<a class=footer_links title='Editar grupo: ".$row["groupname"]."'
                            href=\"groupedit.php?groupname=".$row["groupname"]."&officename=$parent_office\">".$row["groupname"]."</a></td>\n";
     echo "                <td>&nbsp;$parent_office</td>\n";
     echo "                <td>&nbsp;$user_cnt</td>\n";
 
     if ((strpos($user_agent, "MSIE 6")) || (strpos($user_agent, "MSIE 5")) || (strpos($user_agent, "MSIE 4")) || (strpos($user_agent, "MSIE 3"))) {
 
-    echo "                <td><a style='color:#27408b;text-decoration:underline;'
-                        title=\"Edit Group: ".$row["groupname"]."\" href=\"groupedit.php?groupname=".$row["groupname"]."&officename=$parent_office\" >
-                        Edit</a></td>\n";
-    echo "                <td><a style='color:#27408b;text-decoration:underline;'
-                        title=\"Delete Group: ".$row["groupname"]."\" href=\"groupdelete.php?groupname=".$row["groupname"]."&officename=$parent_office\" >
-                        Delete</a></td></tr>\n";
+    echo "                <td>
+                            <button type='button' id='formButtons' onclick='location=\"groupedit.php?groupname=".$row["groupname"]."&officename=$parent_office\"' class='btn btn-info'>
+                              <i class='fa fa-edit'></i>
+                            </button>
+                          </td>\n";
+    echo "                <td>
+                            <button type='button' id='formButtons' onclick='location=\"groupdelete.php?groupname=".$row["groupname"]."&officename=$parent_office\"' class='btn btn-danger'>
+                              <i class='fa fa-trash'></i>
+                            </button>
+                          </td>
+                        </tr>\n";
     } else {
-    echo "                <td><a href=\"groupedit.php?groupname=".$row["groupname"]."&officename=$parent_office\"
-                        title=\"Edit Group: ".$row["groupname"]."\">
-                        <img border=0 src='../images/icons/application_edit.png' /></a></td>\n";
-    echo "                <td><a href=\"groupdelete.php?groupname=".$row["groupname"]."&officename=$parent_office\"
-                        title=\"Delete Group: ".$row["groupname"]."\">
-                        <img border=0 src='../images/icons/delete.png' /></a></td></tr>\n";
+    echo "                <td>
+                            <button type='button' id='formButtons' onclick='location=\"groupedit.php?groupname=".$row["groupname"]."&officename=$parent_office\"' class='btn btn-info'>
+                              <i class='fa fa-edit'></i>
+                            </button>
+                          </td>\n";
+    echo "                <td>
+                            <button type='button' id='formButtons' onclick='location=\"groupdelete.php?groupname=".$row["groupname"]."&officename=$parent_office\"' class='btn btn-danger'>
+                              <i class='fa fa-trash'></i>
+                            </button>
+                          </td>
+                        </tr>\n";
     }
 }
 echo "          </table>\n";

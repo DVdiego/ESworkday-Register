@@ -124,7 +124,7 @@ echo '            <div class="box-footer">
                       Cancelar
                     </button>
 
-                    <button id="formButtons" type="submit" name="submit" value="Change Password" class="btn btn-info pull-right">
+                    <button id="formButtons" type="submit" name="submit" value="Change Password" class="btn btn-success pull-right">
                       <i class="fa fa-save"></i>
                       Cambiar contraseña
                     </button>
@@ -216,7 +216,7 @@ elseif ($request == 'POST') {
                             Cancelar
                           </button>
 
-                          <button id="formButtons" type="submit" name="submit" value="Change Password" class="btn btn-info pull-right">
+                          <button id="formButtons" type="submit" name="submit" value="Change Password" class="btn btn-success pull-right">
                             <i class="fa fa-save"></i>
                             Cambiar contraseña
                           </button>

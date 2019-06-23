@@ -14,7 +14,7 @@ echo '
         <div class="pull-left info">
           <p>'.$logged_in_user.'</p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> Sesión iniciada</a>
         </div>
       </div>';
 }
@@ -29,7 +29,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
             <div class="pull-left info">
               <p>'.$logged_in_user.'</p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> Sesión iniciada</a>
             </div>
           </div>';
 
@@ -43,7 +43,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
             <div class="pull-left info">
               <p>'.$logged_in_user.'</p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> Sesión iniciada</a>
             </div>
           </div>';
 } else if (isset($_SESSION['valid_report_employee'])) {
@@ -56,7 +56,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
             <div class="pull-left info">
               <p>'.$logged_in_user.'</p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> Sesión iniciada</a>
             </div>
           </div>';
 }else if (isset($_SESSION['valid_profile'])) {
@@ -69,7 +69,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
             <div class="pull-left info">
               <p>'.$logged_in_user.'</p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> Sesión iniciada</a>
             </div>
           </div>';
 }
@@ -77,7 +77,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
 // end user moved here from topmain
 
 
-echo '<ul class="sidebar-menu"><li class="header">Perfil</li>';
+echo '<ul class="sidebar-menu"><li class="header">MENÚ DE EMPLEADO</li>';
 
 echo "<li class='treeview'>
         <a href=\"useredit.php?username=".$_SESSION['valid_profile']."\">

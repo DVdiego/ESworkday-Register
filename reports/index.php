@@ -36,10 +36,6 @@ include 'leftmain.php';
         Run Reports
         <small>it all starts here</small>
       </h1>
-      <ol class='breadcrumb'>
-        <li><a href='#'><i class='fa fa-dashboard'></i> Home</a></li>
-        <li class='active'><a href='index.php'>Run Reports</a></li>
-      </ol>
     </section>";
 
 
