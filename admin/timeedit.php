@@ -644,19 +644,19 @@ echo '<div class="box-header with-border">
                                       </th>
                                     </tr>\n";
                 echo "               <tr>
-                                      <td width=1% class='table_rows_output' style='padding-left:5px;padding-right:5px;'>
+                                      <td width=1% class='table_rows' style='padding-left:5px;padding-right:5px;'>
                                       </td>
 
-                                      <td nowrap width=1% class='table_rows_output' style='padding-right:5px;'>
+                                      <td nowrap width=1% class='table_rows' style='padding-right:5px;'>
                                         Hora modificada
                                       </td>\n";
-                echo "                <td nowrap width=7% align=left style='padding-left:15px;' class='table_rows_output'>
+                echo "                <td nowrap width=7% align=left style='padding-left:15px;' class='table_rows'>
                                         Entrada/Salida
                                       </td>\n";
-                echo "                <td nowrap style='padding-left:20px;' width=4% align=left class='table_rows_output'>
+                echo "                <td nowrap style='padding-left:20px;' width=4% align=left class='table_rows'>
                                         Hora antigua
                                       </td>\n";
-                echo "                <td style='padding-left:25px;' class='table_rows_output'>
+                echo "                <td style='padding-left:25px;' class='table_rows'>
                                         Notas
                                       </td>
                                     </tr>\n";
