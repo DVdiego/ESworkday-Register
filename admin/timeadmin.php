@@ -60,14 +60,14 @@ echo "            </table>\n";
 echo "            <table class='table table-hover'>\n";
 echo "              <tr>\n";
 echo "                <th>&nbsp;</th>\n";
-echo "                <th>Username</th>\n";
-echo "                <th>Display Name</th>\n";
-echo "                <th>Office</th>\n";
-echo "                <th>Group</th>\n";
-echo "                <th>Disabled</th>\n";
-echo "                <th>Add</th>\n";
-echo "                <th>Edit</th>\n";
-echo "                <th>Delete</td>\n";
+echo "                <th>Nombre de usuario</th>\n";
+echo "                <th>Nombre de acceso</th>\n";
+echo "                <th>Oficina</th>\n";
+echo "                <th>Grupo</th>\n";
+echo "                <th>Deshabilitado</th>\n";
+echo "                <th>Añadir</th>\n";
+echo "                <th>Editar</th>\n";
+echo "                <th>Eliminar</td>\n";
 echo "              </tr>\n";
 
 $row_count = 0;
@@ -98,13 +98,35 @@ while ($row=mysqli_fetch_array($result)) {
     }
 
     if ((strpos($user_agent, "MSIE 6")) || (strpos($user_agent, "MSIE 5")) || (strpos($user_agent, "MSIE 4")) || (strpos($user_agent, "MSIE 3"))) {
-        echo "                <td><a style='color:#27408b;text-decoration:underline;' title=\"Add Time For: $empfullname\" href=\"timeadd.php?username=$empfullname\">Add</a></td>\n";
-        echo "                <td><a style='color:#27408b;text-decoration:underline;' title=\"Edit Time For: $empfullname\" href=\"timeedit.php?username=$empfullname\">Edit</a></td>\n";
-        echo "                <td><a style='color:#27408b;text-decoration:underline;' title=\"Delete Time For: $empfullname\" href=\"timedelete.php?username=$empfullname\"> Delete</a></td></tr>\n";
+        echo "                <td>
+                                <a style='color:#27408b;text-decoration:underline;' title=\"Añadir tiempo para: $empfullname\" href=\"timeadd.php?username=$empfullname\">Add</a></td>\n";
+        echo "                <td>
+                                <a style='color:#27408b;text-decoration:underline;' title=\"Editar tiempo para: $empfullname\" href=\"timeedit.php?username=$empfullname\">Edit</a></td>\n";
+        echo "                <td>
+                                <a style='color:#27408b;text-decoration:underline;' title=\"Eliminar tiempo para: $empfullname\" href=\"timedelete.php?username=$empfullname\"> Delete</a></td></tr>\n";
     } else {
-        echo "                <td><a title=\"Add Time For: $empfullname\" href=\"timeadd.php?username=$empfullname\"> <img border=0 src='../images/icons/clock_add.png' /></a></td>\n";
-        echo "                <td><a title=\"Edit Time For: $empfullname\" href=\"timeedit.php?username=$empfullname\"> <img border=0 src='../images/icons/clock_edit.png' /></a></td>\n";
-        echo "                <td><a title=\"Delete Time For: $empfullname\" href=\"timedelete.php?username=$empfullname\"> <img border=0 src='../images/icons/clock_delete.png' /></a></td></tr>\n";
+        echo "                <td>
+                                <a title=\"Añadir tiempo para: $empfullname\" href=\"timeadd.php?username=$empfullname\">
+                                  <button type='button' id='formButtons' onclick='location=\"timeadd.php?statusname=$empfullname\"' class='btn btn-success'>
+                                    <i class='fa fa-plus'></i>
+                                  </button>
+                                </a>
+                              </td>\n";
+        echo "                <td>
+                                <a title=\"Editar tiempo para: $empfullname\" href=\"timeedit.php?username=$empfullname\">
+                                  <button type='button' id='formButtons' onclick='location=\"timeedit.php?statusname=$empfullname\"' class='btn btn-info'>
+                                    <i class='fa fa-edit'></i>
+                                  </button>
+                                </a>
+                              </td>\n";
+        echo "                <td>
+                                <a title=\"Eliminar tiempo para: $empfullname\" href=\"timedelete.php?username=$empfullname\">
+                                  <button type='button' id='formButtons' onclick='location=\"timedelete.php?statusname=$empfullname\"' class='btn btn-danger'>
+                                    <i class='fa fa-trash'></i>
+                                  </button>
+                                </a>
+                              </td>
+                            </tr>\n";
     }
 }
 echo "
