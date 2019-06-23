@@ -17,12 +17,12 @@ echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box box-info">';
 
-echo '      <div class="box-header with-border">';
+echo '      <div class="box-header">';
 echo '        <h3 class="box-title"><i class="fa fa-list"></i> Plantilla</h3>
             </div>';
 
 echo '
-            <div class="box-body table-responsive no-padding">';
+            <div class="box-body">';
 echo "        <table class='table table-hover'>\n";
 echo "          <tr>
                   <td>

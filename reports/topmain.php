@@ -94,39 +94,39 @@ if (isset($_SESSION['valid_user'])) {
     $logged_in_user = $_SESSION['valid_user'];
     echo "
 
-               <li><a href='login.php'><i class='fa fa-user-secret text-orange'></i> Logged in as: $logged_in_user</a></li>";
+               <li><a href='login.php'><i class='fa fa-user-secret text-orange'></i> Sesión iniciada as: $logged_in_user</a></li>";
 } else if (isset($_SESSION['time_admin_valid_user'])) {
     $logged_in_user = $_SESSION['time_admin_valid_user'];
     echo "
 
-               <li><a href='login.php'><i class='fa fa-user-secret text-red'></i> Logged in as: $logged_in_user</a></li>";
+               <li><a href='login.php'><i class='fa fa-user-secret text-red'></i> Sesión iniciada as: $logged_in_user</a></li>";
 } else if (isset($_SESSION['valid_reports_user'])) {
     $logged_in_user = $_SESSION['valid_reports_user'];
     echo "
 
-               <li><a href='login.php'><i class='fa fa-user-plus'></i> Logged in as: $logged_in_user</a></li>";
+               <li><a href='login.php'><i class='fa fa-user-plus'></i> Sesión iniciada as: $logged_in_user</a></li>";
 } else if (isset($_SESSION['valid_report_employee'])) {
     $logged_in_user = $_SESSION['valid_report_employee'];
     echo "
 
-               <li><a href='login.php'><i class='fa fa-user'></i> Logged in as: $logged_in_user</a></li>";
+               <li><a href='login.php'><i class='fa fa-user'></i> Sesión iniciada as: $logged_in_user</a></li>";
 }
 
 end moved to leftmain  */
 
 echo "
-               <li><a href='../index.php'><i class='fa fa-home'></i> Home</a></li>
+               <li><a href='../index.php'><i class='fa fa-home'></i> Inicio</a></li>
 
-               <li><a href='../login.php?login_action=admin'><i class='fa fa-globe'></i> Administration</a></li>";
+               <li><a href='../login.php?login_action=admin'><i class='fa fa-globe'></i> Administración</a></li>";
 
 if ($use_reports_password == "yes") {
     echo "
 
-               <li><a href='../login.php?login_action=reports'><i class='fa fa-globe'></i> Reports</a></li>";
+               <li><a href='../login.php?login_action=reports'><i class='fa fa-globe'></i> Reportes</a></li>";
 } elseif ($use_reports_password == "no") {
-    echo " <li><a href='../reports/index.php'><i class='fa fa-list-alt'></i> Reports</a></li>";
+    echo " <li><a href='../reports/index.php'><i class='fa fa-list-alt'></i> Reportes</a></li>";
 }
-echo "         <li><a href='../login_user.php?login_action=user'><i class='fa fa-user'></i> Profile </a></li>";
+echo "         <li><a href='../login_user.php?login_action=user'><i class='fa fa-user'></i> Perfil de empleado </a></li>";
 if ((isset($_SESSION['valid_user'])) || (isset($_SESSION['valid_reports_user'])) || (isset($_SESSION['valid_report_employee'])) || (isset($_SESSION['valid_profile'])) || (isset($_SESSION['time_admin_valid_user']))) {
     echo " <li><a href='../logout.php'><i class='fa fa-sign-out'></i>Logout</a></li>";
 }

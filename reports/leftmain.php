@@ -13,7 +13,7 @@ echo '
         <div class="pull-left info">
           <p>'.$logged_in_user.'</p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> Sesión iniciada</a>
         </div>
       </div>';
 }
@@ -28,7 +28,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
             <div class="pull-left info">
               <p>'.$logged_in_user.'</p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> Sesión iniciada</a>
             </div>
           </div>';
 
@@ -42,7 +42,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
             <div class="pull-left info">
               <p>'.$logged_in_user.'</p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> Sesión iniciada</a>
             </div>
           </div>';
 } else if (isset($_SESSION['valid_report_employee'])) {
@@ -55,7 +55,7 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
             <div class="pull-left info">
               <p>'.$logged_in_user.'</p>
               <!-- Status -->
-              <a href="#"><i class="fa fa-circle text-success"></i> Logged in</a>
+              <a href="#"><i class="fa fa-circle text-success"></i> Sesión iniciada</a>
             </div>
           </div>';
 }
@@ -63,15 +63,15 @@ else if (isset($_SESSION['time_admin_valid_user'])) {
 // end user moved here from topmain
 
 
-echo '<ul class="sidebar-menu"><li class="header">Run reports</li>';
+echo '<ul class="sidebar-menu"><li class="header">MENÚ DE REPORTES</li>';
 
-echo"<li class='treeview'><a href='index.php'><i class='fa fa-sticky-note-o'></i> <span>Today's report</span></a></li>\n";
+echo"<li class='treeview'><a href='index.php'><i class='fa fa-sticky-note-o'></i> <span>Registros del día</span></a></li>\n";
 
-echo"<li class='treeview'><a href='timerpt.php'><i class='fa fa-file-text-o'></i> <span>Daily Time Report</span></a></li>\n";
+echo"<li class='treeview'><a href='timerpt.php'><i class='fa fa-file-text-o'></i> <span>Reportes de registros diarios</span></a></li>\n";
 
-echo "<li class='treeview'><a class=admin_headings href='total_hours.php'><i class='fa fa-file-text-o'></i><span>Hours Worked Report</span></a></li>\n";
+echo "<li class='treeview'><a class=admin_headings href='total_hours.php'><i class='fa fa-file-text-o'></i><span>Reportes del horario</span></a></li>\n";
 
-echo "<li class='treeview'><a class=admin_headings href='audit.php'><i class='fa fa-history'></i><span>Audit Log<span></a></li>\n";
+echo "<li class='treeview'><a class=admin_headings href='audit.php'><i class='fa fa-history'></i><span>Reportes de auditoría<span></a></li>\n";
 echo '</ul>';
 
 include '../theme/templates/leftnavend.inc';

@@ -55,8 +55,8 @@ include 'usersummary.php';
 
 echo '<div class="row">
         <div id="float_window" class="col-md-10">
-          <div class="box box-inf">';
-echo '      <div class="box-header with-border">';
+          <div class="box box-info">';
+echo '      <div class="box-header">';
 echo '        <h3 class="box-title"><i class="fa fa-archive"></i> Modificar tiempos de empleados</h3>
             </div>';
 echo "            <table class='table table-hover'>\n";

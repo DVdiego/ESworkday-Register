@@ -115,22 +115,22 @@ if (isset($_SESSION['valid_user'])) {
 end moved to leftmain  */
 
 echo "
-               <li><a href='../index.php'><i class='fa fa-home'></i> Home</a></li>
+               <li><a href='../index.php'><i class='fa fa-home'></i> Inicio</a></li>
 
-               <li><a href='../login.php?login_action=admin'><i class='fa fa-globe'></i> Administration</a></li>";
+               <li><a href='../login.php?login_action=admin'><i class='fa fa-globe'></i> Administación</a></li>";
 
 if ($use_reports_password == "yes") {
     echo "
 
-               <li><a href='../login.php?login_action=reports'><i class='fa fa-globe'></i> Reports</a></li>";
+               <li><a href='../login.php?login_action=reports'><i class='fa fa-globe'></i> Reportador</a></li>";
 } elseif ($use_reports_password == "no") {
-    echo " <li><a href='../reports/index.php'><i class='fa fa-list-alt'></i> Reports</a></li>";
+    echo " <li><a href='../reports/index.php'><i class='fa fa-list-alt'></i> Reportador</a></li>";
 }
 
-echo "         <li><a href='../login_user.php?login_action=user'><i class='fa fa-user'></i> Profile </a></li>";
+echo "         <li><a href='../login_user.php?login_action=user'><i class='fa fa-user'></i> Perfil de usuario </a></li>";
 
 if ((isset($_SESSION['valid_user'])) || (isset($_SESSION['valid_reports_user'])) || (isset($_SESSION['valid_report_employee']))  || (isset($_SESSION['valid_profile'])) || (isset($_SESSION['time_admin_valid_user']))) {
-    echo " <li><a href='../logout.php'><i class='fa fa-sign-out'></i>Logout</a></li>";
+    echo " <li><a href='../logout.php'><i class='fa fa-sign-out'></i> Cerrar sesión</a></li>";
 }
 
 include '../theme/templates/topnavpart2.inc'
