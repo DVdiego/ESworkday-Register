@@ -134,13 +134,13 @@ echo '<div class="box-header with-border">
     echo "                <input type='hidden' name='date_format' value='$js_datefmt'>\n";
     echo "                <input type='hidden' name='get_user' value='$get_user'>\n";
     echo "              <div class='form-group'>
-                          <label class='table_rows_output'>
+                          <label class='table_rows'>
                             Nombre de usuario:
                           </label>
                           <input class='table_rows' type='hidden' name='post_username' value=\"$username\">$username\n";
     echo '</div>';
     echo "              <div class='form-group'>
-                          <label class='table_rows_output'>
+                          <label class='table_rows'>
                             Nombre de acceso:
                           </label>
                           <input class='table_rows' type='hidden' name='post_displayname' value=\"$displayname\">$displayname\n";
@@ -644,19 +644,19 @@ echo '<div class="box-header with-border">
                                       </th>
                                     </tr>\n";
                 echo "               <tr>
-                                      <td width=1% class='table_rows_output' style='padding-left:5px;padding-right:5px;'>
+                                      <td width=1% class='table_rows' style='padding-left:5px;padding-right:5px;'>
                                       </td>
 
-                                      <td nowrap width=1% class='table_rows_output' style='padding-right:5px;'>
+                                      <td nowrap width=1% class='table_rows' style='padding-right:5px;'>
                                         Hora modificada
                                       </td>\n";
-                echo "                <td nowrap width=7% align=left style='padding-left:15px;' class='table_rows_output'>
+                echo "                <td nowrap width=7% align=left style='padding-left:15px;' class='table_rows'>
                                         Entrada/Salida
                                       </td>\n";
-                echo "                <td nowrap style='padding-left:20px;' width=4% align=left class='table_rows_output'>
+                echo "                <td nowrap style='padding-left:20px;' width=4% align=left class='table_rows'>
                                         Hora antigua
                                       </td>\n";
-                echo "                <td style='padding-left:25px;' class='table_rows_output'>
+                echo "                <td style='padding-left:25px;' class='table_rows'>
                                         Notas
                                       </td>
                                     </tr>\n";
@@ -686,10 +686,10 @@ echo '<div class="box-header with-border">
 
                 // Escape admin reason for SQL
                 if (empty($post_why)) {
-                    $post_why = '';
+                    @$post_why = "";
                 } else {
                 //    $post_why = ereg_replace("[^[:alnum:] \,\.\?-]", "", $post_why);
-		                  $post_why = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/', "", $post_why);
+		                  @$post_why = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/', "", $post_why);
                 }
 
                 for ($x=0;$x<$final_num_rows;$x++) {

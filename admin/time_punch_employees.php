@@ -211,7 +211,7 @@ if($request == 'GET'){
   $lat = $_POST['latitude'];
   $lon = $_POST['longitude'];
 
-  echo "lat: $lat - lon: $lon\n";
+  // echo "lat: $lat - lon: $lon\n";
   $fullname = addslashes($fullname);
 
 
@@ -465,7 +465,7 @@ if($request == 'GET'){
     $fullname = stripslashes($fullname);
     $employees_empfullname[$x] = addslashes($employees_empfullname[$x]);
     $employees_displayname[$x] = addslashes($employees_displayname[$x]);
-
+    $timestamp = $timestamp+$x;
     $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress, latitude, longitude) values ('".$employees_empfullname[$x]."', '".$post_statusname."', '".$timestamp."', '".$post_notes."', '".$connecting_ip."','" . $lat . "','" . $lon . "')";
 
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
@@ -488,28 +488,42 @@ if($request == 'GET'){
 echo "<br>";
  if (($office_name == "All") && ($group_name == "All") && ($fullname == "All")) {
 
-echo "<h3><span>Se ha registrado el Estado: $post_statusname con Fecha: $post_date y Hora: $post_time para todos los empleados de $enterprise_name.</span></h3>";
+echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
+echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
+echo "<h3><span>Para todos los empleados de: $enterprise_name.</span></h3>\n";
 
  } elseif ((empty($office_name)) && (empty($group_name)) && ($fullname == 'All')) {
 
-echo "<h3><span>Se ha registrado el estado: $post_statusname con Fecha: $post_date y Hora: $post_time para $office_name --> $group_name --> $fullname.</span><h3>";
+ echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
+ echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
+ echo "<h3><span>Para los empleados de: $office_name --> $group_name --> $fullname.</span></h3>\n";
+
+
 
  } elseif ((empty($office_name)) && (empty($group_name)) && ($fullname != 'All')) {
 
-echo "<h3><span>Se ha registrado el estado: $post_statusname con Fecha: $post_date y Hora: $post_time para $office_name --> $group_name --> $fullname.</span><h3>";
+   echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
+   echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
+   echo "<h3><span>Para los empleados de: $office_name --> $group_name --> $fullname.</span></h3>\n";
 
  } elseif (($office_name != "All") && ($group_name == "All") && ($fullname == "All")) {
 
-echo "<h3><span>Se ha registrado el estado: $post_statusname con Fecha: $post_date y Hora: $post_time para $office_name --> $group_name --> $fullname.</span><h3>";
+   echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
+   echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
+   echo "<h3><span>Para los empleados de: $office_name --> $group_name --> $fullname.</span></h3>\n";
 
  } elseif (($office_name != "All") && ($group_name != "All") && ($fullname == "All")) {
 
 
-echo "<h3><span>Se ha registrado el estado: $post_statusname con Fecha: $post_date y Hora: $post_time para $office_name --> $group_name --> $fullname.</span><h3>";
+   echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
+   echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
+   echo "<h3><span>Para los empleados de: $office_name --> $group_name --> $fullname.</span></h3>\n";
 
  } elseif (($office_name != "All") && ($group_name != "All") && ($fullname != "All")) {
 
-echo "<h3><span>Se ha registrado el estado: $post_statusname con Fecha: $post_date y Hora: $post_time para $office_name --> $group_name --> $fullname.</span><h3>";
+   echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
+   echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
+   echo "<h3><span>Para los empleados de: $office_name --> $group_name --> $fullname.</span></h3>\n";
 
  }
 
@@ -521,7 +535,7 @@ echo "						<div class='box-footer'>
                     </button>
 
                     <button type='button' id='formButtons' onclick='location=\"time_punch_employees.php\"' class='btn btn-success pull-right'>
-                      <i class='fa fa-plus-square-o'></i>Continuar
+                      <i class='fa fa-plus-square-o'></i> Continuar
                     </button>
                   </div>";
 
