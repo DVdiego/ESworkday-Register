@@ -109,6 +109,13 @@ p.present-sum {
     background-color: green;
 }
 
+
+#form-padding{
+
+  border-color: green;
+  size: 2px;
+}
+
 /* Botones de formularios */
 #formButtons{
   font-weight: bold;

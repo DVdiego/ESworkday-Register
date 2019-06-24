@@ -47,6 +47,8 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 //Plantilla superior de los usuarios.
 include 'usersummary.php';
 
+
+
 echo '     <div class="row">
               <div id="float_window" class="col-md-10">
                 <div class="box">
@@ -72,11 +74,12 @@ echo "              </tr>\n";
 
 $row_count = 0;
 
-$query = "select empfullname, displayname, email, groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees
-          order by empfullname";
-$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+$query_permissions ="select empfullname, displayname, email, groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees WHERE `empfullname` != '".$root."' AND empfullname IN(select empfullname ".$db_prefix."from employees WHERE `admin` = 1 OR `reports` = 1 OR `time_admin` = 1 order by empfullname)";
 
-while ($row=mysqli_fetch_array($result)) {
+
+$result_permissions = mysqli_query($GLOBALS["___mysqli_ston"], $query_permissions);
+
+while ($row=mysqli_fetch_array($result_permissions)) {
 
 $empfullname = stripslashes("".$row['empfullname']."");
 $displayname = stripslashes("".$row['displayname']."");
@@ -117,29 +120,105 @@ if ("".$row["reports"]."" == 1) {
   echo "                <td>".$reports."</td>\n";
 }
 
-if ((strpos($user_agent, "MSIE 6")) || (strpos($user_agent, "MSIE 5")) || (strpos($user_agent, "MSIE 4")) || (strpos($user_agent, "MSIE 3"))) {
+  if ((strpos($user_agent, "MSIE 6")) || (strpos($user_agent, "MSIE 5")) || (strpos($user_agent, "MSIE 4")) || (strpos($user_agent, "MSIE 3"))) {
 
-echo "                <td><a
-                    title=\"Editar usuario: $empfullname\"
-                    href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">Edit</a></td>\n";
-echo "                <td><a
-                    title=\"Cambiar contraseña: $empfullname\"
-                    href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\">Chg Pwd</a></td>\n";
-echo "                <td><a
-                    title=\"Eliminar usuario: $empfullname\"
-                    href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">Delete</a></td></tr>\n";
+  echo "                <td><a
+                      title=\"Editar usuario: $empfullname\"
+                      href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">Edit</a></td>\n";
+  echo "                <td><a
+                      title=\"Cambiar contraseña: $empfullname\"
+                      href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\">Chg Pwd</a></td>\n";
+  echo "                <td><a
+                      title=\"Eliminar usuario: $empfullname\"
+                      href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">Delete</a></td></tr>\n";
 
-} else {
+  } else {
 
-echo "                <td align='center'><a title=\"Editar usuario: $empfullname\"
-                    href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">
-                    <i class='glyphicon glyphicon-pencil'></i></a></td>\n";
-echo "                <td align='center'><a title=\"Cambiar contraseña: $empfullname\"
-                    href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\"><i class='fa fa-lock text-yellow'></i></a></td>\n";
-echo "                <td align='center'><a title=\"Eliminar usuario: $empfullname\"
-                    href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">
-                    <i class='glyphicon glyphicon-minus-sign text-red'></i></a></td></tr>\n";
+  echo "                <td align='center'><a title=\"Editar usuario: $empfullname\"
+                      href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">
+                      <i class='glyphicon glyphicon-pencil'></i></a></td>\n";
+  echo "                <td align='center'><a title=\"Cambiar contraseña: $empfullname\"
+                      href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\"><i class='fa fa-lock text-yellow'></i></a></td>\n";
+  echo "                <td align='center'><a title=\"Eliminar usuario: $empfullname\"
+                      href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">
+                      <i class='glyphicon glyphicon-minus-sign text-red'></i></a></td></tr>\n";
+  }
 }
+echo "          </table></div></div></div></div>\n";
+
+echo '     <div class="row">
+              <div id="float_window" class="col-md-10">
+                <div class="box">
+
+          <!-- /.box-header -->
+                  <div class="box-body table-responsive no-padding">';
+echo "             <table class='table table-hover'>\n";
+echo "              <tr>\n";
+echo "                <th>&nbsp;</th>\n";
+echo "                <th>Nombre de usuario</th>\n";
+echo "                <th>Nombre de acceso</th>\n";
+// echo "                <th>Email Address</th>\n";
+echo "                <th>Oficina</th>\n";
+echo "                <th>Grupo</th>\n";
+echo "                <th>Deshabilitada</th>\n";
+echo "                <th>Editar</th>\n";
+echo "                <th>Cambiar contraseña</th>\n";
+echo "                <th>Eliminar</th>\n";
+echo "              </tr>\n";
+
+$row_count = 0;
+
+$query = "select empfullname, displayname, email, groups, office, admin, reports, time_admin, disabled from ".$db_prefix."employees  WHERE `admin` = 0 AND `reports` = 0 AND `time_admin` = 0 order by empfullname";
+
+$result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
+
+while ($row=mysqli_fetch_array($result)) {
+
+$empfullname = stripslashes("".$row['empfullname']."");
+$displayname = stripslashes("".$row['displayname']."");
+
+$row_count++;
+$row_color = ($row_count % 2) ? $color2 : $color1;
+
+echo "              <tr class=table_border bgcolor='$row_color'><td>&nbsp;$row_count</td>\n";
+echo "                <td>&nbsp;<a title=\"Edit User: $empfullname\" class=footer_links
+                    href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">$empfullname</a></td>\n";
+echo "                <td>&nbsp;$displayname</td>\n";
+// echo "                <td>&nbsp;".$row["email"]."</td>\n";
+echo "                <td>&nbsp;".$row['office']."</td>\n";
+echo "                <td>&nbsp;".$row['groups']."</td>\n";
+
+if ("".$row["disabled"]."" == 1) {
+  echo "                <td align='center'><i class='glyphicon glyphicon-remove text-red'></i></td>\n";
+} else {
+  $disabled = "";
+  echo "                <td>".$disabled."</td>\n";
+}
+
+
+  if ((strpos($user_agent, "MSIE 6")) || (strpos($user_agent, "MSIE 5")) || (strpos($user_agent, "MSIE 4")) || (strpos($user_agent, "MSIE 3"))) {
+
+  echo "                <td><a
+                      title=\"Editar usuario: $empfullname\"
+                      href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">Edit</a></td>\n";
+  echo "                <td><a
+                      title=\"Cambiar contraseña: $empfullname\"
+                      href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\">Chg Pwd</a></td>\n";
+  echo "                <td><a
+                      title=\"Eliminar usuario: $empfullname\"
+                      href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">Delete</a></td></tr>\n";
+
+  } else {
+
+  echo "                <td align='center'><a title=\"Editar usuario: $empfullname\"
+                      href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">
+                      <i class='glyphicon glyphicon-pencil'></i></a></td>\n";
+  echo "                <td align='center'><a title=\"Cambiar contraseña: $empfullname\"
+                      href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\"><i class='fa fa-lock text-yellow'></i></a></td>\n";
+  echo "                <td align='center'><a title=\"Eliminar usuario: $empfullname\"
+                      href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">
+                      <i class='glyphicon glyphicon-minus-sign text-red'></i></a></td></tr>\n";
+  }
 }
 echo "          </table></div></div></div></div>\n";
 include '../footer.php';

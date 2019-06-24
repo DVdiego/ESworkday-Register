@@ -153,7 +153,7 @@ if ($request == 'GET') {
   if ($group_cnt != '0') {
 
     echo "  </form>\n";
-    echo "             <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+    echo "             <br/><br/><hr id='form-padding' class='margin-padding' />\n";
     echo '<div class="box-header with-border">
                      <h3 class="box-title"><i class="fa fa-group"></i>Grupos de la oficina ' . $get_office . '</h3>
           </div>';
@@ -369,7 +369,7 @@ if ($request == 'GET') {
     if ($group_cnt != '0') {
 
       echo "</form>\n";
-      echo "            <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+      echo "            <br/><br/><hr id='form-padding' class='margin-padding' />\n";
       echo '<div class="box-header with-border">
                        <h3 class="box-title"><i class="fa fa-group"></i>Grupos de la oficina ' . $get_office . '</h3>
             </div>';
@@ -521,7 +521,7 @@ if ($request == 'GET') {
     if ($group_cnt != '0') {
 
       echo "</table>\n";
-      echo "             <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+      echo "             <br/><br/><hr id='form-padding' class='margin-padding' />\n";
       echo '<div class="box-header with-border">
                        <h3 class="box-title"><i class="fa fa-group"></i>Grupos de la oficina ' . $post_officename . '</h3>
             </div>';

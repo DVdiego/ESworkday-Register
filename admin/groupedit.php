@@ -185,7 +185,7 @@ if ($request == 'GET') {
 
     if ($user_count_rows > '0') {
 
-      echo "            <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+      echo "            <br/><br/><hr id='form-padding' class='margin-padding' />\n";
       echo '          <div class="box-body table-responsive no-padding">'; /*FLAG*///
       echo "            <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>\n";
       echo "              <tr><th class=table_heading_no_color nowrap width=100% halign=left>Members of $get_group Group in $get_office Office</th></tr>\n";
@@ -566,7 +566,7 @@ elseif ($request == 'POST') {
 
         if ($user_count_rows > '0') {
 
-          echo "            <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+          echo "            <br/><br/><hr id='form-padding' class='margin-padding' />\n";
           echo '          <div class="box-body table-responsive no-padding">';
           echo "            <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>\n";
           echo "              <tr><th class=table_heading_no_color nowrap width=100% halign=left>Members of $get_group Group in $get_office Office</th></tr>\n";
@@ -773,7 +773,7 @@ elseif ($request == 'POST') {
 
         if ($user_count_rows > '0') {
 
-          echo "            <br/><br/><hr id='form-padding' class='margin-padding'  size='2px' style='border-color: #00b8f1;' />\n";
+          echo "            <br/><br/><hr id='form-padding' class='margin-padding' />\n";
           echo '          <div class="box-body table-responsive no-padding">';
           echo "            <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>\n";
           echo "              <tr><th class=table_heading_no_color nowrap width=100% halign=left>Members of $post_groupname Group in $post_officename

@@ -75,29 +75,29 @@ $_SERVER['username'] = $_GET['username'];
 
               </div>";
 
-    echo "    <div class='form-group'>
-                <label style='padding-right: 8.3rem;'>Fecha inicio:</label>
-                <div class='input-group'>
-                <div class='input-group-addon'>
-                  <i class='fa fa-calendar'></i>
-                </div>
-                <input type='date' size='10' maxlength='10' name='from_date' style='color:#27408b' required>&nbsp;*&nbsp;&nbsp;
-                <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
-                return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-                </div>
-              </div>";
+              echo "              <div class='form-group' style='display: -webkit-box;'>
+                                    <label style='padding-right: 10px;'>Fecha Inicio:</label>
+                                      <div class='input-group'>
 
-   echo "    <div class='form-group'>
-               <label style='padding-right: 10rem;'>Fecha fin:</label>
-               <div class='input-group'>
-               <div class='input-group-addon'>
-                 <i class='fa fa-calendar'></i>
-               </div>
-               <input type='date' size='10' maxlength='10' name='to_date' style='color:#27408b' required>&nbsp;*&nbsp;&nbsp;
-               <a href=\"#\" onclick=\"form.to_date.value='';cal.select(document.forms['form'].to_date,'to_date_anchor','$js_datefmt');
-               return false;\" name=\"to_date_anchor\" id=\"to_date_anchor\" style='font-size:11px;color:#27408b;'></a>
-              </div>
-            </div>";
+                                      <div class='input-group-addon'>
+                                        <i class='fa fa-calendar'></i>
+                                      </div>
+                                        <input type='date' size='10' maxlength='10' name='from_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
+                                        <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                                        return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                                      </div>
+                                  </div>\n";
+              echo "              <div class='form-group' style='display: -webkit-box;'>
+                                    <label style='padding-right: 27px;'>Fecha Fin:</label>
+                                      <div class='input-group'>
+                                      <div class='input-group-addon'>
+                                        <i class='fa fa-calendar'></i>
+                                      </div>
+                                        <input type='date' size='10' maxlength='10' name='to_date' style='color: #444;border: #d2d6de;border-style: solid;border-width: thin;height: 33px;width: 149px;padding-left: 10px;' required>
+                                        <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt');
+                                        return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
+                                      </div>
+                                  </div>\n";
 
   echo "						<div class='box-footer'>
                       <button type='button' id='formButtons' onclick='location=\"index.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>

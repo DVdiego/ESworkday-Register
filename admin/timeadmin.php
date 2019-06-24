@@ -74,8 +74,7 @@ echo "              </tr>\n";
 
 $row_count = 0;
 
-$query = "select empfullname, displayname, email, groups, office, admin, reports, disabled from ".$db_prefix."employees
-          order by empfullname";
+$query = "select empfullname, displayname, email, groups, office, admin, reports, disabled from ".$db_prefix."employees WHERE `empfullname` <> '".$root."' order by empfullname";
 $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
 while ($row=mysqli_fetch_array($result)) {
