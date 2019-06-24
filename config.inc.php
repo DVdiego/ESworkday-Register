@@ -337,7 +337,8 @@ $display_links = array("Development Site");
 
 /* The message of the day to display to all employee's. Set to "none" to disable. */
 
-$message_of_the_day = "Using WorkTime Control two times a day keeps the doctor away.";
+$message_of_the_day = "Utilice WorkTime Control para mantener un control eficiente, rápido y sencillo de las jornadas
+                        de sus empleados.";
 
 
 /* --- REPORTING INFO --- */
@@ -484,6 +485,9 @@ $keywords = "<meta name='keywords' content='jornada, laboral, ley, horario, cont
 $viewport = "<meta name='viewport' content='width=device-width, initial-scale=1.0'";
 $author = "<meta name='author' content='iSoft Solutions'";
 
+//Fecha
+$date = Date('Y');
+
 /* --- DO NOT CHANGE ANYTHING BELOW THIS LINE!!! --- */
 
 
@@ -491,8 +495,6 @@ $author = "<meta name='author' content='iSoft Solutions'";
 
 $dbversion = "1.4";
 
-
 /* Application version. */
-
 $app_version = "1.1.0";
 ?>

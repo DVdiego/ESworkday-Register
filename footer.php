@@ -44,16 +44,16 @@ if (! empty($email) && ($email != "none")) {
 // Determine if the application information is set
 if (empty($company_name) || empty($app_version)) {
     echo "
-               <a class=footer_links href='http://isoftsolutions.es' target='_blank'>Powered by iSoftSolutions</a>";
+               <a class=footer_links href='http://isoftsolutions.es' target='_blank'>powered by iSoftSolutions</a>";
 } else {
     echo "
-               <a class=footer_links href='http://isoftsolutions.es' target='_blank'> $company_name is Powered by iSoftSolutions $app_version</a>";
+               <a class=footer_links href='http://isoftsolutions.es' target='_blank'> $date &copy; $company_name is powered by iSoftSolutions v$app_version</a>";
 }
 
 echo '
 	</div>
 <!-- Default to the left -->
-Soporte <a class="footer_links" href="mailto:contacto@isoftsolutions.es" target="_blank">contacto@isoftsolutions.es</a>
+<i class="fa fa-envelope"></i> Soporte <a class="footer_links" href="mailto:contacto@isoftsolutions.es" target="_blank">contacto@isoftsolutions.es</a>
 
  </footer>
 ';

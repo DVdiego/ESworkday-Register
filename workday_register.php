@@ -158,7 +158,9 @@ echo "          <form role='form' name='timeclock' action='$self' method='post'>
 
 echo '               <div class="box box-primary">
                         <div class="box-header with-border">
-                          <h3 class="box-title">Please punch in below:</h3>
+                          <h3 class="box-title">
+                            <i class="fa fa-sign-in"></i> Registro de la jornada laboral
+                          </h3>
                         </div>
                        <!-- /.box-header -->';
 echo "                  <div class='box-body'>
@@ -170,7 +172,7 @@ if($show_select_login == "yes"){
 
   echo "                    <div class='col-sm-6 col-md-6 col-lg-6'>
                                 <div class='form-group'>
-                                    <label>Name:</label>";
+                                    <label>Nombre:</label>";
 
   // query to populate dropdown with employee names //
   if ($show_display_name == "yes") {
@@ -242,14 +244,14 @@ if($show_select_login == "yes"){
   if ($show_display_name == "yes") {
 
     echo "<div class='form-group'>
-            <label>Displayname:</label>
-            <input type='text' name='left_displayname' maxlength='25' class='form-control' placeholder='Displayname'>
+            <label>Nombre:</label>
+            <input type='text' required='true' name='left_displayname' maxlength='25' class='form-control' placeholder='Displayname'>
           </div>";
   }else{
 
     echo "<div class='form-group'>
-            <label>Username:</label>
-            <input type='text' name='left_fullname' maxlength='25' class='form-control' placeholder='Username'>
+            <label>Nombre completo:</label>
+            <input type='text' required='true' name='left_fullname' maxlength='25' class='form-control' placeholder='Username'>
           </div>";
   }
 
@@ -260,18 +262,19 @@ if($show_select_login == "yes"){
 // determine whether to use encrypted passwords or not //
 if ($use_passwd == "yes") {
     echo "<div class='form-group'>
-            <label>Password:</label>
-            <input type='password' name='employee_passwd' maxlength='25' class='form-control' placeholder='Password'>
+            <label>Contraseña:</label>
+            <input type='password' required='true' name='employee_passwd' maxlength='25' class='form-control' placeholder='Password'>
 			    </div>";
 }
 
-echo "    <div class='form-group'>Status:";
+echo "    <div class='form-group'>
+            <label>Estado:</label>";
 
 // query to populate dropdown with punchlist items //
 $query = "select punchitems from ".$db_prefix."punchlist";
 $punchlist_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-echo "        <select class='form-control' name='left_inout'>
+echo "        <select class='form-control' required='true' name='left_inout'>
                 <option value =''>
                   ...
                 </option>";
@@ -294,7 +297,7 @@ echo "<input type='hidden' value='' name='longitude'/>";
 echo "<div class='row'>";
 echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
 echo "    <div class='form-group'>
-            <label>Notes:</label>
+            <label>Notas:</label>
             <input type='text' name='left_notes' maxlength='250' class='form-control'>
           </div>";
 
@@ -306,7 +309,7 @@ echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
 if (! isset($_COOKIE['remember_me'])) {
 echo "<div class='checkbox'>
         <label>
-          <input type='checkbox' name='remember_me' value='1'> Remember Me?
+          <input type='checkbox' name='remember_me' value='1'> ¿Recordarme?
         </label>
       </div>";
 } elseif (isset($_COOKIE['remember_me'])) {
@@ -321,7 +324,7 @@ echo "</div>";
 echo "<div class='row'>";
 echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
 echo "<div class='form-group'>
-                        <button type='submit' class='btn btn-lg btn-primary'>Punch Status</button>
+                        <button type='submit' class='btn btn-lg btn-primary pull-right'>Registrar</button>
                          </div>
         </div></form>";
 echo "</div>";
@@ -400,7 +403,7 @@ if ($request == 'POST') { // Process employee's punch information
                 echo '<div id="float_window" class="col-md-10">
                         <div class="callout callout-danger">
                           <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                          <p>Displayname is not in the database.</p>
+                          <p>No existe ningún usuario con ese nombre de acceso.</p>
                         </div>
                       </div>';
                 exit;
@@ -420,7 +423,7 @@ if ($request == 'POST') { // Process employee's punch information
               echo '<div id="float_window" class="col-md-10">
                       <div class="callout callout-danger">
                         <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                        <p>Username is not in the database.</p>
+                        <p>No existe ningún usuario con ese nombre.</p>
                       </div>
                     </div>';
                 exit;
@@ -566,7 +569,7 @@ if ($request == 'POST') { // Process employee's punch information
 	    echo '<div id="float_window" class="col-md-10">
               <div class="callout callout-danger">
                 <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                <p>The current punch status for '.$fullname.' is '.$currentPunchName.' . Please use a different status.</p>
+                <p>El estado actual de '.$fullname.' es '.$currentPunchName.' . Por favor elija otro estado.</p>
               </div>
             </div>';
         // Return the employee back to the punch interface after 5 seconds
