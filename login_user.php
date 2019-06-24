@@ -16,7 +16,7 @@
 
      echo " <!-- Reports Login Interface -->
              <title>
-                $title - User Login
+                $title - Login de Usuario
              </title>";
 
      $self = $_SERVER['PHP_SELF'];
@@ -25,14 +25,14 @@
      // Determine if the user has entered his authentication credentials
      if (isset($_POST['login_userid']) && (isset($_POST['login_password']))) {
 
-         $login = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
+         $login_userid = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_userid']);
          $login_password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['login_password']);
 
 
 
         if($login_with_fullname == "yes"){
 
-          $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login."'";
+          $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$login_userid."'";
           $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
           while ($row = mysqli_fetch_array($result)) {
@@ -107,7 +107,7 @@
                </script>";
          exit;
      } else if (isset($_SESSION['valid_report_employee'])) {
-    
+
          echo "
                <script type='text/javascript' language='javascript'>
                   window.location.href = 'worktime.php';
@@ -129,9 +129,9 @@
        //   $name = "DNI";
        // }
 
- 	    echo '<div class="col-md-12"><div class="login-box">
-               <div class="login-logo">
-                 <a href="index.php"><b>WorkTime <i class="fa fa-clock-o"></i></b>User Login</a>
+ 	    echo '<div class="col-md-12"><div class="login-box">';
+      echo '   <div class="login-logo">
+                 <a href="index.php"><b>WorkTime <i class="fa fa-clock-o"></i></b> Login de Usuario</a>
                </div><!-- /.login-logo -->
                <div class="login-box-body">
 
@@ -155,15 +155,18 @@
                  </form>
 
                </div><!-- /.login-box-body -->
-             </div><!-- /.login-box -->
+             </div><!-- /.login-box -->';
+             // Determine if the user has supplied incorrect credentials.
+             if (isset($login_userid)) {
+               echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-warning"></i>Error!</h4>
+                              Error en el acceso, el Id de acceso o la contraseña no son correctos.
+                          </div></div>';
+             }
 
-           </div>';
-         // Determine if the user has supplied incorrect credentials.
-         if (isset($login_userid)) {
+         echo '  </div>';
 
-             echo "Could not log you in. Either your username or password is incorrect.";
-
-         }
          echo "<script language=\"javascript\">
                  document.forms['auth'].login_userid.focus();
                </script>";

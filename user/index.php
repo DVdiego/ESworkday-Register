@@ -54,14 +54,10 @@ echo '<div class="row">
 		<div id="float_window" class="col-md-10">
 			<div class="box box-info"> ';
 echo '<div class="box-header with-border">
-								 <h3 class="box-title"><i class="fa fa-user-plus"></i>Perfil Usuario</h3>
+								 <h3 class="box-title"><i class="fa fa-user"></i> Perfil de usuario</h3>
 							 </div><div class="box-body">';
 
 echo "            <table class=table>\n";
-
-echo "              <tr><td height=15></td></tr>\n";
-
-
 
 if($login_with_fullname == "yes"){
 
@@ -111,13 +107,7 @@ echo "              <tr><td class=table_rows_output height=25 width=20% style='p
 											colspan=2 width=80% style='padding-left:20px;'>$groups</td></tr>\n";
 echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Contraseña:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>***hidden***</td></tr>\n";
-
-
-echo "              <tr><td height=15></td></tr>\n";
 echo "            </table>\n";
-// echo '						<div class="box-footer">
-// 										<a href="index.php"><button class="btn btn-success">Done</button></a>
-// 									</div>';
 echo '				</div>
 					</div>
 				</div>

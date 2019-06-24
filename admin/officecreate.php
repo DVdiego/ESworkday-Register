@@ -356,6 +356,44 @@ elseif ($request == 'POST') {
           $result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
         }
 
+
+      //Notificaciones de crear grupos con la oficina.
+      if (@$empty_groupname == '1')  {
+        echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                       Se requiere un nombre de grupo.
+                    </div></div>';
+      } elseif (@$evil_groupname == '1') {
+        echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                        No están permitidos caracteres alfanuméricos, acentos, apostrofes, comas y espacios para crear un usuario.
+                    </div></div>';
+      } elseif (@$groupname_array_cnt != @$unique_groupname_array_cnt) {
+        echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
+                        El grupo ya existe. Introduce otro nombre.
+                    </div></div>';
+      }
+
+      if ((@$empty_groupname != '1') && (@$evil_groupname != '1') && (@$groupname_array_cnt == @$unique_groupname_array_cnt)) {
+        if ($how_many == '1') {
+          echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
+                       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                       <h4><i class="icon fa fa-check-circle"></i>¡Usuario creado!</h4>
+                          '. $how_many .' grupo ha sido creado satisfactoriamente para la oficina '. $post_officename .'.
+                       </div></div>';
+        } elseif ($how_many > '1') {
+          echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
+      		             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      		             <h4><i class="icon fa fa-check-circle"></i>¡Usuario creado!</h4>
+      		                '. $how_many .' grupos han sido creados satisfactoriamente para la oficina '. $post_officename .'.
+      		             </div></div>';
+        }
+      }
+
       echo '<div class="row">
               <div id="float_window" class="col-md-10">
                 <div class="box box-info"> ';
@@ -398,64 +436,7 @@ elseif ($request == 'POST') {
                             </td>
                           </tr>\n";
       echo "            </table>\n";
-
-      if (@$empty_groupname == '1')  {
-      echo "            <table align=center class=table width=60% border=0 cellpadding=0 cellspacing=3>\n";
-      echo "              <tr>\n";
-      //TRADUCIR
-      echo "                <td class=table_rows width=20 align=center>
-                              <img src='../images/icons/cancel.png' />
-                            </td>
-
-                            <td class=table_rows_output_red>
-                              Se requiere introducir el nombre del grupo.
-                            </td>
-                          </tr>\n";
-      echo "            </table>\n";
-      } elseif (@$evil_groupname == '1') {
-      echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-      echo "              <tr>\n";
-      echo "                <td class=table_rows width=20 align=center>
-                              <img src='../images/icons/cancel.png' />
-                            </td>
-
-                            <td class=table_rows_red>
-                              Alphanumeric characters, hyphens, underscores, spaces, and periods are allowed when creating a Group Name.
-                            </td>
-                          </tr>\n";
-      echo "            </table>\n";
-      } elseif (@$groupname_array_cnt != @$unique_groupname_array_cnt) {
-      echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-      echo "              <tr>\n";
-      echo "                <td class=table_rows width=20 align=center>
-                              <img src='../images/icons/cancel.png' />
-                            </td>
-
-                            <td class=table_rows_red>
-                              Duplicate Group Name exists.
-                            </td>
-                          </tr>\n";
-      echo "            </table>\n";
-      }
-
-      if ((@$empty_groupname != '1') && (@$evil_groupname != '1') && (@$groupname_array_cnt == @$unique_groupname_array_cnt)) {
-
-        echo "          <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "            <tr>\n";
-        if ($how_many == '1') {
-        echo "             <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td><td class=table_rows_green>
-                           &nbsp;$how_many group was created within the <b>$post_officename</b> office successfully.</td>
-                         </tr>\n";
-        } elseif ($how_many > '1') {
-        echo "             <td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td><td class=table_rows_green>
-                           &nbsp;$how_many groups were created within the <b>$post_officename</b> office successfully.</td>
-                          </tr>\n";
-        }
-        echo "          </table>\n";
-      }
-
       echo "            <table align=center class='table' valign=top width=60% border=0 cellpadding=0 cellspacing=3>\n";
-      echo "              <tr><td height=15></td></tr>\n";
 
       for ($x=0;$x<$how_many;$x++) {
         $y = $x+1;
@@ -500,7 +481,7 @@ elseif ($request == 'POST') {
       echo "              <tr>
                             <td>
                             <div class='box-footer'>
-                              <button id='formButtons' onclick='location=\"officeadmin.php\"' class='btn btn-success pull-right'>
+                              <button id='formButtons' type='button' onclick='location=\"officeadmin.php\"' class='btn btn-success pull-right'>
                                 Aceptar
                                 <i class='fa fa-check'></i>
                               </button>
@@ -529,7 +510,7 @@ elseif ($request == 'POST') {
 
     echo '       <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                 <h4><i class="icon fa fa-check-circle"></i>¡Grupo creado!</h4>
+                 <h4><i class="icon fa fa-check-circle"></i>Oficina creada!</h4>
                     La oficina ha sido creada satisfactoriamente.
                  </div></div>';
     echo '<div class="row">
@@ -631,8 +612,8 @@ elseif ($request == 'POST') {
 
         for ($x=0;$x<$how_many;$x++) {
           $y = $x+1;
-    echo "              <tr><td class=table_rows_output colspan=2>$y.&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input type='text' size='25' maxlength='50' name='input_group_name[$y]'></td></tr>
+    echo "              <tr><td class=table_rows colspan=2>$y.&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input type='text' required='true' size='25' maxlength='50' name='input_group_name[$y]'></td></tr>
                           </table>\n";
         }
     }

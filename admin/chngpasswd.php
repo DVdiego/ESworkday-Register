@@ -26,7 +26,7 @@ include '../config.inc.php';
 include 'header.php';
 include 'topmain.php';
 include 'leftmain.php';
-echo "<title>$title - Change Password</title>\n";
+echo "<title>$title - Cambiar Contraseña</title>\n";
 
 $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
@@ -315,7 +315,7 @@ echo "              <tr>
                     </tr>\n";
 echo "            </table>\n";
 echo "            <div class='box-footer'>
-                    <button id='formButtons' onclick='location=\"useradmin.php\"' class='btn btn-success pull-right'>
+                    <button id='formButtons' type='button' onclick='location=\"index.php\"' class='btn btn-success pull-right'>
                         Aceptar
                       <i class='fa fa-check'></i>
                     </button>

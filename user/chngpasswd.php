@@ -241,6 +241,11 @@ elseif ($request == 'POST') {
             $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
             $post_username = stripslashes($post_username);
+            echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
+                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                         <h4><i class="icon fa fa-check-circle"></i>¡Contraseña cambiada!</h4>
+                            La contraseña de '. $post_username .' ha sido cambiada satisfactoriamente.
+                         </div></div>';
             echo '<div class="row">
                     <div id="float_window" class="col-md-10">
                       <div class="box box-info"> ';
@@ -248,24 +253,14 @@ elseif ($request == 'POST') {
                              <h3 class="box-title"><i class="fa fa-lock"></i> Cambiar Contraseña</h3>
                         </div>
                         <div class="box-body">';
-
-            echo "            <table align=center class=table_border width=60% border=0 cellpadding=0 cellspacing=3>\n";
-            echo "              <tr><td class=table_rows width=20 align=center><img src='../images/icons/accept.png' /></td>
-                            <td class=table_rows_green>&nbsp;Password changed successfully.</td></tr>\n";
-            echo "            </table>\n";
-            echo "            <br />\n";
             echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
-            echo "              <tr><th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/lock_edit.png' />&nbsp;&nbsp;&nbsp;Change
-                                  Password</th></tr>\n";
-            // echo "              <tr><td height=15></td></tr>\n";
             echo "              <tr><td class=table_rows_output width=20% height=25 style='padding-left:32px;' nowrap>Usuario:</td><td align=left class=table_rows width=80%
                                   style='padding-left:20px;'><input type='hidden' name='post_username' value=\"$post_username\">$post_username</td></tr>\n";
             echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Nueva Contraseña:</td><td align=left class=table_rows
-                                  colspan=2 style='padding-left:20px;' width=80%>***hidden***</td></tr>\n";
-            // echo "              <tr><td height=15></td></tr>\n";
+                                  colspan=2 style='padding-left:20px;' width=80%>***privado***</td></tr>\n";
             echo "            </table>\n";
             echo "            <div class='box-footer'>
-                                <button id='formButtons' onclick='location=\"useradmin.php\"' class='btn btn-success pull-right'>
+                                <button id='formButtons' type='button' onclick='location=\"index.php\"' class='btn btn-success pull-right'>
                                     Aceptar
                                   <i class='fa fa-check'></i>
                                 </button>

@@ -738,7 +738,7 @@ elseif ($request == 'POST') {
 
 		echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
 		             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		             <h4><i class="icon fa fa-check-circle"></i>¿Usuario creado!</h4>
+		             <h4><i class="icon fa fa-check-circle"></i>¡Usuario creado!</h4>
 		                El usuario ha sido creado satisfactoriamente
 		             </div></div>';
 		echo '<div class="row">
