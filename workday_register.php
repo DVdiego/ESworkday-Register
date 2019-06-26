@@ -642,7 +642,6 @@ if ($request == 'POST') { // Process employee's punch information
       $lat = $_POST['latitude'];
       $lon = $_POST['longitude'];
 
-
     if (strtolower($ip_logging) == "yes") {
         $query = "insert into ".$db_prefix."info (fullname, `inout`, timestamp, notes, ipaddress, latitude, longitude) values ('".$fullname."', '".$inout."', '".$tz_stamp."', '".$notes."', '".$connecting_ip."','" . $lat . "','" . $lon . "')";
     } else {
