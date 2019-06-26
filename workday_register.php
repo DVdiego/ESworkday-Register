@@ -298,7 +298,7 @@ echo "<div class='row'>";
 echo "<div class='col-sm-6 col-md-6 col-lg-6'>";
 echo "    <div class='form-group'>
             <label>Notas:</label>
-            <input type='text' name='left_notes' maxlength='250' class='form-control'>
+            <textarea class='form-control' rows='3' width='100%' name='left_notes'></textarea>
           </div>";
 
 echo "</div>";

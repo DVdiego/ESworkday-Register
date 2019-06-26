@@ -231,7 +231,7 @@ echo "              <tr>
                     </tr>\n";
 echo "            </table>\n";
 echo "            <div class='box-footer'>
-                    <button id='formButtons' onclick='location=\"statusadmin.php\"' class='btn btn-success pull-right'>
+                    <button type='button' id='formButtons' onclick='location=\"statusadmin.php\"' class='btn btn-success pull-right'>
                       Aceptar
                       <i class='fa fa-check'></i>
                     </button>

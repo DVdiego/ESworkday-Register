@@ -278,8 +278,8 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
         if (isset($_POST['delete_time_checkbox']) && (((!empty($_POST['post_why'])) && ($require_time_admin_edit_reason == "yes")) || ($require_time_admin_edit_reason == "no"))) { // Display successful time delete
           echo '       <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                       <h4><i class="icon fa fa-check-circle"></i>Tiempo eliminado!</h4>
-                          El tiempo registrado ha sido eliminado satisfactoriamente.
+                       <h4><i class="icon fa fa-check-circle"></i>Hora eliminada!</h4>
+                          La hora registrasa ha sido eliminada satisfactoriamente.
                        </div></div>';
 
             echo '<div class="row">
@@ -292,16 +292,16 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
             echo "            <form name='form' action='$self' method='post'>\n";
             echo "            <table align=center class=table width=60% border=0 cellpadding=3 cellspacing=0>\n";
             echo "                <tr>
-                                    <td nowrap width=1% style='padding-right:5px;padding-left:5px;' class='table_rows_output'>
+                                    <td class='table_rows' nowrap width=1% style='padding-right:5px;padding-left:5px;' class='table_rows_output'>
                                       Eliminado
                                     </td>\n";
-            echo "                  <td nowrap width=7% align=left class='table_rows_output'>
+            echo "                  <td class='table_rows' nowrap width=7% align=center style='padding-left:20px;'>
                                       Entrada/Salida
                                     </td>\n";
-            echo "                  <td nowrap style='padding-left:20px;' width=4% align=right class='table_rows_output'>
+            echo "                  <td class='table_rows' nowrap style='padding-left:20px;' width=4% align=right class='table_rows_output'>
                                       Hora
                                     </td>\n";
-            echo "                  <td style='padding-left:25px;' class='table_rows_output'>
+            echo "                  <td class='table_rows' style='padding-left:25px;' class='table_rows_output'>
                                       Notas
                                     </td>
                                   </tr>\n";
@@ -378,7 +378,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
 	              $final_notes[$x] = preg_replace('/' . "[^[:alnum:] \,\.\?-]" . '/',"",$final_notes[$x]);
                 $final_username[$x] = addslashes($final_username[$x]);
 
-                $query5 = "select * from ".$db_prefix."info where (fullname = '".$final_username[$x]."') and (timestamp = '".$final_mysql_timestamp[$x]."') and (`inout` = '".$final_inout[$x]."') and (notes = '".$final_notes[$x]."')";
+                $query5 = "select * from ".$db_prefix."info where (empfullname = '".$final_username[$x]."') and (timestamp = '".$final_mysql_timestamp[$x]."') and (`inout` = '".$final_inout[$x]."') and (notes = '".$final_notes[$x]."')";
                 $result5 = mysqli_query($GLOBALS["___mysqli_ston"], $query5);
                 @$tmp_num_rows = mysqli_num_rows($result5);
 
@@ -442,11 +442,12 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
                         $result6 = mysqli_query($GLOBALS["___mysqli_ston"], $query6);
                     }
                     echo "              <tr class=display_row height=20>\n";
-                    echo "                <td nowrap bgcolor='$row_color' width=5% align=center><img src='../images/icons/accept.png' /></td>\n";
-                    echo "                <td nowrap bgcolor='$row_color' align=left width=7% style='padding-left:5px;'>$final_inout[$x]</td>\n";
-                    echo "                <td nowrap align=right style='padding-left:20px;' width=4% bgcolor='$row_color'>$final_time[$x]</td>\n";
+                    echo "                <td nowrap bgcolor='$row_color' width=5% align=center>
+                                            <i class='glyphicon glyphicon-ok text-green'></i>\n";
+                    echo "                <td nowrap bgcolor='$row_color' align=center width=7% style='padding-left:5px;'>$final_inout[$x]</td>\n";
+                    echo "                <td nowrap align=center style='padding-left:20px;' width=4% bgcolor='$row_color'>$final_time[$x]</td>\n";
                     echo "                <td style='padding-left:25px;' bgcolor='$row_color'>$final_notes[$x]</td>\n";
-                    echo "              </tr>\n";
+                    echo "              </tr></table>\n";
                     $row_count++;
                 }
             }
@@ -674,21 +675,21 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
 
         echo "                <th class=rightside_heading nowrap align=center colspan=4>
                                 <i class='fa fa-trash'></i>
-                                Seleccionar la hora a elminiar del usuario $post_username en la fecha $post_date
+                                Selecciona la hora a elminiar del usuario $post_username en la fecha $post_date
                               </th>
                             </tr>\n";
         if (isset($time_set)) { // Confirm the admin wants to delete the time.
             echo "                <tr>
-                                    <td nowrap width=1% style='padding-right:5px;padding-left:5px;' class='table_rows_output'>
+                                    <td class='table_rows' nowrap width=1% style='padding-right:5px;padding-left:5px;' class='table_rows_output'>
                                       ¿Desea eliminar?
                                     </td>\n";
-            echo "                  <td nowrap width=7% align=left class='table_rows_output'>
+            echo "                  <td class='table_rows' nowrap width=7% align=left class='table_rows_output'>
                                       Entrada/Salida
                                     </td>\n";
-            echo "                  <td nowrap style='padding-left:20px;' width=4% align=right class='table_rows_output'>
+            echo "                  <td class='table_rows' nowrap style='padding-left:20px;' width=4% align=right class='table_rows_output'>
                                       Hora
                                     </td>\n";
-            echo "                  <td style='padding-left:25px;' class='table_rows_output'>
+            echo "                  <td class='table_rows' style='padding-left:25px;' class='table_rows_output'>
                                       Notas
                                     </td>
                                   </tr>\n";
@@ -719,7 +720,7 @@ if ($request == 'GET') { // Display employee select interface for deleting an em
                                       </td>
 
                                       <td colspan=2 width=80% style='padding-left:20px;'>
-                                        <input type='text' size='25' required='true' maxlength='250' name='post_why'>
+                                        <input type='text' size='25' placeholder='razón' required='true' maxlength='250' name='post_why'>
                                       </td>
                                     </tr>
                                     </table>\n";
