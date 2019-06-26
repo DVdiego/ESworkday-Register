@@ -4,6 +4,7 @@ $user_count = mysqli_query($GLOBALS["___mysqli_ston"], "select empfullname from 
                            order by empfullname");
 @$user_count_rows = mysqli_num_rows($user_count);
 
+
 $admin_count = mysqli_query($GLOBALS["___mysqli_ston"], "select empfullname from ".$db_prefix."employees where admin = '1'");
 @$admin_count_rows = mysqli_num_rows($admin_count);
 
@@ -12,6 +13,12 @@ $time_admin_count = mysqli_query($GLOBALS["___mysqli_ston"], "select empfullname
 
 $reports_count = mysqli_query($GLOBALS["___mysqli_ston"], "select empfullname from ".$db_prefix."employees where reports = '1'");
 @$reports_count_rows = mysqli_num_rows($reports_count);
+
+//Restando el usuario oculto del sistema.
+$user_count_rows--;
+$time_admin_count_rows--;
+$reports_count_rows--;
+$admin_count_rows--;
 
 echo '<div class="row">
         <div id="float_window" class="col-md-10">

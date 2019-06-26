@@ -501,9 +501,7 @@ if ($row_count == "1") {
 									 <h3 class="box-title"><i class="fa fa-search-plus"></i> Buscar Usuario</h3>
 								 </div><div class="box-body">';
 
-echo "            <table class='table'>\n";
-echo "              <tr><th>User Search Summary</th></tr>\n";
-echo "              <tr>
+echo "            <table class='table'>
 											<td>
 												Resultados de la búsqueda de \"$tmp_var\" in $tmp_var2
 											</td>
@@ -515,7 +513,6 @@ echo "              <tr>\n";
 echo "                <th>&nbsp;</th>\n";
 echo "                <th>Usuario</th>\n";
 echo "                <th>Acceso</th>\n";
-// echo "                <th>Email</th>\n";
 echo "                <th>Oficina</th>\n";
 echo "                <th>Grupo</th>\n";
 echo "                <th>Deshabilitada</th>\n";
@@ -542,41 +539,49 @@ echo "                <td>".$row['office']."</td>\n";
 echo "                <td>".$row['groups']."</td>\n";
 
 if ("".$row["disabled"]."" == 1) {
-  echo "                <td><img src='../images/icons/cross.png' /></td>\n";
+  echo "                <td align='center'><i class='glyphicon glyphicon-remove text-red'></i></td>\n";
 } else {
   $disabled = "";
   echo "                <td>".$disabled."</td>\n";
 }
 if ("".$row["admin"]."" == 1) {
-  echo "                <td><img src='../images/icons/accept.png' /></td>\n";
+  echo "                <td align='center'><i class='glyphicon glyphicon-ok text-green'></i></td>\n";
 } else {
   $admin = "";
   echo "                <td>".$admin."</td>\n";
 }
 if ("".$row["time_admin"]."" == 1) {
-  echo "                <td><img src='../images/icons/accept.png' /></td>\n";
+  echo "                <td align='center'><i class='glyphicon glyphicon-ok text-green'></i></td>\n";
 } else {
   $time_admin = "";
   echo "                <td>".$time_admin."</td>\n";
 }
 if ("".$row["reports"]."" == 1) {
-  echo "                <td><img src='../images/icons/accept.png' /></td>\n";
+  echo "                <td align='center'><i class='glyphicon glyphicon-ok text-green'></i></td>\n";
 } else {
   $reports = "";
   echo "                <td>".$reports."</td>\n";
 }
 
 
-echo "                <td>
-                    <a title=\"Edit User: $empfullname\" href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">
-                    <img border=0 src='../images/icons/application_edit.png' /></td>\n";
-echo "                <td>
-                    <a title=\"Change Password: $empfullname\"
-                    href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\">
-                    <img border=0 src='../images/icons/lock_edit.png' /></td>\n";
-echo "                <td>
-                    <a title=\"Delete User: $empfullname\" href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">
-                    <img border=0 src='../images/icons/delete.png' /></td>\n";
+echo "              <td align='center'>
+                    	<a title=\"Editar usuario: $empfullname\"
+												href=\"useredit.php?username=$empfullname&officename=".$row["office"]."\">
+                    		<i class='glyphicon glyphicon-pencil'></i>
+											</a>
+										</td>\n";
+echo "              <td align='center'>
+                    	<a title=\"Cambiar contraseña: $empfullname\"
+                    		href=\"chngpasswd.php?username=$empfullname&officename=".$row["office"]."\">
+                    		<i class='fa fa-lock text-yellow'></i>
+											</a>
+										</td>\n";
+echo "              <td align='center'>
+                    	<a title=\"Eliminar usuario: $empfullname\"
+												href=\"userdelete.php?username=$empfullname&officename=".$row["office"]."\">
+                    		<i class='glyphicon glyphicon-minus-sign text-red'></i>
+											</a>
+										</td>\n";
 echo "              </tr>\n";
 }
 ((mysqli_free_result($result4) || (is_object($result4) && (get_class($result4) == "mysqli_result"))) ? true : false);
