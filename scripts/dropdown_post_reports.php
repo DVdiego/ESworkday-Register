@@ -25,7 +25,7 @@ function office_names() {
 var select = document.form.office_name;
 var groups_select = document.form.group_name;
 var users_select = document.form.user_name;
-select.options[0] = new Option("All");
+select.options[0] = new Option("Todos");
 select.options[0].value = 'All';
 
 <?php
@@ -54,9 +54,9 @@ function group_names() {
 var offices_select = document.form.office_name;
 var groups_select = document.form.group_name;
 var users_select = document.form.user_name;
-groups_select.options[0] = new Option("All");
+groups_select.options[0] = new Option("Todos");
 groups_select.options[0].value = 'All';
-users_select.options[0] = new Option("All");
+users_select.options[0] = new Option("Todos");
 users_select.options[0].value = 'All';
 
 if (offices_select.options[offices_select.selectedIndex].value != 'All') {
@@ -78,7 +78,7 @@ if (offices_select.options[offices_select.selectedIndex].text == "<?php echo $of
 $query2 = "select * from ".$db_prefix."offices, ".$db_prefix."groups where ".$db_prefix."groups.officeid = ".$db_prefix."offices.officeid
            and ".$db_prefix."offices.officename = '".$office_row."'";
 $result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query2);
-echo "groups_select.options[0] = new Option(\"All\");\n";
+echo "groups_select.options[0] = new Option(\"Todos\");\n";
 echo "groups_select.options[0].value = 'All';\n";
 $cnt = 1;
 
@@ -104,13 +104,13 @@ if (groups_select.options[groups_select.selectedIndex].value != 'All') {
 }
 if (offices_select.options[offices_select.selectedIndex].value == 'All') {
 <?php
-echo "groups_select.options[0] = new Option(\"All\");\n";
+echo "groups_select.options[0] = new Option(\"Todos\");\n";
 echo "groups_select.options[0].value = 'All';\n";
 ?>
 }
 if (groups_select.options[groups_select.selectedIndex].value == 'All') {
 <?php
-echo "users_select.options[0] = new Option(\"All\");\n";
+echo "users_select.options[0] = new Option(\"Todos\");\n";
 echo "users_select.options[0].value = 'All';\n";
 ?>
 }
@@ -120,7 +120,7 @@ function user_names() {
 var offices_select = document.form.office_name;
 var groups_select = document.form.group_name;
 var users_select = document.form.user_name;
-users_select.options[0] = new Option("All");
+users_select.options[0] = new Option("Todos");
 users_select.options[0].value = 'All';
 
 if (offices_select.options[offices_select.selectedIndex].value != 'All') {
@@ -151,7 +151,7 @@ $query3 = "select * from ".$db_prefix."employees where office = '".$office_row."
            order by empfullname asc";
 $result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
 
-echo "users_select.options[0] = new Option(\"All\");\n";
+echo "users_select.options[0] = new Option(\"Todos\");\n";
 echo "users_select.options[0].value = 'All';\n";
 $usercnt = 1;
 
@@ -175,7 +175,7 @@ $usercnt++;
 ?>
 if (groups_select.options[groups_select.selectedIndex].value == 'All') {
 <?php
-echo "users_select.options[0] = new Option(\"All\");\n";
+echo "users_select.options[0] = new Option(\"Todos\");\n";
 echo "users_select.options[0].value = 'All';\n";
 ?>
 }
