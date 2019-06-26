@@ -51,10 +51,12 @@ include 'usersummary.php';
 
 echo '     <div class="row">
               <div id="float_window" class="col-md-10">
-                <div class="box">
+                <div class="box">';
+echo '      <div class="box-header">';
+echo '        <h3 class="box-title"><i class="fa fa-user-secret"></i> Usuarios con Permisos de Administración</h3>
+            </div>';
 
-          <!-- /.box-header -->
-                  <div class="box-body table-responsive no-padding">';
+echo'                  <div class="box-body table-responsive no-padding">';
 echo "             <table class='table table-hover'>\n";
 echo "              <tr>\n";
 echo "                <th>&nbsp;</th>\n";
@@ -148,10 +150,12 @@ echo "          </table></div></div></div></div>\n";
 
 echo '     <div class="row">
               <div id="float_window" class="col-md-10">
-                <div class="box">
+                <div class="box">';
+echo '      <div class="box-header">';
+echo '        <h3 class="box-title"><i class="fa fa-user"></i> Usuarios</h3>
+            </div>';
 
-          <!-- /.box-header -->
-                  <div class="box-body table-responsive no-padding">';
+echo'                  <div class="box-body table-responsive no-padding">';
 echo "             <table class='table table-hover'>\n";
 echo "              <tr>\n";
 echo "                <th>&nbsp;</th>\n";

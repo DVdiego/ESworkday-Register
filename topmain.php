@@ -25,7 +25,7 @@
  */
 
 
-
+setlocale(LC_ALL,'es_ES.UTF-8');
 echo '
 <!-- Main Header -->
   <header class="main-header">';
@@ -84,9 +84,9 @@ if ($date_link == "none") {
 }
 
 // display today's date in top right of each page. This will link to $date_link you setup in config.inc.php. //
-$todaydate=date('j F Y');
 
-echo "<li><a href='$date_link'>$todaydate</a></li>";
+$todaydate=strftime("%d %B, %Y");
+echo "<li><a href='http://isoftsolutions.es/'>$todaydate</a></li>";
 
 // display the topbar //
 

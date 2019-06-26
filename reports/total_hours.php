@@ -25,7 +25,7 @@ session_start();
 $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 $current_page = "total_hours.php";
-
+setlocale(LC_ALL,'es_ES.UTF-8');
 include '../config.inc.php';
 
 if ($use_reports_password == "yes") {
@@ -858,7 +858,8 @@ $rpt_stamp = $rpt_stamp + @$tzo;
 
 $rpt_time = date($timefmt, $rpt_stamp);
 $rpt_date = date($datefmt, $rpt_stamp);
-
+$from_date_eur = strftime('%d/%m/%Y',strtotime($from_date));
+$to_date_eur = strftime('%d/%m/%Y',strtotime($to_date));
 $tmp_fullname = stripslashes($fullname);
 if ((strtolower($user_or_display) == "display") && ($tmp_fullname != "All")) {
 $tmp_fullname = stripslashes($displayname);
@@ -872,9 +873,9 @@ elseif (($office_name != "All") && ($group_name != "All") && ($tmp_fullname == '
  Users: All";}
 $rpt_name="$tmp_fullname";
 echo "<table width=80% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
-echo "  <tr><td width=80% style='font-size:9px;color:#000000;'>Run on: $rpt_time, $rpt_date</td><td nowrap style='font-size:9px;color:#000000;'>
+echo "  <tr><td width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time, $rpt_date</td><td nowrap style='font-size:9px;color:#000000;'>
           $rpt_name</td></tr>\n";
-echo "  <tr><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'>Date Range: $from_date - $to_date</td></tr>\n";
+echo "  <tr><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
 if (!empty($tmp_csv)) {
   echo "               <tr class=notprint><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'><a style='color:#27408b;font-size:9px;
                          text-decoration:underline;'
@@ -1120,11 +1121,11 @@ for ($x=0;$x<$employees_cnt;$x++) {
                                   echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
                                   echo "<table width=100% align=center class=misc_items border=0
                                           cellpadding=3 cellspacing=0>\n";
-                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Run on: $rpt_time,
+                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
                                             $rpt_date (page $temp_page_count)</td>
                                             <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
                                   echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
-                                            style='font-size:9px;color:#000000;'>Date Range: $from_date - $to_date</td></tr>\n";
+                                            style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
                                   echo "</table></td></tr>\n";
                                   if (strtolower($user_or_display) == "display") {
                                       echo "  <tr><td class=notdisplay_rpt width=100% colspan=2
@@ -1230,11 +1231,11 @@ for ($x=0;$x<$employees_cnt;$x++) {
                                   echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
                                   echo "<table width=100% align=center class=misc_items border=0
                                           cellpadding=3 cellspacing=0>\n";
-                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Run on: $rpt_time,
+                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
                                             $rpt_date (page $temp_page_count)</td>
                                             <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
                                   echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
-                                            style='font-size:9px;color:#000000;'>Date Range: $from_date - $to_date</td></tr>\n";
+                                            style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
                                   echo "</table></td></tr>\n";
                                   if (strtolower($user_or_display) == "display") {
                                       echo "  <tr><td class=notdisplay_rpt width=100% colspan=2
@@ -1314,7 +1315,7 @@ for ($x=0;$x<$employees_cnt;$x++) {
                           echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
                           echo "<table width=100% align=center class=misc_items border=0
                                   cellpadding=3 cellspacing=0>\n";
-                          echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Run on: $rpt_time,
+                          echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
                                     $rpt_date (page $temp_page_count)</td>
                                     <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
                           echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
@@ -1401,11 +1402,11 @@ for ($x=0;$x<$employees_cnt;$x++) {
                                   echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
                                   echo "<table width=100% align=center class=misc_items border=0
                                           cellpadding=3 cellspacing=0>\n";
-                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Run on: $rpt_time,
+                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
                                             $rpt_date (page $temp_page_count)</td>
                                             <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
                                   echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
-                                            style='font-size:9px;color:#000000;'>Date Range: $from_date - $to_date</td></tr>\n";
+                                            style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
                                   echo "</table></td></tr>\n";
                                   if (strtolower($user_or_display) == "display") {
                                       echo "  <tr><td class=notdisplay_rpt width=100% colspan=2
@@ -1495,11 +1496,11 @@ for ($x=0;$x<$employees_cnt;$x++) {
                                   echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
                                   echo "<table width=100% align=center class=misc_items border=0
                                           cellpadding=3 cellspacing=0>\n";
-                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Run on: $rpt_time,
+                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
                                             $rpt_date (page $temp_page_count)</td>
                                             <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
                                   echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
-                                            style='font-size:9px;color:#000000;'>Date Range: $from_date - $to_date</td></tr>\n";
+                                            style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
                                   echo "</table></td></tr>\n";
                                   if (strtolower($user_or_display) == "display") {
                                       echo "  <tr><td class=notdisplay_rpt width=100% colspan=2
@@ -1585,11 +1586,11 @@ for ($x=0;$x<$employees_cnt;$x++) {
                               echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
                               echo "<table width=100% align=center class=misc_items border=0
                                       cellpadding=3 cellspacing=0>\n";
-                              echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Run on: $rpt_time,
+                              echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
                                         $rpt_date (page $temp_page_count)</td>
                                         <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
                               echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
-                                        style='font-size:9px;color:#000000;'>Date Range: $from_date - $to_date</td></tr>\n";
+                                        style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
                               echo "</table></td></tr>\n";
                               if (strtolower($user_or_display) == "display") {
                                   echo "  <tr><td class=notdisplay_rpt width=100% colspan=2
@@ -1673,11 +1674,11 @@ for ($x=0;$x<$employees_cnt;$x++) {
                               echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
                               echo "<table width=100% align=center class=misc_items border=0
                                       cellpadding=3 cellspacing=0>\n";
-                              echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Run on: $rpt_time,
+                              echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
                                         $rpt_date (page $temp_page_count)</td>
                                         <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
                               echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
-                                        style='font-size:9px;color:#000000;'>Date Range: $from_date - $to_date</td></tr>\n";
+                                        style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
                               echo "</table></td></tr>\n";
                               if (strtolower($user_or_display) == "display") {
                                   echo "  <tr><td class=notdisplay_rpt width=100% colspan=2
@@ -1753,11 +1754,10 @@ for ($x=0;$x<$employees_cnt;$x++) {
         if ($x != ($employees_cnt - 1)) {
         echo "            </table>\n";
         echo "            <table style='page-break-before:always;' width=80% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
-        echo "              <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Run on: $rpt_time, $rpt_date (page
+        echo "              <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time, $rpt_date (page
                               $temp_page_count)</td>
                                 <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
-        echo "               <tr><td width=80%></td><td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>Date Range: $from_date -
-                               $to_date</td></tr>\n";
+        echo "               <tr><td width=80%></td><td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
         echo "            </table>\n";
         echo "            <table width=80% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
         }

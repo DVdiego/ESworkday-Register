@@ -193,16 +193,18 @@ echo "            <table style='display:none;' align=center width=60% border=0 c
 } else {
 echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 }
-echo "              <tr>
-                      <td class=table_rows height=40 width=10>
-                        <input type='checkbox' name='delete_all_user_data' value='1'>
-                      </td>
 
-                      <td class=table_rows height=53>
-                        ¿Desea eliminar los registros de este usuario?
-                      </td>
-                    </tr>
-                  </table>\n";
+//casilla de confirmación para eliminar los registros de la BD del usuario eliminado.
+// echo "              <tr>
+//                       <td class=table_rows height=40 width=10>
+//                         <input type='checkbox' name='delete_all_user_data' value='1'>
+//                       </td>
+//
+//                       <td class=table_rows height=53>
+//                         ¿Desea eliminar los registros de este usuario?
+//                       </td>
+//                     </tr>";
+echo "                  </table>\n";
 if (isset($evil)) {
 echo "              </table>\n";
 echo '<div class="box-footer">
@@ -247,7 +249,8 @@ $group_name = $_POST['group_name'];
 $admin_perms = $_POST['admin_perms'];
 $reports_perms = $_POST['reports_perms'];
 $time_admin_perms = $_POST['time_admin_perms'];
-@$delete_data = $_POST['delete_all_user_data'];
+//parametro que recoge el valor de la casilla para elminar los registros de la BD.
+//@$delete_data = $_POST['delete_all_user_data'];
 
 $post_username = addslashes($post_username);
 $display_name = addslashes($display_name);
@@ -302,17 +305,17 @@ if (!isset($tmp_group_name)) {echo "Something is fishy here.\n"; exit;}
 if (($admin_perms != '0') && ($admin_perms != '1')) {echo "Something is fishy here.\n"; exit;}
 if (($reports_perms != '0') && ($reports_perms != '1')) {echo "Something is fishy here.\n"; exit;}
 if (($time_admin_perms != '0') && ($time_admin_perms != '1')) {echo "Something is fishy here.\n"; exit;}
-if ((isset($delete_data)) && ($delete_data != '1')) {echo "Something is fishy here.\n"; exit;}
+//if ((isset($delete_data)) && ($delete_data != '1')) {echo "Something is fishy here.\n"; exit;}
 
 // end post validation //
 
 $query2 = "delete from ".$db_prefix."employees where empfullname = ('".$post_username."')";
 $result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query2);
 
-if ($delete_data == "1") {
-$query3 = "delete from ".$db_prefix."info where fullname = ('".$post_username."')";
-$result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
-}
+// if ($delete_data == "1") {
+// $query3 = "delete from ".$db_prefix."info where fullname = ('".$post_username."')";
+// $result3 = mysqli_query($GLOBALS["___mysqli_ston"], $query3);
+// }
 
 $post_username = stripslashes($post_username);
 $display_name = stripslashes($display_name);

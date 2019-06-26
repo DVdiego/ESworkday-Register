@@ -406,10 +406,12 @@ if ($request == 'GET') {
     $rpt_stamp = $rpt_stamp + @$tzo;
     $rpt_time = date($timefmt, $rpt_stamp);
     $rpt_date = date($datefmt, $rpt_stamp);
+    $from_date_eur = strftime('%d/%m/%Y',strtotime($from_date));
+    $to_date_eur = strftime('%d/%m/%Y',strtotime($to_date));
 
     echo "<table width=100% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
-    echo "  <tr><td width=80% style='font-size:9px;color:#000000;padding-left:10px;'>Run on: $rpt_time, $rpt_date</td><td nowrap style='font-size:9px;color:#000000;'>Audit Log</td></tr>\n";
-    echo "  <tr><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'>Date Range: $from_date - $to_date</td></tr>\n";
+    echo "  <tr><td width=80% style='font-size:9px;color:#000000;padding-left:10px;'>Fecha del Informe: $rpt_time, $rpt_date</td><td nowrap style='font-size:9px;color:#000000;'>Audit Log</td></tr>\n";
+    echo "  <tr><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
     if (!empty($tmp_csv)) {
         echo "  <tr class=notprint><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'><a style='color:#27408b;font-size:9px; text-decoration:underline;' href=\"get_csv.php?rpt=auditlog&&csv=$tmp_csv&from=$from_timestamp&to=$to_timestamp&tzo=$tzo\">Download CSV File</a></td></tr>\n";
     }
@@ -492,8 +494,8 @@ if ($request == 'GET') {
             } else {
                 // display report name and page number of printed report above the column headings of each printed page //
                 $temp_page_count = $page_count + 1;
-                echo "  <tr><td colspan=2 class=notdisplay style='font-size:9px;color:#000000;padding-left:10px;'>Run on: $rpt_time, $rpt_date (page $temp_page_count)</td><td class=notdisplay nowrap style='font-size:9px;color:#000000;' align=right colspan=4>$rpt_name</td></tr>\n";
-                echo "  <tr><td class=notdisplay align=right colspan=6 nowrap style='font-size:9px;color:#000000;'> Date Range: $from_date - $to_date</td></tr>\n";
+                echo "  <tr><td colspan=2 class=notdisplay style='font-size:9px;color:#000000;padding-left:10px;'>Fecha del Informe: $rpt_time, $rpt_date (page $temp_page_count)</td><td class=notdisplay nowrap style='font-size:9px;color:#000000;' align=right colspan=4>$rpt_name</td></tr>\n";
+                echo "  <tr><td class=notdisplay align=right colspan=6 nowrap style='font-size:9px;color:#000000;'> Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
             }
             // echo "  <tr class=notdisplay>\n";
             // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified User</td>\n";

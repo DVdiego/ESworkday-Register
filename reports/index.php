@@ -30,11 +30,14 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 }
 
 include 'leftmain.php';
+
+$todaydate=strftime("%d/%m/%Y %H:%M:%S");
+
     echo "<!-- Content Header (Page header) -->
     <section class='content-header' style='padding-bottom: 30px;'>
       <h1>
-        Run Reports
-        <small>it all starts here</small>
+        Registros del día
+        <small>$todaydate</small>
       </h1>
     </section>";
 
@@ -145,242 +148,231 @@ function hours_worked_report($emp_fullname,$tmp_dni,$from_date,$to_date,$db_pref
     $aux_sum = 0;
     $num_files = mysqli_num_rows($result);
     //echo "número de filas: $num_files";
-    while ($row=mysqli_fetch_array($result)) {
-
-        $info_fullname = stripslashes("".$row['fullname']."");
-        $dni = "".$row['empDNI']."";
-        $info_inout = "".$row['inout']."";
-        $info_timestamp = "".$row['timestamp'].""; //+ $tzo;
-        $info_notes = "".$row['notes']."";
-        $info_ipaddress = "".$row['ipaddress']."";
-        $punchlist_in_or_out = "".$row['in_or_out']."";
-        $punchlist_punchitems[] = "".$row['punchitems']."";
-        $punchlist_color = "".$row['color']."";
-        $latitude = "".$row['latitude']."";
-        $longitude = "".$row['longitude']."";
-        $info_cnt++;
+    if($num_files>0){
 
 
 
+        while ($row=mysqli_fetch_array($result)) {
 
-        //echo "contador: $count\n";
-        //Se ejecuta únicamente con la primera fila de la consulta
-        if($count == 0) {
-
-
-          // echo "<div class='row'>
-          //             <div class='col-sm-12 col-md-6 col-lg-6'>
-          //                 <strong>Nombre: $info_fullname</strong>
-          //             </div>
-          //             <div class='col-sm-12 col-md-6 col-lg-6'>
-          //                 <strong>DNI: $dni</strong>
-          //             </div>
-          //         </div>";
-          echo "<div class='row'>
-                      <div class='col-sm-12 col-md-6 col-lg-6'>
-                          <strong>DNI: $dni</strong>
-                      </div>
-                  </div>";
-        }
+            $info_fullname = stripslashes("".$row['fullname']."");
+            $dni = "".$row['empDNI']."";
+            $info_inout = "".$row['inout']."";
+            $info_timestamp = "".$row['timestamp'].""; //+ $tzo;
+            $info_notes = "".$row['notes']."";
+            $info_ipaddress = "".$row['ipaddress']."";
+            $punchlist_in_or_out = "".$row['in_or_out']."";
+            $punchlist_punchitems[] = "".$row['punchitems']."";
+            $punchlist_color = "".$row['color']."";
+            $latitude = "".$row['latitude']."";
+            $longitude = "".$row['longitude']."";
+            $info_cnt++;
 
 
 
-        //Se ejecuta cuando detecta que hemos cambiado de día
-        //$date_info = date("r",$info_timestamp);
-        $date_info = strtotime(date("d-m-y",$info_timestamp));
+
+            //echo "contador: $count\n";
+            //Se ejecuta únicamente con la primera fila de la consulta
+            if($count == 0) {
 
 
-        $date_format = strftime("%A %d de %B del %Y", $info_timestamp);
-
-
-
-        //$total_sum = $total_sum + $aux_sum;
-        /*resetea las variables a 0 para cada día*/
-        if($last_date != $date_info) {
-
-
-          list($hours,$minutes,$seconds) = format_time($aux_sum);
-          $total_sum = $total_sum + $aux_sum;
-          //condición para que imprima solo cuando timestamp es positivo, es decir cada in --> out y no out--> in
-          //if($aux_sum>0 && $hours <= 12){
-            if($aux_sum>0){
-
-            echo "<div class='row'>
-                    <div class='col-sm-12 col-md-12 col-lg-12'>
-                        <strong>
-                            Tiempo trabajado en el día = ".$hours."h:".$minutes."m
-                        </strong>
-                    </div>
-                  </div>\n";
-            //echo " Suma del tiempo de trabajo del día: $time_aux";
-          }else {
-
-            //condición para que salte el mensaje solo cuando se ha realizado la suma de horas previamente
-            if($count>0){
-
-
+              // echo "<div class='row'>
+              //             <div class='col-sm-12 col-md-6 col-lg-6'>
+              //                 <strong>Nombre: $info_fullname</strong>
+              //             </div>
+              //             <div class='col-sm-12 col-md-6 col-lg-6'>
+              //                 <strong>DNI: $dni</strong>
+              //             </div>
+              //         </div>";
               echo "<div class='row'>
-                        <div class='col-sm-12 col-md-10 col-lg-10'>
-                          <div class='alert alert-warning'>
-                            <strong>
-                                ¡Aviso! No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
-                                <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
-                            </strong>
+                          <div class='col-sm-12 col-md-6 col-lg-6'>
+                              <strong>DNI: $dni</strong>
                           </div>
-                      </div>
-                    </div>\n";
+                      </div>";
+            }
+
+
+
+            //Se ejecuta cuando detecta que hemos cambiado de día
+            //$date_info = date("r",$info_timestamp);
+            $date_info = strtotime(date("d-m-y",$info_timestamp));
+
+
+            $date_format = strftime("%A %d de %B del %Y", $info_timestamp);
+
+
+
+            //$total_sum = $total_sum + $aux_sum;
+            /*resetea las variables a 0 para cada día*/
+            if($last_date != $date_info) {
+
+
+              list($hours,$minutes,$seconds) = format_time($aux_sum);
+              $total_sum = $total_sum + $aux_sum;
+              //condición para que imprima solo cuando timestamp es positivo, es decir cada in --> out y no out--> in
+              //if($aux_sum>0 && $hours <= 12){
+                if($aux_sum>0){
+
+                echo "<div class='row'>
+                        <div class='col-sm-12 col-md-12 col-lg-12'>
+                            <strong>
+                                Tiempo trabajado en el día = ".$hours."h:".$minutes."m
+                            </strong>
+                        </div>
+                      </div>\n";
+                //echo " Suma del tiempo de trabajo del día: $time_aux";
+              }else {
+
+                //condición para que salte el mensaje solo cuando se ha realizado la suma de horas previamente
+                if($count>0){
+
+
+                  echo "<div class='row'>
+                            <div class='col-sm-12 col-md-10 col-lg-10'>
+                              <div class='alert alert-warning'>
+                                <strong>
+                                    ¡Aviso! No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
+                                    <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
+                                </strong>
+                              </div>
+                          </div>
+                        </div>\n";
+
+                }
+              }
+
+              $sum_in = 0;
+              $sum_out = 0;
+
+
+              echo "<hr class='separator-reports'>\n";
+              echo "<div class='row'>";
+              echo "  <div class='col-xs-3 col-sm-3 col-md-2 col-lg-2'>
+                        <strong><span style='color:'> Estado</span></strong>
+                      </div>";
+              echo "  <div class='col-xs-3 col-sm-3 col-md-4 col-lg-4'>
+                        <strong><span style='color:'> Fecha</span></strong>
+                      </div>";
+              // echo "  <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
+              //           <strong><span style='color:'> Dirección IP</span></strong>
+              //         </div>";
+              echo "  <div class='col-xs-3 col-sm-3 col-md-2 col-lg-2'>
+                        <strong><span style='color:'> Comentarios</span></strong>
+                      </div>";
+              echo "  <div class='col-xs-3 col-sm-3 col-md-2 col-lg-2'>
+                        <strong><span style='color:'> Dirección</span></strong>
+                      </div>";
+              echo "</div>";
 
             }
+
+
+
+            /*suma todos los in o out para despues sacar la diferencia */
+            if($punchlist_in_or_out == 1){
+              $sum_in = $sum_in+$info_timestamp;
+              //echo "IN suma: $sum_in"; echo "  IN info: $info_timestamp";
+            }else {
+              $sum_out = $sum_out+$info_timestamp;
+              //echo "OUT suma: $sum_out"; echo "  OUT info: $info_timestamp";
+            }
+
+            /*variable que almacena las horas de trabajo de cada día*/
+            $aux_sum = $sum_out-$sum_in;
+
+            ?>
+
+
+
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                    <span style='color: <?php echo $punchlist_color?>'><?php echo "$info_inout"?></span>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-4 col-lg-4">
+                    <?php $datetime = strftime("%d/%m/%y, %H:%M", $info_timestamp);echo "$datetime";
+                    ?>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                    <?php echo "$info_notes";?>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
+                <?php $url = 'https://www.google.com/maps/?q=' . $latitude . ',' . $longitude;?>
+                    <a href=<?php echo $url?> target='_blank'>Ver mapa</a>
+                </div>
+            </div>
+
+
+
+    <?php
+
+        /*condición para operar cuando la fecha de inicio es igual a la fecha fin*/
+        if($count+1 == $num_files){
+
+
+          $total_sum = $total_sum + $aux_sum;
+          list($hours,$minutes,$seconds) = format_time($aux_sum);
+          list($thours,$tminutes,$tseconds) = format_time($total_sum);
+
+          //condición para que imprima solo cuando timestamp es positivo, es decir cada in --> out y no out--> in
+          if($aux_sum>0 && $hours <= 12){
+
+
+            // echo "<div class='row'>
+            //         <div class='col-sm-12 col-md-10 col-lg-10'>
+            //             <strong>
+            //                   Tiempo trabajado en el día = ".$hours."h:".$minutes."m
+            //             </strong>
+            //         </div>
+            //       </div>\n";
+            // //echo " Suma del tiempo de trabajo del día: $time_aux";
+             echo "<hr class='separator-reports'>\n";
+
+
+          } else {
+
+            //condición para que salte el mensaje solo cuando se ha realizado la suma de horas previamente
+            // if($count>0){
+            //
+            //
+            //   echo "<div class='row'>
+            //             <div class='col-sm-12 col-md-10 col-lg-10'>
+            //               <div class='alert alert-warning'>
+            //                 <strong>
+            //                     ¡Aviso! No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
+            //                     <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
+            //                 </strong>
+            //               </div>
+            //           </div>
+            //         </div>\n";
+              echo "<hr class='separator-reports'>\n";
+            // }
+
           }
 
-          $sum_in = 0;
-          $sum_out = 0;
-
-
-          echo "<hr class='separator-reports'>\n";
-          echo "<div class='row'>";
-          echo "  <div class='col-xs-3 col-sm-3 col-md-2 col-lg-2'>
-                    <strong><span style='color:'> Estado</span></strong>
-                  </div>";
-          echo "  <div class='col-xs-3 col-sm-3 col-md-4 col-lg-4'>
-                    <strong><span style='color:'> Fecha</span></strong>
-                  </div>";
-          // echo "  <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
-          //           <strong><span style='color:'> Dirección IP</span></strong>
-          //         </div>";
-          echo "  <div class='col-xs-3 col-sm-3 col-md-2 col-lg-2'>
-                    <strong><span style='color:'> Comentarios</span></strong>
-                  </div>";
-          echo "  <div class='col-xs-3 col-sm-3 col-md-2 col-lg-2'>
-                    <strong><span style='color:'> Dirección</span></strong>
-                  </div>";
-          echo "</div>";
 
         }
 
-
-
-        /*suma todos los in o out para despues sacar la diferencia */
-        if($punchlist_in_or_out == 1){
-          $sum_in = $sum_in+$info_timestamp;
-          //echo "IN suma: $sum_in"; echo "  IN info: $info_timestamp";
-        }else {
-          $sum_out = $sum_out+$info_timestamp;
-          //echo "OUT suma: $sum_out"; echo "  OUT info: $info_timestamp";
-        }
-
-        /*variable que almacena las horas de trabajo de cada día*/
-        $aux_sum = $sum_out-$sum_in;
-
-        ?>
-
-
-
-        <div class="row">
-            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-                <span style='color: <?php echo $punchlist_color?>'><?php echo "$info_inout"?></span>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-4 col-lg-4">
-                <?php $datetime = strftime("%d/%m/%y, %H:%M", $info_timestamp);echo "$datetime";
-                ?>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-                <?php echo "$info_notes";?>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-2 col-lg-2">
-            <?php $url = 'https://www.google.com/maps/?q=' . $latitude . ',' . $longitude;?>
-                <a href=<?php echo $url?> target='_blank'>Ver mapa</a>
-            </div>
-        </div>
-
-
-
-<?php
-
-    /*condición para operar cuando la fecha de inicio es igual a la fecha fin*/
-    if($count+1 == $num_files){
-
-
-      $total_sum = $total_sum + $aux_sum;
-      list($hours,$minutes,$seconds) = format_time($aux_sum);
-      list($thours,$tminutes,$tseconds) = format_time($total_sum);
-
-      //condición para que imprima solo cuando timestamp es positivo, es decir cada in --> out y no out--> in
-      if($aux_sum>0 && $hours <= 12){
-
-
-        // echo "<div class='row'>
-        //         <div class='col-sm-12 col-md-10 col-lg-10'>
-        //             <strong>
-        //                   Tiempo trabajado en el día = ".$hours."h:".$minutes."m
-        //             </strong>
-        //         </div>
-        //       </div>\n";
-        // //echo " Suma del tiempo de trabajo del día: $time_aux";
-         echo "<hr class='separator-reports'>\n";
-
-
-      } else {
-
-        //condición para que salte el mensaje solo cuando se ha realizado la suma de horas previamente
-        // if($count>0){
-        //
-        //
-        //   echo "<div class='row'>
-        //             <div class='col-sm-12 col-md-10 col-lg-10'>
-        //               <div class='alert alert-warning'>
-        //                 <strong>
-        //                     ¡Aviso! No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
-        //                     <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
-        //                 </strong>
-        //               </div>
-        //           </div>
-        //         </div>\n";
-          echo "<hr class='separator-reports'>\n";
-        // }
-
+        //$last_date = date("d",$info_timestamp);
+        $last_date = strtotime(date("d-m-y",$info_timestamp));
+        //$last_in_or_out = $punchlist_in_or_out;
+        $last_timestamp = $info_timestamp;
+        $count++;
       }
 
-      //7680 son las horas de trabajo realizadas en 4 años, si se trabaja 8h diarias,
-      //como la ley obliga a tener el historial de almenos 4 años
-      // pongo el valor 8000
-      // if($total_sum>0 && $thours<8000){
-      //
-      //   $from_date = strftime('%D', $from_timestamp);
-      //   $to_date = strftime('%D', $to_timestamp);
-      //   echo "<div class='row'>
-      //           <div class='col-sm-12 col-md-10 col-lg-10'>
-      //               <strong>
-      //                   Tiempo trabajado, $from_date hasta $to_date &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; TOTAL ".$thours."h:".$tminutes."m
-      //               </strong>
-      //
-      //           </div>
-      //         </div>\n";
-      //   echo "<hr class='separator-reports'>\n";
-      //
-      // }else{
-      //
-      //   echo "<div class='row'>
-      //             <div class='col-sm-12 col-md-10 col-lg-10'>
-      //               <div class='alert alert-warning'>
-      //                 <strong>
-      //                     ¡Aviso! No se puede realizar la suma total sino se corrigen los errores. ¡Contactar con el administrador!
-      //                     <a class='admin_headings' href=' '> contacto</a>
-      //                 </strong>
-      //               </div>
-      //             </div>
-      //         </div>\n";
-      //   echo "<hr class='separator-reports'>\n";
-      // }
+  }else{
 
+    echo "<div class='row'>
+                <div class='col-sm-12 col-md-6 col-lg-6'>";
+                // echo ' <div class="alert alert-warning alert-dismissible">
+                //
+                //               <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+              	// 							Usuario no tiene registros el día de hoy.
+                //             </div>';
 
-    }
-
-    //$last_date = date("d",$info_timestamp);
-    $last_date = strtotime(date("d-m-y",$info_timestamp));
-    //$last_in_or_out = $punchlist_in_or_out;
-    $last_timestamp = $info_timestamp;
-    $count++;
+  echo '<div class="alert alert-info" role="alert">
+  <strong>Aviso!</strong> El suario no tiene registros el día de hoy.
+      </div>';
+    echo"            </div>
+            </div>";
   }
     // echo "</div><!--Cierra el div container-->";
 

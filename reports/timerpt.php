@@ -588,22 +588,26 @@ if ($request == 'GET') {
     $rpt_date = date($datefmt, $rpt_stamp);
 
     $tmp_fullname = stripslashes($fullname);
+
+    $from_date_eur = strftime('%d/%m/%Y',strtotime($from_date));
+    $to_date_eur = strftime('%d/%m/%Y',strtotime($to_date));
+
     if ((strtolower($user_or_display) == "display") && ($tmp_fullname != "All")) {
     $tmp_fullname = stripslashes($displayname);
     }
-    if (($office_name == "All") && ($group_name == "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Offices: All --> Groups: All --> Users: All";}
-    elseif ((empty($office_name)) && (empty($group_name)) && ($tmp_fullname == 'All'))  {$tmp_fullname = "All Users";}
+    if (($office_name == "All") && ($group_name == "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Oficinas: Todas --> Grupos: Todos --> Usuarios: Todos";}
+    elseif ((empty($office_name)) && (empty($group_name)) && ($tmp_fullname == 'All'))  {$tmp_fullname = "Todos los Usuarios";}
     elseif ((empty($office_name)) && (empty($group_name)) && ($tmp_fullname != 'All'))  {$tmp_fullname = $tmp_fullname;}
-    elseif (($office_name != "All") && ($group_name == "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Office: $office_name --> Groups: All -->
-     Users: All";}
-    elseif (($office_name != "All") && ($group_name != "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Office: $office_name --> Group: $group_name -->
-     Users: All";}
+    elseif (($office_name != "All") && ($group_name == "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Oficina: $office_name --> Grupos: Todos -->
+     Usuarios: Todos";}
+    elseif (($office_name != "All") && ($group_name != "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Oficina: $office_name --> Grupo: $group_name -->
+     Usuarios: Todos";}
     $rpt_name="$tmp_fullname";
 
     echo "            <table width=100% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr><td width=80% style='font-size:9px;color:#000000;padding-left:10px;'>Run on: $rpt_time, $rpt_date</td><td nowrap
+    echo "              <tr><td width=80% style='font-size:9px;color:#000000;padding-left:10px;'>Fecha del Informe: $rpt_time, $rpt_date</td><td nowrap
                           style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
-    echo "               <tr><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'>Date Range: $from_date - $to_date</td></tr>\n";
+    echo "               <tr><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur </td></tr>\n";
     if (!empty($tmp_csv)) {
       echo "               <tr class=notprint><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'><a style='color:#27408b;font-size:9px;
                              text-decoration:underline;'
