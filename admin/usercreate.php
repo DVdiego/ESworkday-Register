@@ -119,10 +119,10 @@ if ($request == 'GET') {
 
 													<td class=table_rows width=80% style='padding-left:20px;'>
 		                      	<select required='true' name='type_contracts'>\n";
-		echo "                        <option value='-1'>Elige uno</option>\n";
+		echo "                        <option value=''>Elige uno</option>\n";
 
 		while ($row=mysqli_fetch_array($result)) {
-		  echo "                        <option>".$row['type_contracts']."</option>\n";
+		  echo "                        <option value='" .$row['contractid']. "'>".$row['type_contracts']."</option>\n";
 		}
 		echo "                </select></td>
 		                    </tr>\n";
@@ -313,7 +313,7 @@ elseif ($request == 'POST') {
 				                  Se requiere introducir el email.
 				              </div></div>';
 				}
-				elseif ($type_contracts == '-1') {
+				elseif (empty($type_contracts)) {
 					echo ' <div id="float_alert" class="col-md-10"><div class="alert alert-warning alert-dismissible">
 				                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 				                <h4><i class="icon fa fa-warning"></i>¡Alerta!</h4>
@@ -545,7 +545,7 @@ elseif ($request == 'POST') {
 
 															<td class='table_rows' width=80% style='padding-left:20px;'>
 															<select required='true' name='type_contracts'>\n";
-				echo "                        <option  value='-1' >Elige uno</option>\n";
+				echo "                        <option  value='' >Elige uno</option>\n";
 
 				while ($row=mysqli_fetch_array($result)) {
 
