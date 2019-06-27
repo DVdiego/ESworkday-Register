@@ -101,7 +101,7 @@ if ($request == 'GET') {
                         </td>
 
                         <td align=left class='table_rows' width=80% style='font-family:Tahoma;font-size:14px;padding-left:20px;'>
-                          <input type='text' size='25' maxlength='50' name='post_officename' placeholder='nombre de la oficina'>
+                          <input type='text' size='25' maxlength='50' name='post_officename' value='$officename'>
                         </td>
                       </tr>\n";
   echo "              <tr>
@@ -461,10 +461,10 @@ if ($request == 'GET') {
     $query5 = "update ".$db_prefix."offices set officename = ('".$post_officename."') where officename = ('".$get_office."')";
     $result5 = mysqli_query($GLOBALS["___mysqli_ston"], $query5);
 
-    echo ' <div id="float_window" class="col-md-10"><div class="alert alert-info alert-dismissible">
+    echo ' <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                              <h4><i class="icon fa fa-info-circle"></i>Información</h4>
-                                Los datos de la oficina ' . $post_officename . ' se ha modificado con éxito.
+                              <h4><i class="icon fa fa-info-circle"></i>¡Éxito al modificar</h4>
+                                Los datos de la oficina ' . $post_officename . ' se han modificado satisfactoriamente.
                             </div></div>';
 
     echo '<div class="row">

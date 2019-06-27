@@ -382,13 +382,13 @@ elseif ($request == 'POST') {
         if ($how_many == '1') {
           echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                       <h4><i class="icon fa fa-check-circle"></i>¡Usuario creado!</h4>
+                       <h4><i class="icon fa fa-check-circle"></i>Grupo creado!</h4>
                           '. $how_many .' grupo ha sido creado satisfactoriamente para la oficina '. $post_officename .'.
                        </div></div>';
         } elseif ($how_many > '1') {
           echo '       <div id="float_alert" class="col-md-10"><div class="alert alert-success alert-dismissible">
       		             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      		             <h4><i class="icon fa fa-check-circle"></i>¡Usuario creado!</h4>
+      		             <h4><i class="icon fa fa-check-circle"></i>Grupos creados!</h4>
       		                '. $how_many .' grupos han sido creados satisfactoriamente para la oficina '. $post_officename .'.
       		             </div></div>';
         }
@@ -597,15 +597,15 @@ elseif ($request == 'POST') {
     echo "              <tr>
                           <td class=table_rows width80%>
                             Ha elegido crear <b>$how_many</b> grupo para la oficina
-                            <b>$post_officename</b>. Por favor, introduce en nombre del grupo.
+                            <b>$post_officename</b>. Por favor, introduce el nombre del grupo.
                           </td>
                         </tr>\n";
         } elseif ($how_many > '1') {
 
     echo "              <tr>
                           <td height=40 class=table_rows colspan=2>
-                            Ha elegido crear <b>$how_many</b> grupo para la oficina
-                            <b>$post_officename</b>. Por favor, introduce en nombre del grupo.
+                            Ha elegido crear <b>$how_many</b> grupos para la oficina
+                            <b>$post_officename</b>. Por favor, introduce los nombres de los grupos.
                           </td>
                         </tr>\n";
         }
@@ -613,9 +613,11 @@ elseif ($request == 'POST') {
         for ($x=0;$x<$how_many;$x++) {
           $y = $x+1;
     echo "              <tr><td class=table_rows colspan=2>$y.&nbsp;&nbsp;&nbsp;&nbsp;
-                          <input type='text' required='true' size='25' maxlength='50' name='input_group_name[$y]'></td></tr>
-                          </table>\n";
+                          <input type='text' style='margin: 0px 0px 10px 20px;' required='true' size='25' maxlength='50' name='input_group_name[$y]'></td></tr>\n";
+
         }
+    echo "</table>\n";
+
     }
 
     echo "            <div class='box-footer'>

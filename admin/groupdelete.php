@@ -76,7 +76,7 @@ if ($request == 'GET') {
     }
 
     if (!isset($officename)) {echo "Office name is not defined for this group.\n"; exit;}
-    if (!isset($groupname)) {echo "Group name is not defined for this group.\n"; exit;}
+    if (!isset($groupname)) {echo "Group name is not defined for this group Numero 1.\n"; exit;}
 
     $query2 = "select * from ".$db_prefix."employees where office = '".$get_office."' and groups = '".$get_group."'";
     $result2 = mysqli_query($GLOBALS["___mysqli_ston"], $query2);
@@ -121,7 +121,7 @@ if ($request == 'GET') {
                               </td>
 
                               <td align=left width=80% style='padding-left:20px;' class=table_rows>
-                                <input type='hidden' name='post_groupname' placeholder=\"$groupname\">
+                                <input type='hidden' name='post_groupname' value=\"$groupname\">
                                   $get_group
                               </td>
                             </tr>\n";
@@ -147,7 +147,6 @@ if ($request == 'GET') {
                                   $user_cnt
                               </td>
                             </tr>\n";
-    echo "                   <tr><td height=15></td></tr>\n";
     echo "                </table>\n";
     echo "                <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
     if ($user_cnt == 0) {
@@ -215,7 +214,7 @@ elseif ($request == 'POST') {
 
     $post_officename = $_POST['post_officename'];
     $post_officeid = $_POST['post_officeid'];
-    @$group_name = $_POST['group_name'];
+    @$group_name = $_POST['groupname'];
     @$office_name = $_POST['office_name'];
     @$group_name_no_users = $_POST['group_name_no_users'];
     @$office_name_no_users = $_POST['office_name_no_users'];
@@ -245,7 +244,7 @@ elseif ($request == 'POST') {
     }
     ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
     }
-    if ((!isset($groupname)) || (!isset($groupid))) {echo "Group name is not defined for this group.\n"; exit;}
+    if ((!isset($groupname)) || (!isset($post_groupid))) {echo "Group name is not defined for this group. Numero 2, nombre del grupo $group_name o $post_groupname\n"; exit;}
 
     if (!empty($office_name)) {
     $query = "select * from ".$db_prefix."offices where officename = '".$office_name."'";
@@ -266,7 +265,7 @@ elseif ($request == 'POST') {
     $tmp_groupid = "".$row['groupid']."";
     }
     ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
-    if ((!isset($tmp_groupname)) || (!isset($tmp_groupid))) {echo "Group name is not defined for this group.\n"; exit;}
+    if ((!isset($tmp_groupname)) || (!isset($tmp_groupid))) {echo "Group name is not defined for this group.  Numero 3\n"; exit;}
     }
 
     if (isset($office_name_no_users)) {
@@ -373,7 +372,6 @@ elseif ($request == 'POST') {
         echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
 
         if ($user_cnt == 0) {
-            echo "            <tr><td height=40></td>\n";
           } elseif ($user_cnt == 1) {
           echo "              <tr>
                                 <td class=table_rows_output height=53>
@@ -429,6 +427,9 @@ elseif ($request == 'POST') {
         include '../footer.php';exit;
     } else {
 
+
+      $post_groupname = $_POST["post_groupname"];
+
       if ($user_cnt > '0') {
         $query4 = "update ".$db_prefix."employees set office = ('".$office_name."'), groups = ('".$group_name."') where office = ('".$post_officename."')
                    and groups = ('".$post_groupname."')";
@@ -474,10 +475,8 @@ elseif ($request == 'POST') {
       echo "              <tr>
                             <td>
                               <div class='box-footer'>
-                                <button id='formButtons' class='btn btn-success pull-right'>
-    													    <a href='groupadmin.php'>
-    														    Aceptar
-    													    </a>
+                                <button type='button' id='formButtons' onClick='location=\"groupadmin.php\"' class='btn btn-success pull-right'>
+    														  Aceptar
                                   <i class='fa fa-check'></i>
     												    </button>
                               </div>
