@@ -1,4 +1,4 @@
- Eliminar oficina<?php
+<?php
 /***************************************************************************
  *   Copyright (C) 2006 by Ken Papizan                                     *
  *   Copyright (C) 2008 by WorkTime Control Team                               *
@@ -34,13 +34,19 @@ echo "<title>$title -  Eliminar oficina</title>\n";
 if (!isset($_SESSION['valid_user'])) {
 
       echo "<table width=100% border=0 cellpadding=7 cellspacing=1>\n";
-      echo "  <tr class=right_main_text><td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Administration</td></tr>\n";
+      echo "  <tr class=right_main_text>
+                <td height=10 align=center valign=top scope=row class=title_underline>WorkTime Control Administration
+                </td>
+              </tr>\n";
       echo "  <tr class=right_main_text>\n";
       echo "    <td align=center valign=top scope=row>\n";
       echo "      <table width=200 border=0 cellpadding=5 cellspacing=0>\n";
       echo "        <tr class=right_main_text><td align=center>You are not presently logged in, or do not have permission to view this page.</td></tr>\n";
       echo "        <tr class=right_main_text><td align=center>Click <a class=admin_headings href='../login.php?login_action=admin'><u>here</u></a> to login.</td></tr>\n";
-      echo "      </table><br /></td></tr></table>\n"; exit;
+      echo "      </table>
+                </td>
+              </tr>
+            </table>\n"; exit;
 }
 
 if ($request == 'GET') {
@@ -295,7 +301,7 @@ if ((empty($office_name)) || (empty($group_name))) {
 }else{
   echo '       <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-               <h4><i class="icon fa fa-check-circle"></i>Oficina eliminada!</h4>
+               <h4><i class="icon fa fa-check-circle"></i>¡Oficina eliminada!</h4>
                   La oficina ha sido eliminada satisfactoriamente.
                </div></div>';
 }
@@ -309,12 +315,11 @@ echo '     <div class="box-header with-border">
                    <h3 class="box-title"><i class="fa fa-suitcase"></i> Eliminar oficina</h3>
            </div>
            <div class="box-body">';
-echo "        <table class=table>\n";
+echo "        <table class=table_border>\n";
 echo "            <form name='form' action='$self' method='post'>\n";
-            echo "    <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+            echo "    <table class=table_border>\n";
 
-            echo "      <tr><td height=15></td>
-                        </tr>\n";
+            echo "    </tr>\n";
 
 if ((empty($office_name)) || (empty($group_name)) || ($office_name == $post_officename)) {
 

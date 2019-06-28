@@ -70,7 +70,7 @@ if ($request == 'GET') {
               </div>
               <div class="box-body">';
 echo "          <form name='form' action='$self' method='post'>\n";
-echo "            <table align=center class=table>\n";
+echo "            <table align=center class=table_hover>\n";
 echo "              <tr>
                       <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                         Nombre de la oficina:&nbsp;*
@@ -112,7 +112,7 @@ echo "            <div class='box-footer'>
                       Cancelar
                     </button>
 
-                    <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-info pull-right'>
+                    <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-success pull-right'>
                       <i class='fa fa-plus'></i>
                       Crear oficina
                     </button>
@@ -522,8 +522,7 @@ elseif ($request == 'POST') {
                 <div class="box-body">';
 
     echo "          <form name='form' action='$self' method='post'>\n";
-    echo "            <table align=center class=table>\n";
-    echo "              <tr><td height=15></td></tr>\n";
+    echo "            <table class=table_border>\n";
     echo "              <tr>
                           <td class=table_rows_output height=25 width=20% style='font-weight: bold;padding-left:32px;' nowrap>
                             Nombre de la oficina:
@@ -551,12 +550,11 @@ elseif ($request == 'POST') {
 
     echo "            </table>\n";
     echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-    echo "              <tr><td height=20 align=left>&nbsp;</td></tr>\n";
     //DIEGO cambie la referencia officeadmin.php
     echo "              <tr>
                           <td
                           <div class='box-footer'>
-                            <button id='formButtons' onclick='location=\"officeadmin.php\"' class='btn btn-success pull-right'>
+                            <button id='formButtons' type='button' onclick='location=\"officeadmin.php\"' class='btn btn-success pull-right'>
                               Aceptar
                               <i class='fa fa-check'></i>
                             </button>
@@ -588,7 +586,6 @@ elseif ($request == 'POST') {
                             <input type='hidden' name='how_many' value='$how_many'>$how_many
                           </td>
                         </tr>\n";
-    echo "              <tr><td height=15></td></tr>\n";
     echo "            </table>\n";
     echo "            <table align=center class=table>\n";
 
@@ -626,7 +623,7 @@ elseif ($request == 'POST') {
                           Cancelar
                         </button>
 
-                        <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-info pull-right'>
+                        <button id='formButtons' type='submit' name='submit' value='Create Office' class='btn btn-success pull-right'>
                           <i class='fa fa-plus'></i>
                           Crear oficina
                         </button>
