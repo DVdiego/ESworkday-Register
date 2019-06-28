@@ -96,7 +96,7 @@ if ($use_reports_password == "yes") {
 } elseif ($use_reports_password == "no") {
     echo " <li><a href='../reports/index.php'><i class='fa fa-list-alt'></i> Reportes</a></li>";
 }
-echo "         <li><a href='../login_user.php?login_action=user'><i class='fa fa-user'></i> Perfil </a></li>";
+echo "         <li><a href='../login_user.php?login_action=user'><i class='fa fa-user'></i> Mi perfil </a></li>";
 if ((isset($_SESSION['valid_user'])) || (isset($_SESSION['valid_reports_user'])) || (isset($_SESSION['valid_report_employee'])) || (isset($_SESSION['valid_profile'])) || (isset($_SESSION['time_admin_valid_user']))) {
     echo " <li><a href='../logout.php'><i class='fa fa-sign-out'></i>Cerrar sesión</a></li>";
 }

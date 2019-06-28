@@ -369,7 +369,7 @@ function hours_worked_report($emp_fullname,$tmp_dni,$from_date,$to_date,$db_pref
                 //             </div>';
 
   echo '<div class="alert alert-info" role="alert">
-  <strong>Aviso!</strong> El suario no tiene registros el día de hoy.
+  <strong>Aviso!</strong> El suario no tiene registros en el día de hoy.
       </div>';
     echo"            </div>
             </div>";
