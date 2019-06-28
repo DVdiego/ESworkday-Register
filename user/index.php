@@ -106,7 +106,7 @@ echo "              <tr><td class=table_rows_output height=25 width=20% style='p
 echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Grupo:</td><td align=left class=table_rows
 											colspan=2 width=80% style='padding-left:20px;'>$groups</td></tr>\n";
 echo "              <tr><td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>Contraseña:</td><td align=left class=table_rows
-											colspan=2 width=80% style='padding-left:20px;'>***hidden***</td></tr>\n";
+											colspan=2 width=80% style='padding-left:20px;'>***privado***</td></tr>\n";
 echo "            </table>\n";
 echo '				</div>
 					</div>

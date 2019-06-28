@@ -130,7 +130,11 @@ if ($_REQUEST["login_action"] == "admin") {
       </script>";
         exit;
     } elseif (isset($_SESSION['valid_reports_user'])) {
-            echo "  You do not have administration access permission.";
+      echo '  <div id="float_alert" class="col-md-10"><div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-warning"></i>¡Acceso denegado!</h4>
+                   No tiene permisos para acceder como administrador.
+              </div></div>';
             exit;
     } else { // The user is either not valid or has not entered in his credentials.
 
