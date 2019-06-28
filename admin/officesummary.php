@@ -1,6 +1,9 @@
 <?php
 
-  //Resumen de las oficinas.
+  /*-----------------------------------------
+            RESUMEN DE LAS OFICINAS
+  -----------------------------------------*/
+
   //Obtengo las oficinas por id
   $offices_count = mysqli_query($GLOBALS["___mysqli_ston"], "select * from ". $db_prefix ."offices");
   @$offices_count_rows = mysqli_num_rows($offices_count);
@@ -9,7 +12,7 @@
     Obtengo las oficinas que tienen grupos con una consulta con JOIN.
     COmo pueden existir varios grupos que pertenezcan a la misma oficina,
     añado la claúsula DISTINCT a la consulta que solo me devuelve valores
-    únicos, no coje los repetidos
+    únicos, no obtiene los repetidos
   */
   $offices_with_groups = "select distinct offices.officeid FROM groups JOIN offices ON offices.officeid = groups.officeid";
   $result_offices_groups = mysqli_query($GLOBALS["___mysqli_ston"], $offices_with_groups);
@@ -27,17 +30,14 @@
   echo '        <table class="table table-hover">
                   <tr>
                     <td>
-                      <i class="fa fa-suitcase text-green"></i>&nbsp;&nbsp;
+                      <i class="fa fa-suitcase text-green"></i>&nbsp;
                       Oficinas totales: '. $offices_count_rows .' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <i class="fa fa-suitcase text-red"></i>&nbsp;&nbsp;
+                      <i class="fa fa-suitcase text-red"></i>&nbsp;
                       Oficinas sin grupos: '. $num_offices_groups .'
                     </td>
                   </tr>
                 </table>';
   echo '      </div>';
-
-
-
   echo '    </div>
           </div>
         </div>'; //Cierres del primer echo
