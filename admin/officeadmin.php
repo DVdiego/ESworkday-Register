@@ -46,7 +46,7 @@ if (!isset($_SESSION['valid_user'])) {
 include 'leftmain.php';
 
 //Plantilla superior de los usuarios.
-include 'usersummary.php';
+include 'officesummary.php';
 
 echo '<div class="row">
         <div id="float_window" class="col-md-10">
