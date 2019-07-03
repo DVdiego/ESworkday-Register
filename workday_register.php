@@ -393,7 +393,8 @@ if ($request == 'POST') { // Process employee's punch information
                   <h4><i class="fa fa-bullhorn"></i> Error</h4>
                   <p>Status is not in the database.</p>
               </div>
-            </div>';exit;
+            </div>';
+            exit;
     }
     // end post validation //
 
@@ -458,6 +459,7 @@ if ($request == 'POST') { // Process employee's punch information
             // echo "<head>
             //           <meta http-equiv='refresh' content=5;url=index.php>
             //        </head>";
+            include 'footer_home.php';
             exit;
         }
 
@@ -473,6 +475,7 @@ if ($request == 'POST') { // Process employee's punch information
             // echo "<head>
             //           <meta http-equiv='refresh' content=5;url=index.php>
             //       </head>";
+            include 'footer_home.php';
             exit;
         }
     } elseif ($show_display_name == "no") {
@@ -491,6 +494,7 @@ if ($request == 'POST') { // Process employee's punch information
             //      <head>
             //         <meta http-equiv='refresh' content=5;url=index.php>
             //      </head>";
+            include 'footer_home.php';
             exit;
         }
 
@@ -508,6 +512,7 @@ if ($request == 'POST') { // Process employee's punch information
             //      <head>
             //         <meta http-equiv='refresh' content=5;url=index.php>
             //      </head>";
+            include 'footer_home.php';
             exit;
         }
     }
@@ -526,6 +531,7 @@ if ($request == 'POST') { // Process employee's punch information
         //        <head>
         //           <meta http-equiv='refresh' content=5;url=index.php>
         //        </head>";
+        include 'footer_home.php';
         exit;
     }
 
@@ -591,6 +597,7 @@ if ($request == 'POST') { // Process employee's punch information
         //      <head>
         //         <meta http-equiv='refresh' content=5;url=index.php>
         //      </head>";
+        include 'footer_home.php';
         exit;
     }
 
@@ -621,6 +628,7 @@ if ($request == 'POST') { // Process employee's punch information
             //      <head>
             //         <meta http-equiv='refresh' content=5;url=index.php>
             //      </head>";
+            include 'footer_home.php';
             exit;
         }
     }
@@ -677,7 +685,7 @@ if ($request == 'POST') { // Process employee's punch information
     // Return the employee back to the punch interface after 5 seconds
     echo "
          <head>
-          <meta http-equiv='refresh' content=5;url=index.php>
+          <meta http-equiv='refresh' content=15;url=index.php>
         </head>";
 }
 
