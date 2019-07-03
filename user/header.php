@@ -24,6 +24,8 @@
  * This module will add the standard headers and checks.
  */
 
+ 
+
 include '../functions.php';
 
 // grab the connecting ip address for the audit log. if more than 1 ip address is returned, accept the first ip and discard the rest. //
@@ -96,7 +98,7 @@ if (empty($creating_backup_file)) { // This allows the database backup code to c
     echo "
     	<title>$title</title>";
           include '../theme/templates/adminheader.inc';
-    echo "<link rel='stylesheet' type='text/css' href='../css/styles.css' />\n";      
+    echo "<link rel='stylesheet' type='text/css' href='../css/styles.css' />\n";
     echo "
       <link rel='stylesheet' type='text/css' media='print' href='../css/print.css' />
       <script language=\"javascript\" src=\"../scripts/pnguin.js\"> </script>
