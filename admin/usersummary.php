@@ -25,7 +25,7 @@ echo '<div class="row">
           <div class="box box-info">';
 
 echo '      <div class="box-header">';
-echo '        <h3 class="box-title"><i class="fa fa-list"></i> Plantilla</h3>
+echo '        <h3 class="box-title"><i class="fa fa-list"></i> Resumen de la plantilla</h3>
             </div>';
 
 echo '

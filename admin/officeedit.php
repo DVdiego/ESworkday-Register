@@ -90,7 +90,7 @@ if ($request == 'GET') {
               </div>
               <div class="box-body">';
   echo "         <form name='form' action='$self' method='post'>\n";
-  echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
+  echo "            <table class=table_hover>\n";
   echo "              <tr>\n";
   echo "                <th class=rightside_heading nowrap halign=left colspan=3>";
   echo "              </tr>\n";
@@ -101,7 +101,7 @@ if ($request == 'GET') {
                         </td>
 
                         <td align=left class='table_rows' width=80% style='font-family:Tahoma;font-size:14px;padding-left:20px;'>
-                          <input type='text' size='25' maxlength='50' name='post_officename' placeholder='nombre de la oficina'>
+                          <input type='text' size='25' maxlength='50' name='post_officename' value='$officename'>
                         </td>
                       </tr>\n";
   echo "              <tr>
@@ -128,7 +128,6 @@ if ($request == 'GET') {
 											</tr>\n";
   echo "            </table>\n";
   echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-  echo "              <tr><td height=40></td></tr>\n";
   echo "            </table>\n";
   echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
   echo "              <input type='hidden' name='post_officeid' value=\"$officeid\">\n";
@@ -175,11 +174,11 @@ if ($request == 'GET') {
     echo "            <table class=table_border width=60% align=center border=0 cellpadding=0 cellspacing=0>\n";
 
     echo "              <tr>
-                          <td class=table_heading nowrap width=3% align=left>&nbsp;</td>\n";
-    echo "                <th class=table_heading nowrap width=87% align=left>Nombre</th>\n";
-    echo "                <th class=table_heading nowrap width=4% align=center>Usuarios</th>\n";
-    echo "                <th class=table_heading nowrap width=3% align=center>Editar</th>\n";
-    echo "                <th class=table_heading nowrap width=3% align=center>Eliminar</th>
+                          <td class=table_heading nowrap width=5% align=left>&nbsp;</td>\n";
+    echo "                <th class=table_heading nowrap width=80% align=left>Nombre</th>\n";
+    echo "                <th class=table_heading nowrap width=5% align='center'>Usuarios</th>\n";
+    echo "                <th class=table_heading nowrap width=5% align='center'>Editar</th>\n";
+    echo "                <th class=table_heading nowrap width=5% align='center'>Eliminar</th>
                         </tr>\n";
 
     $row_count = 0;
@@ -214,13 +213,17 @@ if ($request == 'GET') {
                            Delete</a></td>
                          </tr>\n";
       } else {
-      echo "                <td class=table_rows width=3% align=center><a title=\"Edit Group: ".$row["groupname"]."\"
-                          href=\"groupedit.php?groupname=$tmp_group&officename=$get_office\">
-                          <img border=0 src='../images/icons/application_edit.png' /></a></td>\n";
-      echo "                <td class=table_rows width=3% align=center><a title=\"Delete Group: ".$row["groupname"]."\"
-                          href=\"groupdelete.php?groupname=$tmp_group&officename=$get_office\">
-                          <img border=0 src='../images/icons/delete.png' /></a></td>
-                        </tr>\n";
+        echo "                  <td>
+                                  <button type='button' id='formButtons' style='margin:10px 10px 10px 10px;' onclick='location=\"groupedit.php?groupname=$tmp_group&officename=$get_office\"' class='btn btn-info'>
+                                    <i class='fa fa-edit'></i>
+                                  </button>
+                                </td>\n";
+        echo "                  <td>
+                                  <button type='button' id='formButtons' style='margin:10px 10px 10px 10px;' onclick='location=\"groupdelete.php?groupname=$tmp_group&officename=$get_office\"' class='btn btn-danger'>
+                                    <i class='fa fa-trash'></i>
+                                  </button>
+                                  </td>
+                                </tr>\n";
       }
     }
     echo "            </table>\n";
@@ -308,7 +311,7 @@ if ($request == 'GET') {
                 </div>
                 <div class="box-body">';
     echo "        <form name='form' action='$self' method='post'>\n";
-    echo "            <table align=center class=table width=60% border=0 cellpadding=3 cellspacing=0>\n";
+    echo "            <table class=table_hover>\n";
     echo "                <td class=table_rows_output height=25 width=20% style='padding-left:32px;' nowrap>
                             &nbsp;*Nombre de la oficina:
                           </td>
@@ -427,11 +430,18 @@ if ($request == 'GET') {
                             title=\"Delete Group: ".$row["groupname"]."\" href=\"groupdelete.php?groupname=$tmp_group&officename=$get_office\" >
                             Delete</a></td></tr>\n";
         } else {
-        echo "                <td class=table_rows width=3% align=center><a href=\"groupedit.php?groupname=$tmp_group&officename=$get_office\">
-                            <img border=0 src='../images/icons/application_edit.png' title=\"Edit Group: ".$row["groupname"]."\" /></a></td>\n";
-        echo "                <td class=table_rows width=3% align=center><a href=\"groupdelete.php?groupname=$tmp_group&officename=$get_office\">
-                            <img border=0 src='../images/icons/delete.png' title=\"Delete Group: ".$row["groupname"]."\" /></a></td></tr>\n";
-        }
+        echo "                  <td>
+                                  <button type='button' id='formButtons' style='margin:10px 10px 10px 10px;' onclick='location=\"groupedit.php?groupname=$tmp_group&officename=$get_office\"' class='btn btn-info'>
+                                    <i class='fa fa-edit'></i>
+                                  </button>
+                                </td>\n";
+        echo "                  <td>
+                                  <button type='button' id='formButtons' style='margin:10px 10px 10px 10px;' onclick='location=\"groupdelete.php?groupname=$tmp_group&officename=$get_office\"' class='btn btn-danger'>
+                                    <i class='fa fa-trash'></i>
+                                  </button>
+                                  </td>
+                                </tr>\n";
+      }
       }
       echo "            </table>\n";
     }
@@ -461,10 +471,10 @@ if ($request == 'GET') {
     $query5 = "update ".$db_prefix."offices set officename = ('".$post_officename."') where officename = ('".$get_office."')";
     $result5 = mysqli_query($GLOBALS["___mysqli_ston"], $query5);
 
-    echo ' <div id="float_window" class="col-md-10"><div class="alert alert-info alert-dismissible">
+    echo ' <div id="float_window" class="col-md-10"><div class="alert alert-success alert-dismissible">
                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                              <h4><i class="icon fa fa-info-circle"></i>Información</h4>
-                                Los datos de la oficina ' . $post_officename . ' se ha modificado con éxito.
+                              <h4><i class="icon fa fa-info-circle"></i>¡Éxito al modificar!</h4>
+                                Los datos de la oficina ' . $post_officename . ' se han modificado satisfactoriamente.
                             </div></div>';
 
     echo '<div class="row">
@@ -474,7 +484,7 @@ if ($request == 'GET') {
                      <h3 class="box-title"><i class="fa fa-suitcase"></i> Editar Oficina</h3>
                 </div>';
     echo '         <div class="box-body">';
-    echo "         <table align=center class=table>\n";
+    echo "         <table class=table_hover>\n";
 
     echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
     echo "              <tr>
@@ -509,10 +519,7 @@ if ($request == 'GET') {
 														<i class="fa fa-check"></i>
 													</button>
 		          				</div>';
-		echo '				</div>
-							</div>
-						</div>
-					</div>';
+
 
     if ($group_cnt == '0') {
       echo "</table>\n";
@@ -521,7 +528,9 @@ if ($request == 'GET') {
     if ($group_cnt != '0') {
 
       echo "</table>\n";
-      echo "             <br/><br/><hr id='form-padding' class='margin-padding' />\n";
+      echo "             <br/><br/>
+                          <table>
+                            <hr id='form-padding' class='margin-padding' />\n";
       echo '<div class="box-header with-border">
                        <h3 class="box-title"><i class="fa fa-group"></i>Grupos de la oficina ' . $post_officename . '</h3>
             </div>';
@@ -578,11 +587,17 @@ if ($request == 'GET') {
                               Delete</a></td>
                           </tr>\n";
         } else {
-        echo "                <td class=table_rows width=3% align=center><a href=\"groupedit.php?groupname=$tmp_group&officename=$post_officename\">
-                            <img border=0 src='../images/icons/application_edit.png' /></a></td>\n";
-        echo "                <td class=table_rows width=3% align=center><a href=\"groupdelete.php?groupname=$tmp_group&officename=$post_officename\">
-                            <img border=0 src='../images/icons/delete.png' /></a></td>
-                          </tr>\n";
+          echo "                  <td>
+                                    <button type='button' id='formButtons' style='margin:10px 10px 10px 10px;' onclick='location=\"groupedit.php?groupname=$tmp_group&officename=$get_office\"' class='btn btn-info'>
+                                      <i class='fa fa-edit'></i>
+                                    </button>
+                                  </td>\n";
+          echo "                  <td>
+                                    <button type='button' id='formButtons' style='margin:10px 10px 10px 10px;' onclick='location=\"groupdelete.php?groupname=$tmp_group&officename=$get_office\"' class='btn btn-danger'>
+                                      <i class='fa fa-trash'></i>
+                                    </button>
+                                    </td>
+                                  </tr>\n";
         }
       }
       echo "           </table>\n";
