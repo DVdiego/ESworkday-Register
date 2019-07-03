@@ -35,7 +35,7 @@ include 'leftmain.php';
 	    <div id="float_window" class="col-md-10">
 	      <div class="box box-info"> ';
 	echo '<div class="box-header with-border">
-	    <h3 class="box-title"><i class="fa fa-clock-o"></i> '.$title.' - Upgrade Database</h3>
+	    <h3 class="box-title"><i class="fa fa-clock-o"></i> '.$title.'</h3>
 	  </div><div class="box-body">';
 
 $self = $_SERVER['PHP_SELF'];
@@ -106,7 +106,7 @@ if (! empty($count)) {
                      <tr>
                         <th class=rightside_heading nowrap halign=left colspan=3>
                            <img src='../images/icons/database_go.png' />
-                           &nbsp; &nbsp; &nbsp; Upgrade Database
+                           &nbsp; &nbsp; &nbsp; Actualizar la Base de Datos
                         </th>
                      </tr>
                      <tr>
@@ -114,7 +114,7 @@ if (! empty($count)) {
                      </tr>
                      <tr>
                         <td colspan=2 class=table_rows align=left valign=bottom style='padding-left:32px;padding-right:32px;'>
-                           If you are greeted with a message in red stating \"Your database is out of date\", upgrade it by clicking on the \"Next\" button below. If you do not see this message, then your database is currently up to date and nothing further needs to be done.
+                          Si recibe un mensaje en rojo que indica \"Su base de datos no está actualizada\", actualícelo haciendo clic en el botón \"Siguiente\" que se encuentra a continuación. Si no ve este mensaje, entonces su base de datos está actualizada y no se necesita hacer nada más.
                         </td>
                      </tr>
                      <tr>
@@ -122,7 +122,7 @@ if (! empty($count)) {
                      </tr>
                      <tr>
                         <td colspan=2 class=table_rows align=left valign=bottom style='padding-left:32px;padding-right:32px;'>
-                           In the process of upgrading the database, all necessary modifications and changes of the db will be completed, including any alterations, conversions, or additions that are needed for this release of WorkTime Control to function properly.
+                           En el proceso de actualización de la base de datos, se completarán todas las modificaciones y cambios necesarios de la base de datos, incluidas las modificaciones, conversiones o adiciones necesarias para que esta versión de WorkTime Control funcione correctamente.
                         </td>
                      </tr>
                      <tr>
@@ -130,7 +130,7 @@ if (! empty($count)) {
                      </tr>
                      <tr>
                         <td colspan=2 class=table_rows align=left valign=bottom style='padding-left:32px;padding-right:32px;'>
-                           Please click on the \"Next\" button below and follow the instructions, if any are given.
+                           Haga clic en el botón \"Siguiente\" y siga las instrucciones, si se da alguna.
                         </td>
                      </tr>
                      <tr>
@@ -164,9 +164,12 @@ if (! empty($count)) {
         echo "
                   </table>";
 	       echo '<div class="box-footer">
-	                   <button type="submit" name="submit" value="Upgrade DB" class="btn btn-warning">Next <i class="fa fa-long-arrow-right"></i></button>
-	                   <button class="btn btn-default pull-right" onclick="location=\'database_management.php\'"><i class="glyphicon glyphicon-remove-circle text-red"></i> Cancel</button>
-	                 </div></form>';
+	                   <button type="submit" name="submit" value="Upgrade DB" class="btn btn-warning">Siguiente <i class="fa fa-long-arrow-right"></i></button>';
+				 echo "     <button type='button' id='formButtons' onclick='location=\"database_management.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                      <i class='fa fa-ban'></i>
+                      Cancelar
+                     </button>";
+	       echo'          </div></form>';
 	       echo "          </div></div></div></div>\n";
 	       include '../theme/templates/endmaincontent.inc';
 	       include '../footer.php';
@@ -722,7 +725,7 @@ if (! empty($count)) {
    <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>
       <tr>
          <th class=rightside_heading nowrap halign=left colspan=3>
-            <img src='../images/icons/database_go.png' /> &nbsp; &nbsp; &nbsp; Upgrade Database
+            <img src='../images/icons/database_go.png' /> &nbsp; &nbsp; &nbsp; Actualizar la Base de Datos
          </th>
       </tr>
       <tr>

@@ -26,13 +26,13 @@ $self = $_SERVER['PHP_SELF'];
 $request = $_SERVER['REQUEST_METHOD'];
 
 include '../config.inc.php';
-if ($request !== 'POST') {include 'header_get.php';include 'topmain.php'; include 'leftmain.php';}
-echo "<title>$title - Create User</title>\n";
+
+if ($request !== 'POST') {include 'header_get.php';include 'topmain.php';}
 
 if (!isset($_SESSION['valid_user'])) {
 
 
-	echo ' <div class="col-md-10">
+	echo ' <div class="col-md-12" style="padding-top: 30px;">
 					<div class="alert alert-danger alert-dismissible">
           	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
 							&times;
@@ -40,14 +40,56 @@ if (!isset($_SESSION['valid_user'])) {
 
 						<h4>
 							<i class="icon fa fa-warning"></i>
-							WorkTime Control Administration
+							WorkTime Control Administración
 						</h4>
-                You are not presently logged in, or do not have permission to view this page. Click <a href="../login.php?login_action=admin"><u>here</u></a> to login.
+
+								Actualmente no has iniciado sesión o no tienes permiso para ver esta página. Haga clic <a href="../login.php?login_action=admin"><u>aquí</u></a> para ingresar.
           </div>
 				</div>';
 
  exit;
 }
+
+
+
+
+if ($request !== 'POST') {include 'leftmain.php';}
+echo "<title>$title - Create User</title>\n";
+
+
+
+$query_users = "select * from ".$db_prefix."employees";
+$result_users = mysqli_query($GLOBALS["___mysqli_ston"], $query_users);
+
+if(mysqli_num_rows($result_users)>=$max_users_version+1){
+	echo ' <div class="col-md-12" style="padding-top: 30px;">
+					<div class="alert alert-danger alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+							&times;
+						</button>
+
+						<h4>
+							<i class="icon fa fa-warning"></i>
+							WorkTime Control Administración
+						</h4>
+
+								Se ha alcanzado el límite de usuarios permitidos de la licencia contratada "'.strtoupper($version_worktime).'". Si desea agregar más usuarios comuníquese con iSoftSolutions.
+					</div>
+				</div>';
+
+				include '../theme/templates/endmaincontent.inc';
+				include '../footer.php';
+				include '../theme/templates/controlsidebar.inc';
+				include '../theme/templates/endmain.inc';
+				include '../theme/templates/adminfooterscripts.inc';
+
+ exit;
+
+
+
+}
+
+
 
 if ($request == 'GET') {
 

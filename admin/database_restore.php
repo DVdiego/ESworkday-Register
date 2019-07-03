@@ -80,7 +80,7 @@ function write_admin_interface($title) {
 	    <div id="float_window" class="col-md-10">
 	      <div class="box box-info"> ';
 	echo '<div class="box-header with-border">
-	    <h3 class="box-title"><i class="fa fa-cloud-upload"></i> '.$title.' - Restore Database</h3>
+	    <h3 class="box-title"><i class="fa fa-cloud-upload"></i> '.$title.'</h3>
 	  </div><div class="box-body">';
 }
 
@@ -174,7 +174,7 @@ if (($request == 'GET') || (! $is_valid_input)) { // Output Restore Backup Inter
     echo "
                   <tr>
                      <th class=table_heading_no_color nowrap width=100% align=left>
-                        Database Restore
+                        Restaurar Base de Datos
                      </th>
                   </tr>
                </table>
@@ -185,7 +185,7 @@ if (($request == 'GET') || (! $is_valid_input)) { // Output Restore Backup Inter
                      </tr>
                      <tr class=right_main_text>
                         <td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>
-                           Select backup file: &nbsp;
+                           Seleccione el archivo de copia de seguridad: &nbsp;
                            <!-- Set the maximum file size for a database backup file to 1 Gibi -->
                            <input type='hidden' name='MAX_FILE_SIZE' value='1073741824' />
                            <input type='file' name='backup_file' size=40>
@@ -193,9 +193,12 @@ if (($request == 'GET') || (! $is_valid_input)) { // Output Restore Backup Inter
                      </tr>
                </table>";
 	       echo '<div class="box-footer">
-	                   <button type="submit" name="submit" value="restore" class="btn btn-warning">Next <i class="glyphicon glyphicon-arrow-right"></i></button>
-	                   <button class="btn btn-default pull-right" onclick="location=\'database_management.php\'"><i class="glyphicon glyphicon-remove-circle text-red"></i> Cancel</button>
-	                 </div></form>';
+	                   <button type="submit" name="submit" value="restore" class="btn btn-warning">Siguiente <i class="glyphicon glyphicon-arrow-right"></i></button>';
+         echo "     <button type='button' id='formButtons' onclick='location=\"database_management.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                     <i class='fa fa-ban'></i>
+                     Cancelar
+                    </button>";
+          echo'</div></form>';
 
 
 echo "          </div></div></div></div>\n";
@@ -206,7 +209,7 @@ echo "          </div></div></div></div>\n";
                <table width=90% align=center height=40 border=0 cellpadding=0 cellspacing=0>
                   <tr>
                      <th class=table_heading_no_color nowrap width=100% align=left>
-                        Database Restore
+                        Restaurar Base de Datos
                      </th>
                   </tr>
                </table>
