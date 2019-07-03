@@ -370,7 +370,7 @@ if ($request == 'POST') { // Process employee's punch information
 
     // begin post validation //
     if ($use_passwd == "yes") {
-        $employee_passwd = password_hash($_POST['employee_passwd'], PASSWORD_DEFAULT, ['cost' => 10]);
+        $employee_passwd = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_POST['employee_passwd']);
     }
 
     $query = "select punchitems from ".$db_prefix."punchlist";
@@ -589,10 +589,10 @@ if ($request == 'POST') { // Process employee's punch information
         $sel_result = mysqli_query($GLOBALS["___mysqli_ston"], $sel_query);
 
         while ($row=mysqli_fetch_array($sel_result)) {
-            $tmp_password = "".$row["employee_passwd"]."";
+            @$tmp_password = "".$row["employee_passwd"]."";
         }
 
-        if (password_verify($employee_passwd,$tmp_password)) {
+        if (password_verify($employee_passwd, @$tmp_password)) {
     	    echo '<div id="float_window" class="col-md-10">
                   <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>

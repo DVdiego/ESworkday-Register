@@ -606,7 +606,7 @@ if ($request == 'GET') {
     elseif (($office_name != "All") && ($group_name != "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Oficina: $office_name --> Grupo: $group_name -->
      Usuarios: Todos";}
     $rpt_name="$tmp_fullname";
-    echo '  <div class="row">
+    echo '  <div class="row" style="margin-top: 20px;">
               <div id="float_window" class="col-md-10">
                 <div class="box box-info">
                   <div class="box-header">
@@ -630,9 +630,9 @@ if ($request == 'GET') {
                       <tr>
                         <td>
                           Descargar el fichero .CSV:
-                          <a style="color:#27408b;font-size:12px;text-decoration:underline;"
+                          <a style="color:#27408b;font-size:16px;text-decoration:underline;"
                             href=\'get_csv.php?rpt=timerpt&display_ip='. $tmp_display_ip .'&csv='. $tmp_csv .'&office='. $office_name .'&group='. $group_name .'&fullname='. $fullname .'&from='. $from_timestamp .'&to=' .$to_timestamp .'&tzo=' .$tzo .'\'>
-                            Descargar
+                             &nbsp;Descargar
                           </a>
                         </td>
                       </tr>
@@ -641,17 +641,6 @@ if ($request == 'GET') {
                 </div>
               </div>
             </div>';
-    echo "            <table width=100% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr><td width=80% style='font-size:9px;color:#000000;padding-left:10px;'>Fecha del Informe: $rpt_time, $rpt_date</td>
-    <td nowrap
-                          style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
-    echo "               <tr><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur </td></tr>\n";
-    if (!empty($tmp_csv)) {
-      echo "               <tr class=notprint><td width=80%></td><td nowrap style='font-size:12px;color:#000000;'><a style='color:#27408b;font-size:12px;
-                             text-decoration:underline;'
-                             href=\"get_csv.php?rpt=timerpt&display_ip=$tmp_display_ip&csv=$tmp_csv&office=$office_name&group=$group_name&fullname=$fullname&from=$from_timestamp&to=$to_timestamp&tzo=$tzo\">Download CSV File</a></td></tr>\n";
-    }
-    echo "            </table>\n";
 
     $employees_cnt = 0;
     $employees_empfullname = array();
@@ -837,7 +826,7 @@ function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_pre
 
           echo "<br>";
           echo "<hr class='separator-reports'>\n";
-          echo "<div class='row'>
+          echo "<div id='float_window' class='row'>
                       <div class='col-sm-12 col-md-6 col-lg-6'>
                           <strong>Nombre: $info_fullname</strong>
                       </div>
@@ -884,11 +873,11 @@ function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_pre
             if($count>0){
 
 
-              echo "<div class='row'>
+              echo "<div class='row' style='margin-top:10px;'>
                         <div class='col-sm-12 col-md-10 col-lg-10'>
                           <div class='alert alert-warning'>
                             <strong>
-                                ¡Aviso! No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
+                                <strong>¡Aviso!</strong> No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
                                 <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
                             </strong>
                           </div>
