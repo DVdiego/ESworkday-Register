@@ -50,7 +50,7 @@ if ($use_reports_password == "yes") {
     }
 }
 
-echo "<title>$title - Daily Time Report</title>\n";
+echo "<title>$title - Reportes de la jornada diaria</title>\n";
 
 if ($request == 'GET') {
 
@@ -69,11 +69,11 @@ if ($request == 'GET') {
             <div id="float_window" class="col-md-10">
               <div class="box box-info">
                 <div class="box-header with-border">
-                  <h3 class="box-title"><i class="fa fa-book"></i> Daily Time Report</h3>
+                  <h3 class="box-title"><i class="fa fa-book"></i> Reportes de la jornada diaria</h3>
                 </div>
                 <div class="box-body">';
 
-    echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
+    echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\" target='_blank'>\n";
 
     echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
     if ($username_dropdown_only == "yes") {
@@ -94,17 +94,17 @@ if ($request == 'GET') {
         ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
     } else {
 
-    echo "<div class='form-group'><label style='padding-right: 40px;'>Choose Office: </label> <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'></select></div>";
+    echo "<div class='form-group'><label style='padding-right: 100px;'>Elija una oficina: </label> <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'></select></div>";
 
-    echo "<div class='form-group'><label style='padding-right: 39px;'>Choose Group: </label> <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'></select></div>\n";
+    echo "<div class='form-group'><label style='padding-right: 113px;'>Elija un grupo: </label> <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'></select></div>\n";
 
-    echo "             <div class='form-group'><label style='padding-right: 15px;'>Choose Username: </label> <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'></select></div>\n";
+    echo "             <div class='form-group'><label style='padding-right: 34px;'>Elija un nombre de usuario: </label> <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'></select></div>\n";
 
     }
 
 
     echo "              <div class='form-group' style='display: -webkit-box;'>
-                          <label style='padding-right: 10px;'>Fecha Inicio:</label>
+                          <label style='padding-right: 12px;'>Fecha Inicio:</label>
                             <div class='input-group'>
 
                             <div class='input-group-addon'>
@@ -137,21 +137,21 @@ if ($request == 'GET') {
 
 
     echo "              <div class='form-group'><div class='radio'>
-                            <label>Export to CSV? (link to CSV file will be in the top right of the next page)</label></div> \n";
+                            <label>¿Desea exportarlo como CSV (el enlace al archivo .CSV estará en la parte superior derecha de la página siguiente)</label></div> \n";
          if (strtolower($export_csv) == "yes") {
-         echo "    <div class='radio'><label><input type='radio' name='csv' value='1' checked>&nbsp;Yes</label></div>\n";
+         echo "    <div class='radio'><label><input type='radio' name='csv' value='1' checked>&nbsp;Si</label></div>\n";
          echo "    <div class='radio'><label><input type='radio' name='csv' value='0'> &nbsp;No </label></div></div>\n";
          } else {
-         echo "    <div class='radio'><label><input type='radio' name='csv' value='1'> Yes</label></div>   <div class='radio'><label><input type='radio' name='csv' value='0' checked>No</label></div></div>\n";
+         echo "    <div class='radio'><label><input type='radio' name='csv' value='1'> Si</label></div>   <div class='radio'><label><input type='radio' name='csv' value='0' checked>No</label></div></div>\n";
          }
 
 
          if (strtolower($ip_logging) == "yes") {
-         echo "              <div class='form-group'><div class='radio'><label>Display connecting ip address information?</label></div>\n";
+         echo "              <div class='form-group'><div class='radio'><label>¿Desea mostrar la información de la dirección IP de conexión?</label></div>\n";
          if ($display_ip == "yes") {
-    echo "              <div class='radio'><label><input type='radio' name='tmp_display_ip' value='1' checked>Yes</label></div> <div class='radio'><label><input type='radio' name='tmp_display_ip' value='0'>No</label></div></div>\n";
+    echo "              <div class='radio'><label><input type='radio' name='tmp_display_ip' value='1' checked>Si</label></div> <div class='radio'><label><input type='radio' name='tmp_display_ip' value='0'>No</label></div></div>\n";
          } else {
-    echo "              <div class='radio'><label><input type='radio' name='tmp_display_ip' value='1' >Yes </label></div>
+    echo "              <div class='radio'><label><input type='radio' name='tmp_display_ip' value='1' >Si </label></div>
                   <div class='radio'><label><input type='radio' name='tmp_display_ip' value='0' checked> No</label></div></div>\n";
          }
          }
@@ -159,9 +159,12 @@ if ($request == 'GET') {
 
     		     /* debug */
     echo '<div class="box-footer">
-    <a href="index.php"><button type="submit" name="submit" value="Edit Time" class="btn btn-default pull-right"><i class="fa fa-ban"></i>  Cancel</button></a>
-    <button type="submit" class="btn btn-success">Next <i class="fa fa-arrow-right"></i></button></div>
-    </div></form>
+              <button type="button" id="formButtons" onclick="location=\'index.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                <i class="fa fa-ban"></i>
+                Cancelar
+              </button>
+              <button id="formButtons" type="submit" class="btn btn-success" >Siguiente <i class="fa fa-arrow-right"></i></button></div>
+            </div></form>
                 <!-- /.box-body -->
               </div>
               <!-- /.box -->
@@ -603,13 +606,48 @@ if ($request == 'GET') {
     elseif (($office_name != "All") && ($group_name != "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Oficina: $office_name --> Grupo: $group_name -->
      Usuarios: Todos";}
     $rpt_name="$tmp_fullname";
+    echo '  <div class="row">
+              <div id="float_window" class="col-md-10">
+                <div class="box box-info">
+                  <div class="box-header">
+                    <h3 class="box-title"><i class=fa fa-list></i> Datos</h3>
+                  </div>
 
+                  <div class="box-body">
+                    <table class="table table-hover">
+                      <tr>
+                        <td>
+                          Fecha del informe: '. $rpt_time .', '. $rpt_date .'
+                        </td>
+                        <td>
+                          '. $rpt_name .'
+                        </td>
+                        <td>
+                          Rango de fechas: '. $from_date_eur .' to '. $to_date_eur .'
+                        <td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          Descargar el fichero .CSV:
+                          <a style="color:#27408b;font-size:12px;text-decoration:underline;"
+                            href=\'get_csv.php?rpt=timerpt&display_ip='. $tmp_display_ip .'&csv='. $tmp_csv .'&office='. $office_name .'&group='. $group_name .'&fullname='. $fullname .'&from='. $from_timestamp .'&to=' .$to_timestamp .'&tzo=' .$tzo .'\'>
+                            Descargar
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>';
     echo "            <table width=100% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
-    echo "              <tr><td width=80% style='font-size:9px;color:#000000;padding-left:10px;'>Fecha del Informe: $rpt_time, $rpt_date</td><td nowrap
+    echo "              <tr><td width=80% style='font-size:9px;color:#000000;padding-left:10px;'>Fecha del Informe: $rpt_time, $rpt_date</td>
+    <td nowrap
                           style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
     echo "               <tr><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur </td></tr>\n";
     if (!empty($tmp_csv)) {
-      echo "               <tr class=notprint><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'><a style='color:#27408b;font-size:9px;
+      echo "               <tr class=notprint><td width=80%></td><td nowrap style='font-size:12px;color:#000000;'><a style='color:#27408b;font-size:12px;
                              text-decoration:underline;'
                              href=\"get_csv.php?rpt=timerpt&display_ip=$tmp_display_ip&csv=$tmp_csv&office=$office_name&group=$group_name&fullname=$fullname&from=$from_timestamp&to=$to_timestamp&tzo=$tzo\">Download CSV File</a></td></tr>\n";
     }
