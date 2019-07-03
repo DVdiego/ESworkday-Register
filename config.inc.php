@@ -51,9 +51,16 @@
 
 $skin_theme = "skin-green";
 $display_logo_report = "none";
-$version_worktime = "premium";
+
 $enterprise_name = "DEMO";
 $enterprise_nif = "123A";
+
+$version_worktime = "premium";
+/*basic = 10, premium 30*/
+$max_users_version = 10;
+
+
+
 
 /*seleccionar solo UN atributo para hacer login*/
 $login_with_fullname = "yes";
@@ -470,13 +477,13 @@ $city = "Segovia, Spain";
 
 /* The name of the company whose hours are being tracked. */
 
-$company_name = "WorkTime";
+$app_name = "WorkTime";
 
 
 /* Sets the title in the header. This is what the page will be named by default when you
 make a "favorite" or "bookmark" in your browser. Change as you see fit. */
 
-$title = "$company_name Control BETA";
+$title = "$app_name Control $version_worktime";
 
 
 /* Contenidl de las etiquetas meta para mejorar el posicionamiento SEO*/

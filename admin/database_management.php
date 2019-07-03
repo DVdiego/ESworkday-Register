@@ -80,7 +80,7 @@ function write_admin_interface($title) {
 	    <div id="float_window" class="col-md-10">
 	      <div class="box box-info"> ';
 	echo '<div class="box-header with-border">
-	    <h3 class="box-title"><i class="fa fa-database"></i> '.$title.' - Manage Database</h3>
+	    <h3 class="box-title"><i class="fa fa-database"></i> '.$title.'</h3>
 	  </div><div class="box-body table-responsive">';
 
 
@@ -93,7 +93,7 @@ echo "
             <table class='table table-hover'>
                   <tr>
                      <th class=table_heading_no_color nowrap width=100% align=left>
-                        Manage Database
+                        Gestionar Base de Datos
                      </th>
                   </tr>
                </table>
@@ -102,7 +102,7 @@ echo "
                      <td nowrap class=table_rows width=17%>
                         <img src='../images/icons/database_go.png' alt='Backup Database' />
                         <a href='database_backup.php'>
-                           Backup Database
+                           Realizar Copia de Seguridad Base de Datos
                         </a>
                      </td>
                   </tr>
@@ -110,7 +110,7 @@ echo "
                      <td nowrap class=table_rows width=17%>
                         <img src='../images/icons/database_go.png' alt='Restore Database' />
                         <a href='database_restore.php'>
-                           Restore Saved Database
+                           Restaurar Base de Datos
                         </a>
                      </td>
                   </tr>
@@ -118,7 +118,7 @@ echo "
                      <td nowrap class=table_rows width=17%>
                         <img src='../images/icons/database_go.png' alt='Upgrade Database' />
                         <a href='dbupgrade.php'>
-                           Upgrade Database
+                           Actualizar Base de Datos
                         </a>
                      </td>
                   </tr>

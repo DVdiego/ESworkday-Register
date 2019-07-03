@@ -84,7 +84,7 @@ echo '<div class="row">
     <div id="float_window" class="col-md-10">
       <div class="box box-info"> ';
 echo '<div class="box-header with-border">
-    <h3 class="box-title"><i class="fa fa-cloud-download"></i> '.$title.' - Backup Database</h3>
+    <h3 class="box-title"><i class="fa fa-cloud-download"></i> '.$title.'</h3>
   </div><div class="box-body">';
 
 }
@@ -216,7 +216,7 @@ if ($request == 'GET') { // Output Backup Confirmation Interface
             <table class='table table-hover'>
                   <tr>
                      <th>
-                        Confirm Database Backup
+                        Confirmar copia de seguridad de la base de datos
                      </th>
                   </tr>
                </table>
@@ -227,19 +227,25 @@ if ($request == 'GET') { // Output Backup Confirmation Interface
                      </tr>
                      <tr>
                         <td>
-                           Clicking backup will create the database backup file. Upon successful backup creation the file will be available for download.
+                           Al hacer clic en copia de seguridad se creará el archivo de copia de seguridad de la base de datos. Tras la creación exitosa de la copia de seguridad, el archivo estará disponible para descargar
                         </td>
                      </tr>
                      <tr>
                         <td>
-                           Clicking done will return you to the database management page.
+                           Al hacer clic en Cancelar, volverás a la página de administración de la base de datos..
                         </td>
                      </tr>
                </table>";
 	       echo '<div class="box-footer">
-	                   <button type="submit" name="submit" value="backup" class="btn btn-warning"><i class="glyphicon glyphicon-download-alt"></i> Backup</button>
-	                   <button class="btn btn-default pull-right" onclick="location=\'database_management.php\'">Done <i class="glyphicon glyphicon-ok-sign text-green"></i></button>
-	                 </div></form>';
+	                   <button type="submit" name="submit" value="backup" class="btn btn-warning"><i class="glyphicon glyphicon-download-alt"></i> Backup</button>';
+          echo "     <button type='button' id='formButtons' onclick='location=\"database_management.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
+                      <i class='fa fa-ban'></i>
+                      Cancelar
+                     </button>";
+          echo '</div></form>';
+
+
+
 echo "          </div></div></div></div>\n";
 } else if ($request == 'POST') { // Begin the database backup
     $creating_backup_file = True; // Prevents the HTML from being added in the header file.

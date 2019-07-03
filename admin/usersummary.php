@@ -20,6 +20,8 @@ $time_admin_count_rows--;
 $reports_count_rows--;
 $admin_count_rows--;
 
+$remaining_users = $max_users_version - $user_count_rows;
+
 echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box box-info">';
@@ -33,12 +35,26 @@ echo '
 echo "        <table class='table table-hover'>\n";
 echo "          <tr>
                   <td>
-                    <i class='fa fa-users text-green'></i>
-                    Usuarios totales: $user_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <i class='fa fa-user-secret text-orange'></i>&nbsp;&nbsp;
-                    Administradores: $admin_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user text-red'></i>&nbsp;&nbsp;
-                    Administradores de tiempo: $time_admin_count_rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class='fa fa-user text-blue'></i>&nbsp;
-                  &nbsp;Reportadores: $reports_count_rows</td></tr>\n";
+                    <i class='fa fa-users text-green'></i>&nbsp;
+                    Usuarios Agregados: $user_count_rows
+                    </td>
+                    <td>
+                    <i class='fa fa-user-secret text-orange'></i>&nbsp;
+                    Super Admin: $admin_count_rows
+                    </td>
+                    <td>
+                    <i class='fa fa-user text-red'></i>&nbsp;
+                    Admin Registros : $time_admin_count_rows
+                    </td>
+                    <td>
+                    <i class='fa fa-user text-blue'></i>&nbsp;
+                    Admin Reportes: $reports_count_rows</td>
+                    </td>
+                    <td>
+                    <i class='fa fa-users '></i>&nbsp;
+                    Usuarios Restantes: $remaining_users
+                    </td></tr>\n";
+
 echo "        </table>
             </div>
 
