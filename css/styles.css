@@ -197,6 +197,17 @@ hr.separator-reports{
 }
 
 
+.content-wrapper{
+    min-height: 86.8rem !important;
+}
+
+.main-sidebar{
+    min-height: 96.9rem !important;
+}
+
+#wrapper > aside
+
+#wrapper > div
 
 @media (max-width: 460px) {
     /* Los estilos aquí contenidos solo se aplicarán a partir

@@ -30,9 +30,9 @@ echo '
         <!-- /.content-wrapper -->
 
 	<!-- Main Footer -->
-  <footer class="main-footer">
+  <footer class="main-footer" style="margin-left: 0;">
     <!-- To the right -->
-    <div class="pull-right hidden-xs">';
+    <div class="pull-right hidden-xs" style="padding-left:20px;">';
 
 
 // Determine if we should add the contact E-mail to the footer
@@ -44,17 +44,19 @@ if (! empty($email) && ($email != "none")) {
 // Determine if the application information is set
 if (empty($company_name) || empty($app_version)) {
     echo "
-               <a class=footer_links href='http://isoftsolutions.es' target='_blank'>powered by iSoftSolutions</a>";
+               Powered by <a class=footer_links href='http://isoftsolutions.es' target='_blank'> iSoftSolutions</a>";
 } else {
     echo "
-               <a class=footer_links href='http://isoftsolutions.es' target='_blank'> $date &copy; $company_name is powered by iSoftSolutions v$app_version</a>";
+               $date &copy; $company_name is powered by <a class=footer_links href='http://isoftsolutions.es' target='_blank'>  iSoftSolutions v$app_version</a>";
 }
 
 echo '
 	</div>
-<!-- Default to the left -->
-<i class="fa fa-envelope"></i> Soporte <a class="footer_links" href="mailto:contacto@isoftsolutions.es" target="_blank">contacto@isoftsolutions.es</a>
 
+  <div class="pull-right">
+<!-- Default to the left -->
+<i class="fa fa-envelope"></i> Soporte <a class="footer_links" href="mailto:contacto@isoftsolutions.es" target="_blank" >contacto@isoftsolutions.es</a>
+  </div>
  </footer>
 ';
 

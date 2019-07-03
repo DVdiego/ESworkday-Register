@@ -35,6 +35,12 @@ if ($request == 'POST') {
     @$reset_cookie = $_POST['reset_cookie'];
     @$fullname = stripslashes($_POST['left_fullname']);
     @$displayname = stripslashes($_POST['left_displayname']);
+
+    $fullname = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $fullname);
+    $displayname = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $displayname);
+
+
+
     if ((isset($remember_me)) && ($remember_me != '1')) {
         echo "Something is fishy here.";
         exit;
@@ -370,7 +376,8 @@ if ($request == 'POST') { // Process employee's punch information
 
     // begin post validation //
     if ($use_passwd == "yes") {
-        $employee_passwd = password_hash($_POST['employee_passwd'], PASSWORD_DEFAULT, ['cost' => 10]);
+        //$employee_passwd = password_hash($_POST['employee_passwd'], PASSWORD_DEFAULT, ['cost' => 10]);
+        $employee_passwd = mysqli_real_escape_string($GLOBALS["___mysqli_ston"] , $_POST['employee_passwd']);
     }
 
     $query = "select punchitems from ".$db_prefix."punchlist";
@@ -389,6 +396,9 @@ if ($request == 'POST') { // Process employee's punch information
             </div>';exit;
     }
     // end post validation //
+
+
+    //verifica si el displayname o fullname existe en la base de datos
     if ($show_display_name == "yes") {
         if (isset($displayname)) {
             $displayname = addslashes($displayname);
@@ -411,6 +421,7 @@ if ($request == 'POST') { // Process employee's punch information
             $displayname = stripslashes($displayname);
         }
     } elseif ($show_display_name == "no") {
+
         if (isset($fullname)) {
             $fullname = addslashes($fullname);
             $query = "select empfullname from ".$db_prefix."employees where empfullname = '".$fullname."'";
@@ -432,18 +443,21 @@ if ($request == 'POST') { // Process employee's punch information
         }
     }
 
+
+
+
     if ($show_display_name == "yes") {
         if (! $displayname && ! $inout) {
     	    echo '<div id="float_window" class="col-md-10">
                   <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                    <p>You have not chosen a username or a status. Please try again..</p>
+                    <p>No has elegido un estado o nombre de acceso. Inténtalo de nuevo.</p>
                   </div>
                 </div>';
             // Return the employee back to the punch interface after 5 seconds
-            echo "<head>
-                      <meta http-equiv='refresh' content=5;url=index.php>
-                   </head>";
+            // echo "<head>
+            //           <meta http-equiv='refresh' content=5;url=index.php>
+            //        </head>";
             exit;
         }
 
@@ -451,14 +465,14 @@ if ($request == 'POST') { // Process employee's punch information
       	    echo '<div id="float_window" class="col-md-10">
                     <div class="callout callout-danger">
                       <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                      <p>You have not chosen a username. Please try again.</p>
+                      <p>No has elegido un nombre de acceso. Inténtalo de nuevo.</p>
                     </div>
                   </div>';
 
             // Return the employee back to the punch interface after 5 seconds
-            echo "<head>
-                      <meta http-equiv='refresh' content=5;url=index.php>
-                  </head>";
+            // echo "<head>
+            //           <meta http-equiv='refresh' content=5;url=index.php>
+            //       </head>";
             exit;
         }
     } elseif ($show_display_name == "no") {
@@ -467,16 +481,16 @@ if ($request == 'POST') { // Process employee's punch information
     	    echo '<div id="float_window" class="col-md-10">
                   <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                    <p>You have not chosen a username or a status. Please try again.</p>
+                    <p>No has elegido un estado o nombre de usuario. Inténtalo de nuevo.</p>
                   </div>
                 </div>';
 
 
             // Return the employee back to the punch interface after 5 seconds
-            echo "
-                 <head>
-                    <meta http-equiv='refresh' content=5;url=index.php>
-                 </head>";
+            // echo "
+            //      <head>
+            //         <meta http-equiv='refresh' content=5;url=index.php>
+            //      </head>";
             exit;
         }
 
@@ -484,16 +498,16 @@ if ($request == 'POST') { // Process employee's punch information
         	    echo '<div id="float_window" class="col-md-10">
                       <div class="callout callout-danger">
                         <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                        <p>You have not chosen a username. Please try again.</p>
+                          <p>No has elegido un nombre de acceso. Inténtalo de nuevo.</p>
                       </div>
                     </div>';
 
 
             // Return the employee back to the punch interface after 5 seconds
-            echo "
-                 <head>
-                    <meta http-equiv='refresh' content=5;url=index.php>
-                 </head>";
+            // echo "
+            //      <head>
+            //         <meta http-equiv='refresh' content=5;url=index.php>
+            //      </head>";
             exit;
         }
     }
@@ -502,22 +516,22 @@ if ($request == 'POST') { // Process employee's punch information
 	    echo '<div id="float_window" class="col-md-10">
               <div class="callout callout-danger">
                 <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                <p>You have not chosen a status. Please try again.</p>
+                <p>No has elegido un estado. Inténtalo de nuevo..</p>
               </div>
             </div>';
 
 
         // Return the employee back to the punch interface after 5 seconds
-        echo "
-               <head>
-                  <meta http-equiv='refresh' content=5;url=index.php>
-               </head>";
+        // echo "
+        //        <head>
+        //           <meta http-equiv='refresh' content=5;url=index.php>
+        //        </head>";
         exit;
     }
 
 
 /// /*FLAG*/ //desde aqui puede estar el error. cambie query  `inout` por inout
-
+/*obtinee el full name apartir de displayname*/
     // Get all the possible punch status names
     $query = "select punchitems from ".$db_prefix."punchlist";
     $punchlist_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
@@ -573,10 +587,10 @@ if ($request == 'POST') { // Process employee's punch information
               </div>
             </div>';
         // Return the employee back to the punch interface after 5 seconds
-        echo "
-             <head>
-                <meta http-equiv='refresh' content=5;url=index.php>
-             </head>";
+        // echo "
+        //      <head>
+        //         <meta http-equiv='refresh' content=5;url=index.php>
+        //      </head>";
         exit;
     }
 
@@ -585,6 +599,7 @@ if ($request == 'POST') { // Process employee's punch information
 
 
     if ($use_passwd == "yes") { // Verify that the employee password is correct, if required
+
         $sel_query = "select empfullname, employee_passwd from ".$db_prefix."employees where empfullname = '".$fullname."'";
         $sel_result = mysqli_query($GLOBALS["___mysqli_ston"], $sel_query);
 
@@ -592,20 +607,20 @@ if ($request == 'POST') { // Process employee's punch information
             $tmp_password = "".$row["employee_passwd"]."";
         }
 
-        if (password_verify($employee_passwd,$tmp_password)) {
+        if (password_verify($employee_passwd,$tmp_password) == FALSE) {
     	    echo '<div id="float_window" class="col-md-10">
                   <div class="callout callout-danger">
                     <h4><i class="fa fa-bullhorn"></i> Error</h4>
-                    <p>You have entered the wrong password for '.$fullname.'. Please try again.</p>
+                    <p>Ha introducido la contraseña incorrecta para la '.$fullname.'. Inténtalo de nuevo</p>
                   </div>
                 </div>';
 
 
             // Return the employee back to the punch interface after 5 seconds
-            echo "
-                 <head>
-                    <meta http-equiv='refresh' content=5;url=index.php>
-                 </head>";
+            // echo "
+            //      <head>
+            //         <meta http-equiv='refresh' content=5;url=index.php>
+            //      </head>";
             exit;
         }
     }
@@ -655,7 +670,7 @@ if ($request == 'POST') { // Process employee's punch information
 	    echo '<div id="float_window" class="col-md-10">
               <div class="callout callout-success">
                 <h4><i class="fa fa-bullhorn"></i> </h4>
-                <p> Status changed successfully for '.$fullname.' to a status of '.$inout.'.</p>
+                  <p>El estado de '. $fullname.' se cambio con éxito, al estado de '.$inout.'. </p>
               </div>
             </div>';
 
