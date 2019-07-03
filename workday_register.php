@@ -604,7 +604,7 @@ if ($request == 'POST') { // Process employee's punch information
         $sel_result = mysqli_query($GLOBALS["___mysqli_ston"], $sel_query);
 
         while ($row=mysqli_fetch_array($sel_result)) {
-            $tmp_password = "".$row["employee_passwd"]."";
+            @$tmp_password = "".$row["employee_passwd"]."";
         }
 
         if (password_verify($employee_passwd,$tmp_password) == FALSE) {
