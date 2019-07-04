@@ -498,14 +498,14 @@ if ($request == 'GET') {
         ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
         } else {
 
-        echo "              <tr><td>Choose Office:</td><td colspan=2>
+        echo "              <tr><td>Elija una oficina:</td><td colspan=2>
                               <select name='office_name' onchange='group_names();'>\n";
         echo "                      </select></td></tr>\n";
-        echo "              <tr><td>Choose Group:</td><td colspan=2>
+        echo "              <tr><td>Elija un grupo:</td><td colspan=2>
                               <select name='group_name' onfocus='group_names();'>
                                   <option selected>$group_name</option>\n";
         echo "                      </select></td></tr>\n";
-        echo "              <tr><td>Choose Username:</td><td colspan=2>
+        echo "              <tr><td>Elija un nombre de usuario:</td><td colspan=2>
                               <select name='user_name' onfocus='user_names();'>
                                   <option selected>$fullname</option>\n";
         echo "                      </select></td></tr>\n";

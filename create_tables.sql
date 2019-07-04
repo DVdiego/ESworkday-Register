@@ -146,6 +146,8 @@ CREATE TABLE contracts (
   PRIMARY KEY  (contractid)
 );
 
+
+INSERT INTO `contracts` (`type_contracts`, `overtime_cost`, `daily_hours`, `contractid`) VALUES ('Parcial', '0', '0', NULL), ('Completo', '0', '0', NULL);
 # --------------------------------------------------------
 
 #

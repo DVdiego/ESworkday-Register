@@ -96,15 +96,15 @@ while ($row=mysqli_fetch_array($result)) {
 echo "                  </select>&nbsp;*</td></tr>\n";
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 } else {
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Office:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Elija una oficina:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <select name='office_name' onchange='group_names();'>\n";
 echo "                      </select></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Group:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Elija un grupo:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <select name='group_name' onchange='user_names();'>\n";
 echo "                      </select></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Username:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Elija un nombre de usuario:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <select name='user_name'>\n";
 echo "                      </select></td></tr>\n";
@@ -659,16 +659,16 @@ echo "                  </select>&nbsp;*</td></tr>\n";
 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
 } else {
 
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Office:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Elija una oficina:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <select name='office_name' onchange='group_names();'>\n";
 echo "                      </select></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Group:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Elija un grupo:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <select name='group_name' onfocus='group_names();'>
                           <option selected>$group_name</option>\n";
 echo "                      </select></td></tr>\n";
-echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Choose Username:</td><td colspan=2 width=80%
+echo "              <tr><td class=table_rows height=25 width=20% style='padding-left:32px;' nowrap>Elija un nombre de usuario:</td><td colspan=2 width=80%
                       style='padding-left:20px;'>
                       <select name='user_name' onfocus='user_names();'>
                           <option selected>$fullname</option>\n";

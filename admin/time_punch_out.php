@@ -193,7 +193,7 @@ if ($request == 'POST') { // Validate user input
         //        </td>
         //     </tr>";
         // }
-    } elseif ($timefmt_24hr == '0') {
+    } elseif (@$timefmt_24hr == '0') {
 //        if ((!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$", $post_time, $time_regs)) && (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$", $post_time, $time_regs))) {
           if ((!preg_match("/^([0-9]?[0-9])+:+([0-9]+[0-9])+([a|p]+m)$/i", $post_time, $time_regs)) && (!preg_match("/^([0-9]?[0-9])+:+([0-9]+[0-9])+( [a|p]+m)$/i", $post_time, $time_regs))) {
 
@@ -229,7 +229,7 @@ if ($request == 'POST') { // Validate user input
             </tr>";
             }
         }
-    } elseif ($timefmt_24hr == '1') {
+    } elseif (@$timefmt_24hr == '1') {
         // if (!eregi ("^([0-9]?[0-9])+:+([0-9]+[0-9])$", $post_time, $time_regs)) {
       if (!preg_match("/^([0-9]?[0-9])+:+([0-9]+[0-9])$/i", $post_time, $time_regs)) {
             $input_invalid = True;
@@ -312,25 +312,25 @@ echo"
                           </div>";
 
 echo "                <div class='form-group'>
-                        <label style='margin-right:38px'>Choose Office: </label>
+                        <label style='margin-right:38px'>Elija una oficina: </label>
                           <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'>
                           </select>
                       </div>";
 
 echo "                <div class='form-group'>
-                        <label style='margin-right:35px'>Choose Group: </label>
+                        <label style='margin-right:35px'>Elija un grupo: </label>
                           <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'>
 
                           </select>
                       </div>\n";
 
 echo "                <div class='form-group'>
-                        <label style='margin-right:10px'>Choose Username: </label>
+                        <label style='margin-right:10px'>Elija un nombre de usuario: </label>
                           <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'>
 
                           </select>
                       </div>\n";
-echo "               <div class='form-group' style='display: flex;'><label>Status:</label>";
+echo "               <div class='form-group' style='display: flex;'><label>Estado laboral:</label>";
 
                       // query to populate dropdown with punchlist items //
 $query = "select punchitems from ".$db_prefix."punchlist where (in_or_out = 0) ORDER BY punchitems ASC";
@@ -365,7 +365,7 @@ echo "              <div class='form-group' style='display: -webkit-box;'>
 
 echo"               <div class='bootstrap-timepicker'>
                       <div class='form-group' style='display: flex;'>
-                        <label style='margin-right:15px'>Time: </label>
+                        <label style='margin-right:15px'>Hora Registro: </label>
                       <div class='input-group'>
                               <div class='input-group-addon'>
                                 <i class='fa fa-clock-o'></i>

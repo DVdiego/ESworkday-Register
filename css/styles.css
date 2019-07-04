@@ -196,7 +196,7 @@ hr.separator-reports{
     font-size: 18px !important;
 }
 
-
+/*leftmain t content wrapper a la misma altura*/
 .content-wrapper{
     min-height: 86.8rem !important;
 }
@@ -205,10 +205,21 @@ hr.separator-reports{
     min-height: 96.9rem !important;
 }
 
-#wrapper > aside
+/*color bordes tabalas*/
+.box-header.with-border{
 
-#wrapper > div
+  border-bottom: 1px solid #ffffff;
+}
 
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+
+  border-top: 1px solid #ffffff;
+}
+
+.box-footer{
+
+      border-top: 1px solid #ffffff;
+}
 @media (max-width: 460px) {
     /* Los estilos aquí contenidos solo se aplicarán a partir
     del tamaño de pantalla indicado */

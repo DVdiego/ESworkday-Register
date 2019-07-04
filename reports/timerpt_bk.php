@@ -94,11 +94,11 @@ if ($request == 'GET') {
         ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
     } else {
 
-    echo "<div class='form-group'><label style='padding-right: 40px;'>Choose Office: </label> <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'></select></div>";
+    echo "<div class='form-group'><label style='padding-right: 40px;'>Elija una oficina: </label> <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'></select></div>";
 
-    echo "<div class='form-group'><label style='padding-right: 39px;'>Choose Group: </label> <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'></select></div>\n";
+    echo "<div class='form-group'><label style='padding-right: 39px;'>Elija un grupo: </label> <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'></select></div>\n";
 
-    echo "             <div class='form-group'><label style='padding-right: 15px;'>Choose Username: </label> <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'></select></div>\n";
+    echo "             <div class='form-group'><label style='padding-right: 15px;'>Elija un nombre de usuario: </label> <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'></select></div>\n";
 
     }
 
@@ -488,14 +488,14 @@ if ($request == 'GET') {
         ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
         } else {
 
-        echo "              <tr><td>Choose Office:</td><td colspan=2>
+        echo "              <tr><td>Elija una oficina:</td><td colspan=2>
                               <select name='office_name' onchange='group_names();'>\n";
         echo "                      </select></td></tr>\n";
-        echo "              <tr><td>Choose Group:</td><td colspan=2>
+        echo "              <tr><td>Elija un grupo:</td><td colspan=2>
                               <select name='group_name' onfocus='group_names();'>
                                   <option selected>$group_name</option>\n";
         echo "                      </select></td></tr>\n";
-        echo "              <tr><td>Choose Username:</td><td colspan=2>
+        echo "              <tr><td>Elija un nombre de usuario:</td><td colspan=2>
                               <select name='user_name' onfocus='user_names();'>
                                   <option selected>$fullname</option>\n";
         echo "                      </select></td></tr>\n";

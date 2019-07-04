@@ -451,7 +451,7 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                         </tr>
                         <tr class=right_main_text>
                            <td align=right class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
-                              Choose Office:
+                              Elija una oficina:
                            </td>
                            <td class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
                               <select name='office_name' onchange='group_names();'>
@@ -463,7 +463,7 @@ if ($request == 'GET' || isset($input_invalid)) { // Output Office/Group Punch S
                         </tr>
                         <tr class=right_main_text>
                            <td align=right class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
-                              Choose Group:
+                              Elija un grupo:
                            </td>
                            <td class=table_rows height=25 width=25% style='padding-left:32px;' nowrap>
                               <select name='group_name' onchange='user_names();'>
