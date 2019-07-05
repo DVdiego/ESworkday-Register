@@ -96,6 +96,7 @@ if ($request == 'POST') { // Validate user input
   // if(empty($post_confirmed_punch)){
   //   $post_confirmed_punch = True;
   // }
+    $post_notes = $_POST['post_notes'];
     $post_confirmed_punch = True;
     $post_date = $_POST['post_date'];
     $post_time = $_POST['post_time'];
@@ -270,12 +271,12 @@ if ($request == 'POST') { // Validate user input
     if (empty($input_invalid)) { // Create message to display for confirmation and successful punch
         if ($post_punch_out == "office") {
             $post_group = ""; // Ensure they are not set
-            $punch_message = "all employees in office $post_office on $post_date at $post_time to a status of $post_statusname.";
+            $punch_message = "Todos los empleados de la oficina $post_office, el $post_date a las $post_time se han cambiado al estado $post_statusname.";
         } else if ($post_punch_out == "group") {
-            $punch_message = "all employees in office $post_office of group $post_group on $post_date at $post_time to a status of $post_statusname.";
+            $punch_message = "Todos los empleados de la oficina $post_office y grupo $post_group, el $post_date a las $post_time se han cambiado al estado $post_statusname.";
         } else {
             $post_office = $post_group = ""; // Ensure they are not set
-            $punch_message = "all employees on $post_date at $post_time to a status of $post_statusname.";
+            $punch_message = "Todos los empleados, el $post_date a las $post_time se han cambiado al estado $post_statusname.";
         }
     }
 }
@@ -352,7 +353,7 @@ echo "                 </select>
 
 
 echo "              <div class='form-group' style='display: -webkit-box;'>
-                      <label style='margin-right:10px'>Fecha:</label>
+                      <label style='margin-right:10px'>Fecha Registro:</label>
                         <div class='input-group'>
                         <div class='input-group-addon'>
                           <i class='fa fa-calendar'></i>
@@ -379,6 +380,8 @@ echo "             <div class='form-group'>
                     <label>Notes:</label>
                       <input type='text' name='post_notes' maxlength='250' class='form-control' style=' width: 98%;' >
                   </div>";
+
+
 echo "						<div class='box-footer'>
                     <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
                       <i class='fa fa-ban'></i> Cancelar
@@ -521,7 +524,7 @@ exit;
     if(empty($post_notes)){
 
       //$admin_note = 'Time Admin Mass Employee Punch Out';
-      $admin_note = 'Registro multiple de estado: Salida';
+      $admin_note = "Registro multiple de estado: $post_statusname";
     }else {
       $admin_note = $post_notes;
     }
