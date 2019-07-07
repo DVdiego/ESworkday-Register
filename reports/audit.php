@@ -52,7 +52,7 @@ if ($use_reports_password == "yes") {
     }
 }
 
-echo "<title>$title - Audit Log</title>\n";
+echo "<title>$title -  Reportes para Auditoría</title>\n";
 
 if ($request == 'GET') {
 
@@ -70,7 +70,7 @@ if ($request == 'GET') {
             <div id="float_window" class="col-md-10">
               <div class="box box-info"> ';
     echo '      <div class="box-header with-border">
-                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Audit Log</h3>
+                     <h3 class="box-title"><i class="fa fa-suitcase"></i> Reportes para Auditoría</h3>
                 </div>
                 <div class="box-body">';
                 echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
@@ -105,19 +105,22 @@ if ($request == 'GET') {
 
 
                 echo "              <div class='form-group'><div class='radio'>
-                                        <label>Export to CSV? (link to CSV file will be in the top right of the next page)</label></div> \n";
+                                        <label>¿Desea exportarlo como CSV (el enlace al archivo .CSV estará en la parte superior derecha de la página siguiente)</label></div> \n";
                      if (strtolower($export_csv) == "yes") {
-                     echo "    <div class='radio'><label><input type='radio' name='csv' value='1' checked>&nbsp;Yes</label></div>\n";
+                     echo "    <div class='radio'><label><input type='radio' name='csv' value='1' checked>&nbsp;Si</label></div>\n";
                      echo "    <div class='radio'><label><input type='radio' name='csv' value='0'> &nbsp;No </label></div></div>\n";
                      } else {
-                     echo "    <div class='radio'><label><input type='radio' name='csv' value='1'> Yes</label></div>   <div class='radio'><label><input type='radio' name='csv' value='0' checked>No</label></div></div>\n";
+                     echo "    <div class='radio'><label><input type='radio' name='csv' value='1'> Si</label></div>   <div class='radio'><label><input type='radio' name='csv' value='0' checked>No</label></div></div>\n";
                      }
 
 
                 echo '    <div class="box-footer">
-                            <a href="index.php"><button type="submit" name="submit" value="Edit Time" class="btn btn-default pull-right"><i class="fa fa-ban"></i>  Cancel</button></a>
-                            <button type="submit" class="btn btn-success">Next <i class="fa fa-arrow-right"></i></button></div>
-                          </div>
+                          <button type="button" id="formButtons" onclick="location=\'index.php\'" class="btn btn-default pull-right" style="margin: 0px 10px 0px 10px;">
+                            <i class="fa fa-ban"></i>
+                            Cancelar
+                          </button>
+                          <button id="formButtons" type="submit" class="btn btn-success" >Siguiente <i class="fa fa-arrow-right"></i></button></div>
+                        </div>
                       </form>
                             <!-- /.box-body -->
                           </div>
@@ -350,7 +353,7 @@ if ($request == 'GET') {
         echo "            <form name='form' action='$self' method='post' onsubmit=\"return isFromOrToDate();\">\n";
         echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
         echo "              <tr>\n";
-        echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/report.png' />&nbsp;&nbsp;&nbsp;Audit Log</th> </tr>\n";
+        echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/report.png' />&nbsp;&nbsp;&nbsp; Reportes para Auditoría</th> </tr>\n";
         echo "              <tr><td height=15></td></tr>\n";
         echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
         echo "              <tr><td class=table_rows style='padding-left:32px;' width=20% nowrap>From Date: ($tmp_datefmt)</td><td style='padding-left:20px;' width=80% > <input type='text' size='10' maxlength='10' name='from_date' value='$from_date' style='color:#27408b'>&nbsp;*&nbsp;&nbsp; <a href=\"#\" onclick=\"form.from_date.value='';cal.select(document.forms['form'].from_date,'from_date_anchor','$js_datefmt'); return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'>Pick Date</a></td><tr>\n";
@@ -359,7 +362,7 @@ if ($request == 'GET') {
         echo "            </table>\n";
         echo "            <div style=\"position:absolute;visibility:hidden;background-color:#ffffff;layer-background-color:#ffffff;\" id=\"mydiv\" height=200>&nbsp;</div>\n";
         echo "            <table align=center width=60% border=0 cellpadding=0 cellspacing=3>\n";
-        echo "              <tr><td class=table_rows height=25 valign=bottom>1.&nbsp;&nbsp;&nbsp;Export to CSV? (link to CSV file will be in the top right of the next page)</td></tr>\n";
+        echo "              <tr><td class=table_rows height=25 valign=bottom>1.&nbsp;&nbsp;&nbsp;¿Desea exportarlo como CSV (el enlace al archivo .CSV estará en la parte superior derecha de la página siguiente)</td></tr>\n";
         if ($tmp_csv == "1") {
             echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='csv' value='1' checked>&nbsp;Yes<input type='radio' name='csv' value='0'>&nbsp;No</td></tr>\n";
         } else {
@@ -409,13 +412,46 @@ if ($request == 'GET') {
     $from_date_eur = strftime('%d/%m/%Y',strtotime($from_date));
     $to_date_eur = strftime('%d/%m/%Y',strtotime($to_date));
 
-    echo "<table width=100% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
-    echo "  <tr><td width=80% style='font-size:9px;color:#000000;padding-left:10px;'>Fecha del Informe: $rpt_time, $rpt_date</td><td nowrap style='font-size:9px;color:#000000;'>Audit Log</td></tr>\n";
-    echo "  <tr><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
-    if (!empty($tmp_csv)) {
-        echo "  <tr class=notprint><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'><a style='color:#27408b;font-size:9px; text-decoration:underline;' href=\"get_csv.php?rpt=auditlog&&csv=$tmp_csv&from=$from_timestamp&to=$to_timestamp&tzo=$tzo\">Download CSV File</a></td></tr>\n";
-    }
-    echo "</table>\n";
+    /*
+      Tabla de datos arribas de los informes
+    */
+    echo '  <div class="row" style="margin-top: 20px;">
+              <div id="float_window" class="col-md-10">
+                <div class="box box-info">
+                  <div class="box-header">
+                    <h3 class="box-title"><i class=fa fa-list></i> Datos</h3>
+                  </div>
+
+                  <div class="box-body">
+                    <table class="table table-hover">
+                      <tr>
+                        <td>
+                          Fecha del informe: '. $rpt_time .', '. $rpt_date .'
+                        </td>
+                        <td>
+                          <strong>Reportes para Auditoría</strong>
+                        </td>
+                        <td>
+                          Rango de fechas: '. $from_date_eur .' hasta '. $to_date_eur .'
+                        <td>
+                      </tr>';
+
+if(!empty($tmp_csv)){
+echo '                <tr>
+                        <td>
+                          Descargar el fichero .CSV:
+                          <a style="color:#27408b;font-size:16px; text-decoration:underline;"
+                          href=\'get_csv.php?rpt=auditlog&csv='.  $tmp_csv .'&from='. $from_timestamp .'&to='. $to_timestamp .'&tzo='. $tzo .'\'>
+                            &nbsp;Descargar
+                          </a>
+                        </td>
+                      </tr>';
+}
+echo '              </table>
+                  </div>
+                </div>
+              </div>
+            </div>';
 
     $row_count = 0;
     $page_count = 0;
@@ -442,7 +478,15 @@ if ($request == 'GET') {
         $user_modified[] = "".$row["user_modified"]."";
         $cnt++;
     }
-      echo '<div class="table-responsive">';
+      echo '<div class="row">
+              <div id="float_window" class="col-md-10">
+                <div class="box box-info">';
+      echo '      <div class="box-header">';
+      echo '        <h3 class="box-title"><i class="fa fa-suitcase"></i> Informes para auditoría</h3>
+                  </div>
+
+                  <div class="box-body table-responsive no-padding">';
+
     for ($x=0;$x<$cnt;$x++) {
         if (!empty($modified_when[$x])) {
             $modified_when[$x] = $modified_when[$x] + @$tzo;
@@ -468,44 +512,34 @@ if ($request == 'GET') {
             $modified_to_date = "".$row["modified_to"]."";
         }
         if ((!empty($modified_from[$x])) && (empty($modified_to[$x]))) {
-            $modified_status = "Deleted";
+            $modified_status = "Borrado";
             $modified_color = "#FF0000";
         } elseif ((!empty($modified_from[$x])) && (!empty($modified_to[$x]))) {
-            $modified_status = "Edited";
+            $modified_status = "Editado";
             $modified_color = "#FF9900";
         } elseif ((empty($modified_from[$x])) && (!empty($modified_to[$x]))) {
-            $modified_status = "Added";
+            $modified_status = "Añadido";
             $modified_color = "#009900";
         }
 
         if ($row_count == 0) {
             if ($page_count == 0) {
-                echo "<table class=misc_items width=100% border=0 cellpadding=2 cellspacing=0>\n";
-                echo "  <tr><td height=15></td></tr>\n";
+                echo "<table class='misc_items table table-center' width=100% >\n";
                 echo "  <tr class=notprint>\n";
-                echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>User Modified</td>\n";
-                echo "    <td nowrap width=10% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Action Taken</td>\n";
-                echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified When</td>\n";
-                echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified By</td>\n";
-                echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified By IP</td>\n";
-                echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified From</td>\n";
-                echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified To</td>\n";
-                echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modification Reason</td></tr>\n";
+                echo "    <th>Usuario</th>\n";
+                echo "    <th>Acción</th>\n";
+                echo "    <th>Fecha</th>\n";
+                echo "    <th>Autor</th>\n";
+                echo "    <th>IP</th>\n";
+                echo "    <th>Desde</th>\n";
+                echo "    <th>Hasta</th>\n";
+                echo "    <th>Razón</th></tr>\n";
             } else {
                 // display report name and page number of printed report above the column headings of each printed page //
                 $temp_page_count = $page_count + 1;
                 echo "  <tr><td colspan=2 class=notdisplay style='font-size:9px;color:#000000;padding-left:10px;'>Fecha del Informe: $rpt_time, $rpt_date (page $temp_page_count)</td><td class=notdisplay nowrap style='font-size:9px;color:#000000;' align=right colspan=4>$rpt_name</td></tr>\n";
                 echo "  <tr><td class=notdisplay align=right colspan=6 nowrap style='font-size:9px;color:#000000;'> Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
             }
-            // echo "  <tr class=notdisplay>\n";
-            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified User</td>\n";
-            // echo "    <td nowrap width=10% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Action Taken</td>\n";
-            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified When</td>\n";
-            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified By</td>\n";
-            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified By IP</td>\n";
-            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified From</td>\n";
-            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modified To</td>\n";
-            // echo "    <td nowrap width=15% align=left style='padding-left:10px;font-size:11px;color:#27408b; text-decoration:underline;'>Modification Reason</td></tr>\n";
         }
 
         // begin alternating row colors //
@@ -542,7 +576,11 @@ if ($request == 'GET') {
         }
     }
     echo "</table>\n";
-    echo "</div>";
+    echo '</div>'; //box-body
+    echo '</div>'; //box-info
+    echo '</div>'; //window
+    echo '</div>'; //row
+    //echo "</div>"; //div responsive
 }
 exit;
 ?>

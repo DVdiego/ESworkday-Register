@@ -63,7 +63,7 @@ if($request == 'GET'){
             <div id='float_window' class='col-md-10'>
                 <div class='box box-info'>
                     <div class='box-header with-border'>
-                    <h3 class='box-title'><i class='fa fa-book'></i> Register multiple workday at a time</h3>
+                    <h3 class='box-title'><i class='fa fa-book'></i> Registrar múltiples horarios</h3>
                 </div>
                 <div class='box-body'>";
 
@@ -91,20 +91,20 @@ if($request == 'GET'){
   } else {
 
   echo "                <div class='form-group'>
-                          <label style='margin-right:38px'>Elija una oficina: </label>
+                          <label style='margin-right:100px'>Elija una oficina: </label>
                             <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'>
                             </select>
                         </div>";
 
   echo "                <div class='form-group'>
-                          <label style='margin-right:35px'>Elija un grupo: </label>
+                          <label style='margin-right:113px'>Elija un grupo: </label>
                             <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'>
 
                             </select>
                         </div>\n";
 
   echo "                <div class='form-group'>
-                          <label style='margin-right:10px'>Elija un nombre de usuario: </label>
+                          <label style='margin-right:35px'>Elija un nombre de usuario: </label>
                             <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'>
 
                             </select>
@@ -118,7 +118,7 @@ if($request == 'GET'){
   $query = "select punchitems from ".$db_prefix."punchlist";
   $punchlist_result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
-  echo "                  <select class='form-control' name='post_statusname' style='margin-left: 7px;width: 149px;'>
+  echo "                  <select class='form-control' name='post_statusname' style='margin-left: 115px;width: 149px;'>
                               <option value =''>
                                 ...
                               </option>";
@@ -133,7 +133,7 @@ if($request == 'GET'){
   ((mysqli_free_result( $punchlist_result ) || (is_object( $punchlist_result ) && (get_class( $punchlist_result ) == "mysqli_result"))) ? true : false);
 
   echo "              <div class='form-group' style='display: -webkit-box;'>
-                        <label style='margin-right:10px'>Fecha:</label>
+                        <label style='margin-right:168px'>Fecha:</label>
                           <div class='input-group'>
                           <div class='input-group-addon'>
                             <i class='fa fa-calendar'></i>
@@ -146,7 +146,7 @@ if($request == 'GET'){
 
   echo"               <div class='bootstrap-timepicker'>
                         <div class='form-group' style='display: flex;'>
-                          <label style='margin-right:15px'>Hora Registro: </label>
+                          <label style='margin-right:119px'>Hora Registro: </label>
       	                <div class='input-group'>
                                 <div class='input-group-addon'>
                                   <i class='fa fa-clock-o'></i>
@@ -158,13 +158,14 @@ if($request == 'GET'){
  echo "<input type='hidden' value='' name='latitude'/>";
  echo "<input type='hidden' value='' name='longitude'/>";
   echo "             <div class='form-group'>
-                       <label>Notes:</label>
-                         <input type='text' name='post_notes' maxlength='250' class='form-control' style=' width: 98%;' >
+                       <label>Notas:</label>
+                       <textarea id='comment' class='form-control' rows='3' name='post_notes'></textarea>
                      </div>";
 
  echo "						<div class='box-footer'>
                       <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
-                        <i class='fa fa-ban'></i>Cancelar
+                        <i class='fa fa-ban'></i>
+                        Cancelar
                       </button>
 
 											<button id='formButtons' type='submit' name='submit'  class='btn btn-success pull-right'>
@@ -243,7 +244,7 @@ if($request == 'GET'){
               <div id='float_window' class='col-md-10'>
                   <div class='box box-info'>
                       <div class='box-header with-border'>
-                      <h3 class='box-title'><i class='fa fa-book'></i> Register multiple workday at a time</h3>
+                      <h3 class='box-title'><i class='fa fa-book'></i> Registrar múltiples horarios</h3>
                   </div>
                   <div class='box-body'>";
 
@@ -338,12 +339,13 @@ if($request == 'GET'){
                        </div>";
 
     echo "             <div class='form-group'>
-                         <label>Notes:</label>
-                           <input type='text' name='post_notes' maxlength='250' class='form-control' style=' width: 98%;' >
+                         <label>Notas:</label>
+                         <textarea id='comment' class='form-control' rows='3' name='post_notes'></textarea>
                        </div>";
    echo "						<div class='box-footer'>
                          <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
-                           <i class='fa fa-ban'></i>Cancelar
+                           <i class='fa fa-ban'></i>
+                           Cancelar
                          </button>
                         <button id='formButtons' type='submit' name='submit'  class='btn btn-success pull-right'>Siguiente <i class='fa fa-arrow-right'></i></button><a href='usercreate.php'></a>
                       </div>";
@@ -488,42 +490,42 @@ if($request == 'GET'){
 echo "<br>";
  if (($office_name == "All") && ($group_name == "All") && ($fullname == "All")) {
 
-echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
-echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
-echo "<h3><span>Para todos los empleados de: $enterprise_name.</span></h3>\n";
+echo "<h4><span>Se ha registrado el estado: $post_statusname</h4>\n";
+echo "<h4><span>Fecha: $post_date Hora: $post_time </h4>\n";
+echo "<h4><span>Para todos los empleados de: $enterprise_name.</span></h4>\n";
 
  } elseif ((empty($office_name)) && (empty($group_name)) && ($fullname == 'All')) {
 
- echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
- echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
- echo "<h3><span>Para los empleados de: $office_name --> $group_name --> $fullname.</span></h3>\n";
+ echo "<h4><span>Se ha registrado el estado: $post_statusname</h4>\n";
+ echo "<h4><span>Fecha: $post_date Hora: $post_time </h4>\n";
+ echo "<h4><span>Para <strong>$fullname</strong> del grupo <strong>$group_name</strong>, que pertenece a la oficina <strong>$office_name</strong>.</span></h4>\n";
 
 
 
  } elseif ((empty($office_name)) && (empty($group_name)) && ($fullname != 'All')) {
 
-   echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
-   echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
-   echo "<h3><span>Para los empleados de: $office_name --> $group_name --> $fullname.</span></h3>\n";
+   echo "<h4><span>Se ha registrado el estado: $post_statusname</h4>\n";
+   echo "<h4><span>Fecha: $post_date Hora: $post_time </h4>\n";
+   echo "<h4><span>Para <strong>$fullname</strong> del grupo <strong>$group_name</strong>, que pertenece a la oficina <strong>$office_name</strong>.</span></h4>\n";
 
  } elseif (($office_name != "All") && ($group_name == "All") && ($fullname == "All")) {
 
-   echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
-   echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
-   echo "<h3><span>Para los empleados de: $office_name --> $group_name --> $fullname.</span></h3>\n";
+   echo "<h4><span>Se ha registrado el estado: $post_statusname</h4>\n";
+   echo "<h4><span>Fecha: $post_date Hora: $post_time </h4>\n";
+   echo "<h4><span>Para <strong>$fullname</strong> del grupo <strong>$group_name</strong>, que pertenece a la oficina <strong>$office_name</strong>.</span></h4>\n";
 
  } elseif (($office_name != "All") && ($group_name != "All") && ($fullname == "All")) {
 
 
-   echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
-   echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
-   echo "<h3><span>Para los empleados de: $office_name --> $group_name --> $fullname.</span></h3>\n";
+   echo "<h4><span>Se ha registrado el estado: $post_statusname</h4>\n";
+   echo "<h4><span>Fecha: $post_date Hora: $post_time </h4>\n";
+   echo "<h4><span>Para <strong>$fullname</strong> del grupo <strong>$group_name</strong>, que pertenece a la oficina <strong>$office_name</strong>.</span></h4>\n";
 
  } elseif (($office_name != "All") && ($group_name != "All") && ($fullname != "All")) {
 
-   echo "<h3><span>Se ha registrado el Estado: $post_statusname</h3>\n";
-   echo "<h3><span>Fecha: $post_date Hora: $post_time </h3>\n";
-   echo "<h3><span>Para los empleados de: $office_name --> $group_name --> $fullname.</span></h3>\n";
+   echo "<h4><span>Se ha registrado el estado: $post_statusname</h4>\n";
+   echo "<h4><span>Fecha: $post_date Hora: $post_time </h4>\n";
+   echo "<h4><span>Para <strong>$fullname</strong> del grupo <strong>$group_name</strong>, que pertenece a la oficina <strong>$office_name</strong>.</span></h4>\n";
 
  }
 
@@ -531,11 +533,13 @@ echo "<h3><span>Para todos los empleados de: $enterprise_name.</span></h3>\n";
 echo "<br>";
 echo "						<div class='box-footer'>
                     <button type='button' id='formButtons' onclick='location=\"timeadmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
-                      <i class='fa fa-sign-out'></i>Salir
+                      <i class='fa fa-sign-out'></i>
+                      Salir
                     </button>
 
                     <button type='button' id='formButtons' onclick='location=\"time_punch_employees.php\"' class='btn btn-success pull-right'>
-                      <i class='fa fa-plus-square-o'></i> Continuar
+                      <i class='fa fa-plus-square-o'></i>
+                      Continuar
                     </button>
                   </div>";
 
@@ -557,3 +561,4 @@ echo "						<div class='box-footer'>
 }
 
  ?>
+Registrar múltiples horarios

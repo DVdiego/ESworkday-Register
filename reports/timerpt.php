@@ -606,6 +606,9 @@ if ($request == 'GET') {
     elseif (($office_name != "All") && ($group_name != "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Oficina: $office_name --> Grupo: $group_name -->
      Usuarios: Todos";}
     $rpt_name="$tmp_fullname";
+    /*
+      Tabla de datos arribas de los informes
+    */
     echo '  <div class="row" style="margin-top: 20px;">
               <div id="float_window" class="col-md-10">
                 <div class="box box-info">
@@ -625,9 +628,9 @@ if ($request == 'GET') {
                         <td>
                           Rango de fechas: '. $from_date_eur .' to '. $to_date_eur .'
                         <td>
-                      </tr>
-
-                      <tr>
+                      </tr>';
+    if(!empty($tmp_csv)){
+    echo '            <tr>
                         <td>
                           Descargar el fichero .CSV:
                           <a style="color:#27408b;font-size:16px;text-decoration:underline;"
@@ -635,8 +638,9 @@ if ($request == 'GET') {
                              &nbsp;Descargar
                           </a>
                         </td>
-                      </tr>
-                    </table>
+                      </tr>';
+    }
+    echo'           </table>
                   </div>
                 </div>
               </div>

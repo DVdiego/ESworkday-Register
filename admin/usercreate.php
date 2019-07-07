@@ -54,7 +54,7 @@ if (!isset($_SESSION['valid_user'])) {
 
 
 if ($request !== 'POST') {include 'leftmain.php';}
-echo "<title>$title - Create User</title>\n";
+echo "<title>$title - Crear Usuario</title>\n";
 
 
 
@@ -98,7 +98,7 @@ if ($request == 'GET') {
 		        <div id="float_window" class="col-md-10">
 		          <div class="box box-info"> ';
 		    echo '<div class="box-header with-border">
-			                 <h3 class="box-title"><i class="fa fa-user-plus"></i> Create User</h3>
+			                 <h3 class="box-title"><i class="fa fa-user-plus"></i> Crear Usuario</h3>
 			               </div><div class="box-body">';
 
 		echo "            <form name='form' action='$self' method='post'>\n";
@@ -240,7 +240,8 @@ if ($request == 'GET') {
 		echo "            </table>\n";
 		echo "						<div class='box-footer'>
 												<button type='button' id='formButtons' onclick='location=\"useradmin.php\"' class='btn btn-default pull-right' style='margin: 0px 10px 0px 10px;'>
-													<i class='fa fa-ban'></i>Cancelar
+													<i class='fa fa-ban'></i>
+													Cancelar
 												</button>
 
 												<button id='formButtons' type='submit' name='submit' value='Create User' class='btn btn-success pull-right'>
