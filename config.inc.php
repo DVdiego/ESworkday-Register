@@ -59,9 +59,6 @@ $version_worktime = "premium";
 /*basic = 10, premium 30*/
 $max_users_version = 10;
 
-
-
-
 /*seleccionar solo UN atributo para hacer login*/
 $login_with_fullname = "yes";
 $login_with_displayname = "none";

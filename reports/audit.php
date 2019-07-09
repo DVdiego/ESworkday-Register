@@ -468,6 +468,9 @@ echo '              </table>
     $query = "select * from ".$db_prefix."audit where modified_when >= '".$from_timestamp."' and modified_when <= '".$to_timestamp."' order by modified_when asc";
     $result = mysqli_query($GLOBALS["___mysqli_ston"], $query);
 
+    $max_items = 40;
+
+
     while ($row=mysqli_fetch_array($result)) {
         $modified_when[] = "".$row["modified_when"]."";
         $modified_from[] = "".$row["modified_from"]."";
@@ -535,10 +538,14 @@ echo '              </table>
                 echo "    <th>Hasta</th>\n";
                 echo "    <th>Razón</th></tr>\n";
             } else {
+
                 // display report name and page number of printed report above the column headings of each printed page //
                 $temp_page_count = $page_count + 1;
-                echo "  <tr><td colspan=2 class=notdisplay style='font-size:9px;color:#000000;padding-left:10px;'>Fecha del Informe: $rpt_time, $rpt_date (page $temp_page_count)</td><td class=notdisplay nowrap style='font-size:9px;color:#000000;' align=right colspan=4>$rpt_name</td></tr>\n";
-                echo "  <tr><td class=notdisplay align=right colspan=6 nowrap style='font-size:9px;color:#000000;'> Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
+                echo "  <tr>
+                          <td colspan=3 class=notdisplay style='font-size:12px;color:#000000;' align='center'>Fecha del Informe: $rpt_time, $rpt_date (página $temp_page_count)</td>
+                          <td class=notdisplay nowrap style='font-size:12px;color:#000000;' align='center' colspan=3>Informe de auditoria</td>\n";
+                echo "    <td class=notdisplay align=center colspan=3 nowrap style='font-size:12px;color:#000000;'> Rango de fechas: $from_date_eur - $to_date_eur</td>
+                        </tr>\n";
             }
         }
 
@@ -569,7 +576,7 @@ echo '              </table>
         $row_count++;
 
         // output 40 rows per printed page //
-        if ($row_count == 40) {
+        if ($row_count == $max_items) {
             echo "  <tr style=\"page-break-before:always;\"></tr>\n";
             $row_count = 0;
             $page_count++;
@@ -580,7 +587,12 @@ echo '              </table>
     echo '</div>'; //box-info
     echo '</div>'; //window
     echo '</div>'; //row
-    //echo "</div>"; //div responsive
+
 }
+include '../theme/templates/endmaincontent.inc';
+include '../footer.php';
+include '../theme/templates/controlsidebar.inc';
+include '../theme/templates/endmain.inc';
+include '../theme/templates/reportsfooterscripts.inc';
 exit;
 ?>
