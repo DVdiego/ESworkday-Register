@@ -12,9 +12,34 @@
 
   }
 
+
+
+
   #wrapper > div > section > div > div:nth-child(2) > div.col-md-8 > div.callout{
     margin-left: 30%;
   }
+
+
+  #float_window > div > div.box-body > form > div:nth-child(5){
+    display: flex;
+  }
+
+  #float_window > div > div.box-body > form > div:nth-child(6){
+    display: flex;
+  }
+}
+
+
+@media (max-width: 767px ){
+
+  #float_window > div > div.box-body > form > div:nth-child(5){
+    display: block;
+  }
+
+  #float_window > div > div.box-body > form > div:nth-child(5){
+    display: block;
+  }
+
 }
 
 

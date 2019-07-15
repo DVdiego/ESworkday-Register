@@ -103,8 +103,8 @@ if ($request == 'GET') {
     }
 
 
-    echo "              <div class='form-group' style='display: -webkit-box;'>
-                          <label style='padding-right: 12px;'>Fecha Inicio:</label>
+    echo "              <div class='form-group' >
+                          <label style='padding-right: 128px;'>Fecha Inicio:</label>
                             <div class='input-group'>
 
                             <div class='input-group-addon'>
@@ -115,8 +115,8 @@ if ($request == 'GET') {
                               return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
                             </div>
                         </div>\n";
-    echo "              <div class='form-group' style='display: -webkit-box;'>
-                          <label style='padding-right: 27px;'>Fecha Fin:</label>
+    echo "              <div class='form-group' >
+                          <label style='padding-right: 142px;'>Fecha Fin:</label>
                             <div class='input-group'>
                             <div class='input-group-addon'>
                               <i class='fa fa-calendar'></i>
