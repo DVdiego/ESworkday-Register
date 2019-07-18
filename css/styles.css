@@ -5,41 +5,24 @@
 @media (min-width: 768px ) {
 
   #register > form > div > div.box-body{
-
     margin-left: 30% !important;
-
-
-
   }
-
-
-
 
   #wrapper > div > section > div > div:nth-child(2) > div.col-md-8 > div.callout{
     margin-left: 30%;
   }
 
 
-  #float_window > div > div.box-body > form > div:nth-child(5){
-    display: flex;
-  }
-
-  #float_window > div > div.box-body > form > div:nth-child(6){
+  #float_window > div > div.box-body > form > #dates{
     display: flex;
   }
 }
 
-
 @media (max-width: 767px ){
 
-  #float_window > div > div.box-body > form > div:nth-child(5){
+  #float_window > div > div.box-body > form > #dates{
     display: block;
   }
-
-  #float_window > div > div.box-body > form > div:nth-child(5){
-    display: block;
-  }
-
 }
 
 

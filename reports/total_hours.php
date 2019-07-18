@@ -48,7 +48,7 @@ echo "      </table><br /></td></tr></table>\n"; exit;
 }
 }
 
-echo "<title>$title - Hours Worked Report</title>\n";
+echo "<title>$title -Informe de horas trabajadas</title>\n";
 
 if ($request == 'GET') {
 
@@ -66,7 +66,7 @@ echo '<div class="row">
         <div id="float_window" class="col-md-10">
           <div class="box box-info"> ';
 echo '      <div class="box-header with-border">
-                 <h3 class="box-title"><i class="fa fa-user"></i> Hours Worked Report</h3>
+                 <h3 class="box-title"><i class="fa fa-user"></i> Informe de horas trabajadas</h3>
             </div>
             <div class="box-body">';
 
@@ -91,17 +91,17 @@ echo '      <div class="box-header with-border">
                 ((mysqli_free_result($result) || (is_object($result) && (get_class($result) == "mysqli_result"))) ? true : false);
             } else {
 
-            echo "<div class='form-group'><label style='padding-right: 40px;'>Elija una oficina: </label> <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'></select></div>";
+            echo "<div class='form-group'><label style='padding-right: 100px;'>Elija una oficina: </label> <select name='office_name' class='form-control select2 pull-right' style='width: 50%;' onchange='group_names();'></select></div>";
 
-            echo "<div class='form-group'><label style='padding-right: 39px;'>Elija un grupo: </label> <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'></select></div>\n";
+            echo "<div class='form-group'><label style='padding-right: 113px;'>Elija un grupo: </label> <select name='group_name' class='form-control select2 pull-right' style='width: 50%;' onchange='user_names();'></select></div>\n";
 
-            echo "             <div class='form-group'><label style='padding-right: 15px;'>Elija un nombre de usuario: </label> <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'></select></div>\n";
+            echo "             <div class='form-group'><label style='padding-right: 34px;'>Elija un nombre de usuario: </label> <select name='user_name' class='form-control select2 pull-right' style='width: 50%;'></select></div>\n";
 
             }
 
 
-            echo "              <div class='form-group' style='display: -webkit-box;'>
-                                  <label style='padding-right: 10px;'>Fecha Inicio:</label>
+            echo "              <div id='dates' class='form-group'>
+                                  <label style='padding-right: 127px;'>Fecha Inicio:</label>
                                     <div class='input-group'>
 
                                     <div class='input-group-addon'>
@@ -112,8 +112,8 @@ echo '      <div class="box-header with-border">
                                       return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
                                     </div>
                                 </div>\n";
-            echo "              <div class='form-group' style='display: -webkit-box;'>
-                                  <label style='padding-right: 27px;'>Fecha Fin:</label>
+            echo "              <div id='dates' class='form-group'>
+                                  <label style='padding-right: 142px;'>Fecha Fin:</label>
                                     <div class='input-group'>
                                     <div class='input-group-addon'>
                                       <i class='fa fa-calendar'></i>
@@ -127,132 +127,138 @@ echo '      <div class="box-header with-border">
 
 
 echo "            <table align=left width=100% border=0 cellpadding=0 cellspacing=3>\n";
-echo "              <tr><td class=table_rows height=25 valign=bottom>1.&nbsp;&nbsp;&nbsp;Export to CSV? (link to CSV file will be in the top right of
-                      the next page)</td></tr>\n";
+echo "              <tr><td class=table_rows height=25 valign=bottom>1.&nbsp;&nbsp;&nbsp;¿Exportar a .CSV (el enlace al archivo .CSV estará en la parte superior derecha de la página siguiente)</td></tr>\n";
 if (strtolower($export_csv) == "yes") {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='csv' value='1' checked>&nbsp;Yes
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='csv' value='1' checked>&nbsp;Si
                       <input type='radio' name='csv' value='0'>&nbsp;No</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='csv' value='1'>&nbsp;Yes
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='csv' value='1'>&nbsp;Si
                       <input type='radio' name='csv' value='0' checked>&nbsp;No</td></tr>\n";
 }
-echo "              <tr><td class=table_rows height=25 valign=bottom>2.&nbsp;&nbsp;&nbsp;Paginate this report so each user's time is printed
-                      on a separate page?</td></tr>\n";
+echo "              <tr><td class=table_rows height=25 valign=bottom>2.&nbsp;&nbsp;&nbsp;¿Visualizar el tiempo de cada usuario de forma separada?</td></tr>\n";
 if ($paginate == "yes") {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_paginate' value='1' checked>&nbsp;Yes
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_paginate' value='1' checked>&nbsp;Si
                       <input type='radio' name='tmp_paginate' value='0'>&nbsp;No</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_paginate' value='1'>&nbsp;Yes
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_paginate' value='1'>&nbsp;Si
                       <input type='radio' name='tmp_paginate' value='0' checked>&nbsp;No</td></tr>\n";
 }
-echo "              <tr><td class=table_rows height=25 valign=bottom>3.&nbsp;&nbsp;&nbsp;Show punch-in/out details?</td></tr>\n";
+echo "              <tr><td class=table_rows height=25 valign=bottom>3.&nbsp;&nbsp;&nbsp;¿Mostrar detalles de entrada/salida?</td></tr>\n";
 
 if (strtolower($ip_logging) == "yes") {
     if ($show_details == 'yes') {
     echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_show_details' value='1'
-                          checked onFocus=\"javascript:form.tmp_display_ip[0].disabled=false;form.tmp_display_ip[1].disabled=false;\">&nbsp;Yes&nbsp;<input
+                          checked onFocus=\"javascript:form.tmp_display_ip[0].disabled=false;form.tmp_display_ip[1].disabled=false;\">&nbsp;Si&nbsp;<input
                           type='radio' name='tmp_show_details' value='0' onFocus=\"javascript:form.tmp_display_ip[0].disabled=true;
                           form.tmp_display_ip[1].disabled=true;\">&nbsp;No</td></tr>\n";
     } else {
     echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_show_details' value='1'
-                          onFocus=\"javascript:form.tmp_display_ip[0].disabled=false;form.tmp_display_ip[1].disabled=false;\">&nbsp;Yes&nbsp;<input
+                          onFocus=\"javascript:form.tmp_display_ip[0].disabled=false;form.tmp_display_ip[1].disabled=false;\">&nbsp;Si&nbsp;<input
                           type='radio' name='tmp_show_details' value='0' checked onFocus=\"javascript:form.tmp_display_ip[0].disabled=true;
                           form.tmp_display_ip[1].disabled=true;\">&nbsp;No</td></tr>\n";
     }
 } else {
     if ($show_details == 'yes') {
     echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_show_details' value='1'
-                          checked>&nbsp;Yes&nbsp;<input type='radio' name='tmp_show_details' value='0'>&nbsp;No</td></tr>\n";
+                          checked>&nbsp;Si&nbsp;<input type='radio' name='tmp_show_details' value='0'>&nbsp;No</td></tr>\n";
     } else {
     echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_show_details' value='1'
-                          >&nbsp;Yes&nbsp;<input type='radio' name='tmp_show_details' value='0' checked>&nbsp;No</td></tr>\n";
+                          >&nbsp;Si&nbsp;<input type='radio' name='tmp_show_details' value='0' checked>&nbsp;No</td></tr>\n";
     }
 }
 if (strtolower($ip_logging) == "yes") {
 
-    echo "              <tr><td class=table_rows height=25 valign=bottom>4.&nbsp;&nbsp;&nbsp;Display connecting ip address information?
-                          (only available if \"Show punch-in/out details?\" is set to \"Yes\".)</td></tr>\n";
+    echo "              <tr><td class=table_rows height=25 valign=bottom>4.&nbsp;&nbsp;&nbsp;¿Desea mostrar la información de la dirección IP de conexión?
+                          (Solo está disponible si la opción de \"Mostrar detalles de entrada/salida\", está configurada como \"Si\".)</td></tr>\n";
     if ($show_details == 'yes') {
     if ($display_ip == "yes") {
     echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_display_ip' value='1'
-                          checked>&nbsp;Yes&nbsp;<input type='radio' name='tmp_display_ip' value='0'>&nbsp;No</td></tr>\n";
+                          checked>&nbsp;Si&nbsp;<input type='radio' name='tmp_display_ip' value='0'>&nbsp;No</td></tr>\n";
     } else {
-    echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_display_ip' value='1' >&nbsp;Yes
+    echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_display_ip' value='1' >&nbsp;Si
                           <input type='radio' name='tmp_display_ip' value='0' checked>&nbsp;No</td></tr>\n";
     }
     } else {
     if ($display_ip == "yes") {
     echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_display_ip' value='1'
-                          checked disabled>&nbsp;Yes&nbsp;<input type='radio' name='tmp_display_ip' value='0' disabled>&nbsp;No</td></tr>\n";
+                          checked disabled>&nbsp;Si&nbsp;<input type='radio' name='tmp_display_ip' value='0' disabled>&nbsp;No</td></tr>\n";
     } else {
     echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_display_ip' value='1'
-                          disabled>&nbsp;Yes&nbsp;<input type='radio' name='tmp_display_ip' value='0' checked disabled>&nbsp;No</td></tr>\n";
+                          disabled>&nbsp;Si&nbsp;<input type='radio' name='tmp_display_ip' value='0' checked disabled>&nbsp;No</td></tr>\n";
     }
     }
 }
 if (strtolower($ip_logging) == "yes") {
-echo "              <tr><td colspan=2 class=table_rows height=25 valign=bottom>5.&nbsp;&nbsp;&nbsp;Round each user's time?</td></tr>\n";
+echo "              <tr><td colspan=2 class=table_rows height=25 valign=bottom>5.&nbsp;&nbsp;&nbsp;¿Redondear el tiempo de cada usuario?</td></tr>\n";
 } else {
-echo "              <tr><td colspan=2 class=table_rows height=25 valign=bottom>4.&nbsp;&nbsp;&nbsp;Round each user's time?</td></tr>\n";
+echo "              <tr><td colspan=2 class=table_rows height=25 valign=bottom>4.&nbsp;&nbsp;&nbsp;¿Redondear el tiempo de cada usuario?</td></tr>\n";
 }
 if ($round_time == '1') {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='1'
-                      checked>&nbsp;To the nearest 5 minutes (1/12th of an hour)</td></tr>\n";
+                      checked>&nbsp;A los 5 minutos más cercanos (1/12 de una hora)</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='1'>&nbsp;To the
-                      nearest 5 minutes (1/12th of an hour)</td></tr>\n";
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='1'>
+                      &nbsp;A los 5 minutos más cercanos (1/12 de una hora)</td></tr>\n";
 }
 if ($round_time == '2') {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='2'
-                      checked>&nbsp;To the nearest 10 minutes (1/6th of an hour)</td></tr>\n";
+                      checked>&nbsp;A los 10 minutos más cercanos (1/6 de hora).</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='2'>&nbsp;To
-                      the nearest 10 minutes (1/6th of an hour)</td></tr>\n";
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='2'>
+                      &nbsp;A los 10 minutos más cercanos (1/6 de hora).</td></tr>\n";
 }
 if ($round_time == '3') {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='3'
-                      checked>&nbsp;To the nearest 15 minutes (1/4th of an hour)</td></tr>\n";
+                      checked>&nbsp;A los 15 minutos más cercanos (1/4 de hora).</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='3'>&nbsp;To
-                      the nearest 15 minutes (1/4th of an hour)</td></tr>\n";
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='3'>
+                      &nbsp;A los 15 minutos más cercanos (1/4 de hora).</td></tr>\n";
 }
 if ($round_time == '4') {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='4'
-                      checked>&nbsp;To the nearest 20 minutes (1/3rd of an hour)</td></tr>\n";
+                      checked>&nbsp;A los 20 minutos más cercanos (1/3 de hora).</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='4'>&nbsp;To
-                      the nearest 20 minutes (1/3rd of an hour)</td></tr>\n";
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='4'>
+                      &nbsp;A los 20 minutos más cercanos (1/3 de hora).</td></tr>\n";
 }
 if ($round_time == '5') {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='5'
-                      checked>&nbsp;To the nearest 30 minutes (1/2 of an hour)</td></tr>\n";
+                      checked>&nbsp;A los 30 minutos más cercanos (1/2 de hora).</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='5'>&nbsp;To
-                      the nearest 30 minutes (1/2 of an hour)</td></tr>\n";
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value='5'>
+                      &nbsp;A los 30 minutos más cercanos (1/2 de hora).</td></tr>\n";
 }
 if (empty($round_time)) {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value=0 checked>&nbsp;Do
-                      not round</td></tr>\n";
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value=0 checked>
+                      &nbsp;No redondear</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value=0>&nbsp;Do not
-                      round</td></tr>\n";
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_round_time' value=0>
+                      &nbsp;No redondear</td></tr>\n";
 }
 echo "              <tr><td height=10></td></tr>\n";
 
 // Ask the user if he wishes to display the employee's who have empty hours.
 if (strtolower($ip_logging) == "yes") {
-  echo "              <tr><td class=table_rows height=25 valign=bottom>6.&nbsp;&nbsp;&nbsp;Display employee records with empty hours?</td></tr>\n";
+  echo "              <tr><td class=table_rows height=25 valign=bottom>6.&nbsp;&nbsp;&nbsp;¿Mostrar registros de empleados con horas vacías?</td></tr>\n";
 }
 else {
-  echo "              <tr><td class=table_rows height=25 valign=bottom>5.&nbsp;&nbsp;&nbsp;Display employee records with empty hours?</td></tr>\n";
+  echo "              <tr><td class=table_rows height=25 valign=bottom>5.&nbsp;&nbsp;&nbsp;¿Mostrar registros de empleados con horas vacías?</td></tr>\n";
 }
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='displayEmptyHours' checked value='1'> Yes</input> <input type='radio' name='displayEmptyHours' value='0'> No</input></td></tr>\n";
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='displayEmptyHours' checked value='1'> Si</input> <input type='radio' name='displayEmptyHours' value='0'> No</input></td></tr>\n";
 echo "            </table>\n";
 echo "            <table align=center width=100% border=0 cellpadding=0 cellspacing=3>\n";
 echo "<tr><td>";
 echo "<div class='box-footer'>
-        <a href='index.php'><button type='submit' name='submit' value='Edit Time' class='btn btn-default pull-right'><i class='fa fa-ban'></i>  Cancel</button></a>
-        <button type='submit' class='btn btn-success'>Next <i class='fa fa-arrow-right'></i></button></div>
+        <button type='button' id='formButtons' onclick='location=\"index.php\"' class='btn btn-default pull-right'>
+          <i class='fa fa-ban'></i>
+          Cancelar
+        </button>
+
+        <button id='formButtons' type='submit' class='btn btn-success'>
+          Siguiente
+          <i class='fa fa-arrow-right'></i>
+        </button>
+        </div>
       </div>";
 echo "</td></tr>";
 echo "</table></form>\n";
@@ -628,7 +634,7 @@ echo "            <form name='form' action='$self' method='post' onsubmit=\"retu
 echo "            <table align=center class=table_border width=60% border=0 cellpadding=3 cellspacing=0>\n";
 echo "              <tr>\n";
 echo "                <th class=rightside_heading nowrap halign=left colspan=3><img src='../images/icons/report.png' />&nbsp;&nbsp;&nbsp;
-                    Hours Worked Report</th></tr>\n";
+                   Informe de horas trabajadas</th></tr>\n";
 echo "              <tr><td height=15></td></tr>\n";
 echo "              <input type='hidden' name='date_format' value='$js_datefmt'>\n";
 if ($username_dropdown_only == "yes") {
@@ -699,40 +705,40 @@ echo "              <tr><td class=table_rows height=25 valign=bottom>1.&nbsp;&nb
                       the next page)</td></tr>\n";
 if ($tmp_csv == "1") {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='csv' value='1'
-                      checked>&nbsp;Yes<input type='radio' name='csv' value='0'>&nbsp;No</td></tr>\n";
+                      checked>&nbsp;Si<input type='radio' name='csv' value='0'>&nbsp;No</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='csv' value='1' >&nbsp;Yes
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='csv' value='1' >&nbsp;Si
                       <input type='radio' name='csv' value='0' checked>&nbsp;No</td></tr>\n";
 }
 echo "              <tr><td class=table_rows valign=bottom height=25 valign=bottom>2.&nbsp;&nbsp;&nbsp;Paginate this report so each user's time is printed
                       on a separate page?</td></tr>\n";
 if ($tmp_paginate == '1') {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_paginate' value='1' checked>&nbsp;Yes
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_paginate' value='1' checked>&nbsp;Si
                       <input type='radio' name='tmp_paginate' value='0'>&nbsp;No</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_paginate' value='1'>&nbsp;Yes
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_paginate' value='1'>&nbsp;Si
                       <input type='radio' name='tmp_paginate' value='0' checked>&nbsp;No</td></tr>\n";
 }
 echo "              <tr><td class=table_rows height=25 valign=bottom>3.&nbsp;&nbsp;&nbsp;Show punch-in/out details?</td></tr>\n";
 if (strtolower($ip_logging) == "yes") {
 if ($tmp_show_details == '1') {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_show_details' value='1'
-                      checked onFocus=\"javascript:form.tmp_display_ip[0].disabled=false;form.tmp_display_ip[1].disabled=false;\">&nbsp;Yes&nbsp;<input
+                      checked onFocus=\"javascript:form.tmp_display_ip[0].disabled=false;form.tmp_display_ip[1].disabled=false;\">&nbsp;Si&nbsp;<input
                       type='radio' name='tmp_show_details' value='0' onFocus=\"javascript:form.tmp_display_ip[0].disabled=true;
                       form.tmp_display_ip[1].disabled=true;\">&nbsp;No</td></tr>\n";
 } else {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_show_details' value='1'
-                      onFocus=\"javascript:form.tmp_display_ip[0].disabled=false;form.tmp_display_ip[1].disabled=false;\">&nbsp;Yes&nbsp;<input
+                      onFocus=\"javascript:form.tmp_display_ip[0].disabled=false;form.tmp_display_ip[1].disabled=false;\">&nbsp;Si&nbsp;<input
                       type='radio' name='tmp_show_details' value='0' checked onFocus=\"javascript:form.tmp_display_ip[0].disabled=true;
                       form.tmp_display_ip[1].disabled=true;\">&nbsp;No</td></tr>\n";
 }
 } else {
 if ($tmp_show_details == '1') {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_show_details' value='1'
-                      checked>&nbsp;Yes&nbsp;<input type='radio' name='tmp_show_details' value='0'>&nbsp;No</td></tr>\n";
+                      checked>&nbsp;Si&nbsp;<input type='radio' name='tmp_show_details' value='0'>&nbsp;No</td></tr>\n";
 } else {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_show_details' value='1'
-                      >&nbsp;Yes&nbsp;<input type='radio' name='tmp_show_details' value='0' checked>&nbsp;No</td></tr>\n";
+                      >&nbsp;Si&nbsp;<input type='radio' name='tmp_show_details' value='0' checked>&nbsp;No</td></tr>\n";
 }
 }
 if (strtolower($ip_logging) == "yes") {
@@ -741,18 +747,18 @@ echo "              <tr><td class=table_rows height=25 valign=bottom>4.&nbsp;&nb
 if ($tmp_show_details == '1') {
 if ($tmp_display_ip == "1") {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_display_ip' value='1'
-                      checked>&nbsp;Yes&nbsp;<input type='radio' name='tmp_display_ip' value='0'>&nbsp;No</td></tr>\n";
+                      checked>&nbsp;Si&nbsp;<input type='radio' name='tmp_display_ip' value='0'>&nbsp;No</td></tr>\n";
 } else {
-echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_display_ip' value='1' >&nbsp;Yes
+echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_display_ip' value='1' >&nbsp;Si
                       <input type='radio' name='tmp_display_ip' value='0' checked>&nbsp;No</td></tr>\n";
 }
 } else {
 if ($tmp_display_ip == "1") {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_display_ip' value='1'
-                      checked disabled>&nbsp;Yes&nbsp;<input type='radio' name='tmp_display_ip' value='0' disabled>&nbsp;No</td></tr>\n";
+                      checked disabled>&nbsp;Si&nbsp;<input type='radio' name='tmp_display_ip' value='0' disabled>&nbsp;No</td></tr>\n";
 } else {
 echo "              <tr><td class=table_rows align=left nowrap style='padding-left:15px;'><input type='radio' name='tmp_display_ip' value='1'
-                      disabled>&nbsp;Yes&nbsp;<input type='radio' name='tmp_display_ip' value='0' checked disabled>&nbsp;No</td></tr>\n";
+                      disabled>&nbsp;Si&nbsp;<input type='radio' name='tmp_display_ip' value='0' checked disabled>&nbsp;No</td></tr>\n";
 }
 }
 }
@@ -864,27 +870,58 @@ $tmp_fullname = stripslashes($fullname);
 if ((strtolower($user_or_display) == "display") && ($tmp_fullname != "All")) {
 $tmp_fullname = stripslashes($displayname);
 }
-if (($office_name == "All") && ($group_name == "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Offices: All --> Groups: All --> Users: All";}
+if (($office_name == "All") && ($group_name == "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Oficinas: Todas --> Grupos: Todos --> Usuarios: Todos";}
 elseif ((empty($office_name)) && (empty($group_name)) && ($tmp_fullname == 'All'))  {$tmp_fullname = "All Users";}
 elseif ((empty($office_name)) && (empty($group_name)) && ($tmp_fullname != 'All'))  {$tmp_fullname = $tmp_fullname;}
-elseif (($office_name != "All") && ($group_name == "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Office: $office_name --> Groups: All -->
- Users: All";}
-elseif (($office_name != "All") && ($group_name != "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Office: $office_name --> Group: $group_name -->
- Users: All";}
+elseif (($office_name != "All") && ($group_name == "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Oficina: $office_name --> Grupos: Todos -->
+ Usuarios: Todos";}
+elseif (($office_name != "All") && ($group_name != "All") && ($tmp_fullname == 'All')) {$tmp_fullname = "Oficina: $office_name --> Grupo: $group_name -->
+ Usuarios: Todos";}
 $rpt_name="$tmp_fullname";
-echo "<table width=80% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
-echo "  <tr><td width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time, $rpt_date</td><td nowrap style='font-size:9px;color:#000000;'>
-          $rpt_name</td></tr>\n";
-echo "  <tr><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
-if (!empty($tmp_csv)) {
-  echo "               <tr class=notprint><td width=80%></td><td nowrap style='font-size:9px;color:#000000;'><a style='color:#27408b;font-size:9px;
-                         text-decoration:underline;'
-                         href=\"get_csv.php?rpt=hrs_wkd&display_ip=$tmp_display_ip&csv=$tmp_csv&office=$office_name&group=$group_name&fullname=$fullname
-&from=$from_timestamp&to=$to_timestamp&tzo=$tzo&paginate=$tmp_paginate&round=$tmp_round_time&details=$tmp_show_details&rpt_run_on=$rpt_stamp
-&rpt_date=$rpt_date&from_date=$from_date\">Download CSV File</a></td></tr>\n";
+/*
+  Tabla de datos arribas de los informes
+*/
+echo '  <div class="row" style="margin-top: 20px;">
+          <div id="float_window" class="col-md-10">
+            <div class="box box-info">
+              <div class="box-header">
+                <h3 class="box-title"><i class="fa fa-list"></i> Datos</h3>
+              </div>
+
+              <div class="box-body">
+                <table class="table table-hover">
+                  <tr>
+                    <td>
+                      Fecha del informe: '. $rpt_time .', '. $rpt_date .'
+                    </td>
+                    <td>
+                      '. $rpt_name .'
+                    </td>
+                    <td>
+                      Rango de fechas: '. $from_date_eur .' to '. $to_date_eur .'
+                    <td>
+                  </tr>';
+if(!empty($tmp_csv)){
+echo '            <tr>
+                    <td>
+                      Descargar el fichero .CSV:
+                      <a style="color:#27408b;font-size:16px;text-decoration:underline;"
+                        href=\'get_csv.php?rpt=timerpt&display_ip='. $tmp_display_ip .'&csv='. $tmp_csv .'&office='. $office_name .'&group='. $group_name .'&fullname='. $fullname .'&from='. $from_timestamp .'&to=' .$to_timestamp .'&tzo=' .$tzo .'\'>
+                         &nbsp;Descargar
+                      </a>
+                    </td>
+                  </tr>';
 }
-echo "</table>\n";
-echo "<table width=80% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
+echo'           </table>
+              </div>
+            </div>
+          </div>
+        </div>';
+echo '<div class="row">
+        <div id="float_window" class="col-md-10">
+          <div class="box box-info">
+            <div class="box-body">';
+echo "<table width='100%' align='center' class='table table-hover'>\n";
 
 $employees_cnt = 0;
 $employees_empfullname = array();
@@ -1039,19 +1076,19 @@ for ($x=0;$x<$employees_cnt;$x++) {
 	if (($employees_empfullname[$x] == $fullname) || ($fullname == "All")) {
 
 	  if (strtolower($user_or_display) == "display") {
-		echo "  <tr><td width=100% colspan=2 style=\"font-size:11px;color:#000000;border-style:solid;border-color:#888888;
-		border-width:0px 0px 1px 0px;\"><b>$employees_displayname[$x]</b></td></tr>\n";
+		echo "  <tr><td width=100% colspan=2 style=\"font-size:18px;color:#000000;border-style:solid;border-color:#888888;
+		border-width:0px 0px 1px 0px;\">Registros de: <b>$employees_displayname[$x]</b></td></tr>\n";
 	  } else {
-		echo "  <tr><td width=100% colspan=2 style=\"font-size:11px;color:#000000;border-style:solid;border-color:#888888;
-		border-width:0px 0px 1px 0px;\"><b>$employees_empfullname[$x]</b></td></tr>\n";
+		echo "  <tr><td width=100% colspan=2 style=\"font-size:18px;color:#000000;border-style:solid;border-color:#888888;
+		border-width:0px 0px 1px 0px;\">Registros de: <b>$employees_empfullname[$x]</b></td></tr>\n";
 	  }
-	  echo "  <tr><td width=75% nowrap align=left style='color:#27408b;'><b><u>Date</u></b></td>\n";
-	  echo "      <td width=25% nowrap align=left style='color:#27408b;'><b><u>Hours Worked</u></b></td></tr>\n";
+	  echo "  <tr><td width=75% nowrap align=left style='color:#27408b;'><b>Fecha</b></td>\n";
+	  echo "      <td width=25% nowrap align=left style='color:#27408b;'><b>Horas Trabajadas</b></td></tr>\n";
 	  $row_color = $color2; // Initial row color
 
 	  // Inform the user that this employee has not worked during this pay period.
 	  if (($displayEmptyHours == '1') && ($info_cnt <= 0)) {
-		echo "  <tr bgcolor=\"$color2\" align=\"left\"><td style=\"color:#000000;border-style:solid;border-color:#888888; border-width:1px 0px 0px 0px;\" nowrap>Employee Did Not Work Any Hours.</td>\n";
+		echo "  <tr bgcolor=\"$color2\" align=\"left\"><td style=\"color:#000000;border-style:solid;border-color:#888888; border-width:1px 0px 0px 0px;\" nowrap>El empleado no ha trabajado</td>\n";
 	  }
 
 	  for ($y=0;$y<$info_cnt;$y++) {
@@ -1097,14 +1134,19 @@ for ($x=0;$x<$employees_cnt;$x++) {
                       $row_count++;
                       if ($tmp_show_details == "1") {
                           echo "  <tr><td width=100% colspan=2>\n";
-                          echo "<table width=100% align=center class=misc_items border=0 cellpadding=0 cellspacing=0>\n";
+                          echo "<table width=100% align=center class='table table-hover'>\n";
+                          echo "  <th>Estado</th>
+                                  <th>Horas</th>
+                                  <th>Dirección IP</th>
+                                  <th>Notas</th>\n";
+
                           for ($z=$tmp_z;$z<=$punch_cnt;$z++) {
                               $time_formatted = date($timefmt, $info_timestamp[$z]);
-                              echo "  <tr bgcolor=\"$row_color\" align=\"left\">\n";
+                              echo "  <tr bgcolor=\"$row_color\">\n";
                               echo "      <td align=left width=13% nowrap style=\"color:$punchlist_color[$z];\">$info_inout[$z]</td>\n";
-                              echo "      <td nowrap align=right width=10% style='padding-right:25px;'>$time_formatted</td>\n";
+                              echo "      <td nowrap align='center' width=10% style='padding-right:70px;'>$time_formatted</td>\n";
                               if (@$tmp_display_ip == "1") {
-                                  echo "      <td nowrap align=left width=15% style='padding-right:25px;
+                                  echo "      <td nowrap width=15% align='center' style='padding-right:25px;
                                             color:$punchlist_color[$z];'>$info_ipaddress[$z]</td>\n";
                               }
                               echo "      <td width=77%>$info_notes[$z]</td></tr>\n";
@@ -1113,15 +1155,21 @@ for ($x=0;$x<$employees_cnt;$x++) {
                               $tmp_z++;
                           }
                           echo "</table></td></tr>\n";
+                          echo '</div></div></div>'; //row - float_window - box-info - box-body
                           if ($row_count >= "40") {
                               $row_count = "0";
                               $page_count++;
                               $temp_page_count = $page_count + 1;
                               if (!empty($tmp_paginate)) {
-                                  echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
-                                  echo "<table width=100% align=center class=misc_items border=0
-                                          cellpadding=3 cellspacing=0>\n";
-                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
+                                  echo "<tr style='page-break-before:always;'>
+                                          <td width=100% colspan=2>\n";
+                                  echo '<div class="row">
+                                          <div id="float_window" class="col-md-10">
+                                            <div class="box box-info">
+                                              <div class="box-body">';
+                                  echo "<table width=100% align=center class='table table-hover'>\n";
+
+                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe FLAG 1: $rpt_time,
                                             $rpt_date (page $temp_page_count)</td>
                                             <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
                                   echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
@@ -1165,16 +1213,6 @@ for ($x=0;$x<$employees_cnt;$x++) {
                       } else {
                           $secs = $secs + (($info_end_time[$y] + 1) - $info_timestamp[$y]);
                       }
-//                      if (($info_timestamp[$y] <= $rpt_stamp) && ($x_info_date[$y] == $rpt_date)) {
-//                          if ($status == "in") {
-//                              $secs = $secs + ($rpt_stamp - $info_timestamp[$y]) + ($info_timestamp[$y] - $in_time);
-//                          } elseif ($status == "out") {
-//                              $secs = $secs + ($rpt_stamp - $info_timestamp[$y]);
-//                          }
-//                          $currently_punched_in = '1';
-//                      } else {
-//                          $secs = $secs + (($info_end_time[$y] + 1) - $info_timestamp[$y]);
-//                      }
                   } else {
                       if ($status == "in") {
                           $secs = $secs + ($info_timestamp[$y] - $in_time);
@@ -1207,7 +1245,11 @@ for ($x=0;$x<$employees_cnt;$x++) {
                       $row_count++;
                       if ($tmp_show_details == "1") {
                           echo "  <tr><td width=100% colspan=2>\n";
-                          echo "<table width=100% align=center class=misc_items border=0 cellpadding=0 cellspacing=0>\n";
+                          echo "<table width=100% align='center' class='table table-hover'>\n";
+                          echo "<th>Estado</th>
+                                <th>Horas</th>
+                                <th>Dirección IP</th>
+                                <th>Notas</th>\n";
                           for ($z=$tmp_z;$z<=$punch_cnt;$z++) {
                               $time_formatted = date($timefmt, $info_timestamp[$z]);
                               echo "  <tr bgcolor=\"$row_color\" align=\"left\">\n";
@@ -1223,20 +1265,63 @@ for ($x=0;$x<$employees_cnt;$x++) {
                               $tmp_z++;
                           }
                           echo "</table></td></tr>\n";
+                          echo '</div></div></div></div>'; //row - float_window - box-info - box-body
                           if ($row_count >= "40") {
                               $row_count = "0";
                               $page_count++;
                               $temp_page_count = $page_count + 1;
                               if (!empty($tmp_paginate)) {
+                                echo '  <div class="row" style="margin-top: 20px;">
+                                          <div id="float_window" class="col-md-10">
+                                            <div class="box box-info">
+                                              <div class="box-header">
+                                                <h3 class="box-title"><i class="fa fa-list"></i> Datos</h3>
+                                              </div>
+
+                                              <div class="box-body">
+                                                <table class="table table-hover">
+                                                  <tr>
+                                                    <td>
+                                                      Fecha del informe: '. $rpt_time .', '. $rpt_date .' (página '. $temp_page_count .')
+                                                    </td>
+                                                    <td>
+                                                      '. $rpt_name .'
+                                                    </td>
+                                                    <td>
+                                                      Rango de fechas: '. $from_date_eur .' to '. $to_date_eur .'
+                                                    <td>
+                                                  </tr>';
+                                echo'           </table>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>';
                                   echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
-                                  echo "<table width=100% align=center class=misc_items border=0
-                                          cellpadding=3 cellspacing=0>\n";
-                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
-                                            $rpt_date (page $temp_page_count)</td>
-                                            <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
-                                  echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
-                                            style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
-                                  echo "</table></td></tr>\n";
+                                  echo '  <div class="row" style="margin-top: 20px;">
+                                            <div id="float_window" class="col-md-10">
+                                              <div class="box box-info">
+                                                <div class="box-header">
+                                                  <h3 class="box-title"><i class="fa fa-list"></i> Datos</h3>
+                                                </div>
+
+                                                <div class="box-body">
+                                                  <table class="table table-hover">
+                                                    <tr>
+                                                      <td>
+                                                        Fecha del informe: '. $rpt_time .', '. $rpt_date .' (página '. $temp_page_count .')
+                                                      </td>
+                                                      <td>
+                                                        '. $rpt_name .'
+                                                      </td>
+                                                      <td>
+                                                        Rango de fechas: '. $from_date_eur .' to '. $to_date_eur .'
+                                                      <td>
+                                                    </tr>';
+                                  echo'           </table>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>';
                                   if (strtolower($user_or_display) == "display") {
                                       echo "  <tr><td class=notdisplay_rpt width=100% colspan=2
                                                 style=\"font-size:11px;color:#000000;border-style:solid;border-color:#888888;
@@ -1291,14 +1376,18 @@ for ($x=0;$x<$employees_cnt;$x++) {
                   $row_count++;
                   if ($tmp_show_details == "1") {
                   echo "  <tr><td width=100% colspan=2>\n";
-                  echo "<table width=100% align=center class=misc_items border=0 cellpadding=0 cellspacing=0>\n";
+                  echo "<table width=100% align='center' class='table table-hover'>\n";
+                  echo "<th>Estado</th>
+                        <th>Horas</th>
+                        <th>Dirección IP</th>
+                        <th>Notas</th>\n";
                   for ($z=$tmp_z;$z<=$punch_cnt;$z++) {
                       $time_formatted = date($timefmt, $info_timestamp[$z]);
                       echo "  <tr bgcolor=\"$row_color\" align=\"left\">\n";
                       echo "      <td align=left width=13% nowrap style=\"color:$punchlist_color[$z];\">$info_inout[$z]</td>\n";
-                      echo "      <td nowrap align=right width=10% style='padding-right:25px;'>$time_formatted</td>\n";
+                      echo "      <td nowrap align=right width=10% style='padding-right:70px;'>$time_formatted</td>\n";
                       if (@$tmp_display_ip == "1") {
-                          echo "      <td nowrap align=left width=15% style='padding-right:25px;
+                          echo "      <td nowrap align=center width=15% style='padding-right:10px;
                                     color:$punchlist_color[$z];'>$info_ipaddress[$z]</td>\n";
                       }
                       echo "      <td width=77%>$info_notes[$z]</td></tr>\n";
@@ -1312,16 +1401,31 @@ for ($x=0;$x<$employees_cnt;$x++) {
                       $page_count++;
                       $temp_page_count = $page_count + 1;
                       if (!empty($tmp_paginate)) {
-                          echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
-                          echo "<table width=100% align=center class=misc_items border=0
-                                  cellpadding=3 cellspacing=0>\n";
-                          echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
-                                    $rpt_date (page $temp_page_count)</td>
-                                    <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
-                          echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
-                                    style='font-size:9px;color:#000000;'>Date
-                                    Range: $from_date - $to_date</td></tr>\n";
-                          echo "</table></td></tr>\n";
+                        echo '  <div class="row" style="margin-top: 20px;">
+                                  <div id="float_window" class="col-md-10">
+                                    <div class="box box-info">
+                                      <div class="box-header">
+                                        <h3 class="box-title"><i class="fa fa-list"></i> Datos</h3>
+                                      </div>
+
+                                      <div class="box-body">
+                                        <table class="table table-hover">
+                                          <tr>
+                                            <td>
+                                              Fecha del informe: '. $rpt_time .', '. $rpt_date .' (página '. $temp_page_count .')
+                                            </td>
+                                            <td>
+                                              '. $rpt_name .'
+                                            </td>
+                                            <td>
+                                              Rango de fechas: '. $from_date_eur .' to '. $to_date_eur .'
+                                            <td>
+                                          </tr>';
+                        echo'           </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>';
                           if (strtolower($user_or_display) == "display") {
                               echo "  <tr><td class=notdisplay_rpt width=100% colspan=2
                                         style=\"font-size:11px;color:#000000;border-style:solid;border-color:#888888;
@@ -1378,7 +1482,7 @@ for ($x=0;$x<$employees_cnt;$x++) {
                       $row_count++;
                       if ($tmp_show_details == "1") {
                           echo "  <tr><td width=100% colspan=2>\n";
-                          echo "<table width=100% align=center class=misc_items border=0 cellpadding=0 cellspacing=0>\n";
+                          echo "<table width=100% align='center' class='table table-hover'>\n";
                           for ($z=$tmp_z;$z<=$punch_cnt;$z++) {
                               $time_formatted = date($timefmt, $info_timestamp[$z]);
                               echo "  <tr bgcolor=\"$row_color\" align=\"left\">\n";
@@ -1402,7 +1506,7 @@ for ($x=0;$x<$employees_cnt;$x++) {
                                   echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
                                   echo "<table width=100% align=center class=misc_items border=0
                                           cellpadding=3 cellspacing=0>\n";
-                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time,
+                                  echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe FLAG 2: $rpt_time,
                                             $rpt_date (page $temp_page_count)</td>
                                             <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
                                   echo "  <tr><td width=80%></td><td class=notdisplay_rpt nowrap
@@ -1472,7 +1576,7 @@ for ($x=0;$x<$employees_cnt;$x++) {
                       $row_count++;
                       if ($tmp_show_details == "1") {
                           echo "  <tr><td width=100% colspan=2>\n";
-                          echo "<table width=100% align=center class=misc_items border=0 cellpadding=0 cellspacing=0>\n";
+                          echo "<table width=100% align='center' class='table table-hover'>\n";
                           for ($z=$tmp_z;$z<=$punch_cnt;$z++) {
                               $time_formatted = date($timefmt, $info_timestamp[$z]);
                               echo "  <tr bgcolor=\"$row_color\" align=\"left\">\n";
@@ -1562,7 +1666,7 @@ for ($x=0;$x<$employees_cnt;$x++) {
                   $row_count++;
                   if ($tmp_show_details == "1") {
                       echo "  <tr><td width=100% colspan=2>\n";
-                      echo "<table width=100% align=center class=misc_items border=0 cellpadding=0 cellspacing=0>\n";
+                      echo "<table width=100% align='center' class='table table-hover'>\n";
                       for ($z=$tmp_z;$z<=$punch_cnt;$z++) {
                           $time_formatted = date($timefmt, $info_timestamp[$z]);
                           echo "  <tr bgcolor=\"$row_color\" align=\"left\">\n";
@@ -1650,7 +1754,7 @@ for ($x=0;$x<$employees_cnt;$x++) {
                   $row_count++;
                   if ($tmp_show_details == "1") {
                       echo "  <tr><td width=100% colspan=2>\n";
-                      echo "<table width=100% align=center class=misc_items border=0 cellpadding=0 cellspacing=0>\n";
+                      echo "<table width=100% align='center' class='table table-hover'>\n";
                       for ($z=$tmp_z;$z<=$punch_cnt;$z++) {
                           $time_formatted = date($timefmt, $info_timestamp[$z]);
                           echo "  <tr bgcolor=\"$row_color\" align=\"left\">\n";
@@ -1713,8 +1817,8 @@ for ($x=0;$x<$employees_cnt;$x++) {
     if (isset($currently_punched_in)) {
         echo "  </table>\n";
         echo "    <table width=80% align=center class=misc_items border=0 cellpadding=0 cellspacing=0>\n";
-        echo "              <tr align=\"left\"><td width=12% nowrap style='font-size:11px;color:#000000;border-style:solid;border-color:#888888;
-                              border-width:1px 0px 0px 0px;padding-left:3px;'><b>Total Hours</b></td>
+        echo "              <tr align=\"left\"><td width=12% nowrap style='font-size:14px;color:#000000;border-style:solid;border-color:#888888;
+                              border-width:1px 0px 0px 0px;padding-left:3px;'><b>Horas totales</b></td>
                               <td width=63% align=left style='padding-left:10px;color:#FF0000;border-style:solid;border-color:#888888;
                               border-width:1px 0px 0px 0px;'><b>$employees_empfullname[$x] is currently punched in.</b></td>\n";
         if ($my_total_hours < 10) {
@@ -1730,16 +1834,16 @@ for ($x=0;$x<$employees_cnt;$x++) {
         echo "              <tr><td height=40 colspan=3 style='border-style:solid;border-color:#888888;border-width:1px 0px 0px 0px;'>&nbsp;</td></tr>\n";
         echo " </table></td></tr><table width=80% align=center class=misc_items border=0 cellpadding=0 cellspacing=0>\n";
     } else {
-        echo "              <tr align=\"left\"><td nowrap style='font-size:11px;color:#000000;border-style:solid;border-color:#888888;
-                              border-width:1px 0px 0px 0px;'><b>Total Hours</b></td>\n";
+        echo "              <tr align=\"left\"><td nowrap style='font-size:14px;color:#000000;border-style:solid;border-color:#888888;
+                              border-width:1px 0px 0px 0px;'><b>Horas totales</b></td>\n";
     if ($my_total_hours < 10) {
-        echo "                <td nowrap style='font-size:11px;color:#000000;border-style:solid;border-color:#888888;
+        echo "                <td nowrap style='font-size:14px;color:#000000;border-style:solid;border-color:#888888;
                           border-width:1px 0px 0px 0px;padding-left:30px;'><b>$my_total_hours</b></td></tr>\n";
     } elseif ($my_total_hours < 100) {
-        echo "                <td nowrap style='font-size:11px;color:#000000;border-style:solid;border-color:#888888;
+        echo "                <td nowrap style='font-size:14px;color:#000000;border-style:solid;border-color:#888888;
                           border-width:1px 0px 0px 0px;padding-left:23px;'><b>$my_total_hours</b></td></tr>\n";
     } else {
-        echo "                <td nowrap style='font-size:11px;color:#000000;border-style:solid;border-color:#888888;
+        echo "                <td nowrap style='font-size:14px;color:#000000;border-style:solid;border-color:#888888;
                           border-width:1px 0px 0px 0px;padding-left:15px;'><b>$my_total_hours</b></td></tr>\n";
     }
     echo "              <tr><td height=40 colspan=2 style='border-style:solid;border-color:#888888;border-width:1px 0px 0px 0px;'>&nbsp;</td></tr>\n";
@@ -1752,14 +1856,14 @@ for ($x=0;$x<$employees_cnt;$x++) {
 
     if (!empty($tmp_paginate)) {
         if ($x != ($employees_cnt - 1)) {
-        echo "            </table>\n";
+        //echo "            </table>\n";
         echo "            <table style='page-break-before:always;' width=80% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
         echo "              <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe: $rpt_time, $rpt_date (page
                               $temp_page_count)</td>
                                 <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
         echo "               <tr><td width=80%></td><td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
         echo "            </table>\n";
-        echo "            <table width=80% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
+        echo "            <table width='100%' align='center' class='table table-hover'>\n";
         }
     }
 

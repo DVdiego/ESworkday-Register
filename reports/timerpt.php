@@ -103,7 +103,7 @@ if ($request == 'GET') {
     }
 
 
-    echo "              <div class='form-group' >
+    echo "              <div id='dates' class='form-group' >
                           <label style='padding-right: 128px;'>Fecha Inicio:</label>
                             <div class='input-group'>
 
@@ -115,7 +115,7 @@ if ($request == 'GET') {
                               return false;\" name=\"from_date_anchor\" id=\"from_date_anchor\" style='font-size:11px;color:#27408b;'></a>
                             </div>
                         </div>\n";
-    echo "              <div class='form-group' >
+    echo "              <div id='dates' class='form-group' >
                           <label style='padding-right: 142px;'>Fecha Fin:</label>
                             <div class='input-group'>
                             <div class='input-group-addon'>
@@ -613,7 +613,7 @@ if ($request == 'GET') {
               <div id="float_window" class="col-md-10">
                 <div class="box box-info">
                   <div class="box-header">
-                    <h3 class="box-title"><i class=fa fa-list></i> Datos</h3>
+                    <h3 class="box-title"><i class="fa fa-list"></i> Datos</h3>
                   </div>
 
                   <div class="box-body">
