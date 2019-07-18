@@ -1865,13 +1865,13 @@ for ($x=0;$x<$employees_cnt;$x++) {
                       </div>
 
                       <div class="box-body">';
-        echo "            <table style='page-break-before:always;' width=80% align=center class=misc_items border=0 cellpadding=3 cellspacing=0>\n";
+        echo "            <table style='page-break-before:always;' width=100% align=center class=table table-hoveer>\n";
         echo "              <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe FLAG 3: $rpt_time, $rpt_date (page
                               $temp_page_count)</td>
                                 <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
         echo "               <tr><td width=80%></td><td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
         echo "            </table>\n";
-                echo '</div></div></div>';
+                echo '</div></div></div></div>';
         echo "            <table width='100%' align='center' class='table table-hover'>\n";
         }
     }
