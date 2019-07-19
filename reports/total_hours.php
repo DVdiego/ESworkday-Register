@@ -1504,8 +1504,7 @@ for ($x=0;$x<$employees_cnt;$x++) {
                               $temp_page_count = $page_count + 1;
                               if (!empty($tmp_paginate)) {
                                   echo "<tr style='page-break-before:always;'><td width=100% colspan=2>\n";
-                                  echo "<table width=100% align=center class=misc_items border=0
-                                          cellpadding=3 cellspacing=0>\n";
+                                  echo "<table width=100% aligclass='table table-hover'>\n";
                                   echo "  <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe FLAG 2: $rpt_time,
                                             $rpt_date (page $temp_page_count)</td>
                                             <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
@@ -1836,17 +1835,24 @@ for ($x=0;$x<$employees_cnt;$x++) {
     } else {
         echo "              <tr align=\"left\"><td nowrap style='font-size:14px;color:#000000;border-style:solid;border-color:#888888;
                               border-width:1px 0px 0px 0px;'><b>Horas totales</b></td>\n";
+
     if ($my_total_hours < 10) {
         echo "                <td nowrap style='font-size:14px;color:#000000;border-style:solid;border-color:#888888;
-                          border-width:1px 0px 0px 0px;padding-left:30px;'><b>$my_total_hours</b></td></tr>\n";
+                          border-width:1px 0px 0px 0px;padding-left:30px;'><b>$my_total_hours</b></td></tr>
+                        </table>\n";
+                echo '</div></div></div></div>'; //row - float_window - box-info - box-body
     } elseif ($my_total_hours < 100) {
         echo "                <td nowrap style='font-size:14px;color:#000000;border-style:solid;border-color:#888888;
-                          border-width:1px 0px 0px 0px;padding-left:23px;'><b>$my_total_hours</b></td></tr>\n";
+                          border-width:1px 0px 0px 0px;padding-left:23px;'><b>$my_total_hours</b></td></tr>
+                        </table>\n";
+        echo '</div></div></div></div>'; //row - float_window - box-info - box-body
     } else {
         echo "                <td nowrap style='font-size:14px;color:#000000;border-style:solid;border-color:#888888;
-                          border-width:1px 0px 0px 0px;padding-left:15px;'><b>$my_total_hours</b></td></tr>\n";
+                          border-width:1px 0px 0px 0px;padding-left:15px;'><b>$my_total_hours</b></td></tr>
+                        </table>\n";
+        echo '</div></div></div></div>'; //row - float_window - box-info - box-body
     }
-    echo "              <tr><td height=40 colspan=2 style='border-style:solid;border-color:#888888;border-width:1px 0px 0px 0px;'>&nbsp;</td></tr>\n";
+  //  echo "              <tr><td height=40 colspan=2 style='border-style:solid;border-color:#888888;border-width:1px 0px 0px 0px;'>&nbsp;</td></tr>\n";
     }
     $row_count++;
 
@@ -1858,20 +1864,31 @@ for ($x=0;$x<$employees_cnt;$x++) {
         if ($x != ($employees_cnt - 1)) {
         echo "            </table>\n";
         echo '  <div class="row">
-                  <div id="float_window">
+                  <div id="float_window" class="col-md-10">
                     <div class="box box-info">
                       <div class="box-header">
                         <h3 class="box-title"><i class="fa fa-list"></i> Datos</h3>
                       </div>
 
                       <div class="box-body">';
-        echo "            <table style='page-break-before:always;' width=100% align=center class=table table-hoveer>\n";
-        echo "              <tr><td class=notdisplay_rpt width=80% style='font-size:9px;color:#000000;'>Fecha del Informe FLAG 3: $rpt_time, $rpt_date (page
-                              $temp_page_count)</td>
-                                <td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>$rpt_name</td></tr>\n";
-        echo "               <tr><td width=80%></td><td class=notdisplay_rpt nowrap style='font-size:9px;color:#000000;'>Rango de fechas: $from_date_eur - $to_date_eur</td></tr>\n";
+        echo "            <table style='page-break-before:always;' class='table table-hover'>\n";
+        echo "              <tr>
+                              <td>
+                                Fecha del informe: $rpt_time, $rpt_date (página $temp_page_count)
+                              </td>
+                              <td>
+                                $rpt_name
+                              </td>
+                              <td>
+                                Rango de fechas: $from_date_eur to $to_date_eur
+                              <td>
+                            </tr>\n";
         echo "            </table>\n";
-                echo '</div></div></div></div>';
+        echo '</div></div></div></div>';
+        echo '  <div class="row">
+                  <div id="float_window" class="col-md-10">
+                    <div class="box box-info">
+                      <div class="box-header">';
         echo "            <table width='100%' align='center' class='table table-hover'>\n";
         }
     }
