@@ -829,7 +829,13 @@ include '../footer.php';exit;
 }
 
 // end post validation //
-
+if ($use_reports_password == "yes") {
+include '../admin/topmain.php';
+include 'leftmain.php';
+} else {
+include 'topmain.php';
+include 'leftmain.php';
+}
 if (!empty($from_date)) {
     //$from_date = "$from_month/$from_day/$from_year";
 
@@ -1922,5 +1928,10 @@ for ($x=0;$x<$employees_cnt;$x++) {
 } // end for $x
 }
 echo "            </table>\n";
+include '../theme/templates/endmaincontent.inc';
+include '../theme/templates/controlsidebar.inc';
+include '../theme/templates/endmain.inc';
+include '../theme/templates/adminfooterscripts.inc';
+include '../footer.php';
 exit;
 ?>
