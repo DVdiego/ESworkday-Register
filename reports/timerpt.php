@@ -554,6 +554,13 @@ if ($request == 'GET') {
         include '../theme/templates/adminfooterscripts.inc';
         exit;
     }
+    if ($use_reports_password == "yes") {
+    include '../admin/topmain.php';
+    include 'leftmain.php';
+    } else {
+    include 'topmain.php';
+    include 'leftmain.php';
+    }
 
     // end post error checking //
 
@@ -741,20 +748,14 @@ if ($request == 'GET') {
       hours_worked_report($tmp_empfullname,$from_timestamp,$to_timestamp,$db_prefix,$root);
     }
 
-
-
-
-
-
-
-
-
 }
 
 function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_prefix,$root) {
 
-  echo "<div class='container'>";
-
+  echo "<div class='row'>
+          <div class='col-md-10' id='float_window'>
+            <div class='box box-info'>
+              <div class='box box-body'>";
 
     $info_cnt = 0;
     $info_fullname = array();
@@ -877,12 +878,12 @@ function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_pre
             if($count>0){
 
 
-              echo "<div class='row' style='margin-top:10px;'>
-                        <div class='col-sm-12 col-md-10 col-lg-10'>
+              echo "<div class='row' style='margin-top:40px;'>
+                        <div class='col-sm-12 col-md-10'>
                           <div class='alert alert-warning'>
                             <strong>
-                                <strong>¡Aviso!</strong> No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
-                                <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
+                              <strong>¡Aviso!</strong> No has registrado correctamente los estados entrada/salida del día. ¡Contactar con el administrador!
+                              <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
                             </strong>
                           </div>
                       </div>
@@ -991,11 +992,11 @@ function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_pre
         if($count>0){
 
 
-          echo "<div class='row'>
-                    <div class='col-sm-12 col-md-10 col-lg-10'>
+          echo "<div class='row' style='margin: 40px 0px 0px 0px;'>
+                    <div class='col-sm-12 col-md-10'>
                       <div class='alert alert-warning'>
                         <strong>
-                            ¡Aviso! No has registrado correctamente los estados in/out del día. ¡Contactar con el administrador!
+                            ¡Aviso! No has registrado correctamente los estados entrada/salida del día. ¡Contactar con el administrador!
                             <a class='admin_headings' href='http://isoftsolutions.es/'> contacto</a>
                         </strong>
                       </div>
@@ -1047,7 +1048,7 @@ function hours_worked_report($emp_fullname,$from_timestamp,$to_timestamp,$db_pre
     $last_timestamp = $info_timestamp;
     $count++;
   }
-    echo "</div><!--Cierra el div container-->";
+    echo "</div></div></div></div>"; // row - float-window - box-info - box-body
 
 
 
@@ -1062,5 +1063,10 @@ function format_time($time_in_seconds) {
    //return $hours . ':' . $minutes . ":" . $seconds;
    return array($hours,$minutes,$seconds);
 }
-//exit;
+include '../theme/templates/endmaincontent.inc';
+include '../theme/templates/controlsidebar.inc';
+include '../theme/templates/endmain.inc';
+include '../theme/templates/adminfooterscripts.inc';
+include '../footer.php';
+exit;
 ?>
