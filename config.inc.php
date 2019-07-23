@@ -500,5 +500,5 @@ $date = Date('Y');
 $dbversion = "1.4";
 
 /* Application version. */
-$app_version = "1.1.0";
+$app_version = "2.0.0";
 ?>
