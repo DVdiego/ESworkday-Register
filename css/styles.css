@@ -1,0 +1,241 @@
+
+/*estilo timeclock*/
+/* Los estilos aquí contenidos solo se aplicarán a partir
+    del tamaño de pantalla indicado */
+@media (min-width: 768px ) {
+
+  #register > form > div > div.box-body{
+    margin-left: 30% !important;
+  }
+
+  #wrapper > div > section > div > div:nth-child(2) > div.col-md-8 > div.callout{
+    margin-left: 30%;
+  }
+
+
+  #float_window > div > div.box-body > form > #dates{
+    display: flex;
+  }
+}
+
+@media (max-width: 767px ){
+
+  #float_window > div > div.box-body > form > #dates{
+    display: block;
+  }
+}
+
+
+div.box.box-primary {
+    border-top-color: #222d32 !important;
+}
+
+.btn-primary{
+
+  background-color: #505d63 !important;
+  border-color: #222d32 !important;
+}
+
+.btn-primary:hover{
+
+  background-color: #00a65a !important;
+  border-color: #222d32 !important;
+}
+
+#logo-leftmain{
+
+  width: 100%;
+}
+
+#wrapper > aside > section > div:nth-child(1) > img{
+
+  width: 100%;
+
+}
+
+#button-primary{
+
+
+  background-color: #222d32 !important;
+  border-color: #222d32 !important;
+}
+
+#button-primary:hover{
+  background-color: #00a65a !important;
+  border-color: #222d32 !important;
+}
+
+
+/*ventanas flotantes*/
+#float_window{
+
+  margin: auto !important;
+  float: initial !important;
+}
+
+/*alertas flotantes*/
+#float_alert{
+  margin: auto !important;
+  float: initial !important;
+
+}
+
+
+/**/
+#wrapper > div.content-wrapper{
+  background-color: #0000001f !important;
+
+}
+
+
+
+/*Ventans flotantes*/
+#float_window > div > div.box-body > form{
+
+  padding-left: 5%;
+}
+
+#float_window > div.box.box-info{
+
+  border-color: black;
+}
+
+
+/*separadores formularios*/
+
+hr.separate-infos {
+    border-top: 1px solid green;
+}
+
+hr.separate-days {
+    border-top: 2px solid red;
+}
+
+p.present-sum {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: green;
+}
+
+
+#form-padding{
+
+  border-color: green;
+  size: 2px;
+}
+
+/* Botones de formularios */
+#formButtons{
+  font-weight: bold;
+}
+#formButtons > a{
+  color: #000000;
+}
+
+/* texto de formularios*/
+.table_rows{
+  font-family: Tahoma, Verdana, Trebuchet MS, sans-serif;
+	font-size: 14px;
+	padding : 2px;
+}
+
+/* .table_rows_output{
+  font-family: Tahoma, Verdana, Trebuchet MS, sans-serif;
+	font-size: 14px;
+  font-weight: bold !important;
+	padding : 2px;
+} */
+
+.required_fields{
+  font-family: Tahoma, Verdana, Trebuchet MS, sans-serif;
+	font-size: 10px;
+  font-weight: bold !important;
+	padding : 2px;
+  align: right;
+
+}
+
+
+
+/*estilo de los td que contienen texto, para que sea igual a los label de todo el código*/
+.table_rows_output{
+
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 14px;
+
+}
+
+/*
+  textarea
+*/
+#comment{
+  width: 50% !important;
+}
+
+/*Tarjetas reportes del día*/
+/*separador reportes*/
+
+hr.separator-reports{
+
+  border-top: 1px solid black;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+
+}
+.box{
+
+      border-top: 3px solid #00a65a82 !important;
+}
+.content_reports{
+
+    min-height: 0px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+}
+.box-header .box-title {
+    font-size: 18px !important;
+}
+
+/*leftmain t content wrapper a la misma altura*/
+.content-wrapper{
+    min-height: 86.8rem !important;
+}
+
+.main-sidebar{
+    min-height: 96.9rem !important;
+}
+
+/*color bordes tabalas*/
+.box-header.with-border{
+
+  border-bottom: 1px solid #ffffff;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+
+  border-top: 1px solid #ffffff;
+}
+
+.box-footer{
+
+      border-top: 1px solid #ffffff;
+}
+@media (max-width: 460px) {
+    /* Los estilos aquí contenidos solo se aplicarán a partir
+    del tamaño de pantalla indicado */
+    #wrapper > div > section{
+      padding-top: 120px;
+    }
+
+    #wrapper > header > nav > div > ul{
+      font-size: 16px;
+    }
+}
